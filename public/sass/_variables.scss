@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+
+@font-face {
+    font-family: 'Neometric Bold';
+    src: local('../../assets/plugins/fonts/Neometric Bold'), local('Neometric-Bold'),
+        url('../../assets/plugins/fonts/Neometric-Bold.woff2') format('woff2'),
+        url('../../assets/plugins/fonts/Neometric-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+ }
+
+@font-face {
+    font-family: 'Neometric';
+    src: local('../../assets/plugins/fonts/Neometric Bold'), local('Neometric-Bold'),
+    url('../../assets/plugins/fonts/Neometric-Bold.woff2') format('woff2'),
+    url('../../assets/plugins/fonts/Neometric-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Neometric Medium';
+    src: url('../../assets/plugins/fonts/Neometric-Medium.woff2') format('woff2'),
+        url('../../assets/plugins/fonts/Neometric-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Neometric regular';
+    src: url('../../assets/plugins/fonts/Neometric-Regular.woff2') format('woff2'),
+        url('../../assets/plugins/fonts/Neometric-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+//fonts variables
+$lato-font:   'Lato', sans-serif;
+$neoteric-font:  'Neometric';
+$neoteric-medium:  'Neometric Medium';
+$neoteric-regular:  'Neometric regular';
+$neoteric-bold:  'Neometric Bold';
+$neoteric-font:  'Neometric';
+
+
+
+//colors variables//
+$white:             #fff;
+
+
+

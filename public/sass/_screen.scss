@@ -1,0 +1,974 @@
+
+
+@media(max-width: 1366px) {
+  .season_fall {
+    height: auto;
+  }
+
+  .season_fall .btn_top a.big_btn {
+    font-size: 24px;
+    padding: 30px 40px;
+  }
+
+  .season_fall .banner_heading h1 {
+    font: 900 85px "Lato", sans-serif;
+    margin: 60px 0 16px;
+    line-height: 80px;
+  }
+
+  .assign_order .side_detail h4 {
+    font: 900 30px "Lato", sans-serif;
+  }
+
+  .assign_order .side_detail .list_box p {
+    font: 700 20px "Neometric";
+    padding: 20px 20px;
+  }
+
+  .assign_order .side_detail a {
+    font: 700 20px "Neometric";
+    padding: 20px 15px;
+  }
+
+  .create_league_table .table_outer tbody tr td {
+    font: 900 17px "Lato", sans-serif;
+  }
+
+  .assign_order .table_outer tbody tr td .icon {
+    left: 71px;
+    top: 5px;
+  }
+
+  .city_charts .edit_revert ul li button {
+    font: 500 17px "Neometric Medium";
+    padding: 20px 15px;
+    width: 190px;
+  }
+
+  .create_league form .select_view .select_draft.draft_round ul li label {
+    padding: 20px 25px;
+  }
+
+  .create_league form .select_view .select_draft.league_size ul li {
+    margin-right: 2px;
+  }
+  .create_league form .select_view .select_draft ul li {
+    margin-right: 5px;
+  }
+
+  .create_league form .select_view .select_draft ul li label {
+    font: 700 20px "Neometric";
+    padding: 12px 33px;
+  }
+  .season_fall.create_league {
+    height: auto;
+  }
+
+  .draft_boards .list_edit h4 {
+    font: 500 17px "Neometric Medium";
+    padding: 20px 10px;
+  }
+
+  .draft_boards .list_edit .create_new {
+    font: 500 17px "Neometric Medium";
+    padding: 20px 10px;
+  }
+
+  .draft_boards .list_edit button {
+    font: 500 17px "Neometric Medium";
+    padding: 9px 10px;
+  }
+  .draft_boards .draft_upload {
+    margin: 55px 0;
+  }
+  .assign_order .side_detail h4 {
+    font: 900 19px "Lato", sans-serif;
+  }
+
+  .assign_order .side_detail h4::after,
+  .assign_order .side_detail h4::before {
+    top: 10px;
+  }
+  .squads_board .side_detail ul li a {
+    font: 700 17px "Lato", sans-serif;
+    padding: 12px 15px 17px;
+  }
+  .record_book .side_detail ul li a img {
+    left: 14px;
+  }
+  .record_book .history_box .white_board p,
+  .record_book .history_box .black_board p {
+    font: 700 25px "Lato", sans-serif;
+    line-height: 32px;
+  }
+  .record_book .side_detail .pdf_book h5 {
+    font: 700 20px "Lato", sans-serif;
+  }
+  .record_book .side_detail .pdf_book form p {
+    font: 700 20px "Lato", sans-serif;
+  }
+  .draft_boards .draft_lottery_board h2 {
+    width: 90%;
+  }
+  .squads_board .table_outer thead tr .text_head {
+    padding-left: 15px;
+    font-size: 17px;
+  }
+  .squads_board .table_outer thead tr th {
+    font: 700 17px "Lato", sans-serif;
+  }
+  .setting .draft_tag {
+    left: -90px;
+    width: 18%;
+    top: 145px;
+  }
+  .draft_boards .list_edit button {
+    font: 500 14px "Neometric Medium";
+  }
+  .setting .list_edit span {
+    font: 700 16px "Lato", sans-serif;
+  }
+}
+
+@media(max-width: 1280px)  {
+  .season_fall {
+    height: 100vh;
+  }
+
+  .season_fall.create_league_table.assign_order {
+    height: auto;
+  }
+
+  .assign_order h2 {
+    width: 94%;
+  }
+
+  .assign_order .table_outer tbody tr td .state {
+    left: 20px;
+    top: 2px;
+  }
+
+  .assign_order .table_outer tbody tr td .state span {
+    font: 500 33px "Lato", sans-serif;
+  }
+  .season_fall.create_league_table.assign_order.the_lottery.draft_boards {
+    height: 100vh;
+  }
+
+  .champion_list .tab-content .standing_list ul li .white_board p,
+  .champion_list .tab-content .standing_list ul li .place_heading p {
+    font: 500 22px "Neometric Medium";
+  }
+  .champion_list .tab-content .standing_list ul li .white_board,
+  .champion_list .tab-content .standing_list ul li .place_heading {
+    width: 220px;
+  }
+  .champion_list .tab-content .standing_list ul li {
+    margin-right: 10px;
+  }
+  .champion_list .tab-content .standing_list ul li .white_board p, .champion_list .tab-content .standing_list ul li .place_heading p {
+    font: 500 15px "Neometric Medium";
+  }
+  .champion_list .tab-content .standing_list ul li .white_board p::before {
+    top: 3px;
+    left: -5px;
+  }
+  .champion_list .break_list li {
+    margin-right: 20px;
+  }
+  .champion_list .dte ul li select {
+    padding: 18px 20px;
+  }
+  .setting .draft_tag {
+    display: none;
+  }
+  .season_fall.create_league_table.assign_order.the_lottery.squads_board.draft_boards.setting {
+    height: auto;
+  }
+  .squads_board .table_outer tbody tr td.txt_head {
+    padding-left: 10px;
+  }
+  .squads_board .table_outer thead tr th {
+    font: 700 13px "Lato", sans-serif;
+  }
+  .create_league_table .table_outer tbody tr td {
+    font: 900 12px "Lato", sans-serif;
+  }
+
+  .squads_board .list li .red,
+  .squads_board .list li .green {
+    padding: 10px 24px;
+    font: 700 20px "Lato", sans-serif;
+  }
+
+  .traders .btn_list ul li button {
+    font: 700 18px "Lato", sans-serif;
+    width: 142px;
+  }
+
+  .traders .slide .slide_desc h2 {
+    font: 700 16px "Lato", sans-serif;
+    padding: 15px 15px 20px;
+  }
+
+  .traders .propose_trade h3 {
+    font: 700 25px "Lato", sans-serif;
+  }
+
+  .traders .propose_trade .list h4 {
+    font: 700 25px "Lato", sans-serif;
+  }
+
+  .traders .propose_trade .list select {
+    font: 700 25px "Lato", sans-serif;
+  }
+}
+
+@media(max-width: 1248px)  {
+  .list_sheet ul li .box button {
+    width: 210px;
+  }
+  .city_board_table .table tbody tr td {
+    font: 500 15px "Neometric Medium";
+  }
+
+  .city_board_table .table .thead-dark tr th {
+    font: 700 18px "Neometric Bold";
+  }
+  .city_board_table {
+    margin: 0 0 30px;
+  }
+  .list_sheet {
+    padding-bottom: 30px;
+  }
+
+  .create_league form .select_view .draft_picks .skip a {
+    font: 700 18px "Neometric";
+    padding: 20px 15px;
+  }
+
+  .create_league form .select_view .select_draft.league_size ul li label {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+  }
+  .assign_order .side_detail h4 {
+    font: 900 22px "Lato", sans-serif;
+  }
+
+  .season_fall.create_league_table.assign_order.the_lottery.draft_boards .side_detail h4::after
+  .season_fall.create_league_table.assign_order.the_lottery.draft_boards .side_detail h4::before {
+    top: 12px;
+  }
+  .champion_list .tab-content .standing_list ul li .white_board, .champion_list .tab-content .standing_list ul li .place_heading {
+    width: 213px;
+  }
+}
+
+@media(max-width: 1170px)  {
+  .season_fall .btn_top a {
+    font: 700 20px "Lato", sans-serif;
+    padding: 15px 30px;
+  }
+  .season_fall .btn_top a.big_btn {
+    font-size: 24px;
+    padding: 11px 25px;
+    height: auto;
+  }
+
+  .season_fall .btn_top a {
+    top: 0;
+  }
+
+  .assign_order .side_detail h4 {
+    font: 900 23px "Lato", sans-serif;
+  }
+  .assign_order .side_detail h4::after,
+  .assign_order .side_detail h4::before {
+    top: 12px;
+  }
+
+  .create_league form .select_view .select_draft.draft_round ul li a {
+    font: 700 18px "Neometric";
+    padding: 20px 16px;
+  }
+
+  .create_league form .select_view .select_draft ul li label {
+    font: 700 17px "Neometric";
+  }
+
+  .draft_boards .draft_lottery_board h2 {
+    width: 91%;
+  }
+
+  .champion_list .tab-content .standing_list ul li .white_board, .champion_list .tab-content .standing_list ul li .place_heading {
+    width: 200px;
+  }
+}
+
+@media(max-width: 1112px)  {
+  .season_fall .btn_top a.big_btn {
+    font-size: 21px;
+    padding: 11px 15px;
+  }
+
+  .season_fall .btn_top a {
+    font: 700 20px "Lato", sans-serif;
+    padding: 11px 30px;
+  }
+
+  .season_fall .banner_heading h3 {
+    margin: 110px auto 0;
+    width: 80%;
+  }
+
+  .create_league_table .container {
+    max-width: 92%;
+  }
+  .list_sheet ul li .box button {
+    width: 204px;
+    font-size: 15px;
+  }
+}
+
+@media(max-width: 1080px)  {
+  .list_sheet ul li .box button {
+    width: 162px;
+    font-size: 15px;
+  }
+  .create_league form .select_view .select_draft.league_size ul li label {
+    width: 50px;
+    height: 50px;
+    line-height: 48px;
+  }
+
+  .create_league form .select_view .draft_picks h4 {
+    font: 700 22px "Neometric";
+    margin-bottom: 5px;
+    line-height: 34px;
+  }
+}
+
+@media(max-width: 1024px)  {
+  .create_league form .select_view .draft_picks .yahoo {
+    margin: 55px 0 80px;
+  }
+  .create_league .container-fluid {
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .record_book .tab-content .table_cover h3 {
+    width: 100%;
+    font: 500 30px "Neometric Medium";
+  }
+}
+
+@media(max-width: 992px)  {
+  .assign_order .side_detail h4 {
+    font: 900 18px "Lato", sans-serif;
+  }
+}
+
+
+@media(max-width: 980px)  {
+  .create_league .heading h1 {
+    font: 900 70px "Lato", sans-serif;
+  }
+  .draft_boards .list_edit h4 {
+    font: 500 16px "Neometric Medium";
+  }
+  .traders .slick-prev {
+    top: 53px;
+  }
+  .traders .slick-next {
+    right: -11px;
+    top: 53px;
+  }
+}
+
+@media(max-width: 900px)  {
+  .season_fall .btn_top a.big_btn {
+    font-size: 19px;
+    padding: 11px 10px;
+  }
+
+  .city_charts .edit_revert ul li button {
+    padding: 20px 5px;
+    width: 174px;
+  }
+  .draft_boards .save button::after,
+  .draft_boards .save button::before {
+    display: none;
+  }
+  .champion_list .tab-content .standing_list ul li {
+    margin-right: 0px;
+  }
+  .champion_list .tab-content .standing_list ul li .white_board, .champion_list .tab-content .standing_list ul li .place_heading {
+    width: 195px;
+  }
+}
+
+@media(max-width: 834px)   {
+  .season_fall .btn_top a {
+    font: 700 16px "Lato", sans-serif;
+  }
+  .season_fall .btn_top a.big_btn {
+    font-size: 16px;
+    padding: 11px 15px;
+  }
+
+  .assign_order .table_outer tbody tr td .icon {
+    left: 10px;
+  }
+  .create_league_table .table_outer thead tr th {
+    font: 900 18px "Lato", sans-serif;
+    padding: 25px 10px;
+  }
+
+  .assign_order .side_detail a {
+    font: 700 15px "Neometric";
+  }
+  .assign_order .side_detail h4::after, .assign_order .side_detail h4::before {
+    width: 36px;
+  }
+  .list_sheet ul li .box button {
+    width: 148px;
+    font-size: 13px;
+  }
+
+  .city_charts .edit_revert ul li button {
+    width: 149px;
+    font-size: 13px;
+  }
+  .the_lottery .save button {
+    padding: 15px 12px;
+    font: 500 20px "Neometric Medium";
+  }
+  .record_book .table_outer tbody tr td strong {
+    font-size: 16px;
+  }
+  .squads_board .table_outer tbody tr td.txt_head {
+    text-align: left;
+    padding-left: 10px;
+  }
+  .champion_list .break_list li span {
+    font: 500 20px "Lato", sans-serif;
+    color: #fff;
+  }
+  .champion_list .tab-content .standing_list ul li .white_board, .champion_list .tab-content .standing_list ul li .place_heading {
+    width: 179px;
+  }
+  .squads_board .table_outer tbody tr td .silver {
+    top: 0;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+  }
+  .squads_board .table_outer tbody tr td .golden {
+    top: 0;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media(max-width: 800px)    {
+  .season_fall .btn_top a.big_btn {
+    padding: 11px 12px;
+  }
+
+  .season_fall .btn_top a {
+    padding: 11px 20px;
+  }
+
+  .list_sheet ul li .box button {
+    width: 137px;
+    font-size: 12px;
+  }
+
+  .draft_boards .draft_lottery_board .draft_setting h3 {
+    font: 500 18px "Neometric Medium";
+  }
+
+  .assign_order h2 {
+    font: 700 19px "Neometric";
+    padding: 20px 15px;
+  }
+  .draft_boards .draft_lottery_board .draft_setting h3::after,
+  .draft_boards .draft_lottery_board .draft_setting h3::before {
+    display: none;
+  }
+  .draft_boards .draft_upload .upload_desc p {
+    font: 700 16px "Neometric";
+  }
+  .draft_boards .draft_upload .upload_desc h5 {
+    font: 400 20px "Neometric regular";
+  }
+  .champion_list .tab-content .standing_list ul li .white_board, .champion_list .tab-content .standing_list ul li .place_heading {
+    width: 172px;
+  }
+
+  .record_book .tab-content .standing_list ul li .white_board p::before {
+    width: 8px;
+    height: 8px;
+  }
+  .champion_list .break_list {
+    margin: 15px 0 20px;
+  }
+}
+
+@media(max-width: 768px)   {
+  .season_fall .btn_top a.big_btn {
+    padding: 11px 7px;
+  }
+
+  .create_league_table .save button {
+    padding: 20px 25px;
+  }
+
+  .create_league form .select_view .select_draft.draft_round p {
+    font: 500 16px "Neometric Medium";
+  }
+}
+
+@media(max-width: 767px)  {
+  .season_fall .btn_top {
+    margin: 8px 0;
+  }
+  .season_fall .btn_top a.big_btn {
+    padding: 11px 30px;
+    font-size: 18px;
+  }
+  .season_fall .btn_top a {
+    width: 64%;
+  }
+
+  .assign_order .side_detail h3 {
+    margin: 25px 0;
+  }
+
+  .assign_order h2 {
+    margin: 50px auto 20px;
+  }
+
+  .city_charts .city_name h3 {
+    text-align: center;
+  }
+  .city_charts .edit_revert {
+    text-align: center;
+    margin-top: 22px;
+  }
+  .city_charts .edit_revert ul li button {
+    width: 191px;
+    font-size: 16px;
+  }
+  .create_league form .select_view::before {
+    display: none;
+  }
+
+  .create_league form .select_view {
+    text-align: center;
+  }
+
+  .create_league form .select_view .select_draft h4 {
+    width: 100%;
+  }
+  .create_league .heading h1 {
+    font: 900 52px "Lato", sans-serif;
+  }
+
+  .create_league form .select_view .select_draft.draft_round p {
+    width: 100%;
+  }
+  .create_league form .select_view .draft_picks .skip {
+    text-align: center;
+  }
+  .create_league form .select_view .draft_picks .yahoo {
+    margin: 55px 0 50px;
+  }
+  .season_fall.create_league_table.assign_order.the_lottery.draft_boards {
+    height: auto;
+  }
+  .draft_boards .draft_upload .trophy {
+    text-align: center;
+  }
+  .draft_boards .draft_upload .upload_desc {
+    margin-top: 20px;
+  }
+  .record_book .side_detail .pdf_book h5 {
+    text-align: center;
+  }
+  .record_book .side_detail .pdf_book .upload_sheet {
+    text-align: center;
+  }
+  .record_book .side_detail .pdf_book form p {
+    text-align: center;
+  }
+  .assign_order .side_detail {
+    margin-bottom: 20px;
+  }
+  .champion_list .list_paid p {
+    text-align: center;
+  }
+  .champion_list .dte {
+    text-align: center;
+  }
+  .champion_list .p_stan h3 {
+    text-align: center;
+  }
+  .champion_list .p_current {
+    text-align: center;
+  }
+  .champion_list .break_list {
+    text-align: center;
+  }
+  .champion_list .tab-content .standing_list ul li .white_board, .champion_list .tab-content .standing_list ul li .place_heading {
+    width: 164px;
+  }
+  .champion_list .tab-content .standing_list ul li .white_board p::before {
+    top: 6px;
+    left: -16px;
+  }
+  .setting .list_edit span {
+    font: 700 16px "Lato", sans-serif;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .draft_boards .list_edit button {
+    margin-bottom: 10px;
+  }
+  .squads_board .name h3 {
+    width: 100%;
+  }
+  .squads_board .list {
+    text-align: center;
+    position: relative;
+    top: 0;
+    margin: 20px 0;
+  }
+  .the_lottery .draft_lottery_board .lsit_draft p {
+    line-height: 34px;
+    text-align: center;
+  }
+  .assign_order h2 {
+    margin: 0px auto 20px;
+  }
+  .traders .slide .frsh img {
+    margin: auto;
+    margin-bottom: auto;
+    padding-top: 0px;
+    margin-bottom: 23px;
+  }
+  .traders .propose_trade form::before {
+    display: none;
+  }
+  .city_charts .top_draft {
+    text-align: center;
+}
+.timer_box {
+  text-align: center;
+}
+}
+
+@media(max-width: 736px)  {
+  .list_sheet ul li  {
+    margin-bottom: 20px;
+  }
+
+  .list_sheet ul li .box button {
+    margin-top: 10px;
+  }
+
+}
+
+@media(max-width: 667px) {
+  .season_fall .btn_top a {
+    width: 75%;
+  }
+
+  .season_fall {
+    height: auto;
+  }
+}
+
+@media(max-width: 600px) {
+  .season_fall .btn_top a {
+    width: 80%;
+  }
+
+  .city_charts .top_draft ul li .player_draft {
+    width: 326px;
+    left: -127px;
+}
+
+.city_charts .top_draft ul li .player_draft h4 {
+    font: 400 15px "Neometric Bold";
+    text-align: center;
+}
+
+.city_charts .top_draft ul li .player_draft h4 span {
+    margin-left: 0;
+    margin-top: 10px;
+    display: block;
+}
+}
+
+@media(max-width: 570px)  {
+  .season_fall .btn_top a {
+    width: 92%;
+  }
+
+  .season_fall .banner_heading h1 {
+    font: 900 67px "Lato", sans-serif;
+    line-height: 64px;
+  }
+  .traders .btn_list ul li button {
+    font: 700 14px "Lato", sans-serif;
+    width: 114px;
+  }
+}
+
+@media(max-width: 480px)  {
+  .season_fall .banner_heading h3 {
+    width: 95%;
+    font-size: 30px;
+  }
+  .season_fall {
+    height: 100vh;
+  }
+  .create_league form .select_view .draft_picks .yahoo {
+    margin: 20px 0 50px;
+  }
+  .create_league .heading h1 {
+    font: 900 40px "Lato", sans-serif;
+    margin-bottom: 25px;
+  }
+  .create_league_table .table_outer tbody tr td:nth-child(2) {
+    padding-left: 0;
+  }
+  .create_league_table .table_outer tbody tr td {
+    font: 900 13px "Lato", sans-serif;
+  }
+  .create_league_table .table_outer thead tr th {
+    font: 900 13px "Lato", sans-serif;
+  }
+  .record_book .tab-content .table_cover h3 {
+    font: 500 20px "Neometric Medium";
+  }
+  .champion_list .tab-content .standing_list ul {
+    text-align: center;
+  }
+  .record_book .table_outer tbody tr td strong {
+    font-size: 11px;
+  }
+  .setting .table_outer tbody tr td span {
+    display: none;
+  }
+  .squads_board .table_outer thead tr .text_head {
+    font-size: 12px;
+  }
+  .traders .pending_trade h3 {
+    font: 700 22px "Lato", sans-serif;
+    width: 100%;
+  }
+
+  .draft_room form .btn_green {
+    margin-bottom: 30px;
+}
+.draft_room form .check_view ul {
+    padding: 18px 0 0 0px;
+}
+.draft_room form .check_view ul li p {
+    font: 400 14px "Neometric regular";
+}
+}
+
+@media(max-width: 414px)  {
+  .season_fall .btn_top a {
+    width: 100%;
+  }
+  .season_fall .btn_top a.big_btn {
+    padding: 18px 10px;
+    font-size: 16px;
+  }
+
+  .season_fall .banner_heading h1 {
+    font: 900 50px "Lato", sans-serif;
+    line-height: 56px;
+  }
+
+  .season_fall .banner_heading h3 {
+    margin: 51px auto 0;
+  }
+
+  .assign_order .side_detail {
+    margin-top: 30px;
+  }
+
+  .city_charts .edit_revert ul li button {
+    width: 167px;
+  }
+  .city_charts {
+    padding: 30px 0;
+  }
+  .create_league .heading h1 {
+    font: 900 40px "Lato", sans-serif;
+  }
+  .create_league_table .save button {
+    padding: 20px 10px;
+    font: 500 16px "Neometric Medium";
+  }
+  .draft_boards .draft_lottery_board h2 {
+    width: 100%;
+    font-size: 20px;
+    margin-top: 3px;
+  }
+  .the_lottery .draft_lottery_board {
+    margin-top: 20px;
+  }
+  .record_book .history_box .white_board p,
+  .record_book .history_box .black_board p {
+    font: 700 17px "Lato", sans-serif;
+    line-height: 21px;
+  }
+
+  .champion_list .list_paid p {
+    font: 400 20px "Neometric regular";
+    line-height: 26px;
+  }
+  .create_league_table .table_outer tbody tr td {
+    font: 700 11px "Lato", sans-serif;
+  }
+  .the_lottery .draft_lottery_board h2 {
+    font: 600 17px "Neometric";
+  }
+  .traders .btn_list ul li  {
+    width: 100%;
+  }
+  .traders .btn_list ul li button {
+    width: 100%;
+  }
+  .draft_room form .check_view ul {
+    padding: 2px 0 0 0px;
+}
+.draft_room form .check_view {
+    margin-bottom: 27px;
+}
+.draft_room form {
+    text-align: center;
+}
+.timer_box {
+    text-align: center;
+    margin-top: 66px;
+}
+
+.city_charts .timer_box ul li .time .btn_view span .clock .time_duration {
+    top: 31px;
+    left: -170px;
+    width: 267px;
+}
+
+.city_charts .timer_box ul li .time {
+    margin-bottom: 5px;
+}
+
+.city_charts .top_draft {
+    z-index: 1;
+}
+}
+
+@media(max-width: 375px)  {
+  .season_fall .container-fluid {
+    max-width: 100%;
+    margin: auto;
+  }
+
+  .assign_order .side_detail .list_box p {
+    padding: 20px 20px;
+  }
+
+  .create_league_table .table_outer tbody tr td:nth-child(2) {
+    padding-left: 7px;
+  }
+
+  .assign_order .table_outer tbody tr td .state span {
+    font: 500 21px "Lato", sans-serif;
+  }
+
+  .assign_order .table_outer tbody tr td .state {
+    left: 4px;
+    top: 11px;
+  }
+
+  .create_league_table .save button {
+    font: 700 17px "Neometric";
+    padding: 20px 55px;
+  }
+
+  .assign_order .side_detail .list_box p {
+    padding: 20px 6px;
+  }
+  .city_charts .edit_revert ul li  {
+    width: 100%;
+  }
+
+  .city_charts .edit_revert ul li button {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .champion_list .break_list {
+    text-align: center;
+    padding-left: 0;
+  }
+  .champion_list .break_list li {
+    margin-right: 0;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .champion_list .tab-content .standing_list ul li {
+    width: 100%;
+  }
+  .champion_list .tab-content .standing_list ul li .white_board, .champion_list .tab-content .standing_list ul li .place_heading {
+    width: 100%;
+  }
+}
+
+@media(max-width: 360px)  {
+  .create_league_table .save button {
+    padding: 20px 25px;
+  }
+}
+
+@media(max-width: 320px)  {
+  .season_fall .banner_heading h3 {
+    font-size: 22px;
+  }
+
+  .assign_order h2 {
+    padding: 20px 15px;
+  }
+
+  .create_league_table .table_outer thead tr th {
+    font: 900 15px "Lato", sans-serif;
+    padding: 14px 10px;
+  }
+
+  .create_league_table .table_outer tbody tr td {
+    font: 900 13px "Lato", sans-serif;
+  }
+
+  .city_charts .city_name h3 {
+    font: 900 33px "Lato", sans-serif;
+  }
+  .create_league .heading h1 {
+    font: 900 35px "Lato", sans-serif;
+  }
+  .record_book .side_detail .pdf_book .upload_sheet .upload_view {
+    overflow: hidden;
+  }
+  .city_charts .top_draft ul li .player_draft {
+    width: 299px;
+    left: -115px;
+}
+}
