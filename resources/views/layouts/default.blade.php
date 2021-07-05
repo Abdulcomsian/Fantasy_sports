@@ -4,13 +4,48 @@
     @include('includes.head')
 </head>
 <body class="season_fall">
+  <button class="openBtn"><i class="fa fa-bars" aria-hidden="true"></i></button>
+    <section id="side-nav">
+        <div class="side-nav-content">
+          <button><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+            <ul>
+                <li>
+                    <a href="/home">Home</a>
+                </li>
+                <li>
+                    <a href="league/create">Create League</a>
+                </li>
+                <li>
+                    <a href="">Draft Board</a>
+                </li>
+                <li>
+                    <a href="">Squads</a>
+                </li>
+                <li>
+                    <a href="">Draft Room</a>
+                </li>
+                <li>
+                    <a href="">Settings</a>
+                </li>
+                <li>
+                    <a href="">Contact & Feedback </a>
+                </li>
+                <li>
+                    <a href="/login">Login</a>
+                </li>
+                <li>
+                    <a href="/register">Register</a>
+                </li>
+            </ul>
+        </div>
+    </section>
     <div>
         <div class="ajax-loader">
           <img src="{{ asset('images/ajax-loader.gif') }}" class="img-responsive" />
         </div>
         @yield('content')
     </div>
-    <div class="list_sheet">
+    <!-- <div class="list_sheet">
     @if(Auth::check())
     <div class="container-fluid">
       <ul class="list-unstyled list-inline mt-4">
@@ -71,6 +106,9 @@
       </ul>
     </div>
     @endif
+  </div> -->
+  <div class="copy-right text-center">
+    <p style="color: #fff;">Copyrigth @ 2021 Website Name. All rights reserved</p>
   </div>
     @include('includes.scripts')
     @yield('js')

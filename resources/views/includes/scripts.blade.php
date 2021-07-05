@@ -46,4 +46,10 @@
 		    position: 'top-right',
 		})
     }
+	jQuery(".openBtn").click(function(){
+		jQuery("#side-nav").css("display","block")
+	})
+	jQuery(".side-nav-content button").click(function(){
+		jQuery("#side-nav").css("display","none")
+	})
 </script>
