@@ -91,69 +91,6 @@
                         </div>
                     </div>
                     @endif
-
-                    <!-- <div class="check_view">
-                        <input type="checkbox" class="largerCheckbox"> <span>In Progress</span>
-                        <ul class="list-unstyled list-inline">
-                            <li class="list-inline-item">
-                                <p>Gotham City League 2020</p>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <img src="{{ asset('images/table.png') }}">
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <img src="{{ asset('images/settings.png') }}">
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <button class="btn btn_delete">Delete</button>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="check_view">
-                        <input type="checkbox" class="largerCheckbox"> <span>Completed Draft</span>
-                        <ul class="list-unstyled list-inline">
-                            <li class="list-inline-item">
-                                <p>Big Boy League</p>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <img src="{{ asset('images/table.png') }}">
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <img src="{{ asset('images/settings.png') }}">
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <button class="btn btn_delete">Delete</button>
-                            </li>
-                        </ul>
-
-                        <ul class="list-unstyled list-inline">
-                            <li class="list-inline-item">
-                                <p>Work League 2018</p>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <img src="{{ asset('images/table.png') }}">
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <img src="{{ asset('images/settings.png') }}">
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <button class="btn btn_delete">Delete</button>
-                            </li>
-                        </ul>
-                    </div> -->
                 </form>
             </div>
             <div class="col-md-7">

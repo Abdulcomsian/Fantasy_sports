@@ -54,3 +54,10 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('yahon/index', 'YahooController@index');
 	Route::get('yahon/apiCheck', 'YahooController@apiCheck');
 });
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+Route::get('/about', function () {
+    return view('about-us');
+});

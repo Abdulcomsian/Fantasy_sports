@@ -70,7 +70,7 @@ a:hover {
 /* line 27, ../sass/app.scss */
 .season_fall {
     position: relative;
-    background: url(../images/season_fall_bg.jpg) no-repeat;
+    background: url(../images/hp3-slider-1.jpg) no-repeat;
     height: 100% !important;
     padding: 40px 0;
     background-size: cover;
@@ -3413,4 +3413,159 @@ select.lg-size {
     color: white;
     background-color: #2B2B2B;
     padding-top: 4px;
+}
+
+
+/***************** New - CSS *********************/
+#side-nav{
+    background-image: linear-gradient(to right, #000, #353535);
+    position: absolute;
+    width: 350px;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 999;
+    display: none;
+    transition: display .6s ease;
+    
+}
+#side-nav .side-nav-content{
+    padding: 80px 0px;
+    position: relative;
+}
+.season_fall .openBtn{
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+    padding: 7px 20px;
+    font-size: 20px;
+}
+#side-nav .side-nav-content button{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 25px;
+}
+
+#side-nav .side-nav-content ul {
+    padding: 0px;
+    list-style: none;
+}
+#side-nav .side-nav-content ul li{
+    padding: 15px 20px;
+}
+#side-nav .side-nav-content ul li>a{
+    color: #fff;
+    font-family: "Neometric Medium";
+}
+/************** Contact - Us - CSS ******************/
+#banner{
+    padding: 100px 0px;
+    font-family: "Neometric Medium";
+}
+#banner .title{
+    font-size: 60px;
+    font-weight: 700;
+    color: #fff;
+}
+#banner .title-span{
+    font-size: 20px;
+    color: #fff;
+    font-style: italic;
+}
+#banner .multi-div{
+    margin: 100px 0px;
+    font-family: "Neometric Medium";
+}
+#banner .multi-div .contact-box{
+    color: #fff;
+    padding: 15px;
+}
+#banner .multi-div .contact-box i{
+    font-size: 35px;
+}
+#banner .multi-div .contact-box h5{
+    margin: 40px 0px 30px;
+    font-size: 25px;
+    font-weight: 700;
+}
+#banner .multi-div .contact-box p{
+    margin-bottom: 30px;
+}
+#banner .multi-div .contact-box a{
+    color: #fff;
+}
+.leave-your-message h2,
+.our-sponsors h2{
+    text-align: center;
+    font-size: 40px;
+    color: #fff;
+    font-weight: 700;
+    font-family: "Neometric Medium";
+}
+.our-sponsors h2{
+    margin-bottom: 50px;
+}
+.leave-your-message p{
+    text-align: center;
+    color: #fff;
+    font-family: "Neometric Medium";
+}
+.leave-your-message .form-div{
+    width: 100%;
+    max-width: 60%;
+    margin: auto;
+    margin-top: 50px;
+    font-family: "Neometric Medium";
+}
+.leave-your-message .form-div .inputDiv{
+    margin-bottom: 20px;
+}
+.leave-your-message .form-div .inputDiv input,
+.leave-your-message .form-div .inputDiv textarea{
+    width: 100%;
+}
+.leave-your-message .form-div button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-image: linear-gradient(to right, #000, #353535);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 6px;
+}
+.leave-your-message .social-icon{
+    margin: 30px 0px;
+    text-align: center;
+}
+.social-icon a{
+    color: #fff;
+    margin-left: 25px;
+}
+#banner .story-div{
+    margin: 80px 0px;
+    color: #fff;
+    font-family: "Neometric Medium";
+}
+#banner .underline{
+    width: 94px;
+    height: 1px;
+    background: #fff;
+    margin: 25px 0;
+}
+.about-div .contact-box h5{
+    font-size: 16px !important;
+}
+.about-div .contact-box p{
+    font-size: 14px !important;
+}
+.about-div .contact-box a{
+    font-size: 12px !important;
 }
