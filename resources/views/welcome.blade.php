@@ -27,9 +27,9 @@
         </div>
     </div>
 
-    <div class="banner_heading">
+    <div class="banner_heading" style="margin-bottom:30px">
         <h1>The </br>  off-season </br>   gm</h1>
-        <h3>Where the fantasy football season never ends</h3>
+        <h3>Where the fantasy season never ends</h3>
     </div>
 </div>
 @stop

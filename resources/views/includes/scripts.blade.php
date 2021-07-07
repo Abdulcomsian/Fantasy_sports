@@ -47,7 +47,11 @@
 		})
     }
 	jQuery(".openBtn").click(function(){
-		jQuery("#side-nav").css("display","block")
+		if(jQuery("#side-nav").css("display")=="none"){
+			jQuery("#side-nav").css("display","block")
+		} else{
+			jQuery("#side-nav").css("display","none")
+		}
 	})
 	jQuery(".side-nav-content button").click(function(){
 		jQuery("#side-nav").css("display","none")

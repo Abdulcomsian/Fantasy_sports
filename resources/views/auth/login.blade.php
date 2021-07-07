@@ -45,11 +45,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 offset-md-3 forget-pasw">
-                     <a href="/forgot-password">Forgot Password?</a>
-                </div>
-                 <div class="col-md-3  clr-fnt">
-                    <p>Don't have an account yet?<br> <a href="/register">Sign Up</a></p>
+                <div class="col-md-6 offset-md-3 forget-pasw">
+                     <a href="/forgot-password"><button>Forgot Password?</button></a>
+                     <a href=""><button>Don't have an account yet?<br> Sign Up</button></a>
                 </div>
             </div>
             <!-- <div class="row">

@@ -546,6 +546,7 @@ a:hover {
 /* line 426, ../sass/app.scss */
 .the_lottery .draft_lottery_board {
     margin-top: 55px;
+    margin-left: 30px;
 }
 /* line 429, ../sass/app.scss */
 .the_lottery .draft_lottery_board h2 {
@@ -1825,7 +1826,7 @@ label#joiner_key-error {
 }
 /* line 1636, ../sass/app.scss */
 .draft_room form .check_view {
-    margin-bottom: 40px;
+    margin: 40px 0px;
 }
 /* line 1639, ../sass/app.scss */
 .draft_room form .check_view input {
@@ -2424,6 +2425,18 @@ label#joiner_key-error {
     }
 }
 @media (max-width: 992px) {
+    #banner .multi-div .contact-box{
+        text-align: center;
+    }
+    .create_league form .select_view .select_draft ul li,
+    .create_league form .select_view .select_draft ul li select,
+    .create_league form .select_view .select_draft ul li button{
+        width: 100%;
+    }
+    .create_league form .select_view .select_draft ul,
+    .create_league form .select_view .draft_picks {
+        margin-bottom: 50px;
+    }
     /* line 368, ../sass/_screen.scss */
     .assign_order .side_detail h4 {
         font: 900 18px "Lato", sans-serif;
@@ -2639,6 +2652,42 @@ label#joiner_key-error {
     }
 }
 @media (max-width: 768px) {
+    .leave-your-message .form-div{
+        max-width: 100% !important;
+    }
+    .our-sponsors img,
+    #banner .multi-div .contact-box{
+        margin-bottom: 50px;
+    }
+    #banner .underline{
+        max-width: 94px;
+        margin: auto !important;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+    }
+    #banner .title,
+    #banner .story-div,
+    #banner .title-span,
+    #banner{
+        text-align: center;
+    }
+    .the_lottery .draft_lottery_board{
+        margin-left: 0px;
+    }
+    .draft_boards .draft_lottery_board .draft_setting h3{
+        width: 100%;
+    }
+    #side-nav{
+        background-image: linear-gradient(to right, #000, #353535);
+        width: 375px;
+        height: 100vh;
+    }
+    .season_fall .openBtn{
+        position: relative !important;
+        top: -18px !important;
+        z-index: 0 !important;
+    }
     /* line 522, ../sass/_screen.scss */
     .season_fall .btn_top a.big_btn {
         padding: 11px 7px;
@@ -3082,6 +3131,7 @@ label#joiner_key-error {
     /* line 827, ../sass/_screen.scss */
     .the_lottery .draft_lottery_board {
         margin-top: 20px;
+        margin-left: 30px;
     }
 
     /* line 830, ../sass/_screen.scss */
@@ -3344,13 +3394,24 @@ select.lg-size {
     padding: 20px;
     margin-top: 13px;
     text-align: center;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .forget-pasw a {
-    padding: 22px 17px;
-    background-image: linear-gradient(to right, #000, #353535) !important;
+    
     font: 300 12px "Neometric";
     color: #fff;
+    
+}
+.forget-pasw a button{
+    padding: 0px 17px;
+    background-image: linear-gradient(to right, #000, #353535) !important;
     border: 1px solid #fff;
+    color: #fff;
+    height: 60px;
+    margin-right: 10px;
 }
 .clr-fnt {
     margin-top: 18px;
@@ -3418,7 +3479,6 @@ select.lg-size {
 
 /***************** New - CSS *********************/
 #side-nav{
-    background-image: linear-gradient(to right, #000, #353535);
     position: absolute;
     width: 350px;
     left: 0;
@@ -3430,18 +3490,19 @@ select.lg-size {
     
 }
 #side-nav .side-nav-content{
-    padding: 80px 0px;
+    padding: 150px 0px 0px;
     position: relative;
 }
 .season_fall .openBtn{
     position: absolute;
     left: 30px;
-    top: 30px;
+    top: 50px;
     border: 2px solid #fff;
     background: transparent;
     color: #fff;
     padding: 7px 20px;
     font-size: 20px;
+    z-index: 99999999;
 }
 #side-nav .side-nav-content button{
     position: absolute;
