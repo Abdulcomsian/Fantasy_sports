@@ -23,7 +23,7 @@
         <div class="multi-div about-div">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4">
+                    <div class="col-lg-4 col-md-12">
                         <div class="contact-box">
                             <img src="images/003-basketball-player.png" alt="" class="img-fluid">
                             <h5>We pride ourselves on innovative.</h5>
@@ -31,7 +31,7 @@
                             <a href="">LEARN MORE</a>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4">
+                    <div class="col-lg-4 col-md-12">
                         <div class="contact-box">
                             <img src="images/004-strategy.png" alt="" class="img-fluid">
                             <h5>We won many awards.</h5>
@@ -39,7 +39,7 @@
                             <a href="">LEARN MORE</a>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4">
+                    <div class="col-lg-4 col-md-12">
                         <div class="contact-box">
                             <img src="images/download.png" alt="" class="img-fluid">
                             <h5>We are a team of genius people.</h5>

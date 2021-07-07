@@ -36,6 +36,9 @@
                 <li>
                     <a href="/register">Register</a>
                 </li>
+                <li>
+                    <a href="">logout</a>
+                </li>
             </ul>
         </div>
     </section>
@@ -108,7 +111,7 @@
     @endif
   </div> -->
   <div class="copy-right text-center">
-    <p style="color: #fff;">Copyrigth @ 2021 Website Name. All rights reserved</p>
+    <p style="color: #fff;">Copyright @ 2021 Website Name. All rights reserved</p>
   </div>
     @include('includes.scripts')
     @yield('js')
