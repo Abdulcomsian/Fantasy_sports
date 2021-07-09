@@ -37,7 +37,7 @@
                     <a href="/register">Register</a>
                 </li>
                 <li>
-                    <a href="">logout</a>
+                    <a href="">Logout</a>
                 </li>
             </ul>
         </div>

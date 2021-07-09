@@ -25,7 +25,7 @@
 	          		<div class="list_edit">
 	            		<div class="row">
 	              			<div class="col-md-6 no-bdr">
-	                			<h4>League Name</h4>
+	                			<h4><span><i class="fa fa-star yellow"></i>League Name</span> </h4>
 	              			</div>
 	              			<div class="col-md-6 f-wdth">
 	              				<input  type="text" name="name" value="{{ $league->name ?? '' }}" {{ $permissions == 3 ? "readonly" : "" }}>
@@ -36,6 +36,7 @@
                    {{--<div class="list_edit select_view">
 	            		<div class="row">
 	              			<div class="col-md-6">
+								  
 	                			<h4>Draft Type</h4>
 	              			</div>
 	              			<div class="col-md-6 select_draft">
@@ -71,7 +72,7 @@
 	          		<div class="list_edit">
 	            		<div class="row">
 	              			<div class="col-md-6 no-bdr">
-	                			<h4>Draft Round </h4>
+							  	<h4><span><i class="fa fa-star yellow"></i>Draft Round</span></h4>
 	              			</div>
 	              			<div class="col-md-6">
 	                			<!-- <h4>17</h4> -->
@@ -88,7 +89,7 @@
 	          		<div class="list_edit">
 	          			<div class="row">
 	          				<div class="col-md-6 no-bdr">
-	                			<h4>Keeper Mode </h4>
+							  	<h4><span><i class="fa fa-star yellow"></i>Keeper Mode</span></h4>
 	              			</div>
 	          				<div class="col-md-6">
 	          					<div class="custom-control custom-switch">
@@ -101,7 +102,7 @@
 	          		<div class="list_edit">
 	          			<div class="row">
 	          				<div class="col-md-6 no-bdr">
-	                			<h4>Draft Mode </h4>
+							  	<h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
 	              			</div>
 	          				<div class="col-md-6">
 	          					<div class="custom-control custom-switch">
@@ -111,6 +112,17 @@
 	          				</div>
 	          			</div>
 	          		</div>
+					  <div class="row">
+						  <div class="col-lg-12">
+							<div class="inviteUrl">
+							  	<p>Invite URL: <a href="">http://3.129.43.224/league/7/draft</a></p>
+								<p>Send the URL to anyone who is a GM in your league. They will be
+								able to claim ownership of their team and will only be able to
+								navigate and make picks during live draft mode and edit their team
+								name</p>
+							</div>
+						  </div>
+					  </div>
 	          		@if($permissions != 3)
 	          		<div class="list_edit">
 	            		<div class="row">

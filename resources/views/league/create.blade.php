@@ -75,28 +75,30 @@
                             </ul>
                         </div>
 
-                        <div class="select_draft draft_round">
-                            <h4>Draft Round</h4>
-                            <p>(Total number of  roster positions on each team)</p>
-                            <ul class="list-unstyled list-inline">
-                                <li class="list-inline-item">
-                                    <!-- <label>17</label> -->
-                                    <div class="form-group">
-                                        <select name="draft_round">
-                                            @foreach(Config::get('rounds') as $round)
-                                                <option class="text-dark" value="{{$round}}">{{$round}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </li>
-                                 <li class="list-inline-item">
-                                    <button type="submit">Save & Continue</button>
-                                </li>
-                            </ul>
-                        </div>
+                       
                     </div>
-
                     <div class="col-md-6">
+                        <div class="select_draft draft_round draft-round">
+                                <h4>Draft Round</h4>
+                                <p>(Total number of  roster positions on each team)</p>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item">
+                                        <!-- <label>17</label> -->
+                                        <div class="form-group">
+                                            <select name="draft_round">
+                                                @foreach(Config::get('rounds') as $round)
+                                                    <option class="text-dark" value="{{$round}}">{{$round}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <button type="submit">Save & Continue</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    <!-- <div class="col-md-6">
                         <div class="draft_picks">
                             <h4>Import Draft Picks, Rosters </br> & League Settings</h4>
                             <div class="yahoo">
@@ -107,7 +109,7 @@
                                 <a href="#">Skip & Go To Draft Board</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </form>
