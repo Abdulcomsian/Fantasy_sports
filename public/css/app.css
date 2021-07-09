@@ -184,16 +184,17 @@ a:hover {
 .create_league form .select_view {
     margin-top: 40px;
     position: relative;
+    margin-bottom: 50px;
 }
 /* line 116, ../sass/app.scss */
 .create_league form .select_view:before {
     position: absolute;
     top: 62px;
-    left: 35px;
+    left: 0px;
     content: "";
     right: 0;
     margin: auto;
-    height: 330px;
+    height: 230px;
     width: 3px;
     background-color: #d2d3d2;
 }
@@ -208,6 +209,7 @@ a:hover {
 /* line 136, ../sass/app.scss */
 .create_league form .select_view .select_draft ul {
     margin: 0;
+    display: flex;
 }
 /* line 138, ../sass/app.scss */
 .create_league form .select_view .select_draft ul li {
@@ -263,6 +265,9 @@ a:hover {
 .create_league form .select_view .select_draft.draft_round {
     margin-top: 30px;
 }
+.create_league form .select_view .draft-round{
+    padding-left: 30px;
+}
 /* line 184, ../sass/app.scss */
 .create_league form .select_view .select_draft.draft_round h4 {
     margin-bottom: 4px;
@@ -297,10 +302,10 @@ a:hover {
 }
 .create_league form .select_view .select_draft.draft_round ul li button {
     background-image: linear-gradient(to right, #000, #353535);
-    font: 700 24px "Neometric";
+    font: 700 16px "Neometric";
     color: #fff;
     border: 1px solid #fff;
-    padding: 20px 40px;
+    padding: 25px 40px;
 }
 /* line 214, ../sass/app.scss */
 .create_league form .select_view .draft_picks {
@@ -546,7 +551,7 @@ a:hover {
 /* line 426, ../sass/app.scss */
 .the_lottery .draft_lottery_board {
     margin-top: 55px;
-    margin-left: 30px;
+    margin-left: 150px;
 }
 /* line 429, ../sass/app.scss */
 .the_lottery .draft_lottery_board h2 {
@@ -584,7 +589,7 @@ a:hover {
 /* line 465, ../sass/app.scss */
 .draft_boards .draft_lottery_board h2 {
     width: 56%;
-    font: 500 24px "Neometric Medium";
+    font: 500 16px "Neometric Medium";
 }
 /* line 470, ../sass/app.scss */
 .draft_boards .draft_lottery_board .draft_setting h3 {
@@ -623,7 +628,15 @@ a:hover {
     margin-bottom: 12px;
 }
 /* line 505, ../sass/app.scss */
-.draft_boards .list_edit h4,
+.draft_boards .list_edit h4{
+    font: 500 24px "Neometric Medium";
+    color: #fff;
+    padding: 0px 0px 20px !important;
+}
+.draft_boards .list_edit h4 span{
+    padding: 0;
+}
+/* .draft_boards .list_edit h4, */
 .draft_boards .list_edit input,
 .draft_boards .list_edit select {
     background-image: linear-gradient(to right, #000, #353535);
@@ -707,7 +720,7 @@ a:hover {
 /* line 571, ../sass/app.scss */
 .draft_boards .save button {
     position: relative;
-    font: 500 24px "Neometric Medium";
+    font: 500 16px "Neometric Medium";
     letter-spacing: 1px;
 }
 /* line 575, ../sass/app.scss */
@@ -1326,19 +1339,32 @@ a:hover {
 /* line 1182, ../sass/app.scss */
 .setting .list_edit span .yellow {
     color: #fab11c;
-    font-size: 24px;
+    font-size: 16px;
     margin-right: 10px;
 }
 /* line 1187, ../sass/app.scss */
 .setting .list_edit span .purple {
     color: #621cb2;
-    font-size: 24px;
+    font-size: 16px;
     margin-right: 10px;
 }
 /* line 1193, ../sass/app.scss */
 .setting .list_edit .create_new {
     margin: 20px 0 40px;
     text-align: left;
+}
+.setting .inviteUrl{
+    background-image: linear-gradient(to right, #000, #353535);
+    color: #fff;
+    padding: 10px;
+    font-family: "Neometric Medium";
+}
+.setting .inviteUrl p{
+    font-size: 12px;
+}
+.setting .inviteUrl p>a{
+    color: #fff;
+    text-decoration: underline;
 }
 /* line 1197, ../sass/app.scss */
 .setting .list_edit button {
@@ -2090,7 +2116,7 @@ label#joiner_key-error {
 
     /* line 120, ../sass/_screen.scss */
     .setting .draft_tag {
-        left: -80px;
+        left: 20px;
         width: 15%;
         top: 145px;
     }
@@ -2355,6 +2381,9 @@ label#joiner_key-error {
     }
 }
 @media (max-width: 1112px) {
+    .create_league form .select_view .select_draft.draft_round ul li button{
+        padding: 23px 14px;
+    }
     /* line 310, ../sass/_screen.scss */
     .season_fall .btn_top a.big_btn {
         font-size: 21px;
@@ -2425,6 +2454,12 @@ label#joiner_key-error {
     }
 }
 @media (max-width: 992px) {
+    .create_league form .select_view:before{
+        height: 300px;
+    }
+    .create_league form .select_view .select_draft ul{
+        display: initial;
+    }
     #banner .multi-div .contact-box{
         text-align: center;
     }
@@ -2652,6 +2687,9 @@ label#joiner_key-error {
     }
 }
 @media (max-width: 768px) {
+    #side-nav .side-nav-content button{
+        display: block !important;
+    }
     .leave-your-message .form-div{
         max-width: 100% !important;
     }
@@ -3512,6 +3550,7 @@ select.lg-size {
     border: none;
     color: #fff;
     font-size: 25px;
+    display: none;
 }
 
 #side-nav .side-nav-content ul {
@@ -3561,6 +3600,9 @@ select.lg-size {
 }
 #banner .multi-div .contact-box a{
     color: #fff;
+}
+.leave-your-message{
+    margin-top: 120px;
 }
 .leave-your-message h2,
 .our-sponsors h2{

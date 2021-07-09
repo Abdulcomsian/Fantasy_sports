@@ -9,34 +9,6 @@
                 <span class="title-span">Get In Touch</span>
             </div>
         </div>
-        <div class="multi-div">
-            <div class="row">
-                <div class="col-lg-4 col-md-4">
-                    <div class="contact-box">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                        <h5>Phone</h5>
-                        <p>A wonderful serenity has taken possession of my entire soul, like these.</p>
-                        <a href="">+1-2345-2345</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <div class="contact-box">
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        <h5>Email</h5>
-                        <p>A wonderful serenity has taken possession of my entire soul, like these.</p>
-                        <a href="">Contact@goodlayers.com</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <div class="contact-box">
-                        <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                        <h5>Location</h5>
-                        <p>4 apt. Flawing Street. The Grand Avenue. Liverpool, UK 33342</p>
-                        <a href="">View On Google Map</a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="leave-your-message">
             <div class="container">
                 <div class="row">
@@ -61,7 +33,7 @@
                                     <input class="form-control" type="text" placeholder="Email*">
                                 </div>
                                 <div class="inputDiv">
-                                    <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Message*"></textarea>
+                                    <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Subject*"></textarea>
                                 </div>
                                 <button>Submit Now</button>
                             </form>
