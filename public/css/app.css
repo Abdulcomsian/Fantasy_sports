@@ -72,7 +72,7 @@ a:hover {
     position: relative;
     background: url(../images/hp3-slider-1.jpg) no-repeat;
     height: 100% !important;
-    padding: 40px 0;
+    padding: 0px 0px 40px;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -138,7 +138,7 @@ a:hover {
 }
 /* line 69, ../sass/app.scss */
 .season_fall .banner_heading h3 {
-    font: 700 40px "Lato", sans-serif;
+    font: 700 30px "Lato", sans-serif;
     text-transform: uppercase;
     letter-spacing: 4px;
     margin: 140px 0 0 0;
@@ -161,7 +161,7 @@ a:hover {
 }
 /* line 90, ../sass/app.scss */
 .create_league .heading h1 {
-    font: 700 75px "Lato", sans-serif;
+    font: 700 50px "Lato", sans-serif;
     text-transform: uppercase;
     /*margin: 20px 0 30px;*/
     text-shadow: 2px 8px 18px #000;
@@ -170,7 +170,7 @@ a:hover {
 }
 /* line 102, ../sass/app.scss */
 .create_league form .form-group label {
-    font: 700 23px "Neometric";
+    font: 700 18px "Neometric";
     color: #fff;
     margin-bottom: 18px;
 }
@@ -187,7 +187,7 @@ a:hover {
     margin-bottom: 50px;
 }
 /* line 116, ../sass/app.scss */
-.create_league form .select_view:before {
+/* .create_league form .select_view:before {
     position: absolute;
     top: 62px;
     left: 0px;
@@ -197,10 +197,10 @@ a:hover {
     height: 230px;
     width: 3px;
     background-color: #d2d3d2;
-}
+} */
 /* line 129, ../sass/app.scss */
 .create_league form .select_view .select_draft h4 {
-    font: 700 30px "Neometric";
+    font: 700 20px "Neometric";
     color: #fff;
     text-align: center;
     margin-bottom: 25px;
@@ -276,7 +276,7 @@ a:hover {
 .create_league form .select_view .select_draft.draft_round p {
     text-align: center;
     color: #fff;
-    font: 500 20px "Neometric Medium";
+    font: 500 15px "Neometric Medium";
     margin-bottom: 35px;
     opacity: 0.5;
     width: 72%;
@@ -290,7 +290,8 @@ a:hover {
 .create_league form .select_view .select_draft.draft_round ul li label,
 .create_league form .select_view .select_draft.draft_round ul li select,
 .create_league form .select_view .select_draft.league_size ul li select {
-    padding: 23px 20px;
+    padding: 13px 33px;
+    font-size: 20px;
 }
 /* line 202, ../sass/app.scss */
 .create_league form .select_view .select_draft.draft_round ul li a {
@@ -302,10 +303,10 @@ a:hover {
 }
 .create_league form .select_view .select_draft.draft_round ul li button {
     background-image: linear-gradient(to right, #000, #353535);
-    font: 700 16px "Neometric";
+    font: 700 20px "Neometric";
     color: #fff;
     border: 1px solid #fff;
-    padding: 25px 40px;
+    padding: 13px 33px;
 }
 /* line 214, ../sass/app.scss */
 .create_league form .select_view .draft_picks {
@@ -380,9 +381,9 @@ a:hover {
 }
 /* line 266, ../sass/app.scss */
 .create_league_table .table_outer thead tr th {
-    font: 900 24px "Lato", sans-serif;
+    font: 900 20px "Lato", sans-serif;
     color: #fff;
-    padding: 25px 20px;
+    padding: 13px 33px;
 }
 /* line 276, ../sass/app.scss */
 .create_league_table .table_outer tbody tr:nth-of-type(odd) {
@@ -414,10 +415,10 @@ a:hover {
 /* line 301, ../sass/app.scss */
 .create_league_table .save button {
     background-image: linear-gradient(to right, #000, #353535);
-    font: 700 18px "Neometric";
+    font: 700 20px "Neometric";
     color: #fff;
     border: 1px solid #fff;
-    padding: 20px 24px;
+    padding: 13px 33px;
 }
 .rg-pd button {
     padding: 20px 60px !important;
@@ -466,7 +467,7 @@ a:hover {
     font: 700 24px "Neometric";
     color: #fff;
     border: 1px solid #fff;
-    padding: 20px 55px;
+    padding: 13px 33px;
 }
 /* line 352, ../sass/app.scss */
 .assign_order .side_detail p {
@@ -495,10 +496,10 @@ a:hover {
 /* line 371, ../sass/app.scss */
 .assign_order h2 {
     background-image: linear-gradient(to right, #000, #353535);
-    font: 700 24px "Neometric";
+    font: 700 20px "Neometric";
     color: #fff;
     border: 1px solid #fff;
-    padding: 20px 55px;
+    padding: 13px 33px;
     text-align: center;
     width: 50%;
     margin: 0 auto 20px;
@@ -720,7 +721,7 @@ a:hover {
 /* line 571, ../sass/app.scss */
 .draft_boards .save button {
     position: relative;
-    font: 500 16px "Neometric Medium";
+    font: 500 20px "Neometric Medium";
     letter-spacing: 1px;
 }
 /* line 575, ../sass/app.scss */
@@ -1384,7 +1385,7 @@ a:hover {
 }
 /* line 1218, ../sass/app.scss */
 .setting .save button {
-    padding: 20px 45px;
+    padding: 13px 33px;
     width: 300px;
 }
 /* line 1220, ../sass/app.scss */
@@ -1960,7 +1961,7 @@ label#joiner_key-error {
 
     /* line 13, ../sass/_screen.scss */
     .season_fall .banner_heading h1 {
-        font: 900 85px "Lato", sans-serif;
+        font: 900 70px "Lato", sans-serif;
         margin: 60px 0 16px;
         line-height: 80px;
     }
@@ -3566,13 +3567,22 @@ select.lg-size {
 }
 /************** Contact - Us - CSS ******************/
 #banner{
-    padding: 100px 0px;
+    padding: 0px 0px 100px;
     font-family: "Neometric Medium";
+}
+.about-us-banner{
+    background-image: url("../images/MicrosoftTeams-image.png");
+    padding: 100px 0px;
+    height: 350px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 #banner .title{
     font-size: 60px;
     font-weight: 700;
     color: #fff;
+    margin-top: 80px;
 }
 #banner .title-span{
     font-size: 20px;
@@ -3671,4 +3681,42 @@ select.lg-size {
 }
 .about-div .contact-box a{
     font-size: 12px !important;
+}
+.multi-div{
+    margin: 50px 0px;
+}
+.multi-div .img-div img{
+    width: 100%;
+}
+.multi-div p{
+    margin-bottom: 20px;
+    color: #fff;
+}
+.multi-div .col-lg-6 {
+    padding: 0px;
+}
+.multi-div .about-content{
+    padding: 23px 20px 0px;
+}
+.our-sponsors .description-div{
+    padding: 20px 0px;
+}
+.our-sponsors .description-div h3{
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+.our-sponsors .description-div p{
+    font-size: 16px;
+    color: #fff;
+}
+.overlay{
+    background: #000;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: .5;
+    z-index: -1;
 }

@@ -97,7 +97,7 @@
                 <div class="draft_lottery_board">
                     <h2><a class="text-white" href="{{url('league/create')}}">Create League</a></h2>
 
-                    <div class="draft_setting">
+                    <!-- <div class="draft_setting">
                         <h3>Import Last Season Draft Picks, Rosters & Settings</h3>
                     </div>
 
@@ -128,7 +128,7 @@
 
                     <div class="save">
                         <button>Manually Create Draft Board</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
