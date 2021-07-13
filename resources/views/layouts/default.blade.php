@@ -4,6 +4,7 @@
     @include('includes.head')
 </head>
 <body class="season_fall">
+  <div class="overlay"></div>
   <button class="openBtn"><i class="fa fa-bars" aria-hidden="true"></i></button>
     <section id="side-nav">
         <div class="side-nav-content">
