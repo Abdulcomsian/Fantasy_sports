@@ -4,12 +4,17 @@
 <div class="create_league_table assign_order the_lottery draft_boards draft_room">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-            </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-3">
+            </div> -->
+            <div class="col-md-12">
                 <div class="side_detail">
                     <h4>Draft Room</h4>
                 </div>
+</div>
+            <div class="col-md-6">
+                <!-- <div class="side_detail">
+                    <h4>Draft Room</h4>
+                </div> -->
                 <div class="alert alert-warning alert-dismissible hide" role="alert">
                     <span class="message"></span>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -95,8 +100,8 @@
                     @endif
                 </form>
             </div>
-            <div class="col-md-3">
-            </div>
+            <!-- <div class="col-md-3">
+            </div> -->
             <div class="col-md-7">
                 <div class="draft_lottery_board">
                     <!-- <h2><a class="text-white" href="{{url('league/create')}}">Create League</a></h2> -->
