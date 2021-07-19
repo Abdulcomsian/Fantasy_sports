@@ -4,7 +4,9 @@
 <div class="create_league_table assign_order the_lottery draft_boards draft_room">
     <div class="container">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
                 <div class="side_detail">
                     <h4>Draft Room</h4>
                 </div>
@@ -93,9 +95,11 @@
                     @endif
                 </form>
             </div>
+            <div class="col-md-3">
+            </div>
             <div class="col-md-7">
                 <div class="draft_lottery_board">
-                    <h2><a class="text-white" href="{{url('league/create')}}">Create League</a></h2>
+                    <!-- <h2><a class="text-white" href="{{url('league/create')}}">Create League</a></h2> -->
 
                     <!-- <div class="draft_setting">
                         <h3>Import Last Season Draft Picks, Rosters & Settings</h3>

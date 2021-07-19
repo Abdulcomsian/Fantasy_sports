@@ -14,29 +14,29 @@
                     <a href="/home">Home</a>
                 </li>
                 <li>
-                    <a href="league/create">Create League</a>
+                    <a href="{{url('league/create')}}">Create League</a>
                 </li>
                 <li>
-                    <a href="">Draft Board</a>
+                    <a href="#">Draft Board</a>
                 </li>
                 <li>
-                    <a href="">Squads</a>
+                    <a href="#">Squads</a>
                 </li>
                 <li>
-                    <a href="">Draft Room</a>
+                    <a href="#">Draft Room</a>
                 </li>
                 <li>
                     <a href="">Settings</a>
                 </li>
                 <li>
-                    <a href="">Contact & Feedback </a>
+                    <a href="#">Contact & Feedback </a>
                 </li>
                 <li>
                     <a href="/login">Login</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="/register">Register</a>
-                </li>
+                </li> -->
                 <li>
                     <a href="">Logout</a>
                 </li>

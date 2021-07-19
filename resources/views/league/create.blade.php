@@ -26,7 +26,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>League Name</label>
-                        <input type="text" name="name" class="form-control" required>
+                        <input type="text" name="name" style="width:40%" class="form-control" required>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="select_draft draft_round draft-round">
-                                <h4>Draft Round</h4>
+                                <h4 style="width:100%">Draft Round</h4>
                                 <p>(Total number of  roster positions on each team)</p>
                                 <ul class="list-unstyled list-inline">
                                     <li class="list-inline-item">
@@ -92,9 +92,9 @@
                                             </select>
                                         </div>
                                     </li>
-                                    <li class="list-inline-item">
+                                    <!-- <li class="list-inline-item">
                                         <button type="submit">Save & Continue</button>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>

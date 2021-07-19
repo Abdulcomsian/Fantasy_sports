@@ -70,7 +70,7 @@ a:hover {
 /* line 27, ../sass/app.scss */
 .season_fall {
     position: relative;
-    background: url(../images/hp3-slider-1.jpg) no-repeat;
+    background: url(../images/bg.jpg) no-repeat;
     height: 100% !important;
     padding: 0px 0px 40px;
     background-size: cover;
@@ -209,7 +209,9 @@ a:hover {
 /* line 136, ../sass/app.scss */
 .create_league form .select_view .select_draft ul {
     margin: 0;
-    display: flex;
+    /* display: flex; */
+    
+    text-align:center;
 }
 /* line 138, ../sass/app.scss */
 .create_league form .select_view .select_draft ul li {
@@ -231,7 +233,7 @@ a:hover {
     font: 700 24px "Neometric";
     color: #fff;
     border: 1px solid #fff;
-    padding: 20px 68px;
+    padding: 10px 50px;
     background-image: linear-gradient(to right, #000, #353535);
 }
 /* line 156, ../sass/app.scss */
@@ -275,11 +277,11 @@ a:hover {
 /* line 187, ../sass/app.scss */
 .create_league form .select_view .select_draft.draft_round p {
     text-align: center;
-    color: #fff;
+    color: #fff !important;
     font: 500 15px "Neometric Medium";
     margin-bottom: 35px;
-    opacity: 0.5;
-    width: 72%;
+    /* opacity: 0.5; */
+    width: 100%;
     letter-spacing: 1px;
 }
 /* line 197, ../sass/app.scss */
@@ -442,7 +444,7 @@ a:hover {
     margin-bottom: 30px;
 }
 /* line 323, ../sass/app.scss */
-.assign_order .side_detail h4:before {
+/* .assign_order .side_detail h4:before {
     position: absolute;
     top: 22px;
     left: 0;
@@ -450,9 +452,9 @@ a:hover {
     background-color: #fff;
     width: 60px;
     height: 2px;
-}
+} */
 /* line 333, ../sass/app.scss */
-.assign_order .side_detail h4:after {
+/* .assign_order .side_detail h4:after {
     position: absolute;
     top: 22px;
     right: 0;
@@ -460,7 +462,7 @@ a:hover {
     background-color: #fff;
     width: 60px;
     height: 2px;
-}
+} */
 /* line 344, ../sass/app.scss */
 .assign_order .side_detail .list_box p {
     background-image: linear-gradient(to right, #000, #353535);
@@ -3469,7 +3471,7 @@ select.lg-size {
     border: 1px solid #fff;
 }
 .save.lg-btn button {
-    padding: 20px 90px;
+    padding: 10px 80px;
 }
 .custom-switch .on-off::before {
     left: -2.25rem;
