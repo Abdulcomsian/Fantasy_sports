@@ -11,7 +11,7 @@
                     <h4>Draft Room</h4>
                 </div>
 </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <!-- <div class="side_detail">
                     <h4>Draft Room</h4>
                 </div> -->
@@ -23,19 +23,20 @@
                 </div>
                 <div class="successMessage"></div>
                 <form id="checkLeagueExist">
-                    <h4>Create League</h4>
+                    <h6><a style="color:#fff" href="{{url('league/create')}}">Create League</a></h6>
                     <h6>Join Existing League</h6>
 
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <input type="text" name="joiner_key" placeholder="Enter Join Key .." class="form-control">
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <button type="submit" class="btn btn_green">Join</button>
                         </div>
+                        
                     </div>
                 </form>
                 <form>
