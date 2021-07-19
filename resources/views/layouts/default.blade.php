@@ -111,7 +111,7 @@
     </div>
     @endif
   </div> -->
-  <div class="copy-right text-center">
+  <div class="copy-right text-center" style="position: fixed;bottom: 0px;text-align: center !important;left: 40%;">
     <p style="color: #fff;">Copyright @ 2021 Website Name. All rights reserved</p>
   </div>
     @include('includes.scripts')
