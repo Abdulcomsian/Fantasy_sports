@@ -4,7 +4,7 @@
 <div class="season_fall create_league">
     <div class="container">
             <div class="heading">
-            <h1>Login</h1>
+            <h1>The Offseason GM</h1>
         </div>
     </div>
   
@@ -46,8 +46,8 @@
             </div>
             <div class="row">
                 <div class="col-md-6 offset-md-3 forget-pasw">
-                     <a href="/forgot-password"><button>Forgot Password?</button></a>
-                     <a href=""><button>Don't have an account yet?<br> Sign Up</button></a>
+                     <a href="/forgot-password" style="color:#000;margin-right:20px;">Forgot Password?</a>
+                     <a href="#" style="color:#000;">Sign Up</a>
                 </div>
             </div>
             <!-- <div class="row">

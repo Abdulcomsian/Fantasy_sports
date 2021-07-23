@@ -26,10 +26,10 @@
                     <a href="#">Draft Room</a>
                 </li>
                 <li>
-                    <a href="">Settings</a>
+                    <a href="#">Settings</a>
                 </li>
                 <li>
-                    <a href="#">Contact & Feedback </a>
+                    <a href="{{url('contact')}}">Contact & Feedback </a>
                 </li>
                 <li>
                     <a href="/login">Login</a>

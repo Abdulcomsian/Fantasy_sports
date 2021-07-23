@@ -23,19 +23,26 @@
         </div>
         <form id="createLeague">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
+            <div class="col-md-12">
+                    <div class="form-group text-center">
                         <label>League Name</label>
-                        <input type="text" name="name" style="width:40%" class="form-control" required>
+                    </div>
+            </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <!-- <label>League Name</label> -->
+                        <input type="text" name="name" style="width:65%" class="form-control" required>
                     </div>
                 </div>
             </div>
 
             <div class="select_view">
                 <div class="row">
+                    <div class="col-md-3"></div>
                     <div class="col-md-6">
                         <div class="form-group select_draft">
-                            <h4>Draft Type</h4>
+                            <h4 style="text-align:center;width:100%;">Draft Type</h4>
                             <ul class="list-unstyled list-inline">
                                 <li class="list-inline-item">
                                     <input type="radio" class="form-control" value="snake" name="draft_type">
@@ -60,7 +67,7 @@
                             </ul>
                         </div> -->
                         <div class="select_draft draft_round">
-                            <h4>League Size</h4>
+                            <h4 style="width:100%;text-align:center;">League Size</h4>
                             <ul class="list-unstyled list-inline">
                                 <li class="list-inline-item">
                                     <!-- <label>17</label> -->
@@ -74,10 +81,6 @@
                                 </li>
                             </ul>
                         </div>
-
-                       
-                    </div>
-                    <div class="col-md-6">
                         <div class="select_draft draft_round draft-round">
                                 <h4 style="width:100%">Draft Round</h4>
                                 <p>(Total number of  roster positions on each team)</p>
@@ -98,6 +101,10 @@
                                 </ul>
                             </div>
                         </div>
+                       
+                    </div>
+                    <div class="col-md-6">
+                        
                     <!-- <div class="col-md-6">
                         <div class="draft_picks">
                             <h4>Import Draft Picks, Rosters </br> & League Settings</h4>

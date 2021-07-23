@@ -15,34 +15,36 @@
             </div>
         <div class="multi-div">
             <div class="row">
-                <div class="col-lg-6">
+                <!-- <div class="col-lg-6">
                     <div class="img-div">
                         <img src="images/2.jpg" alt="" class="img-fluid">
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-6">
                     <div class="about-content">
-                        <p>Welcome to the ultimate site dedicated to commissioners and owners that play in active year-round Fantasy Football Leagues! This management platform is specifically designed for keeper leagues that are active during the off-season leading up to draft day</p>
+                        <p>Welcome to the ultimate site dedicated to commissioners and owners that play in active year-round Fantasy Football Leagues! This management platform is specifically designed for keeper and other long term leagues that are active during the fantasy off season</p>
                         <p>This is truly a place where the Fantasy Football Season never ends!</p>
-                        <p>This tool is specifically targeting commissioners, who lead keeper leagues and want to enhance and improve the off season experience for both themselves and team owners. This platform is the ultimate way to keep the league up to date on current draft board versions and activities.</p>
+                        <p>This tool is specifically targeting commissioners, who lead keeper leagues and want to enhance and improve the off season experience for both themselves and team owners. This platform is the ultimate way to keep the league up to date on current draft board versions and activities as well as create a seemless online draft day experience!</p>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-6">
                     <div class="about-content">
                         <p>This tool is meant to unlock and fill in the gap of what other major platforms are missing for off-season management. It is designed by commissioners for commissioners, to actively organize and maintain league transparency, and data integrity throughout the off season.</p>
-                        <p>As the commish and member of very active leagues, I have begrudgingly managed and tracked multiple excel spreadsheets of draft picks and keepers across multiple leagues. Keeper leagues that each have unique and customized rules. This has become a manually intensive process, riddled with human error that can cause devastating offline draft day issues! This platform is to provide higher league functionality and organization by making you the best commish and “GM” in all of the fantasy!</p>
+                        <p>As the commish and member of very active leagues, I have begrudgingly managed and tracked multiple spreadsheets of draft picks and keepers across multiple leagues. Keeper leagues that each have unique and customized rules. This has become a manually intensive process, riddled with human error that can cause devastating draft day issues! We are here to provide higher league functionality and organization by making you the best commish or “GM” in all of the fantasy!</p>
+                        <p>Now go out and win the season - During the off season!</p>
                     </div>
                 </div>
+            </div>
+            <!-- <div class="row">
+                
                 <div class="col-lg-6">
                     <div class="img-div">
                         <img src="images/1.jpg" alt="" class="img-fluid">
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
-        <div class="multi-div about-div">
+        <!-- <div class="multi-div about-div">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-12">
@@ -71,8 +73,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="our-sponsors">
+        </div> -->
+        <!-- <div class="our-sponsors">
             <h2 class="text-center">This Is Our Story</h2>
             <div class="container">
                 <div class="row">
@@ -106,7 +108,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 @endsection
