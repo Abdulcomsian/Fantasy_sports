@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="title text-center">Contact Us</h2>
-                <span class="title-span text-center">We want your ideas and feedback on how we can improve! Please dont hesitate to reach out!</span>
+                <!-- <span class="title-span text-center">We want your ideas and feedback on how we can improve! Please dont hesitate to reach out!</span> -->
             </div>
         </div>
-        <div class="leave-your-message">
+        <div class="leave-your-message" style="margin-top:25px !important;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
