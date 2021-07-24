@@ -33,7 +33,7 @@
                                     <input class="form-control" type="text"  required placeholder="Subject*">
                                 </div>
                                 <div class="inputDiv">
-                                    <textarea name="" id="" cols="30" rows="5" required class="form-control" required placeholder="Message*"></textarea>
+                                    <textarea name="" id="" cols="30" rows="5" placeholder="We want your ideas and feedback on how we can improve! Please dont hesitate to reach out!" required class="form-control" required placeholder="Message*"></textarea>
                                 </div>
                                 <button>Submit Now</button>
                             </form>
