@@ -95,13 +95,16 @@
                                             </select>
                                         </div>
                                     </li>
-                                    <!-- <li class="list-inline-item">
-                                        <button type="submit">Save & Continue</button>
-                                    </li> -->
+                                   
                                 </ul>
+                                <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <button type="submit">Build Draft Board</button>
+                                </li>
+                            </ul>
                             </div>
                         </div>
-                       
+                      
                     </div>
                     <div class="col-md-6">
                         
