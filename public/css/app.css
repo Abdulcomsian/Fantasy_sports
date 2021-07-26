@@ -1403,7 +1403,8 @@ a:hover {
     background-image: linear-gradient(to right, #000, #353535);
     height: 74%;
     position: absolute;
-    left: -91px;
+    /* left: -91px; */
+    left: 0px;
     width: 11%;
     top: 145px;
 }
