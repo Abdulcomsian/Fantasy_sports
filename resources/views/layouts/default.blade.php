@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    @include('includes.head')
+  @include('includes.head')
 </head>
+@php
+$style="display:none";
+if(request()->route()->getPrefix()=="/league")
+{
+$style="display:show";
+}
+@endphp
+
 <body class="season_fall">
   <div class="overlay"></div>
   <button class="openBtn"><i class="fa fa-bars" aria-hidden="true"></i></button>
-    <section id="side-nav">
-        <div class="side-nav-content">
-          <button><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
-            <ul>
-                <li>
-                    <a href="/home">Home</a>
-                </li>
-                <li>
-                    <a href="{{url('league/create')}}">Create League</a>
-                </li>
-                <li>
-                    <a href="#">Draft Board</a>
-                </li>
-                <li>
-                    <a href="#">Squads</a>
-                </li>
-                <li>
-                    <a href="#">Draft Room</a>
-                </li>
-                <li>
-                    <a href="#">Settings</a>
-                </li>
-                <li>
-                    <a href="{{url('contact')}}">Contact & Feedback </a>
-                </li>
-                <li>
-                    <a href="/login">Login</a>
-                </li>
-                <!-- <li>
+  <section id="side-nav">
+    <div class="side-nav-content">
+      <button><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+      <ul>
+
+        <li>
+          <a href="/home">Draft Room</a>
+        </li>
+        <li>
+          <a href="{{url('league/create')}}">Create League</a>
+        </li>
+        <li style="{{$style}}">
+          <a href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft Board</a>
+        </li>
+        <li style="{{$style}}">
+          <a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squads</a>
+        </li>
+        <!-- <li style="{{$style}}">
+          <a href="#">Draft Room</a>
+        </li> -->
+        <li style="{{$style}}">
+          <a href="{{ url('/league/'.request()->route('id').'/settings') }}">Accounts</a>
+        </li>
+        <li>
+          <a href="{{url('contact')}}">Contact & Feedback </a>
+        </li>
+        <li>
+          <a href="/login">Login</a>
+        </li>
+        <!-- <li>
                     <a href="/register">Register</a>
                 </li> -->
-                <li>
-                    <a href="">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </section>
-    <div>
-        <div class="ajax-loader">
-          <img src="{{ asset('images/ajax-loader.gif') }}" class="img-responsive" />
-        </div>
-        @yield('content')
+        <li>
+          <a href="">Logout</a>
+        </li>
+      </ul>
     </div>
-    <!-- <div class="list_sheet">
+  </section>
+  <div>
+    <div class="ajax-loader">
+      <img src="{{ asset('images/ajax-loader.gif') }}" class="img-responsive" />
+    </div>
+    @yield('content')
+  </div>
+  <!-- <div class="list_sheet">
     @if(Auth::check())
     <div class="container-fluid">
       <ul class="list-unstyled list-inline mt-4">
@@ -114,7 +124,8 @@
   <div class="copy-right text-center" style="position: fixed;bottom: 0px;text-align: center !important;left: 40%;">
     <p style="color: #fff;">Copyright @ 2021 Website Name. All rights reserved</p>
   </div>
-    @include('includes.scripts')
-    @yield('js')
+  @include('includes.scripts')
+  @yield('js')
 </body>
+
 </html>
