@@ -26,12 +26,12 @@ $style="display:show";
         <li>
           <a href="{{url('league/create')}}">Create League</a>
         </li>
-        <li style="{{$style}}">
+        <!-- <li style="{{$style}}">
           <a href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft Board</a>
         </li>
         <li style="{{$style}}">
           <a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squads</a>
-        </li>
+        </li> -->
         <!-- <li style="{{$style}}">
           <a href="#">Draft Room</a>
         </li> -->

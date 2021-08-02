@@ -1,4 +1,4 @@
-$(function(){
+$(function () {
     $("#createLeague").validate({
         ignore: [],  // ignore NOTHING
         rules: {
@@ -11,15 +11,15 @@ $(function(){
                 required: true
             }
         },
-        highlight: function(element) {
+        highlight: function (element) {
             $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
         },
-        success: function(element) {
+        success: function (element) {
             $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
         },
         errorClass: 'help-block',
         errorPlacement: function (error, element) {
-            if(element.hasClass('select2') && element.next('.select2-container').length) {
+            if (element.hasClass('select2') && element.next('.select2-container').length) {
                 error.insertAfter(element.next('.select2-container'));
             } else if (element.parent('.input-group').length) {
                 error.insertAfter(element.parent());
@@ -34,23 +34,24 @@ $(function(){
                 error.insertAfter(element);
             }
         },
-        submitHandler: function(form) {
+        submitHandler: function (form) {
             //form.submit();
             createLeague(form);
         },
     });
 
-    function createLeague(form){
+    function createLeague(form) {
         $.ajax({
             type: 'POST',
             url: '/league',
             data: $(form).serialize(),
             success: function (response) {
-                if(response.status == 200){
+                if (response.status == 200) {
                     successMessage(response.message);
                     $('html').scrollTop(0);
-                    setTimeout(function(){ window.location.href = '/league/'+response.data.id+'/order'; }, 1000);
-                }else{
+                    // setTimeout(function(){ window.location.href = '/league/'+response.data.id+'/order'; }, 1000);
+                    setTimeout(function () { window.location.href = '/league/' + response.data.id + '/settings'; }, 1000);
+                } else {
                     errorMessage(response.message);
                 }
             },

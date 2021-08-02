@@ -16,6 +16,17 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		<div class="successMessage"></div>
 		<form id="updateLeague">
 			<div class="row">
+			<div class="col-md-6"></div>
+			
+			<div class="col-md-2">
+				<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
+			</div>
+			<div class="col-md-2">
+			<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2>
+			</div>
+			<div class="col-md-2">
+				<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+			</div>
 				<div class="col-md-5">
 					<div class="side_detail">
 						<h4>Settings</h4>
@@ -114,7 +125,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="inviteUrl">
+			<div class="inviteUrl" style="background:transparent;">
 				<p>Invite URL: <a href="">http://3.129.43.224/league/7/draft</a></p>
 				<p>Send the URL to anyone who is a GM in your league. They will be
 					able to claim ownership of their team and will only be able to
@@ -127,7 +138,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-12 no-bdr">
-				<button type="button" class="create_new">Set Commissioners</button>
+				<button type="button" style="background:transparent;" class="create_new">Set Commissioners</button>
 			</div>
 		</div>
 	</div>
@@ -188,11 +199,11 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	</div>
 </div>
 <div class="col-md-7">
-	<div class="draft_tag">
+	<!-- <div class="draft_tag">
 		<h5>Draft Order</h5>
-	</div>
+	</div> -->
 	<div class="draft_lottery_board">
-		<a href="{{ url('/league/'.$league->id.'/draft') }}" target="_blank" class="btn btn-primary">Back to Draft Board</a>
+		<h2><a href="{{ url('/league/'.$league->id.'/draft') }}" style="color:#fff" class="">Back to Draft Board</a></h2>
 		<h2>Owners Info & Draft Order</h2>
 		<div class="table_cover">
 			<div class="table_outer">
