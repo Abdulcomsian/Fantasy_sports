@@ -123,14 +123,13 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 		</div>
 	</div>
+	<div class="list_edit">
 	<div class="row">
-		<div class="col-lg-12">
-			<div class="inviteUrl" style="background:transparent;">
-				<p>Invite URL: <a href="">http://3.129.43.224/league/7/draft</a></p>
-				<p>Send the URL to anyone who is a GM in your league. They will be
-					able to claim ownership of their team and will only be able to
-					navigate and make picks during live draft mode and edit their team
-					name</p>
+			<div class="col-md-6">
+			<h4 ><span style="padding-top:10px;"><i class="fa fa-star yellow"></i>Draft Type</span></h4>
+			</div>
+			<div class="col-md-6">
+				<button type="button" style="" class="addCommish">{{$league->draft_type}}</button>
 			</div>
 		</div>
 	</div>
@@ -180,6 +179,21 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		</div>
 	</div>
 	@endif
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="inviteUrl" style="background:transparent;">
+				<p>Invite URL: <a href="">http://3.129.43.224/league/7/draft</a></p>
+				<p>Send the URL to anyone who is a GM in your league. They will be
+					able to claim ownership of their team and will only be able to
+					navigate and make picks during live draft mode and edit their team
+					name</p>
+			</div>
+		</div>
+	</div>
+	<!-- @if($permissions != 3)
+	
+
+	@endif -->
 	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-12 no-bdr">
@@ -191,7 +205,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="side_detail sd-dtl">
+				<div class="side_detail sd-dtl" >
 					<a href="{{url('league/'.$league->id.'/rounds')}}">Enter Draft Picks Manually</a>
 				</div>
 			</div>
@@ -203,7 +217,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		<h5>Draft Order</h5>
 	</div> -->
 	<div class="draft_lottery_board">
-		<h2><a href="{{ url('/league/'.$league->id.'/draft') }}" style="color:#fff" class="">Back to Draft Board</a></h2>
+		<!-- <h2><a href="{{ url('/league/'.$league->id.'/draft') }}" style="color:#fff" class="">Back to Draft Board</a></h2> -->
 		<h2>Owners Info & Draft Order</h2>
 		<div class="table_cover">
 			<div class="table_outer">
@@ -255,6 +269,9 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<button type="button" class="addTeam">Add Team</button>
 		</div>
 		@endif
+		<div class="side_detail sd-dtl" style="margin-bottom:55px;">
+			<a href="{{url('league/'.$league->id.'/rounds')}}">Enter Draft Picks Manually</a>
+		</div>
 		<div class="save">
 			<button type="submit">Save Changes</button>
 		</div>

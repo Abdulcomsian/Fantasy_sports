@@ -36,7 +36,7 @@ $style="display:show";
           <a href="#">Draft Room</a>
         </li> -->
         <li style="{{$style}}">
-          <a href="{{ url('/league/'.request()->route('id').'/settings') }}">Accounts</a>
+          <a href="{{ url('/league/'.request()->route('id').'/settings') }}">Account</a>
         </li>
         <li>
           <a href="{{url('contact')}}">Contact & Feedback </a>

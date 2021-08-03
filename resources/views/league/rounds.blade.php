@@ -5,8 +5,21 @@
 @php
     $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]->pivot) && isset($league->permissions[0]->pivot->permission_type)) ? $league->permissions[0]->pivot->permission_type : 0;
 @endphp
-<div class="create_league_table">
+<div class="create_league_table assign_order">
     <div class="container">
+    <div class="row">
+  <div class="col-md-6"></div>
+			
+			<div class="col-md-2  ">
+				<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
+			</div>
+			<div class="col-md-2  ">
+			<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2>
+			</div>
+			<div class="col-md-2  ">
+				<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+			</div>
+    </div>
         <div class="ful-width-clm">
         <div class="heading half-clm">
             <h1 class="text-white">League Rounds</h1>

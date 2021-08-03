@@ -3,6 +3,19 @@
 @section('content')
 <div class="season_fall create_league_table assign_order the_lottery squads_board">
   <div class="container">
+  <div class="row">
+  <div class="col-md-6"></div>
+			
+			<div class="col-md-2">
+				<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
+			</div>
+			<div class="col-md-2">
+			<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2>
+			</div>
+			<div class="col-md-2">
+				<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+			</div>
+    </div>
     <div class="row">
       <div class="col-md-3">
         <div class="side_detail">

@@ -3534,6 +3534,9 @@ select.lg-size {
 #side-nav .side-nav-content{
     padding: 150px 0px 0px;
     position: relative;
+    background: #313131ee;
+    opacity: .8;
+}
 }
 .season_fall .openBtn{
     position: absolute;

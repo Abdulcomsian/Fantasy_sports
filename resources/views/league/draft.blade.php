@@ -21,9 +21,22 @@
   <source src="{{ asset('beeps/playerBeep.mp3') }}"/>
   <source src="{{ asset('beeps/playerBeep.wav') }}" />
 </audio>
-<div class="create_league_table assign_order the_lottery traders city_charts">
+<div class="container create_league_table assign_order the_lottery traders city_charts" style="padding-top:35px;">
+<div class="row">
+  <div class="col-md-6"></div>
+			
+			<div class="col-md-2">
+				<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
+			</div>
+			<div class="col-md-2">
+			<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2>
+			</div>
+			<div class="col-md-2">
+				<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+			</div>
+    </div>
   <input type="hidden" name="league_id" value="{{ $league->id }}">
-  <div class="top_draft">
+  <!-- <div class="top_draft">
      <div class="container">
       <ul class="list-unstyled list-inline">
         <li class="list-inline-item">
@@ -42,7 +55,7 @@
         </li>
       </ul>
      </div>
-  </div>
+  </div> -->
 
   <div class="container">
     @if($league->status == 'started')
