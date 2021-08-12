@@ -38,6 +38,11 @@ $style="display:show";
         <li style="{{$style}}">
           <a href="{{ url('/league/'.request()->route('id').'/settings') }}">Account</a>
         </li>
+        @if(Auth::check())
+        <li>
+            <a href="{{route('editprofile')}}">Sub Setting</a>
+        </li>
+        @endif
         <li>
           <a href="{{url('contact')}}">Contact & Feedback </a>
         </li>

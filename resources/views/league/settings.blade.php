@@ -150,7 +150,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<select name="commish_user_id">
 					<option value="">Select User</option>
 					@foreach($league->users as $user)
-					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}">{{$user->name}}</option>
+					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" selected="selected">{{$user->name}}</option>
 					@endforeach
 				</select>
 			</div>
@@ -169,7 +169,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<select name="co_commish_user_id">
 					<option value="">Select User</option>
 					@foreach($league->users as $user)
-					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}">{{$user->name}}</option>
+					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" selected="selected">{{$user->name}}</option>
 					@endforeach
 				</select>
 			</div>
