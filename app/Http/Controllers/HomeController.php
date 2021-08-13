@@ -65,7 +65,7 @@ class HomeController extends Controller
             if($request->password)
             {
                 //dd($request->password);
-                $user->password=Hash::make($request->passwrod);
+                $user->password=Hash::make($request->password);
 
             }
             //dd($user);
