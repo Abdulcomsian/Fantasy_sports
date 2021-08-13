@@ -49,11 +49,14 @@
 	jQuery(".openBtn").click(function(){
 		if(jQuery("#side-nav").css("display")=="none"){
 			jQuery("#side-nav").css("display","block")
+			jQuery(".openBtn").css("display","none")
+			jQuery("#side-nav .side-nav-content button").css("display","block")
 		} else{
 			jQuery("#side-nav").css("display","none")
 		}
 	})
 	jQuery(".side-nav-content button").click(function(){
 		jQuery("#side-nav").css("display","none")
+		jQuery(".openBtn").css("display","block")
 	})
 </script>

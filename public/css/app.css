@@ -72,7 +72,7 @@ a:hover {
     position: relative;
     background: url(../images/bg.jpg) no-repeat;
     height: 100% !important;
-    padding: 0px 0px 40px;
+    padding: 20px 0px 40px;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -3725,4 +3725,15 @@ select.lg-size {
     left: 0;
     opacity: .5;
     z-index: -1;
+}
+.openBtn{
+    position: absolute;
+    top: 18px;
+    left: 50px;
+    background: transparent;
+    border: 1px solid #fff;
+    padding: 5px 19px;
+    color: #fff;
+    font-size: 26px;
+    z-index: 99999999;
 }
