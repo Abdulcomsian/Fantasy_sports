@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\League;
+use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -43,6 +45,32 @@ class HomeController extends Controller
             }
         }else{
             return $this->sendResponse(400, 'Required fields are missing.');  
+        }
+    }
+
+    public function accountedit()
+    {
+        $userdata=User::where('id',Auth::user()->id)->first();
+        return view('userprofile', ['userdata' => $userdata]);
+    }
+    public function accountupdate(Request $request)
+    {
+        $user=User::find(Auth::user()->id);
+        //dump($user);
+        if($user)
+        {
+            $user->name=$request->name;
+            $user->email=$request->email;
+           // dump($request->all());
+            if($request->password)
+            {
+                //dd($request->password);
+                $user->password=Hash::make($request->password);
+
+            }
+            //dd($user);
+            $user->save();
+            return redirect()->back()->with('message',"Profile Updated Successfully!");
         }
     }
 }

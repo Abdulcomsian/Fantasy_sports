@@ -9,6 +9,7 @@ use App\Models\League;
 use App\Models\LeagueTeam;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\LeagueRound;
+use DB;
 
 class LeagueController extends Controller
 {
@@ -221,7 +222,11 @@ class LeagueController extends Controller
     public function settings(Request $request, $id){
         if(isset($id) && intval($id) > 0){
             $league = League::with(['teams', 'users', 'permissions'])->findOrFail($id);
-            return view('league.settings', ['league' => $league]);
+            $leaguser = DB::table('league_user')->select('team_id')
+            ->where('league_id', $id)
+            ->first();
+            // echo"<pre>"; print_r($leaguser);exit;
+            return view('league.settings', ['league' => $league,'leaguser'=> $leaguser]);
         }
         abort(404);
     }
@@ -336,7 +341,7 @@ class LeagueController extends Controller
             try{
                 $message = $request->type == 1 ? 'Commish' : 'Co commish';
                 $league = League::findOrFail($leagueId);
-                $league->users()->where('user_id', $request->user_id)->update(['permission_type' => $request->type]);
+                $league->users()->where('user_id',Auth::user()->id)->update(['permission_type' => $request->type,'team_id'=>$request->user_id]);
                 return $this->sendResponse(200, $message.' added successfully.', ['league' => $league]);
             }catch(ModelNotFoundException $exception){
                 return $this->sendResponse(404, 'League not found.');

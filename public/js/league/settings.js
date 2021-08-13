@@ -73,7 +73,8 @@ $(function(){
         e.preventDefault();
         if($('select[name="commish_user_id"]').val()){
             saveCommish($('select[name="commish_user_id"]').val(), 1);
-            $('select[name="commish_user_id"]').val('');
+            //$('select[name="commish_user_id"]').val('');
+            location.reload();
         }
     });
 
@@ -81,7 +82,8 @@ $(function(){
         e.preventDefault();
         if($('select[name="co_commish_user_id"]').val()){
             saveCommish($('select[name="co_commish_user_id"]').val(), 2);
-            $('select[name="co_commish_user_id"]').val('');
+            //$('select[name="co_commish_user_id"]').val('');
+            location.reload();
         }
     });
 
