@@ -100,7 +100,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-6 no-bdr">
-				<h4><span><i class="fa fa-star yellow"></i>Keeper Mode</span></h4>
+				<h4><span><i class="fa fa-star yellow"></i>Edit Mode</span></h4>
 			</div>
 			<div class="col-md-6">
 				<div class="custom-control custom-switch">
@@ -198,7 +198,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		<div class="row">
 			<div class="col-md-12 no-bdr">
 				<h4 style="text-align:left;">Joiner Key</h4>
-				<p class="create_new ft-z" style="background:transparent;">{{url('league/join?key='.$league->joiner_key)}}</p>
+				<p class="create_new ft-z" style="background:transparent;border:0px; padding-left:0px;margin-top:0px;padding-top:0px;">{{url('league/join?key='.$league->joiner_key)}}</p>
 			</div>
 		</div>
 	</div>
