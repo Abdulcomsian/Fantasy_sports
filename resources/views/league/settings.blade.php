@@ -270,7 +270,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		</div>
 		@endif
 		<div class="save" style="margin-bottom:21px;">
-		<button type="button" class="addTeam"><a href="{{url('league/'.$league->id.'/rounds')}}" style="color:#fff;font-size:13px;">Enter Draft Picks Manually</a></button>
+		<button type="button" class="addTeam"><a href="{{url('league/'.$league->id.'/rounds')}}" style="color:#fff;">Enter Draft Picks Manually</a></button>
 		</div>
 		<div class="save">
 			<button type="submit">Save Changes</button>
