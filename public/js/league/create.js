@@ -50,7 +50,7 @@ $(function () {
                     successMessage(response.message);
                     $('html').scrollTop(0);
                     // setTimeout(function(){ window.location.href = '/league/'+response.data.id+'/order'; }, 1000);
-                    setTimeout(function () { window.location.href = '/league/' + response.data.id + '/settings'; }, 1000);
+                    setTimeout(function () { window.location.href = '/league/' + response.data.id + '/draft'; }, 1000);
                 } else {
                     errorMessage(response.message);
                 }

@@ -40,7 +40,7 @@ $style="display:show";
         </li>
         @if(Auth::check())
         <li>
-            <a href="{{route('editprofile')}}">Sub Setting</a>
+            <a href="{{route('editprofile')}}">Account</a>
         </li>
         @endif
         <li>

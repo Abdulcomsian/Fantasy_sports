@@ -1388,7 +1388,8 @@ a:hover {
 /* line 1218, ../sass/app.scss */
 .setting .save button {
     padding: 13px 33px;
-    width: 300px;
+    width: 270px;
+    font-size:13px;
 }
 /* line 1220, ../sass/app.scss */
 .setting .save button:before {

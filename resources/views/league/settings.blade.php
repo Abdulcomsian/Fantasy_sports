@@ -194,15 +194,15 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	
 
 	@endif -->
-	<div class="list_edit">
+	<div class="list_edit" >
 		<div class="row">
 			<div class="col-md-12 no-bdr">
-				<h4>Joiner Key</h4>
-				<p class="create_new ft-z">{{url('league/join?key='.$league->joiner_key)}}</p>
+				<h4 style="text-align:left;">Joiner Key</h4>
+				<p class="create_new ft-z" style="background:transparent;">{{url('league/join?key='.$league->joiner_key)}}</p>
 			</div>
 		</div>
 	</div>
-	<div class="list_edit">
+	<!-- <div class="list_edit">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="side_detail sd-dtl" >
@@ -210,7 +210,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
 <div class="col-md-7">
 	<!-- <div class="draft_tag">
@@ -218,7 +218,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	</div> -->
 	<div class="draft_lottery_board">
 		<!-- <h2><a href="{{ url('/league/'.$league->id.'/draft') }}" style="color:#fff" class="">Back to Draft Board</a></h2> -->
-		<h2>Owners Info & Draft Order</h2>
+		<h2 style="background:transparent;">Owners Info & Draft Order</h2>
 		<div class="table_cover">
 			<div class="table_outer">
 				<div class="table-responsive">
@@ -269,8 +269,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<button type="button" class="addTeam">Add Team</button>
 		</div>
 		@endif
-		<div class="side_detail sd-dtl" style="margin-bottom:55px;">
-			<a href="{{url('league/'.$league->id.'/rounds')}}">Enter Draft Picks Manually</a>
+		<div class="save" style="margin-bottom:21px;">
+		<button type="button" class="addTeam"><a href="{{url('league/'.$league->id.'/rounds')}}" style="color:#fff;font-size:13px;">Enter Draft Picks Manually</a></button>
 		</div>
 		<div class="save">
 			<button type="submit">Save Changes</button>
