@@ -45,7 +45,7 @@
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="">
                   </div>
-                  <button type="submit" class="btn btn-primary">Update Profile</button>
+                  <button style="background-image: linear-gradient(to right, #000, #353535);font: 700 20px;color: #fff;border: 1px solid #fff;padding: 13px 33px;" type="submit" class="btn btn-primary">Update Profile</button>
                 </form>
             </div>
         </div>
