@@ -20,7 +20,9 @@ Route::get('/', function () {
 Route::get('league/join', 'LeagueController@joinLeague');
 
 Route::group(['middleware' => ['auth']], function() {
-
+	Route::get('draft-roaster', function () {
+		return view('welcome');
+	});
 	Route::get('/home', 'HomeController@index');
     Route::get('/account/edit','HomeController@accountedit')->name('editprofile');
     Route::post('/account/update','HomeController@accountupdate')->name('updateprofile');

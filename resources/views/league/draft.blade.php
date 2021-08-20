@@ -58,7 +58,12 @@
 				<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
 			</div>
 			<div class="col-md-2">
-			<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2>
+      <p onclick="myFunction()" class="dropbtn">Select <i class="fa fa-angle-down" aria-hidden="true"></i></p>
+				<div id="myDropdown" class="dropdown-content">
+					<a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad</a>
+					<a href="{{url('draft-roaster')}}">Draft Roaster</a>
+				</div>
+			<!-- <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2> -->
 			</div>
 			<div class="col-md-2">
 				<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
@@ -385,4 +390,23 @@
 <script type="text/javascript" src="{{ asset('js/league/timer.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/league/draft.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/league/settings.js') }}"></script>
+<script>
+	function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 @endsection
