@@ -23,8 +23,37 @@
 </audio>
 <div class="container create_league_table assign_order the_lottery traders city_charts" style="padding-top:35px;">
 <div class="row">
-  <div class="col-md-6"></div>
-			
+			<div class="col-md-6">
+      <form id="updateLeague" class="draftFrom">
+
+	<div class="list_edit">
+		<div class="row">
+			<div class="col-md-6 no-bdr">
+				<h4><span><i class="fa fa-star yellow"></i>Edit Mode</span></h4>
+			</div>
+			<div class="col-md-6">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input lequeMode2" id="keeperMode" {{ $league->status == 'keeper' ? 'checked' : '' }} value="keeper">
+					<label class="custom-control-label on-off" for="keeperMode"></label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="list_edit">
+		<div class="row">
+			<div class="col-md-6 no-bdr">
+				<h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
+			</div>
+			<div class="col-md-6">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input lequeMode2" id="draftMode" {{ $league->status == 'started' ? 'checked' : '' }} value="started">
+					<label class="custom-control-label on-off" for="draftMode"></label>
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+      </div>
 			<div class="col-md-2">
 				<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
 			</div>
@@ -355,4 +384,5 @@
 <script type="text/javascript" src="{{ asset('js/moment.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/league/timer.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/league/draft.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/league/settings.js') }}"></script>
 @endsection

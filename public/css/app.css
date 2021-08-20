@@ -3738,3 +3738,14 @@ select.lg-size {
     font-size: 26px;
     z-index: 99999999;
 }
+#updateLeague.draftFrom{
+    display: flex;
+    width: 100%;
+}
+#updateLeague.draftFrom h4{
+    color: #fff;
+    font-size: 18px;
+}
+#updateLeague.draftFrom .list_edit{
+    width: 50%;
+}
