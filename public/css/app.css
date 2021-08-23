@@ -31,6 +31,41 @@
     font-style: normal;
     font-display: swap;
 }
+table, th {
+    border: 1px solid black;
+}
+.table{
+    border-collapse: collapse;
+}
+#countDownTimer,
+.onTheClock h3{
+    font-size: 75px;
+    font-weight: 700;
+    color: #fff;
+}
+.city_name{
+    background: #000;
+    text-align: center;
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.city_name ul,
+.city_name .form-group{
+    margin: 0px;
+}
+.city_name .edit_revert{
+    margin-left: 50px;
+}
+.onTheClock{
+    text-align: left;
+    color: #fff;
+}
+.onTheClock .upNext{
+    font-weight: 600;
+}
 /* line 2, ../sass/app.scss */
 body {
     margin: 0px;
@@ -1765,7 +1800,6 @@ a:hover {
     background-color: #fecc08;
     font: 700 26px "Neometric Bold";
     text-transform: uppercase;
-    border: none;
     color: #000;
 }
 /* line 1545, ../sass/app.scss */
@@ -3802,3 +3836,4 @@ select.lg-size {
   .dropdown a:hover {background-color: #ddd;}
   
   .show {display: block;}
+

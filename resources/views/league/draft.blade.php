@@ -94,8 +94,24 @@
   <div class="container">
     @if($league->status == 'started')
     <div class="row">
-      <div class="col-md-4">
-        <div class="timer_box">
+      <div class="col-md-6">
+      <div class="clock">
+                  @php 
+                    if($league->draft_timer == null){
+                      $timer = ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value;
+                      $timer = explode(":", $timer);
+                      if($timer[0] > 0){
+                        $timer = $timer[0].':'.$timer[1];
+                      }else{
+                        $timer = $timer[1].':'.$timer[2];
+                      }
+                    }else{
+                      $timer = '';
+                    }
+                  @endphp
+                  <h4 id="countDownTimer">{{ $timer }}</h4>
+                </div>
+        <!-- <div class="timer_box">
           <ul class="list-unstyled list-inline">
             <li class="list-inline-item">
               <div class="time">
@@ -180,21 +196,43 @@
                   <h5 id="firstName">{{ $last_pick->first_name ?? '' }}</h5>
                   <h3 id="lastName">{{ $last_pick->last_name ?? '' }}</h3>
                   <span class="left" id="playerPosition">{{ $last_pick->position ?? '' }}</span>
-                  <!-- <span class="right">KC</span> -->
+                  <!-- <span class="right">KC</span> 
                 </div>
               </div>
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
-      <div class="col-md-2">
+      <!-- <div class="col-md-2">
         <div class="city_name">
           <h3>{{ $league->name }}</h3>
         </div>
-      </div>
+      </div> -->
 
       <div class="col-md-6">
-        <div class="edit_revert">
+        <div class="onTheClock">
+          <p>On The Clock</p>
+          <h3>TEAM 3</h3>
+          <p class="upNext">Up Next: Team 4</p>
+        </div>
+        
+      </div>
+    </div>
+    @else
+    <div class="col-md-12 text-center">
+      <div class="city_name">
+        <h3>{{ ($league->status == 'keeper') ? 'Keeper' : 'Draft in Setup' }} Mode</h3>
+      </div>
+    </div>
+    @endif
+  </div>
+</div>
+
+<div class="city_board_table">
+  <div class="table-responsive">
+  <div class="city_name">
+          <h3>{{ $league->name }}</h3>
+          <div class="edit_revert">
           <ul class="list-unstyled list-inline">
             <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
               <div class="select_draft draft_round">
@@ -210,26 +248,13 @@
             </li>
             <!-- <li class="list-inline-item">
               <button>Edit Draft Board</button>
-            </li> -->
+            </li>-->
             <!-- <li class="list-inline-item">
               <button>Save</button>
             </li> -->
           </ul>
         </div>
-      </div>
-    </div>
-    @else
-    <div class="col-md-12 text-center">
-      <div class="city_name">
-        <h3>{{ ($league->status == 'keeper') ? 'Keeper' : 'Draft in Setup' }} Mode</h3>
-      </div>
-    </div>
-    @endif
-  </div>
-</div>
-
-<div class="city_board_table">
-  <div class="table-responsive">
+        </div>
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -351,7 +376,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
-            <div class="edit_revert">
+            <!-- <div class="edit_revert">
               <ul class="list-unstyled list-inline">
                 <li class="list-inline-item draftPlayerLi">
                   <div class="select_draft draft_round">
@@ -367,7 +392,7 @@
                   </div>
                 </li>
               </ul>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
