@@ -63,6 +63,14 @@ table, th {
     text-align: left;
     color: #fff;
 }
+.btn_view button{
+    background-image: linear-gradient(to right, #000, #353535);
+    border: none;
+    padding: 10px 25px;
+}
+.btn_view button i{
+    color: #fff;
+}
 .onTheClock .upNext{
     font-weight: 600;
 }

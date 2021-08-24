@@ -95,7 +95,20 @@
     @if($league->status == 'started')
     <div class="row">
       <div class="col-md-6">
+      <div class="timer_box">
+        <div class="time">
+        <div class="btn_view">
+                  <span>
+                    <button id="timerBtn" data-type="{{ $league->draft_timer ? 'stop' : 'start' }}"><i class="{{ $league->draft_timer ? 'fa fa-pause' : 'fa fa-play' }}"></i></button>
+                  </span>
+                  <span>
+                    <button id="refreshTime"><i class="fa fa-repeat"></i></button>
+                  </span>
+                </div>
+        </div>
+      </div>
       <div class="clock">
+        
                   @php 
                     if($league->draft_timer == null){
                       $timer = ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value;
