@@ -124,7 +124,7 @@
                   @endphp
                   <h4 id="countDownTimer">{{ $timer }}</h4>
                 </div>
-        <div class="timer_box">
+        <!-- <div class="timer_box">
           <ul class="list-unstyled list-inline">
             <li class="list-inline-item">
               <div class="time">
@@ -209,12 +209,12 @@
                   <h5 id="firstName">{{ $last_pick->first_name ?? '' }}</h5>
                   <h3 id="lastName">{{ $last_pick->last_name ?? '' }}</h3>
                   <span class="left" id="playerPosition">{{ $last_pick->position ?? '' }}</span>
-                  <span class="right">KC</span> 
+                  <!-- <span class="right">KC</span> 
                 </div>
               </div>
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
       <!-- <div class="col-md-2">
         <div class="city_name">
@@ -293,23 +293,34 @@
               usort($rounds, "compare1");
             }
             
-            // dd($rounds);
+           
           @endphp
+          
           <tr>
             <td>{!! $rightArrow !!}</td>
             <td>{{ $index }}</td>
             @foreach($rounds as $round)
             @php
-              
+            
             @endphp
               <td 
                 data-round_id="{{ $round->id }}" 
                 data-team_order="{{ $round->team->team_order }}" 
                 data-default_order="{{ $index.'.'.$round->default_order }}"
               >
+              
                 @if(isset($round->player) && isset($round->player->first_name))
-                <span class="indraft_team_name">{{$round->team->team_name}}</span>
-                <span>{{ $round->player->first_name.' '.$round->player->last_name.' ('.$round->player->position.')' }}</span>
+                <!-- <span class="indraft_team_name">{{$round->team->team_name}}</span> -->
+                
+                <select>
+                    @foreach($league->teams as $team)
+                      <option value="{{ $team->id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
+                    @endforeach
+                </select>
+                <span style="font-size:15px;">{{ $round->player->first_name}}</span> <span style="font-size:15px;">{{ $round->player->team}}</span><br>
+                <span style="font-weight:bold;font-size:28px;">{{ $round->player->last_name}}</span>
+                <span>{{ ' ('.$round->player->position.')' }}</span> <br>
+                <span>{{ $index.'.'.$round->default_order }}</span><br>
                 @else
                 <span class="indraft_team_name" style="display: none">{{$round->team->team_name}}</span>
                   <span>{{ $index.'.'.$round->default_order }}</span>
