@@ -124,7 +124,7 @@
                   @endphp
                   <h4 id="countDownTimer">{{ $timer }}</h4>
                 </div>
-        <!-- <div class="timer_box">
+        <div class="timer_box">
           <ul class="list-unstyled list-inline">
             <li class="list-inline-item">
               <div class="time">
@@ -209,12 +209,12 @@
                   <h5 id="firstName">{{ $last_pick->first_name ?? '' }}</h5>
                   <h3 id="lastName">{{ $last_pick->last_name ?? '' }}</h3>
                   <span class="left" id="playerPosition">{{ $last_pick->position ?? '' }}</span>
-                  <!-- <span class="right">KC</span> 
+                  <span class="right">KC</span> 
                 </div>
               </div>
             </li>
           </ul>
-        </div> -->
+        </div>
       </div>
       <!-- <div class="col-md-2">
         <div class="city_name">
