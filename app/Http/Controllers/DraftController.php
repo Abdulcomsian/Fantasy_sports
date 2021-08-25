@@ -39,11 +39,15 @@ class DraftController extends Controller
                 $roundsArr[$roundNumber][$subround] = $round;
                 $subround++;
             }
+            $leaguerecord=leagueRound::where(['league_id'=>$id])->where('player_id','!=',Null)->orderBy('id', 'DESC')->first();
+           //dd($leaguerecord);
             return view('league.draft', [
                 'league' => $league, 
                 'players' => Player::whereNotIn('id', $playerIds)->get(),
                 'last_pick' => leagueRound::fetchData($id, 'desc'),
-                'league_rounds' => $roundsArr
+                'league_rounds' => $roundsArr,
+                'leaugeid'=>$id,
+                'leaguerecord'=> $leaguerecord
             ]);
         }
         abort(404);
@@ -130,8 +134,10 @@ class DraftController extends Controller
                 $roundId = $request->round_id;
             }
             if(isset($roundId) && $roundId > 0){
+                 $league = League::leagueData($leagueId);
+
                 LeagueRound::where('id', $roundId)->update(['player_id' => $request->player_id]);
-                return $this->sendResponse(200, 'Pick saved successfully.', ['round_id' => $roundId, 'league_round' => $leagueRound, 'counts' => League::getLeagueRoundsCount($leagueId)]);
+                return $this->sendResponse(200, 'Pick saved successfully.', ['round_id' => $roundId, 'league_round' => $leagueRound,'leagueid'=>$leagueId,'leagueteam'=>$league,'counts' => League::getLeagueRoundsCount($leagueId)]);
             }else{
                 return $this->sendResponse(400, 'Something went wrong. Please try again later.');    
             }
@@ -188,5 +194,17 @@ class DraftController extends Controller
         }
         $league->save();
         return $this->sendResponse(200, 'Time saved successfully.', ['timer_type' => $type, 'timer_value' => $startTime]);
+    }
+
+    //change team function
+    public function changeTeam(Request $request)
+    {
+        $data=explode("|",$request->teamdata);
+        $team_id=$data[0];
+        $round_id=$data[1];
+        $league_id=$data[2];
+        $player_id=$data[3];
+        LeagueRound::where(['league_id'=>$league_id,'round_number'=>$round_id,'player_id'=>$player_id])->update(['team_id'=>$team_id]);
+        return $this->sendResponse(200, 'Team saved successfully.');
     }
 }

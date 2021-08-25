@@ -221,12 +221,24 @@
           <h3>{{ $league->name }}</h3>
         </div>
       </div> -->
-
       <div class="col-md-6">
         <div class="onTheClock">
           <p>On The Clock</p>
-          <h3>TEAM 3</h3>
-          <p class="upNext">Up Next: Team 4</p>
+          @php 
+          if($leaguerecord)
+          {
+            $roundunber=$leaguerecord->round_order;
+            $roundorderplus=$leaguerecord->round_order+1;
+          }
+          else
+          {
+            $roundorderplus="1";
+            $roundunber="1";
+          }
+          
+          @endphp
+          <h3>TEAM {{$roundunber}}</h3>
+          <p class="upNext">Up Next: Team {{$roundorderplus}}</p>
         </div>
         
       </div>
@@ -308,13 +320,12 @@
                 data-team_order="{{ $round->team->team_order }}" 
                 data-default_order="{{ $index.'.'.$round->default_order }}"
               >
-              
                 @if(isset($round->player) && isset($round->player->first_name))
                 <!-- <span class="indraft_team_name">{{$round->team->team_name}}</span> -->
                 
-                <select>
+                <select id="teamselect" name="teamselect">
                     @foreach($league->teams as $team)
-                      <option value="{{ $team->id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
+                      <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                     @endforeach
                 </select>
                 <span style="font-size:15px;">{{ $round->player->first_name}}</span> <span style="font-size:15px;">{{ $round->player->team}}</span><br>
