@@ -46,12 +46,14 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::post('{id}/draft/pick/delete/{round_id}', 'DraftController@deletePick');
 		Route::post('{id}/draft/timer/save', 'DraftController@saveTimer');
 		Route::post('{id}/draft/timer/{type}', 'DraftController@timerSettings');
+        //my new work obaid
 
 		Route::get('{id}/squads', 'SquadController@index');
 		Route::get('{id}/team/{team_id}/players', 'SquadController@teamPlayers');
 		Route::post('{id}/keeper/cost', 'SquadController@saveKeeperCost');
 		Route::get('{id}/trading', 'TradeController@index');
 	});
+    Route::get('/changeTeam','DraftController@changeTeam')->name('changeTeam');
 	Route::resource('league', LeagueController::class);
 
 	Route::get('yahon/index', 'YahooController@index');

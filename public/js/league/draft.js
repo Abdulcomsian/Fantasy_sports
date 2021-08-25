@@ -5,9 +5,23 @@ $(function () {
   });
 
   $('.draftPlayer').on('change', function () {
-
+    
     savePick($(this).val());
   });
+  //my work here obaid
+  $(document).on('change',"#teamselect",function(){
+    $teamdata=$(this).val();
+    $.ajax({
+    type: 'get',
+    url: '/changeTeam',
+    data: { 'teamdata': $teamdata },
+    success: function (response) {
+        console.log(response);
+      window.location = '/league/' + $("input[name='league_id']").val() + '/draft';
+    }
+  });
+
+  })
 
   $('.undoPick').on('click', '#undoBtn', async function () {
     let lastPick = $('.undoPick #undoBtn');
@@ -91,7 +105,21 @@ function savePick(playerId, roundId = 0, type = 'draft') {
           $('.select2Drp').select2('val', '');
           $(".select2Drp option[value='" + playerId + "']").remove();
           // var team_name = $("td[data-round_id='"+response.data.round_id+"']").children()[0].textContent;
-          $("td[data-round_id='" + response.data.round_id + "']").children()[1].innerHTML = ('<span>' + playerFirstName + ' ' + playerLastName + ' (' + position + ') </span>');
+          //obaid work here
+          var team='';
+          for (var i=0; i<response.data.leagueteam.teams.length; i++) {
+              if(response.data.leagueteam.teams[i].team_name==response.data.league_round.team_name)
+              {
+                selected='selected';
+              }
+              else
+              {
+                selected='';
+              }
+              team+='<option value='+response.data.leagueteam.teams[i].id+'|'+response.data.league_round.round_number+'|'+response.data.leagueid+'|'+playerId+' '+selected+'>'+response.data.leagueteam.teams[i].team_name+'</option>'
+            }
+
+          $("td[data-round_id='" + response.data.round_id + "']").children()[1].innerHTML = ('<select id="teamselect" name="teamselect">'+team+'</select><br><span>' + playerFirstName + ' (' + position + ') </span><br><span>'+playerLastName+'</span>');
           if (type == 'draft') {
             //$("td[data-round_id='"+response.data.round_id+"']").text(playerLastName);
             if ($('.undoPick').hasClass('hide')) {
