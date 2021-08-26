@@ -255,9 +255,8 @@
 
 <div class="city_board_table">
   <div class="table-responsive">
-  <div class="city_name">
-          <h3>{{ $league->name }}</h3>
-          <div class="edit_revert">
+  <div class="dropDownDiv">
+        <div class="edit_revert">
           <ul class="list-unstyled list-inline">
             <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
               <div class="select_draft draft_round">
@@ -280,6 +279,11 @@
           </ul>
         </div>
         </div>
+  <div class="city_name">
+          <h3>{{ $league->name }}</h3>
+         
+        </div>
+       
     <table class="table">
       <thead class="thead-dark">
         <tr>
