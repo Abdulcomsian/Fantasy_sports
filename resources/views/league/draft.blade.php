@@ -327,7 +327,7 @@
                 @if(isset($round->player) && isset($round->player->first_name))
                 <!-- <span class="indraft_team_name">{{$round->team->team_name}}</span> -->
                 
-                <select id="teamselect" name="teamselect">
+                <select style="    background: #b7b7b7;padding: 8px 6px 7px 10px;" id="teamselect" name="teamselect">
                     @foreach($league->teams as $team)
                       <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                     @endforeach
