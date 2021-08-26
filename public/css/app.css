@@ -3580,7 +3580,6 @@ select.lg-size {
     background: #313131ee;
     opacity: .8;
 }
-}
 .season_fall .openBtn{
     position: absolute;
     left: 30px;
@@ -3849,4 +3848,17 @@ table {
   .dropdown a:hover {background-color: #ddd;}
   
   .show {display: block;}
-
+  .dropDownDiv{
+      background-color: #000;
+      border-bottom: 1px solid #fff;
+      padding: 10px;
+      text-align: right;
+  }
+  .dropDownDiv .list-inline,
+  .dropDownDiv .form-group{
+      margin-bottom: 0px;
+  }
+  .dropDownDiv .list-inline{
+    position: relative;
+    right: 100px;
+  }
