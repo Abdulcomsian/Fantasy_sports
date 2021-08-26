@@ -3793,11 +3793,16 @@ select.lg-size {
 }
 
 
+#teamselect{border:0px !important;}
 
-
-
-
-
+#teamselect  {
+	appearance: none;font-size: 16px;
+}
+#teamselect  option{font-size:16px;}
+table {
+    table-layout: fixed ;
+    width: 100% ;
+  }
 
 .dropbtn i{
     position: absolute;

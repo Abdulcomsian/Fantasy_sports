@@ -265,7 +265,7 @@
                   <select name="draftPlayer" class="draftPlayer select2Drp">
                     <option value="">Draft Player</option>
                     @foreach($players as $player)
-                      <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
+                      <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}" data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                     @endforeach
                   </select>
                 </div>
@@ -283,13 +283,13 @@
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th></th>
-          <th><span>Round</span></th>
+          <th style="width:30px;"></th>
+          <th style="width:80px;"><span>Round</span></th>
           @foreach($league->teams as $team)
-            <th>{{ $team->team_name }}</th>
+            <th style="width:100%">{{ $team->team_name }}</th>
           @endforeach
-          <th><span>Round</span></th>
-          <th></th>
+          <th style="width:80px;"><span>Round</span></th>
+          <th style="width:30px;"></th>
         </tr>
       </thead>
       <tbody class="tbl-bdy-clr">
@@ -328,9 +328,8 @@
                       <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                     @endforeach
                 </select>
-                <span style="font-size:15px;">{{ $round->player->first_name}}</span> <span style="font-size:15px;">{{ $round->player->team}}</span><br>
-                <span style="font-weight:bold;font-size:28px;">{{ $round->player->last_name}}</span>
-                <span>{{ ' ('.$round->player->position.')' }}</span> <br>
+                <span style="font-size:15px;">{{$round->player->position }}</span> <span style="font-size:15px;">{{ $round->player->first_name}}</span> <span style="font-size:15px;">{{ $round->player->team}}</span><br>
+                <span style="font-weight:bold;font-size:18px;">{{ $round->player->last_name}}</span><br>
                 <span>{{ $index.'.'.$round->default_order }}</span><br>
                 @else
                 <span class="indraft_team_name" style="display: none">{{$round->team->team_name}}</span>

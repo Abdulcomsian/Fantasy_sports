@@ -5,21 +5,21 @@ $(function () {
   });
 
   $('.draftPlayer').on('change', function () {
-    
+
     savePick($(this).val());
   });
   //my work here obaid
-  $(document).on('change',"#teamselect",function(){
-    $teamdata=$(this).val();
+  $(document).on('change', "#teamselect", function () {
+    $teamdata = $(this).val();
     $.ajax({
-    type: 'get',
-    url: '/changeTeam',
-    data: { 'teamdata': $teamdata },
-    success: function (response) {
+      type: 'get',
+      url: '/changeTeam',
+      data: { 'teamdata': $teamdata },
+      success: function (response) {
         console.log(response);
-      window.location = '/league/' + $("input[name='league_id']").val() + '/draft';
-    }
-  });
+        window.location = '/league/' + $("input[name='league_id']").val() + '/draft';
+      }
+    });
 
   })
 
@@ -93,6 +93,7 @@ function savePick(playerId, roundId = 0, type = 'draft') {
   let playerLastName = $("." + selectClass + " option:selected").data('last_name');
   let playerFirstName = $("." + selectClass + " option:selected").data('first_name');
   let position = $("." + selectClass + " option:selected").data('position');
+  let player_team = $("." + selectClass + " option:selected").data('team');
   if (playerId) {
     $.ajax({
       type: 'POST',
@@ -106,20 +107,18 @@ function savePick(playerId, roundId = 0, type = 'draft') {
           $(".select2Drp option[value='" + playerId + "']").remove();
           // var team_name = $("td[data-round_id='"+response.data.round_id+"']").children()[0].textContent;
           //obaid work here
-          var team='';
-          for (var i=0; i<response.data.leagueteam.teams.length; i++) {
-              if(response.data.leagueteam.teams[i].team_name==response.data.league_round.team_name)
-              {
-                selected='selected';
-              }
-              else
-              {
-                selected='';
-              }
-              team+='<option value='+response.data.leagueteam.teams[i].id+'|'+response.data.league_round.round_number+'|'+response.data.leagueid+'|'+playerId+' '+selected+'>'+response.data.leagueteam.teams[i].team_name+'</option>'
+          var team = '';
+          for (var i = 0; i < response.data.leagueteam.teams.length; i++) {
+            if (response.data.leagueteam.teams[i].team_name == response.data.league_round.team_name) {
+              selected = 'selected';
             }
+            else {
+              selected = '';
+            }
+            team += '<option value=' + response.data.leagueteam.teams[i].id + '|' + response.data.league_round.round_number + '|' + response.data.leagueid + '|' + playerId + ' ' + selected + '>' + response.data.leagueteam.teams[i].team_name + '</option>'
+          }
 
-          $("td[data-round_id='" + response.data.round_id + "']").children()[1].innerHTML = ('<select id="teamselect" name="teamselect">'+team+'</select><br><span>' + playerFirstName + ' (' + position + ') </span><br><span>'+playerLastName+'</span>');
+          $("td[data-round_id='" + response.data.round_id + "']").children()[1].innerHTML = ('<select id="teamselect" name="teamselect">' + team + '</select><br> <span style="font-size:15px;">' + position + '</span ><span style="font-size:15px;"> ' + playerFirstName + ' </span><span style="font-size:15px;">' + player_team + '</span>' + '</span><br><span style="font-weight:bold;font-size:18px;">' + playerLastName + '</span>');
           if (type == 'draft') {
             //$("td[data-round_id='"+response.data.round_id+"']").text(playerLastName);
             if ($('.undoPick').hasClass('hide')) {
