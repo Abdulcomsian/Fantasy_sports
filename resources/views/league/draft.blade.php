@@ -331,7 +331,7 @@
                     @foreach($league->teams as $team)
                       <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                     @endforeach
-                </select>
+                </select><br>
                 <span style="font-size:15px;">{{$round->player->position }}</span> <span style="font-size:15px;">{{ $round->player->first_name}}</span> <span style="font-size:15px;">{{ $round->player->team}}</span><br>
                 <span style="font-weight:bold;font-size:18px;">{{ $round->player->last_name}}</span><br>
                 <span>{{ $index.'.'.$round->default_order }}</span><br>
