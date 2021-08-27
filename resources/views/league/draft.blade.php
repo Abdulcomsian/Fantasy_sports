@@ -91,7 +91,7 @@
      </div>
   </div> -->
 
-  <div class="container">
+  <div class="container-fluid">
     @if($league->status == 'started')
     <div class="row">
       <div class="col-md-6">
@@ -106,24 +106,25 @@
                   </span>
                 </div>
         </div>
-      </div>
-      <div class="clock">
+        <div class="clock">
         
-                  @php 
-                    if($league->draft_timer == null){
-                      $timer = ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value;
-                      $timer = explode(":", $timer);
-                      if($timer[0] > 0){
-                        $timer = $timer[0].':'.$timer[1];
-                      }else{
-                        $timer = $timer[1].':'.$timer[2];
-                      }
-                    }else{
-                      $timer = '';
-                    }
-                  @endphp
-                  <h4 id="countDownTimer">{{ $timer }}</h4>
-                </div>
+        @php 
+          if($league->draft_timer == null){
+            $timer = ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value;
+            $timer = explode(":", $timer);
+            if($timer[0] > 0){
+              $timer = $timer[0].':'.$timer[1];
+            }else{
+              $timer = $timer[1].':'.$timer[2];
+            }
+          }else{
+            $timer = '';
+          }
+        @endphp
+        <h4 id="countDownTimer">{{ $timer }}</h4>
+      </div>
+      </div>
+   
         <!-- <div class="timer_box">
           <ul class="list-unstyled list-inline">
             <li class="list-inline-item">
@@ -223,6 +224,7 @@
       </div> -->
       <div class="col-md-6">
         <div class="onTheClock">
+          <div>
           <p>On The Clock</p>
           @php 
           if($leaguerecord)
@@ -239,6 +241,8 @@
           @endphp
           <h3>TEAM {{$roundunber}}</h3>
           <p class="upNext">Up Next: Team {{$roundorderplus}}</p>
+          </div>
+        
         </div>
         
       </div>
@@ -267,6 +271,7 @@
                       <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}" data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                     @endforeach
                   </select>
+                  <button class="draftButton">Draft</button>
                 </div>
               </div>
             </li>
@@ -332,9 +337,12 @@
                       <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                     @endforeach
                 </select><br>
-                <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br>
-                <span style="font-weight:bold;font-size:18px;">{{ $round->player->last_name}}</span><br>
-                <span>{{ $index.'.'.$round->default_order }}</span><br>
+                <div class="team_info">
+                  <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br>
+                  <span style="font-weight:bold;font-size:22px;">{{ $round->player->last_name}}</span><br>
+                  <span>{{ $index.'.'.$round->default_order }}</span>
+                </div>
+               <br>
                 @else
                 <span class="indraft_team_name" style="display: none">{{$round->team->team_name}}</span>
                   <span>{{ $index.'.'.$round->default_order }}</span>

@@ -1,4 +1,11 @@
 $(function () {
+  var val="";
+  $(".draftButton").click(function(){
+    // savePick(val);
+    if(val!=""){
+      savePick(val);
+    }
+  })
   $('.draftPlayer').select2();
   $('.keeperPlayer').select2({
     dropdownParent: $('#keeperModal')
@@ -6,7 +13,7 @@ $(function () {
 
   $('.draftPlayer').on('change', function () {
 
-    savePick($(this).val());
+    val=$(this).val();
   });
   //my work here obaid
   $(document).on('change', "#teamselect", function () {
@@ -94,6 +101,8 @@ function savePick(playerId, roundId = 0, type = 'draft') {
   let playerFirstName = $("." + selectClass + " option:selected").data('first_name');
   let position = $("." + selectClass + " option:selected").data('position');
   let player_team = $("." + selectClass + " option:selected").data('team');
+  console.log(playerId)
+  console.log(player_team)
   if (playerId) {
     $.ajax({
       type: 'POST',
