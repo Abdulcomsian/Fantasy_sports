@@ -91,7 +91,10 @@
      </div>
   </div> -->
 
-  <div class="container-fluid">
+ 
+
+</div>
+<div class="container-fluid">
     @if($league->status == 'started')
     <div class="row">
       <div class="col-md-6">
@@ -255,8 +258,6 @@
     </div>
     @endif
   </div>
-</div>
-
 <div class="city_board_table">
   <div class="table-responsive">
   <div class="dropDownDiv">
