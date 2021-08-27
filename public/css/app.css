@@ -60,13 +60,13 @@ table, th {
     margin-left: 50px;
 }
 .timer_box{
-    margin-top: 80px;
+    padding: 150px 20px 0px;
 }
 .city_charts{
     padding-bottom: 0px !important;
 }
 .onTheClock{
-    margin-top: 80px;
+    padding: 150px 20px 0px;
     text-align: left;
     color: #fff;
     display: flex;
