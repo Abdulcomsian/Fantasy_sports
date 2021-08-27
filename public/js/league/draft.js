@@ -4,15 +4,19 @@ $(function () {
     // savePick(val);
     if(val!=""){
       savePick(val);
+      val="";
     }
   })
   $('.draftPlayer').select2();
   $('.keeperPlayer').select2({
     dropdownParent: $('#keeperModal')
   });
-
+  $(document).on('keyup', ".select2-search__field", function () {
+      console.log("eheere")
+    $(".select2-results").css("display","block");
+  });
   $('.draftPlayer').on('change', function () {
-
+   
     val=$(this).val();
   });
   //my work here obaid
@@ -127,7 +131,7 @@ function savePick(playerId, roundId = 0, type = 'draft') {
             team += '<option value=' + response.data.leagueteam.teams[i].id + '|' + response.data.league_round.round_number + '|' + response.data.leagueid + '|' + playerId + ' ' + selected + '>' + response.data.leagueteam.teams[i].team_name + '</option>'
           }
 
-          $("td[data-round_id='" + response.data.round_id + "']").children()[1].innerHTML = ('<select id="teamselect" name="teamselect">' + team + '</select><br> <span style="font-size:15px;">' + position + '</span ><span style="font-size:15px;"> ' + playerFirstName + ' </span><span style="font-size:15px;">' + player_team + '</span>' + '</span><br><span style="font-weight:bold;font-size:18px;">' + playerLastName + '</span>');
+          $("td[data-round_id='" + response.data.round_id + "']").children()[1].innerHTML = ('<select id="teamselect" name="teamselect">' + team + '</select><div class="team_info"><span style="font-size:15px;">' + position + '</span ><span style="font-size:15px;"> ' + playerFirstName + ' </span><span style="font-size:15px;">' + player_team + '</span>' + '</span><br><span style="font-weight:bold;font-size:18px;">' + playerLastName + '</span></div> ');
           if (type == 'draft') {
             //$("td[data-round_id='"+response.data.round_id+"']").text(playerLastName);
             if ($('.undoPick').hasClass('hide')) {

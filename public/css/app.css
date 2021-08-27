@@ -60,18 +60,33 @@ table, th {
     margin-left: 50px;
 }
 .timer_box{
-    padding: 150px 20px 0px;
+    padding: 50px 20px 30px;
 }
 .city_charts{
     padding-bottom: 0px !important;
 }
 .onTheClock{
-    padding: 150px 20px 0px;
+    padding: 50px 20px 30px;
     text-align: left;
     color: #fff;
     display: flex;
     justify-content: flex-end;
 }
+.tbl-bdy-clr td select{
+    background: #b7b7b7;
+    padding: 8px 6px 7px 10px;
+    width: 100%;
+    text-indent: calc(50% - 23px);
+    font-size: 16px !important;
+}
+.team_info span:nth-child(1),
+.team_info span:nth-child(3){
+    font-size: 12px !important;
+}
+.team_info span:nth-child(2){
+    font-size: 16px !important;
+}
+
 .btn_view button{
     background-image: linear-gradient(to right, #000, #353535);
     border: none;
@@ -1627,16 +1642,16 @@ a:hover {
     outline: none;
 }
 /* line 1402, ../sass/app.scss */
-.city_charts .timer_box ul li .time .btn_view span .clock {
+.clock {
     position: relative;
     padding: 3px 0;
 }
 /* line 1405, ../sass/app.scss */
-.city_charts .timer_box ul li .time .btn_view span .clock .fa-clock-o {
+.clock .fa-clock-o {
     padding: 3px 15px;
 }
 /* line 1408, ../sass/app.scss */
-.city_charts .timer_box ul li .time .btn_view span .clock .time_duration {
+.time_duration {
     display: none;
     position: absolute;
     top: 29px;
@@ -1648,26 +1663,18 @@ a:hover {
     text-align: left;
 }
 /* line 1418, ../sass/app.scss */
-.city_charts .timer_box ul li .time .btn_view span .clock .time_duration h4 {
+.time_duration h4 {
     font: 500 24px "Neometric Medium";
     color: #000;
     text-align: left;
 }
 /* line 1423, ../sass/app.scss */
-.city_charts .timer_box ul li .time .btn_view span .clock .time_duration p {
+.time_duration p {
     font: 500 15px "Neometric Medium";
     color: #000;
 }
 /* line 1428, ../sass/app.scss */
-.city_charts
-    .timer_box
-    ul
-    li
-    .time
-    .btn_view
-    span
-    .clock
-    .time_duration
+.time_duration
     .form-group
     input {
     width: 60px;
@@ -1676,14 +1683,7 @@ a:hover {
     text-align: center;
 }
 /* line 1434, ../sass/app.scss */
-.city_charts
-    .timer_box
-    ul
-    li
-    .time
-    .btn_view
-    span
-    .clock
+
     .time_duration
     .form-group
     span {
@@ -1693,39 +1693,18 @@ a:hover {
     width: 130px;
 }
 /* line 1441, ../sass/app.scss */
-.city_charts
-    .timer_box
-    ul
-    li
-    .time
-    .btn_view
-    span
-    .clock
+
     .time_duration.time_on {
     display: block;
 }
 /* line 1444, ../sass/app.scss */
-.city_charts
-    .timer_box
-    ul
-    li
-    .time
-    .btn_view
-    span
-    .clock
+
     .time_duration
     .btn_submit {
     text-align: center;
 }
 /* line 1446, ../sass/app.scss */
-.city_charts
-    .timer_box
-    ul
-    li
-    .time
-    .btn_view
-    span
-    .clock
+
     .time_duration
     .btn_submit
     button {
@@ -3859,9 +3838,13 @@ table {
   .show {display: block;}
   .dropDownDiv{
       background-color: #000;
-      border-bottom: 1px solid #fff;
       padding: 10px;
       text-align: right;
+  }
+  .city_name h3{
+    font-size: 56px;
+    position: relative;
+    top: -30px;
   }
   .dropDownDiv .list-inline,
   .dropDownDiv .form-group{

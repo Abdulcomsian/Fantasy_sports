@@ -98,37 +98,8 @@
     @if($league->status == 'started')
     <div class="row">
       <div class="col-md-6">
+     
       <div class="timer_box">
-        <div class="time">
-        <div class="btn_view">
-                  <span>
-                    <button id="timerBtn" data-type="{{ $league->draft_timer ? 'stop' : 'start' }}"><i class="{{ $league->draft_timer ? 'fa fa-pause' : 'fa fa-play' }}"></i></button>
-                  </span>
-                  <span>
-                    <button id="refreshTime"><i class="fa fa-repeat"></i></button>
-                  </span>
-                </div>
-        </div>
-        <div class="clock">
-        
-        @php 
-          if($league->draft_timer == null){
-            $timer = ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value;
-            $timer = explode(":", $timer);
-            if($timer[0] > 0){
-              $timer = $timer[0].':'.$timer[1];
-            }else{
-              $timer = $timer[1].':'.$timer[2];
-            }
-          }else{
-            $timer = '';
-          }
-        @endphp
-        <h4 id="countDownTimer">{{ $timer }}</h4>
-      </div>
-      </div>
-   
-        <!-- <div class="timer_box">
           <ul class="list-unstyled list-inline">
             <li class="list-inline-item">
               <div class="time">
@@ -140,7 +111,7 @@
                     <button id="refreshTime"><i class="fa fa-repeat"></i></button>
                   </span>
                   <span class="no-padd">
-                    <span class="clock"><i class="fa fa-clock-o"></i>
+                    <span class="clock"><button><i class="fa fa-clock-o"></i></button>
                       <div class="time_duration">
                         <form id="timerForm">
                           <h4>Change Duration</h4>
@@ -184,47 +155,12 @@
                 </div>
               </div>
             </li>
-            <li class="list-inline-item undoPick {{ isset($last_pick->round_id) && $last_pick->round_id ? '' : 'hide' }}">
-              <div class="pick">
-                <div class="view_pik">
-                  <h4>Last Pick 
-                    @php
-                      $withoutPlayerCount = (isset($league->without_player_count)) ? $league->without_player_count : 0;
-                      $roundsCount = (isset($league->rounds_count)) ? $league->rounds_count : 0;
-                      $overallPick = intval($roundsCount) - intval($withoutPlayerCount);
-                    @endphp
-                    <button id="undoBtn" 
-                      round_id="{{ $last_pick->round_id ?? '' }}" 
-                      player_id="{{ $last_pick->player_id ?? '' }}" 
-                      last_name="{{ $last_pick->last_name ?? '' }}" 
-                      first_name="{{ $last_pick->first_name ?? '' }}" 
-                      position="{{ $last_pick->position ?? '' }}" 
-                      team_name="{{ $last_pick->team_name ?? '' }}"
-                      round_number="{{ $last_pick->round_number ?? '' }}"
-                      pick_number="{{ $last_pick->pick_number ?? '' }}"
-                      overall_pick="{{ $overallPick }}"
-                    >
-                      Undo
-                    </button>
-                  </h4>
-                </div>
-
-                <div class="players"> 
-                  <h5 id="firstName">{{ $last_pick->first_name ?? '' }}</h5>
-                  <h3 id="lastName">{{ $last_pick->last_name ?? '' }}</h3>
-                  <span class="left" id="playerPosition">{{ $last_pick->position ?? '' }}</span>
-                  <!-- <span class="right">KC</span> 
-                </div>
-              </div>
-            </li>
           </ul>
-        </div> -->
-      </div>
-      <!-- <div class="col-md-2">
-        <div class="city_name">
-          <h3>{{ $league->name }}</h3>
         </div>
-      </div> -->
+      </div>
+   
+      
+   
       <div class="col-md-6">
         <div class="onTheClock">
           <div>
@@ -248,6 +184,7 @@
         
         </div>
         
+      </div>
       </div>
     </div>
     @else
@@ -293,13 +230,13 @@
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th style="width:30px;"></th>
-          <th style="width:80px;"><span>Round</span></th>
+          <th style="width:20px"></th>
+          <th style="width:100px"><span>Round</span></th>
           @foreach($league->teams as $team)
-            <th style="width:100%">{{ $team->team_name }}</th>
+            <th style="width: 150px;">{{ $team->team_name }}</th>
           @endforeach
-          <th style="width:80px;"><span>Round</span></th>
-          <th style="width:30px;"></th>
+          <th style="width:100px"><span>Round</span></th>
+          <th style="width:20px"></th>
         </tr>
       </thead>
       <tbody class="tbl-bdy-clr">
