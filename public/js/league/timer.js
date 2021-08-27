@@ -50,10 +50,10 @@ $(function(){
         },
     });
 
-    $('.city_charts .timer_box ul li .time .btn_view span .clock .fa-clock-o').on('click', function(){
+    $('.clock .fa-clock-o').on('click', function(){
 	    $('#timerForm').validate().resetForm();
 	    $('#timerForm').trigger("reset");
-	    $('.city_charts .timer_box ul li .time .btn_view span .clock .time_duration').toggleClass('time_on');
+	    $('.clock .time_duration').toggleClass('time_on');
 	});
 
 	$('.timer').on('keydown', function(e){
