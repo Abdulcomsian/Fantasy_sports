@@ -59,9 +59,18 @@ table, th {
 .city_name .edit_revert{
     margin-left: 50px;
 }
+.timer_box{
+    margin-top: 80px;
+}
+.city_charts{
+    padding-bottom: 0px !important;
+}
 .onTheClock{
+    margin-top: 80px;
     text-align: left;
     color: #fff;
+    display: flex;
+    justify-content: flex-end;
 }
 .btn_view button{
     background-image: linear-gradient(to right, #000, #353535);
@@ -188,10 +197,10 @@ a:hover {
     color: #fff;
 }
 /* line 77, ../sass/app.scss */
-.season_fall .container-fluid {
+/* .season_fall .container-fluid {
     max-width: 80%;
     margin: auto;
-}
+} */
 
 /* line 84, ../sass/app.scss */
 .create_league .container-fluid {
@@ -3861,4 +3870,27 @@ table {
   .dropDownDiv .list-inline{
     position: relative;
     right: 100px;
+  }
+  .city_board_table .table tbody tr td{
+      padding: 0px;
+      overflow: hidden;
+  }
+  .city_board_table .table tbody tr td .team_info{
+      padding: 10px;
+  }
+  .draftButton{
+    background-image: linear-gradient(to right, #000, #353535);
+    font: 700 18px "Neometric";
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 13px 33px;
+    text-align: center;
+    width: 50%;
+    margin-left: 20px;
+  }
+  .dropDownDiv .form-group{
+      display: flex;
+  }
+  .dropDownDiv .select2-container{
+    width: 100% !important;
   }
