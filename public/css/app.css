@@ -79,12 +79,14 @@ table, th {
     text-indent: calc(50% - 23px);
     font-size: 16px !important;
 }
-.team_info span:nth-child(1),
+.team_info span:nth-child(1){
+    font-size: 13px !important;
+}
 .team_info span:nth-child(3){
-    font-size: 12px !important;
+    font-size: 22px !important;
 }
 .team_info span:nth-child(2){
-    font-size: 16px !important;
+    font-size: 13px !important;
 }
 
 .btn_view button{
@@ -3843,8 +3845,8 @@ table {
   }
   .city_name h3{
     font-size: 56px;
-    position: relative;
-    top: -30px;
+    /* position: relative;
+    top: -30px; */
   }
   .dropDownDiv .list-inline,
   .dropDownDiv .form-group{

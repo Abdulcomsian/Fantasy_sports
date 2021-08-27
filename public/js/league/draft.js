@@ -1,10 +1,10 @@
 $(function () {
-  var val="";
-  $(".draftButton").click(function(){
+  var val = "";
+  $(".draftButton").click(function () {
     // savePick(val);
-    if(val!=""){
+    if (val != "") {
       savePick(val);
-      val="";
+      val = "";
     }
   })
   $('.draftPlayer').select2();
@@ -12,12 +12,12 @@ $(function () {
     dropdownParent: $('#keeperModal')
   });
   $(document).on('keyup', ".select2-search__field", function () {
-      console.log("eheere")
-    $(".select2-results").css("display","block");
+    console.log("eheere")
+    $(".select2-results").css("display", "block");
   });
   $('.draftPlayer').on('change', function () {
-   
-    val=$(this).val();
+
+    val = $(this).val();
   });
   //my work here obaid
   $(document).on('change', "#teamselect", function () {
@@ -131,7 +131,7 @@ function savePick(playerId, roundId = 0, type = 'draft') {
             team += '<option value=' + response.data.leagueteam.teams[i].id + '|' + response.data.league_round.round_number + '|' + response.data.leagueid + '|' + playerId + ' ' + selected + '>' + response.data.leagueteam.teams[i].team_name + '</option>'
           }
 
-          $("td[data-round_id='" + response.data.round_id + "']").children()[1].innerHTML = ('<select id="teamselect" name="teamselect">' + team + '</select><div class="team_info"><span style="font-size:15px;">' + position + '</span ><span style="font-size:15px;"> ' + playerFirstName + ' </span><span style="font-size:15px;">' + player_team + '</span>' + '</span><br><span style="font-weight:bold;font-size:18px;">' + playerLastName + '</span></div> ');
+          $("td[data-round_id='" + response.data.round_id + "']").children()[1].innerHTML = ('<select id="teamselect" name="teamselect">' + team + '</select><span style="font-size:15px;float: left;padding: 10px;">' + position + '</span ><span style="font-size:15px;float: right;padding: 10px;"> ' + player_team + ' </span><div class="team_info"><span style="font-size:13px;">' + playerFirstName + '</span>' + '<br><span style="font-weight:bold;font-size:22px;">' + playerLastName + '</span></div> ');
           if (type == 'draft') {
             //$("td[data-round_id='"+response.data.round_id+"']").text(playerLastName);
             if ($('.undoPick').hasClass('hide')) {

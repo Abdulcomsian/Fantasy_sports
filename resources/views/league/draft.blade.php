@@ -267,16 +267,24 @@
                 data-team_order="{{ $round->team->team_order }}" 
                 data-default_order="{{ $index.'.'.$round->default_order }}"
               >
-                @if(isset($round->player) && isset($round->player->first_name))
-                <!-- <span class="indraft_team_name">{{$round->team->team_name}}</span> -->
-                
-                <select style="    background: #b7b7b7;padding: 8px 6px 7px 10px;" id="teamselect" name="teamselect">
+              <select style="    background: #b7b7b7;padding: 8px 10px 7px 0px; width:80%;" id="teamselect" name="teamselect">
                     @foreach($league->teams as $team)
                       <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                     @endforeach
                 </select><br>
+                @if(isset($round->player) && isset($round->player->first_name))
+                <!-- <span class="indraft_team_name">{{$round->team->team_name}}</span> -->
+                
+                <!-- <select style="    background: #b7b7b7;padding: 8px 10px 7px 0px; width:80%;" id="teamselect" name="teamselect">
+                    @foreach($league->teams as $team)
+                      <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
+                    @endforeach
+                </select><br> -->
+                <span style="font-size:13px;float: left;padding: 10px;">{{$round->player->position }}</span>  <span style="float: right;padding: 10px;font-size:13px;">{{ $round->player->team}}</span><br>
                 <div class="team_info">
-                  <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br>
+                  
+                  <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
+                  <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
                   <span style="font-weight:bold;font-size:22px;">{{ $round->player->last_name}}</span><br>
                   <span>{{ $index.'.'.$round->default_order }}</span>
                 </div>
@@ -360,7 +368,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
-            <!-- <div class="edit_revert">
+            <div class="edit_revert">
               <ul class="list-unstyled list-inline">
                 <li class="list-inline-item draftPlayerLi">
                   <div class="select_draft draft_round">
@@ -376,7 +384,7 @@
                   </div>
                 </li>
               </ul>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
