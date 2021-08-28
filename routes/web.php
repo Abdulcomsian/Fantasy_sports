@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::get('{id}/trading', 'TradeController@index');
 	});
     Route::get('/changeTeam','DraftController@changeTeam')->name('changeTeam');
+    Route::get('/removePlayer','DraftController@removePlayer')->name('removePlayer');
 	Route::resource('league', LeagueController::class);
 
 	Route::get('yahon/index', 'YahooController@index');

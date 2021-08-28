@@ -34,6 +34,27 @@ $(function () {
 
   })
 
+  $(document).on("click", "#removePlayer", function () {
+    // console.log($(this)[0].attr;
+    player_id = $(this).attr("data-player_id");
+    round_id = $(this).attr("data-round_id");
+    team_id = $(this).attr("data-team_id");
+    league_id = $(this).attr("data-league_id");
+
+
+
+    $.ajax({
+      type: 'get',
+      url: '/removePlayer',
+      data: { 'player_id': player_id, 'round_id': round_id, 'team_id': team_id, 'league_id': league_id },
+      success: function (response) {
+        console.log(response);
+        window.location = '/league/' + league_id + '/draft';
+      }
+    });
+
+  })
+
   $('.undoPick').on('click', '#undoBtn', async function () {
     let lastPick = $('.undoPick #undoBtn');
     let confirmation = await confirmationDiv(lastPick);
@@ -131,7 +152,7 @@ function savePick(playerId, roundId = 0, type = 'draft') {
             team += '<option value=' + response.data.leagueteam.teams[i].id + '|' + response.data.league_round.round_number + '|' + response.data.leagueid + '|' + playerId + ' ' + selected + '>' + response.data.leagueteam.teams[i].team_name + '</option>'
           }
 
-          $("td[data-round_id='" + response.data.round_id + "']").children()[1].innerHTML = ('<select id="teamselect" name="teamselect">' + team + '</select><span style="font-size:15px;float: left;padding: 10px;">' + position + '</span ><span style="font-size:15px;float: right;padding: 10px;"> ' + player_team + ' </span><div class="team_info"><span style="font-size:13px;">' + playerFirstName + '</span>' + '<br><span style="font-weight:bold;font-size:22px;">' + playerLastName + '</span></div> ');
+          $("td[data-round_id='" + response.data.round_id + "']").children()[0].innerHTML = ('<select id="teamselect" name="teamselect" style="padding:9px 10px 8px 0px !important;">' + team + '</select><br><span style="font-size:13px;float: left;padding: 10px;">' + position + '</span ><span style="float: right;padding: 10px;font-size:13px;"> ' + player_team + ' </span><br><div class="team_info"><span style="font-size:13px;">' + playerFirstName + '</span>' + '<br><span style="font-weight:bold;font-size:22px;">' + playerLastName + '</span></div> ');
           if (type == 'draft') {
             //$("td[data-round_id='"+response.data.round_id+"']").text(playerLastName);
             if ($('.undoPick').hasClass('hide')) {

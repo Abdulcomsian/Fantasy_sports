@@ -74,10 +74,12 @@ table, th {
 }
 .tbl-bdy-clr td select{
     background: #b7b7b7;
-    padding: 8px 6px 7px 10px;
+    padding:5px 6px 4px 10px;
     width: 100%;
     text-indent: calc(50% - 23px);
-    font-size: 16px !important;
+    font-size: 12px !important;
+    top: -3px;
+    position: relative;
 }
 .team_info span:nth-child(1){
     font-size: 13px !important;
@@ -1825,7 +1827,7 @@ a:hover {
 /* line 1567, ../sass/app.scss */
 .city_board_table .table tbody tr td .fa {
     color: red;
-    font-size: 29px;
+    font-size: 18px;
 }
 
 /* line 1577, ../sass/app.scss */
@@ -3787,7 +3789,7 @@ select.lg-size {
 #teamselect  {
 	appearance: none;font-size: 16px;
 }
-#teamselect  option{font-size:16px;}
+#teamselect  option{font-size:14px;}
 table {
     table-layout: fixed ;
     width: 100% ;
@@ -3861,7 +3863,9 @@ table {
       overflow: hidden;
   }
   .city_board_table .table tbody tr td .team_info{
-      padding: 10px;
+      padding: 0 10px 10px 10px;
+      position: relative;
+      top: -10px;
   }
   .draftButton{
     background-image: linear-gradient(to right, #000, #353535);

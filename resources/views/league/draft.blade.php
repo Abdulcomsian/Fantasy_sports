@@ -189,14 +189,17 @@
     </div>
     @else
     <div class="col-md-12 text-center">
-      <div class="city_name">
+    
+      <!-- <div class="city_name">
         <h3>{{ ($league->status == 'keeper') ? 'Keeper' : 'Draft in Setup' }} Mode</h3>
-      </div>
+      </div> -->
     </div>
     @endif
+    
   </div>
 <div class="city_board_table">
   <div class="table-responsive">
+  <?php if($league->status!="keeper"){ ?>
   <div class="dropDownDiv">
         <div class="edit_revert">
           <ul class="list-unstyled list-inline">
@@ -222,6 +225,12 @@
           </ul>
         </div>
         </div>
+  
+  
+  
+  
+  
+  <?php } ?>
   <div class="city_name">
           <h3>{{ $league->name }}</h3>
          
@@ -266,8 +275,8 @@
                 data-round_id="{{ $round->id }}" 
                 data-team_order="{{ $round->team->team_order }}" 
                 data-default_order="{{ $index.'.'.$round->default_order }}"
-              >
-              <select style="    background: #b7b7b7;padding: 8px 10px 7px 0px; width:80%;" id="teamselect" name="teamselect">
+              ><div style="min-height:140px;">
+              <select style="    background: #b7b7b7;padding: 8px 10px 7px 0px; " id="teamselect" name="teamselect">
                     @foreach($league->teams as $team)
                       <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                     @endforeach
@@ -278,17 +287,17 @@
                 <!-- <select style="    background: #b7b7b7;padding: 8px 10px 7px 0px; width:80%;" id="teamselect" name="teamselect">
                     @foreach($league->teams as $team)
                       <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
-                    @endforeach
+                    @endforeach 
                 </select><br> -->
                 <span style="font-size:13px;float: left;padding: 10px;">{{$round->player->position }}</span>  <span style="float: right;padding: 10px;font-size:13px;">{{ $round->player->team}}</span><br>
                 <div class="team_info">
-                  
+                <a href="javascript:void(0)"  data-league_id = "{{$round->league_id}}" data-team_id = "{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></a><br>
                   <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
                   <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
                   <span style="font-weight:bold;font-size:22px;">{{ $round->player->last_name}}</span><br>
                   <span>{{ $index.'.'.$round->default_order }}</span>
                 </div>
-               <br>
+              
                 @else
                 <span class="indraft_team_name" style="display: none">{{$round->team->team_name}}</span>
                   <span>{{ $index.'.'.$round->default_order }}</span>
@@ -376,7 +385,7 @@
                       <select name="" class="keeperPlayer select2Drp">
                         <option value="">Draft Player</option>
                         @foreach($players as $player)
-                          <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
+                          <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}"  data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                         @endforeach
                       </select>
                       <input type="hidden" name="round_id">

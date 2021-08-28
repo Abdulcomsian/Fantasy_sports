@@ -207,4 +207,16 @@ class DraftController extends Controller
         LeagueRound::where(['league_id'=>$league_id,'round_number'=>$round_id,'player_id'=>$player_id])->update(['team_id'=>$team_id]);
         return $this->sendResponse(200, 'Team saved successfully.');
     }
+
+    public function removePlayer(Request $request)
+    {
+        // return $request->round_id;
+        // $data=explode("|",$request->teamdata);
+        // $team_id=$data[0];
+        // $round_id=$data[1];
+        // $league_id=$data[2];
+        // $player_id=$data[3];
+        LeagueRound::where(['league_id'=>$request->league_id,'team_id'=>$request->team_id, 'round_number'=>$request->round_id,'player_id'=>$request->player_id])->update(['player_id'=>NULL]);
+        return $this->sendResponse(200, 'Player Removed Successfully.');
+    }
 }
