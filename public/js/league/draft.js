@@ -14,6 +14,7 @@ $(function () {
   $(document).on('keyup', ".select2-search__field", function () {
     console.log("eheere")
     $(".select2-results").css("display", "block");
+    $(".select2-container--open .select2-dropdown").css("height","auto");
   });
   $('.draftPlayer').on('change', function () {
 
