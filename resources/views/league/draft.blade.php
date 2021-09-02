@@ -13,194 +13,191 @@
     return (($a->round_order) < ($b->round_order));
   }
 @endphp
-<audio id="timerBeep">
-  <source src="{{ asset('beeps/beep.mp3') }}"/>
-  <source src="{{ asset('beeps/beep.wav') }}" />
-</audio>
-<audio id="playerBeep">
-  <source src="{{ asset('beeps/playerBeep.mp3') }}"/>
-  <source src="{{ asset('beeps/playerBeep.wav') }}" />
-</audio>
-<div class="container create_league_table assign_order the_lottery traders city_charts" style="padding-top:35px;">
-<div class="row">
-			<div class="col-md-6">
-      <form id="updateLeague" class="draftFrom">
+<div class="fixedBanner">
+<div class="overlay"></div>
+  <audio id="timerBeep">
+    <source src="{{ asset('beeps/beep.mp3') }}"/>
+    <source src="{{ asset('beeps/beep.wav') }}" />
+  </audio>
+  <audio id="playerBeep">
+    <source src="{{ asset('beeps/playerBeep.mp3') }}"/>
+    <source src="{{ asset('beeps/playerBeep.wav') }}" />
+  </audio>
+  <div class="container create_league_table assign_order the_lottery traders city_charts" style="padding-top:35px;">
+  <div class="row">
+        <div class="col-md-6">
+        <form id="updateLeague" class="draftFrom">
 
-	<div class="list_edit">
-		<div class="row">
-			<div class="col-md-6 no-bdr">
-				<h4><span><i class="fa fa-star yellow"></i>Edit Mode</span></h4>
-			</div>
-			<div class="col-md-6">
-				<div class="custom-control custom-switch">
-					<input type="checkbox" class="custom-control-input lequeMode2" id="keeperMode" {{ $league->status == 'keeper' ? 'checked' : '' }} value="keeper">
-					<label class="custom-control-label on-off" for="keeperMode"></label>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="list_edit">
-		<div class="row">
-			<div class="col-md-6 no-bdr">
-				<h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
-			</div>
-			<div class="col-md-6">
-				<div class="custom-control custom-switch">
-					<input type="checkbox" class="custom-control-input lequeMode2" id="draftMode" {{ $league->status == 'started' ? 'checked' : '' }} value="started">
-					<label class="custom-control-label on-off" for="draftMode"></label>
-				</div>
-			</div>
-		</div>
-	</div>
-	</form>
-      </div>
-			<div class="col-md-2">
-				<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
-			</div>
-			<div class="col-md-2">
-      <p onclick="myFunction()" class="dropbtn">Select <i class="fa fa-angle-down" aria-hidden="true"></i></p>
-				<div id="myDropdown" class="dropdown-content">
-					<a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad</a>
-					<a href="{{url('draft-roaster')}}">Draft Roaster</a>
-				</div>
-			<!-- <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2> -->
-			</div>
-			<div class="col-md-2">
-				<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
-			</div>
-    </div>
-  <input type="hidden" name="league_id" value="{{ $league->id }}">
-  <!-- <div class="top_draft">
-     <div class="container">
-      <ul class="list-unstyled list-inline">
-        <li class="list-inline-item">
-          <a href="{{ url('/league/'.$league->id.'/draft') }}" class="draftStatus" data-type="{{ $league->status }}">
-            <button class="style-btn">
-              <img src="{{ asset('images/min_tab.jpg') }}" title="Switch to {{ $league->status == 'keeper' ? 'Draft Board' : 'Keeper Mode' }}">
-            </button>
-          </a>
-        </li>
-        <li class="list-inline-item">
-          <a href="{{ url('/league/'.$league->id.'/settings') }}">
-            <button class="style-btn">
-              <img src="{{ asset('images/user.png') }}">
-            </button>
-          </a>
-        </li>
-      </ul>
-     </div>
-  </div> -->
-
- 
-
-</div>
-<div class="container-fluid">
-    @if($league->status == 'started')
-    <div class="row">
-      <div class="col-md-6">
-     
-      <div class="timer_box">
-          <ul class="list-unstyled list-inline">
-            <li class="list-inline-item">
-              <div class="time">
-                <div class="btn_view">
-                  <span>
-                    <button id="timerBtn" data-type="{{ $league->draft_timer ? 'stop' : 'start' }}"><i class="{{ $league->draft_timer ? 'fa fa-pause' : 'fa fa-play' }}"></i></button>
-                  </span>
-                  <span>
-                    <button id="refreshTime"><i class="fa fa-repeat"></i></button>
-                  </span>
-                  <span class="no-padd">
-                    <span class="clock"><button><i class="fa fa-clock-o"></i></button>
-                      <div class="time_duration">
-                        <form id="timerForm">
-                          <h4>Change Duration</h4>
-                          <p>Current Duration: <span id="currentDuration">{{ $league->timer_value }}</span></p>
-                          <p id="demo"></p>
-                          @php 
-                            $currentDuration = explode(":", $league->timer_value);
-                          @endphp
-                          <div class="form-group">
-                            <span>Hours:</span> <input name="hours" type="number" class="timer" placeholder="00" min="0" max="99" value="{{ $currentDuration[0] }}">
-                          </div>
-                          <div class="form-group">
-                            <span>Minutes:</span> <input name="minutes" type="number" class="timer" placeholder="00" min="0" max="59" value="{{ $currentDuration[1] }}">
-                          </div>
-                          <div class="form-group">
-                            <span>Seconds:</span> <input name="seconds" type="number" class="timer" placeholder="00" min="0" max="59" value="{{ $currentDuration[2] }}">
-                          </div>
-                          <div class="btn_submit">
-                            <button>Submit</button>
-                          </div>
-                        </form>
-                      </div>
-                    </span>
-                  </span>
-                </div>
-                <div class="clock">
-                  @php 
-                    if($league->draft_timer == null){
-                      $timer = ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value;
-                      $timer = explode(":", $timer);
-                      if($timer[0] > 0){
-                        $timer = $timer[0].':'.$timer[1];
-                      }else{
-                        $timer = $timer[1].':'.$timer[2];
-                      }
-                    }else{
-                      $timer = '';
-                    }
-                  @endphp
-                  <h4 id="countDownTimer">{{ $timer }}</h4>
-                </div>
-              </div>
-            </li>
-          </ul>
+    <div class="list_edit">
+      <div class="row">
+        <div class="col-md-6 no-bdr">
+          <h4><span><i class="fa fa-star yellow"></i>Edit Mode</span></h4>
         </div>
-      </div>
-   
-      
-   
-      <div class="col-md-6">
-        <div class="onTheClock">
-          <div>
-          <p>On The Clock</p>
-          @php 
-          if($leaguerecord)
-          {
-            $roundunber=$leaguerecord->round_order;
-            $roundorderplus=$leaguerecord->round_order+1;
-          }
-          else
-          {
-            $roundorderplus="1";
-            $roundunber="1";
-          }
-          
-          @endphp
-          <h3>TEAM {{$roundunber}}</h3>
-          <p class="upNext">Up Next: Team {{$roundorderplus}}</p>
+        <div class="col-md-6">
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input lequeMode2" id="keeperMode" {{ $league->status == 'keeper' ? 'checked' : '' }} value="keeper">
+            <label class="custom-control-label on-off" for="keeperMode"></label>
           </div>
-        
         </div>
-        
-      </div>
       </div>
     </div>
-    @else
-    <div class="col-md-12 text-center">
-    
-      <!-- <div class="city_name">
-        <h3>{{ ($league->status == 'keeper') ? 'Keeper' : 'Draft in Setup' }} Mode</h3>
-      </div> -->
+    <div class="list_edit">
+      <div class="row">
+        <div class="col-md-6 no-bdr">
+          <h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
+        </div>
+        <div class="col-md-6">
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input lequeMode2" id="draftMode" {{ $league->status == 'started' ? 'checked' : '' }} value="started">
+            <label class="custom-control-label on-off" for="draftMode"></label>
+          </div>
+        </div>
+      </div>
     </div>
-    @endif
-    
+    </form>
+        </div>
+        <div class="col-md-2">
+          <h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
+        </div>
+        <div class="col-md-2">
+        <p onclick="myFunction()" class="dropbtn">Select <i class="fa fa-angle-down" aria-hidden="true"></i></p>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad</a>
+            <a href="{{url('draft-roaster')}}">Draft Roaster</a>
+          </div>
+        <!-- <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2> -->
+        </div>
+        <div class="col-md-2">
+          <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+        </div>
+      </div>
+    <input type="hidden" name="league_id" value="{{ $league->id }}">
+    <!-- <div class="top_draft">
+      <div class="container">
+        <ul class="list-unstyled list-inline">
+          <li class="list-inline-item">
+            <a href="{{ url('/league/'.$league->id.'/draft') }}" class="draftStatus" data-type="{{ $league->status }}">
+              <button class="style-btn">
+                <img src="{{ asset('images/min_tab.jpg') }}" title="Switch to {{ $league->status == 'keeper' ? 'Draft Board' : 'Keeper Mode' }}">
+              </button>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="{{ url('/league/'.$league->id.'/settings') }}">
+              <button class="style-btn">
+                <img src="{{ asset('images/user.png') }}">
+              </button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div> -->
+
+  
+
   </div>
-<div class="city_board_table">
-  <div class="table-responsive">
-  <?php if($league->status!="keeper"){ ?>
-  <div class="dropDownDiv">
+  <div class="container">
+      @if($league->status == 'started')
+      <div class="row">
+        <div class="col-md-6">
+      
+        <div class="timer_box">
+            <ul class="list-unstyled list-inline">
+              <li class="list-inline-item">
+                <div class="time">
+                  <div class="btn_view">
+                    <span>
+                      <button id="timerBtn" data-type="{{ $league->draft_timer ? 'stop' : 'start' }}"><i class="{{ $league->draft_timer ? 'fa fa-pause' : 'fa fa-play' }}"></i></button>
+                    </span>
+                    <span>
+                      <button id="refreshTime"><i class="fa fa-repeat"></i></button>
+                    </span>
+                    <span class="no-padd">
+                      <span class="clock"><button><i class="fa fa-clock-o"></i></button>
+                        <div class="time_duration">
+                          <form id="timerForm">
+                            <h4>Change Duration</h4>
+                            <p>Current Duration: <span id="currentDuration">{{ $league->timer_value }}</span></p>
+                            <p id="demo"></p>
+                            @php 
+                              $currentDuration = explode(":", $league->timer_value);
+                            @endphp
+                            <div class="form-group">
+                              <span>Hours:</span> <input name="hours" type="number" class="timer" placeholder="00" min="0" max="99" value="{{ $currentDuration[0] }}">
+                            </div>
+                            <div class="form-group">
+                              <span>Minutes:</span> <input name="minutes" type="number" class="timer" placeholder="00" min="0" max="59" value="{{ $currentDuration[1] }}">
+                            </div>
+                            <div class="form-group">
+                              <span>Seconds:</span> <input name="seconds" type="number" class="timer" placeholder="00" min="0" max="59" value="{{ $currentDuration[2] }}">
+                            </div>
+                            <div class="btn_submit">
+                              <button>Submit</button>
+                            </div>
+                          </form>
+                        </div>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="clock">
+                    @php 
+                      if($league->draft_timer == null){
+                        $timer = ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value;
+                        $timer = explode(":", $timer);
+                        if($timer[0] > 0){
+                          $timer = $timer[0].':'.$timer[1];
+                        }else{
+                          $timer = $timer[1].':'.$timer[2];
+                        }
+                      }else{
+                        $timer = '';
+                      }
+                    @endphp
+                    <h4 id="countDownTimer">{{ $timer }}</h4>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+    
+        
+    
+        <div class="col-md-6">
+          <div class="onTheClock">
+            <div>
+            <p>On The Clock</p>
+            @php 
+            if($leaguerecord)
+            {
+              $roundunber=$leaguerecord->round_order;
+              $roundorderplus=$leaguerecord->round_order+1;
+            }
+            else
+            {
+              $roundorderplus="1";
+              $roundunber="1";
+            }
+            
+            @endphp
+            <h3>TEAM {{$roundunber}}</h3>
+            <p class="upNext">Up Next: Team {{$roundorderplus}}</p>
+            </div>
+          
+          </div>
+          
+        </div>
+        </div>
+      </div>
+      @else
+      <div class="col-md-12 text-center">
+      
+        <!-- <div class="city_name">
+          <h3>{{ ($league->status == 'keeper') ? 'Keeper' : 'Draft in Setup' }} Mode</h3>
+        </div> -->
+      </div>
+      @endif
+      <div class="dropDownDiv">
         <div class="edit_revert">
           <ul class="list-unstyled list-inline">
             <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
@@ -225,6 +222,13 @@
           </ul>
         </div>
         </div>
+    </div>
+  </div>
+
+<div class="city_board_table">
+  <div class="table-responsive">
+  <?php if($league->status!="keeper"){ ?>
+
   
   
   
@@ -240,11 +244,11 @@
       <thead class="thead-dark">
         <tr>
           <th style="width:20px"></th>
-          <th style="width:100px"><span>Round</span></th>
+          <th style="width:80px"><span>Round</span></th>
           @foreach($league->teams as $team)
             <th style="width: 150px;">{{ $team->team_name }}</th>
           @endforeach
-          <th style="width:100px"><span>Round</span></th>
+          <th style="width:80px"><span>Round</span></th>
           <th style="width:20px"></th>
         </tr>
       </thead>
