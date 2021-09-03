@@ -131,6 +131,24 @@ $style="display:show";
   </div>
   @include('includes.scripts')
   @yield('js')
+  <script>
+    $(document).ready(function() {
+      if ($('#draftMode').is(':checked')) {
+        $(".dropDownDiv").css("display","block")
+      } else {
+        $(".dropDownDiv").css("display","none")
+      }
+  });
+  $(document).ready(function(){
+    $('.draftPlayer').click(function(){
+      $('.draftPlayer').select2('open');
+        });
+      // set time out 2 sec
+        setTimeout(function(){
+            $('.draftPlayer').trigger('click');
+        }, 50);
+    });
+  </script>
 </body>
 
 </html>
