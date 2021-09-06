@@ -3906,14 +3906,7 @@ table {
     border: 1px solid #fff;
     padding: 13px 33px;
     text-align: center;
-    width: 50%;
     margin-left: 20px;
-  }
-  .dropDownDiv .form-group{
-      display: flex;
-  }
-  .dropDownDiv .select2-container{
-    width: 100% !important;
   }
   .select2-container--open .select2-dropdown{
       top: -60px;
