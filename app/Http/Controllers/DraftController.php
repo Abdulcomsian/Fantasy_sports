@@ -203,8 +203,8 @@ class DraftController extends Controller
         $team_id=$data[0];
         $round_id=$data[1];
         $league_id=$data[2];
-        $player_id=$data[3];
-        LeagueRound::where(['league_id'=>$league_id,'round_number'=>$round_id,'player_id'=>$player_id])->update(['team_id'=>$team_id]);
+        $round_order=$data[3];
+        LeagueRound::where(['league_id'=>$league_id,'round_number'=>$round_id,'round_order'=>$round_order])->update(['team_id'=>$team_id]);
         return $this->sendResponse(200, 'Team saved successfully.');
     }
 

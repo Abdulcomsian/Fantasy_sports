@@ -7,6 +7,7 @@ use Validator;
 use Auth;
 use App\Models\League;
 use App\Models\LeagueTeam;
+use App\Models\Player;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\LeagueRound;
 use DB;
@@ -387,5 +388,11 @@ class LeagueController extends Controller
         }else{
             return $this->sendResponse(400, 'Required fields are missing.');        
         }
+    }
+
+    public function getteam()
+    {
+        $players=Player::all();
+        echo json_encode($players);
     }
 }
