@@ -386,12 +386,14 @@
                 <li class="list-inline-item draftPlayerLi">
                   <div class="select_draft draft_round">
                     <div class="form-group drft-plr">
-                      <select name="" class="keeperPlayer select2Drp">
+                    <input id = "project">
+                    <input type = "hidden" id = "project-id">
+                      <!-- <select name="" class="keeperPlayer select2Drp">
                         <option value="">Draft Player</option>
                         @foreach($players as $player)
                           <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}"  data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                         @endforeach
-                      </select>
+                      </select> -->
                       <input type="hidden" name="round_id">
                     </div>
                   </div>
@@ -420,6 +422,7 @@
 <script type="text/javascript" src="{{ asset('js/league/timer.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/league/draft.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/league/settings.js') }}"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
 	function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");

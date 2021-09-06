@@ -1,7 +1,48 @@
+$('.modal').css('top', $(window).outerHeight() / 2 - ($(".modal-dialog").outerHeight()) / 2 + 'px');
+$(function() {
+  var projects = [
+     {
+        value: "java",
+        label: "Java",
+        desc: "write once run anywhere",
+     },
+     {
+        value: "jquery-ui",
+        label: "jQuery UI",
+        desc: "the official user interface library for jQuery",
+     },
+     {
+        value: "Bootstrap",
+        label: "Twitter Bootstrap",
+        desc: "popular front end frameworks ",
+     }
+  ];
+  $( "#project" ).autocomplete({
+     minLength: 0,
+     source: projects,
+     focus: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+           return false;
+     },
+     select: function( event, ui ) {
+        $( "#project" ).val( ui.item.label );
+        $( "#project-id" ).val( ui.item.value );
+        $( "#project-description" ).html( ui.item.desc );
+        return false;
+     }
+  })
+
+  .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+     return $( "<li>" )
+     .append( "<a>" + item.label + "<br>" + item.desc + "</a>" )
+     .appendTo( ul );
+  };
+});
 $(function () {
   var val = "";
   $(".draftButton").click(function () {
     // savePick(val);
+    val=$(".dropDownDiv input").val()
     if (val != "") {
       savePick(val);
       val = "";

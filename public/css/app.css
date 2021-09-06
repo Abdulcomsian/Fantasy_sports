@@ -3887,6 +3887,9 @@ table {
     position: relative;
     right: 100px;
   }
+  .dropDownDiv input{
+    padding: 10px 20px;
+  }
   .city_board_table .table tbody tr td{
       padding: 0px;
       overflow: hidden;
@@ -3916,3 +3919,24 @@ table {
       top: -60px;
       height: 62px;
   }
+  #project-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 1em;
+ }
+ #project-icon {
+    float: left;
+    height: 32px;
+    width: 32px;
+ }
+ #project-description {
+    margin: 0;
+    padding: 0;
+ }
+ #project{
+    width: 100%;
+    padding: 10px 20px;
+ }
+ .list-inline-item.draftPlayerLi{
+     width: 100%;
+ }
