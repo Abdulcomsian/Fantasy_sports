@@ -3969,7 +3969,7 @@ table {
     /*position the autocomplete items to be the same width as the container:*/
     top: 100%;
     right: 0;
-    right: 400px;
+    right: 162px;
     width: 232px;
   }
   #myInput2autocomplete-list div{
