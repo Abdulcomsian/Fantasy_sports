@@ -42,7 +42,7 @@ $(function () {
   var val = "";
   $(".draftButton").click(function () {
     // savePick(val);
-    val = $(".draftPlayer").val()
+    val = $("#myInput2").attr('data-id')
     // alert(val);
     if (val != "") {
       savePick(val);
@@ -71,7 +71,7 @@ $(function () {
       data: { 'teamdata': $teamdata },
       success: function (response) {
         console.log(response);
-        window.location = '/league/' + $("input[name='league_id']").val() + '/draft';
+        //window.location = '/league/' + $("input[name='league_id']").val() + '/draft';
       }
     });
 
@@ -164,13 +164,16 @@ function changeLeagueStatus(status) {
 }
 
 function savePick(playerId, roundId = 0, type = 'draft') {
-  let selectClass = type == 'draft' ? 'draftPlayer' : 'keeperPlayer';
-  let playerLastName = $("." + selectClass + " option:selected").data('last_name');
-  let playerFirstName = $("." + selectClass + " option:selected").data('first_name');
-  let position = $("." + selectClass + " option:selected").data('position');
-  let player_team = $("." + selectClass + " option:selected").data('team');
-  console.log(playerId)
-  console.log(player_team)
+  // let selectClass = type == 'draft' ? 'draftPlayer' : 'keeperPlayer';
+  // let playerLastName = $("." + selectClass + " option:selected").data('last_name');
+  // let playerFirstName = $("." + selectClass + " option:selected").data('first_name');
+  // let position = $("." + selectClass + " option:selected").data('position');
+  // let player_team = $("." + selectClass + " option:selected").data('team');
+
+  let playerLastName = $("#myInput2").attr('data-last_name');
+  let playerFirstName = $("#myInput2").attr('data-first_name');
+  let position = $("#myInput2").attr('data-pos');
+  let player_team = $("#myInput2").attr('data-team');
   if (playerId) {
     $.ajax({
       type: 'POST',
@@ -192,7 +195,7 @@ function savePick(playerId, roundId = 0, type = 'draft') {
             else {
               selected = '';
             }
-            team += '<option value=' + response.data.leagueteam.teams[i].id + '|' + response.data.league_round.round_number + '|' + response.data.leagueid + '|' + playerId + ' ' + selected + '>' + response.data.leagueteam.teams[i].team_name + '</option>'
+            team += '<option value=' + response.data.leagueteam.teams[i].id + '|' + response.data.league_round.round_number + '|' + response.data.leagueid + '|' + response.data.league_round.round_id + ' ' + selected + '>' + response.data.leagueteam.teams[i].team_name + '</option>'
           }
 
           $("td[data-round_id='" + response.data.round_id + "']").children()[0].innerHTML = ('<select id="teamselect" name="teamselect" style="padding:9px 10px 8px 0px !important;">' + team + '</select><br><span style="font-size:13px;float: left;padding: 10px;">' + position + '</span ><span style="float: right;padding: 10px;font-size:13px;"> ' + player_team + ' </span><br><div class="team_info"><span style="font-size:13px;">' + playerFirstName + '</span>' + '<br><span style="font-weight:bold;font-size:22px;">' + playerLastName + '</span></div> ');
@@ -270,7 +273,8 @@ function updateLastPick(leagueRound, counts) {
 
 
 
-function autocomplete(inp, arr) {
+function autocomplete(inp, arr,arr1) {
+
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
@@ -297,11 +301,24 @@ function autocomplete(inp, arr) {
         b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
         b.innerHTML += arr[i].substr(val.length);
         /*insert a input field that will hold the current array item's value:*/
-        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+        var myArr = arr1[i].split("/");
+        //alert(myArr[0]);
+        b.innerHTML += "<input type='hidden'  value='" + arr[i] + "' data-first_name='"+myArr[0]+"' data-last_name='"+myArr[1]+"' data-id='"+myArr[2]+"' data-team='"+myArr[3]+"' data-pos='"+myArr[4]+"'>";
         /*execute a function when someone clicks on the item value (DIV element):*/
         b.addEventListener("click", function (e) {
           /*insert the value for the autocomplete text field:*/
           inp.value = this.getElementsByTagName("input")[0].value;
+          first_name=this.getElementsByTagName("input")[0].getAttribute('data-first_name');
+          last_name=this.getElementsByTagName("input")[0].getAttribute('data-last_name');
+          playerid=this.getElementsByTagName("input")[0].getAttribute('data-id');
+          playerteam=this.getElementsByTagName("input")[0].getAttribute('data-team');
+          playerpos=this.getElementsByTagName("input")[0].getAttribute('data-pos');
+          $("#myInput2").attr('value',inp.value);
+          $("#myInput2").attr('data-first_name',first_name);
+          $("#myInput2").attr('data-last_name',last_name);
+          $("#myInput2").attr('data-id',playerid);
+          $("#myInput2").attr('data-team',playerteam);
+          $("#myInput2").attr('data-pos', playerpos);
           /*close the list of autocompleted values,
           (or any other open lists of autocompleted values:*/
           closeAllLists();
@@ -312,6 +329,7 @@ function autocomplete(inp, arr) {
   });
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function (e) {
+
     var x = document.getElementById(this.id + "autocomplete-list");
     if (x) x = x.getElementsByTagName("div");
     if (e.keyCode == 40) {
@@ -368,8 +386,25 @@ function autocomplete(inp, arr) {
 }
 
 /*An array containing all the country names in the world:*/
-var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
+var leagid=$("input[name='league_id']").val();
+var countries = [];
+var newcountries=[];
+$.ajax({
+    url:'/league/team',
+    method:'get',
+    data:{id:leagid},
+    success:function(res)
+    {   
+        res=JSON.parse(res);
+         for(i=0;i<res.length;i++)
+         {
+            countries.push(res[i].first_name+' '+res[i].last_name)
+            newcountries.push(res[i].first_name+'/'+res[i].last_name+'/'+res[i].id+'/'+res[i].team+'/'+res[i].position)
+         }
+    }
+})
+//var countries = ["Afghanistan", "Albania", "Algeria"];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), countries);
-autocomplete(document.getElementById("myInput2"), countries);
+autocomplete(document.getElementById("myInput"), countries,newcountries);
+autocomplete(document.getElementById("myInput2"), countries,newcountries);

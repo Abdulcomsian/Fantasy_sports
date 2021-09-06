@@ -204,12 +204,12 @@
               <div class="select_draft draft_round">
                 <div class="form-group drft-plr">
                   <input id="myInput2" type="text" name="myCountry" placeholder="Country">
-                  <select name="draftPlayer" class="draftPlayer select2Drp">
+                  <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
                     <option value="">Draft Player</option>
                     @foreach($players as $player)
                       <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}" data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                     @endforeach
-                  </select>
+                  </select> -->
                   <button class="draftButton">Draft</button>
                 </div>
               </div>
@@ -283,7 +283,7 @@
               ><div style="min-height:140px;">
               <select style="    background: #b7b7b7;padding: 8px 10px 7px 0px; " id="teamselect" name="teamselect">
                     @foreach($league->teams as $team)
-                      <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
+                      <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->default_order}}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                     @endforeach
                 </select><br>
                 @if(isset($round->player) && isset($round->player->first_name))

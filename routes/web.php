@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('league/join', 'LeagueController@joinLeague');
-
+Route::get('league/team', 'LeagueController@getteam');
 Route::group(['middleware' => ['auth']], function() {
 	Route::get('draft-roaster', function () {
 		return view('welcome');
