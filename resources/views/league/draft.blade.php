@@ -203,7 +203,7 @@
             <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
               <div class="select_draft draft_round">
                 <div class="form-group drft-plr">
-                  <input id="myInput2" type="text" name="myCountry" placeholder="Country">
+                  <input id="myInput2" type="text" name="myCountry" placeholder="Enter Player Name">
                   <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
                     <option value="">Draft Player</option>
                     @foreach($players as $player)
@@ -393,7 +393,7 @@
                           <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}"  data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                         @endforeach
                       </select> -->
-                      <input id="myInput" type="text" name="myCountry" placeholder="Country">
+                      <input id="myInput" type="text" name="myCountry" placeholder="Enter Player Name">
                     </div>
                   </div>
                 </li>
