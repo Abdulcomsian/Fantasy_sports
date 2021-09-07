@@ -404,7 +404,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="saveKeeper">Save</button>
+        <button type="button" class="btn btn-primary" style="background-image: linear-gradient(to right, #000, #353535);border:1px solid #fff;" id="saveKeeper">Save</button>
       </div>
     </div>
   </div>
