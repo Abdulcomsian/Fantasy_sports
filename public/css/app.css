@@ -39,12 +39,12 @@ table, th {
 }
 #countDownTimer,
 .onTheClock h3{
-    font-size: 75px;
+    font-size: 30px;
     font-weight: 700;
     color: #fff;
 }
 #countDownTimer{
-    font: 700 50px "Neometric Bold" !important;
+    font: 700 30px "Neometric Bold" !important;
 }
 .city_name{
     background: #000;
@@ -54,6 +54,7 @@ table, th {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 .city_name ul,
 .city_name .form-group{
@@ -92,7 +93,7 @@ table, th {
     font-size: 13px !important;
 }
 .team_info span:nth-child(3){
-    font-size: 22px !important;
+    font-size: 18px !important;
 }
 .team_info span:nth-child(2){
     font-size: 13px !important;
@@ -101,7 +102,7 @@ table, th {
 .btn_view button{
     background-image: linear-gradient(to right, #000, #353535);
     border: none;
-    padding: 5px 15px;
+    padding: 5px 10px;
 }
 .btn_view button i{
     color: #fff;
@@ -1812,7 +1813,7 @@ a:hover {
 }
 /* line 1533, ../sass/app.scss */
 .city_board_table {
-    margin: 480px 0 30px;
+    margin: 200px 0 30px;
 }
 /* line 1538, ../sass/app.scss */
 .city_board_table .table .thead-dark tr th {
@@ -1829,7 +1830,7 @@ a:hover {
 /* line 1554, ../sass/app.scss */
 .city_board_table .table tbody tr td {
     text-align: center;
-    font: 500 20px "Neometric Medium";
+    font: 500 13px "Neometric Medium";
 }
 /* line 1557, ../sass/app.scss */
 .city_board_table .table tbody tr td.red {
@@ -3576,12 +3577,12 @@ select.lg-size {
 
 /***************** New - CSS *********************/
 #side-nav{
-    position: absolute;
+    position: fixed;
     width: 350px;
     left: 0;
     top: 0;
     height: 100%;
-    z-index: 999;
+    z-index: 99999999999999999999999999999999;
     display: none;
     transition: display .6s ease;
     
@@ -3862,7 +3863,10 @@ table {
       display: none;
   }
   .team_info:hover a{
-      display: block;
+    display: block;
+    position: absolute;
+    text-align: center;
+    left: 70px;
   }
   .show {display: block;}
   .dropDownDiv{
@@ -3885,7 +3889,6 @@ table {
   }
   .dropDownDiv .list-inline{
     position: relative;
-    right: 100px;
   }
   .dropDownDiv input{
     padding: 10px 20px;
@@ -3895,7 +3898,7 @@ table {
       overflow: hidden;
   }
   .city_board_table .table tbody tr td .team_info{
-      padding: 0 10px 10px 10px;
+      padding: 0px 10px;
       position: relative;
       top: -10px;
   }
@@ -3998,10 +4001,14 @@ table {
   }
   .dropDownDiv .select_draft .form-group{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     position: relative;
   }
   .dropDownDiv #myInput2{
       width: auto;
       margin-right: 30px;
+  }
+  .multiDiv,
+  .league-div{
+      background-color: #000;
   }
