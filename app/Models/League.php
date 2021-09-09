@@ -75,6 +75,7 @@ class League extends Model
                     $round = [
                         'league_id' => $league->id,
                         'team_id' => $team['id'],
+                        'old_team_id'=>$team['id'],
                         'round_number' => $key,
                         'default_order' => $key1+1,
                         'round_order' => $key1+1,

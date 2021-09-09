@@ -20,6 +20,7 @@ class DraftController extends Controller
      */
     public function index($id)
     {
+
         if(isset($id) && intval($id) > 0){
             $league = League::leagueData($id);
             $playerIds = [];
@@ -204,6 +205,7 @@ class DraftController extends Controller
         $round_id=$data[1];
         $league_id=$data[2];
         $round_order=$data[3];
+        //get old team id
         LeagueRound::where(['league_id'=>$league_id,'round_number'=>$round_id,'round_order'=>$round_order])->update(['team_id'=>$team_id]);
         return $this->sendResponse(200, 'Team saved successfully.');
     }

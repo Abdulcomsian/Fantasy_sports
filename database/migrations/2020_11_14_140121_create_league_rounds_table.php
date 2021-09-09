@@ -17,6 +17,7 @@ class CreateLeagueRoundsTable extends Migration
             $table->id();
             $table->foreignId('league_id');
             $table->foreignId('team_id');
+            $table->unsignedInteger('old_team_id')->nullable();
             $table->unsignedInteger('round_number');
             $table->tinyInteger('round_order');
             $table->foreignId('created_by');

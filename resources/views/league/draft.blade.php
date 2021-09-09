@@ -204,7 +204,7 @@
             <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
               <div class="select_draft draft_round">
                 <div class="form-group drft-plr">
-                  <input id="myInput2" type="text" name="myCountry" placeholder="Enter Player Name">
+                  <input id="myInput" type="text" name="myCountry" placeholder="Enter Player Name">
                   <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
                     <option value="">Draft Player</option>
                     @foreach($players as $player)
@@ -395,15 +395,22 @@
             <td>{!! $rightArrow !!}</td>
             <td>{{ $index }}</td>
             @foreach($rounds as $round)
-            @php
-            
-            @endphp
               <td 
                 data-round_id="{{ $round->id }}" 
                 data-team_order="{{ $round->team->team_order }}" 
                 data-default_order="{{ $index.'.'.$round->default_order }}"
               ><div style="min-height:140px;">
-              <select style="    background: #b7b7b7;padding: 8px 10px 7px 0px; " id="teamselect" name="teamselect">
+                @php
+                    if((int)$round->team_id != (int)$round->old_team_id)
+                    {
+                        $background="background:red";
+                    }else
+                    {
+                        $background="background:#b7b7b7";
+                    }
+                @endphp
+                
+              <select style="{{$background}};padding: 8px 10px 7px 0px; " id="teamselect" name="teamselect">
                     @foreach($league->teams as $team)
                       <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->default_order}}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                     @endforeach
@@ -515,7 +522,7 @@
                           <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}"  data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                         @endforeach
                       </select> -->
-                      <input id="myInput" type="text" name="myCountry" placeholder="Enter Player Name">
+                      <input id="myInput2" type="text" name="myCountry" placeholder="Enter Player Name">
                     </div>
                   </div>
                 </li>
@@ -526,7 +533,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" style="background-image: linear-gradient(to right, #000, #353535);border:1px solid #fff;" id="saveKeeper">Save</button>
+        <button type="button" class="btn btn-primary draftbutton1" style="background-image: linear-gradient(to right, #000, #353535);border:1px solid #fff;" id="saveKeeper">Save</button>
       </div>
     </div>
   </div>
