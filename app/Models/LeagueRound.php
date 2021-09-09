@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LeagueRound extends Model
 {
     use HasFactory;
-    protected $fillable = ['league_id', 'team_id', 'round_number', 'default_order', 'round_order', 'player_id', 'created_by', 'updated_by'];
+    protected $fillable = ['league_id', 'team_id','old_team_id','round_number', 'default_order', 'round_order', 'player_id', 'created_by', 'updated_by'];
 
     public function team()
     {

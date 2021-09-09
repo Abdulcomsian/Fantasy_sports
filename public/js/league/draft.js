@@ -48,6 +48,16 @@ $(function () {
       savePick(val);
       val = "";
     }
+  });
+    $("#saveKeeper").click(function () {
+        alert();
+    // savePick(val);
+    val = $("#myInput").attr('data-id')
+    // alert(val);
+    if (val != "") {
+      savePick(val);
+      val = "";
+    }
   })
   $('.draftPlayer').select2();
   $('.keeperPlayer').select2({
@@ -70,8 +80,8 @@ $(function () {
       url: '/changeTeam',
       data: { 'teamdata': $teamdata },
       success: function (response) {
-        console.log(response);
-        //window.location = '/league/' + $("input[name='league_id']").val() + '/draft';
+        //console.log(response);
+        window.location = '/league/' + $("input[name='league_id']").val() + '/draft';
       }
     });
 
@@ -319,6 +329,13 @@ function autocomplete(inp, arr,arr1) {
           $("#myInput2").attr('data-id',playerid);
           $("#myInput2").attr('data-team',playerteam);
           $("#myInput2").attr('data-pos', playerpos);
+
+          $("#myInput").attr('value',inp.value);
+          $("#myInput").attr('data-first_name',first_name);
+          $("#myInput").attr('data-last_name',last_name);
+          $("#myInput").attr('data-id',playerid);
+          $("#myInput").attr('data-team',playerteam);
+          $("#myInput").attr('data-pos', playerpos);
           /*close the list of autocompleted values,
           (or any other open lists of autocompleted values:*/
           closeAllLists();
