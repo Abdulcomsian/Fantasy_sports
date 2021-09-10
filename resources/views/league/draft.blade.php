@@ -439,7 +439,7 @@
                 
                 @if((!isset($round->player) || !isset($round->player->last_name)) && $league->status == 'keeper')
                   <br>
-                  <a href="javascript:void(0)" class="addKeeper"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                  <a href="javascript:void(0)" round-number='{{$index}}' round-order='{{$round->default_order}}' class="addKeeper"><i class="fa fa-plus" aria-hidden="true"></i></a>
                 @endif
               </td>
             @endforeach

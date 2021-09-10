@@ -135,13 +135,25 @@ class DraftController extends Controller
                 $roundId = $request->round_id;
             }
             if(isset($roundId) && $roundId > 0){
-                 $league = League::leagueData($leagueId);
+                if($request->round_order)
+                {
+                  $league = League::leagueData($leagueId);
+                  $leaguerounddata=LeagueRound::where(['round_number'=>$request->round_number,'round_order'=>$request->round_order])->first();
+                  LeagueRound::where(['round_number'=>$request->round_number,'round_order'=>$request->round_order])->update(['player_id' => $request->player_id]);
 
+                  return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id'=>$leaguerounddata->id,'round_id' => $roundId, 'league_round' => $leagueRound,'leagueid'=>$leagueId,'leagueteam'=>$league,'counts' => League::getLeagueRoundsCount($leagueId)]);
+                }
+                else
+                {
+                    $league = League::leagueData($leagueId);
                 LeagueRound::where('id', $roundId)->update(['player_id' => $request->player_id]);
                 return $this->sendResponse(200, 'Pick saved successfully.', ['round_id' => $roundId, 'league_round' => $leagueRound,'leagueid'=>$leagueId,'leagueteam'=>$league,'counts' => League::getLeagueRoundsCount($leagueId)]);
+                }
+                 
             }else{
                 return $this->sendResponse(400, 'Something went wrong. Please try again later.');    
             }
+                
         }else{
             return $this->sendResponse(400, 'Required fields are missing.');        
         }
