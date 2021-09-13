@@ -332,8 +332,8 @@
             @php 
             if($leaguerecord)
             {
-              $roundunber=$leaguerecord->round_order;
-              $roundorderplus=$leaguerecord->round_order+1;
+              $roundunber=$leaguerecord->round_order+1;
+              $roundorderplus=$leaguerecord->round_order+2;
             }
             else
             {
@@ -342,8 +342,8 @@
             }
             
             @endphp
-            <h3>TEAM {{$roundunber}}</h3>
-            <p class="upNext">Up Next: Team {{$roundorderplus}}</p>
+            <h3 id="team-round">TEAM {{$roundunber}}</h3>
+            <p class="upNext" id="upNext">Up Next: Team {{$roundorderplus}}</p>
             </div>
           
           </div>
@@ -358,12 +358,13 @@
     <div class="col-lg-4">
     <div class="onTheClock">
             <div>
-            <p>Team 5 Selects</p>
-            <!-- @php 
+            @php 
+            $playerdata=[];
             if($leaguerecord)
             {
               $roundunber=$leaguerecord->round_order;
               $roundorderplus=$leaguerecord->round_order+1;
+              $playerdata=\App\Models\Player::where('id',$leaguerecord->player_id)->first();
             }
             else
             {
@@ -371,10 +372,10 @@
               $roundunber="1";
             }
             
-            @endphp -->
-           
-            <p class="upNext" style="text-align: center;margin-bottom: 0px;">Detroits</p>
-            <h3 style="text-align: center;">LIONS</h3>
+            @endphp
+            <p id="team-select">Team {{$leaguerecord->round_order ?? ''}} Selects</p>
+            <p class="upNext" id="team-slect-fname" style="text-align: center;margin-bottom: 0px;">{{$playerdata->first_name ?? ''}}</p>
+            <h3 style="text-align: center;" id="team-slect-lname">{{$playerdata->last_name ?? ''}}</h3>
             </div>
           
           </div>
