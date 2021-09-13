@@ -213,7 +213,15 @@ function savePick(playerId, roundId = 0, type = 'draft') {
           $('.select2Drp').select2('val', '');
           $(".select2Drp option[value='" + playerId + "']").remove();
           // var team_name = $("td[data-round_id='"+response.data.round_id+"']").children()[0].textContent;
+          
           //obaid work here
+          $("#team-round").html('TEAM '+(response.data.league_round.round_id+1));
+          $("#upNext").html('Up Next: Team '+(response.data.league_round.round_id+2));
+          $("#team-select").html('TEAM '+response.data.league_round.round_id);
+          $("#team-slect-fname").html(playerFirstName);
+          $("#team-slect-lname").html(playerLastName);
+
+          //
           var team = '';
           for (var i = 0; i < response.data.leagueteam.teams.length; i++) {
             if (response.data.leagueteam.teams[i].team_name == response.data.league_round.team_name) {
