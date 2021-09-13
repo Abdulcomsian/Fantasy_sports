@@ -1813,7 +1813,7 @@ a:hover {
 }
 /* line 1533, ../sass/app.scss */
 .city_board_table {
-    margin: 310px 0 30px;
+    margin: 200px 0 30px;
 }
 /* line 1538, ../sass/app.scss */
 .city_board_table .table .thead-dark tr th {
@@ -4011,6 +4011,18 @@ table {
   .multiDiv,
   .league-div{
       background-color: #000;
+  }
+  .edit_revert #myInputautocomplete-list{
+    right: auto !important;
+    left: 0px !important;
+  } 
+  .edit_revert .autocomplete-items div{
+      text-align: left !important;
+  }
+  .modal-dialog .autocomplete-items{
+    top: 60% !important;
+    right: 0 !important;
+    left: 16px !important;
   }
   
 
