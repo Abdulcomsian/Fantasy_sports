@@ -392,7 +392,15 @@ class LeagueController extends Controller
 
     public function getteam()
     {
-        $players=Player::all();
+        $id=$_GET['id'];
+        $league = League::leagueData($id);
+            $playerIds = [];
+            if(isset($league->rounds)){
+                foreach ($league->rounds->whereNotNull('player_id') as $key => $round) {
+                    $playerIds[] = $round->player->id;
+                }
+            }
+        $players=Player::whereNotIn('id', $playerIds)->get();
         echo json_encode($players);
     }
 }
