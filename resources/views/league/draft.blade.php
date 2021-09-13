@@ -358,8 +358,8 @@
     <div class="col-lg-4">
     <div class="onTheClock">
             <div>
-            <p>On The Clock</p>
-            @php 
+            <p>Team 5 Selects</p>
+            <!-- @php 
             if($leaguerecord)
             {
               $roundunber=$leaguerecord->round_order;
@@ -371,9 +371,10 @@
               $roundunber="1";
             }
             
-            @endphp
-            <h3>TEAM {{$roundunber}}</h3>
-            <p class="upNext">Up Next: Team {{$roundorderplus}}</p>
+            @endphp -->
+           
+            <p class="upNext" style="text-align: center;margin-bottom: 0px;">Detroits</p>
+            <h3 style="text-align: center;">LIONS</h3>
             </div>
           
           </div>
