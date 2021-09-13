@@ -217,7 +217,7 @@ function savePick(playerId, roundId = 0, type = 'draft') {
           //obaid work here
           $("#team-round").html('TEAM ' + (response.data.league_round.round_id + 1));
           $("#upNext").html('Up Next: Team ' + (response.data.league_round.round_id + 2));
-          $("#team-select").html('TEAM ' + response.data.league_round.round_id + 'Selects');
+          $("#team-select").html('TEAM ' + response.data.league_round.round_id + ' Selects');
           $("#team-slect-fname").html(playerFirstName);
           $("#team-slect-lname").html(playerLastName);
 
