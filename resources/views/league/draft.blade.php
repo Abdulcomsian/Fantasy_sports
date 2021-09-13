@@ -23,17 +23,19 @@
     <source src="{{ asset('beeps/playerBeep.mp3') }}"/>
     <source src="{{ asset('beeps/playerBeep.wav') }}" />
   </audio>
-  <div class="container create_league_table assign_order the_lottery traders city_charts" style="padding-top:35px;">
+  <div class="container-fluid create_league_table assign_order the_lottery traders city_charts" style="padding-top:35px;">
   <div class="row">
         <div class="col-md-6">
         <form id="updateLeague" class="draftFrom">
 
     <div class="list_edit">
       <div class="row">
-        <div class="col-md-6 no-bdr">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 no-bdr">
           <h4><span><i class="fa fa-star yellow"></i>Edit Mode</span></h4>
         </div>
-        <div class="col-md-6">
+        
+        <div class="col-md-3">
           <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input lequeMode2" id="keeperMode" {{ $league->status == 'keeper' ? 'checked' : '' }} value="keeper">
             <label class="custom-control-label on-off" for="keeperMode"></label>
@@ -43,10 +45,10 @@
     </div>
     <div class="list_edit">
       <div class="row">
-        <div class="col-md-6 no-bdr">
+        <div class="col-md-4 no-bdr">
           <h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input lequeMode2" id="draftMode" {{ $league->status == 'started' ? 'checked' : '' }} value="started">
             <label class="custom-control-label on-off" for="draftMode"></label>
@@ -56,10 +58,10 @@
     </div>
     </form>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
           <h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
         <p onclick="myFunction()" class="dropbtn">Select <i class="fa fa-angle-down" aria-hidden="true"></i></p>
           <div id="myDropdown" class="dropdown-content">
             <a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad</a>
@@ -67,9 +69,18 @@
           </div>
         <!-- <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2> -->
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
           <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
         </div>
+        <div class="col-md-1">
+        <h2 style="width:100%" type="button" id="zoom-in">+</h2>
+        </div>
+        <div class="col-md-1">
+        <h2 style="width:100%" type="button" id="zoom-out">-</h2>
+        </div>
+
+
+
       </div>
     <input type="hidden" name="league_id" value="{{ $league->id }}">
     <!-- <div class="top_draft">
@@ -97,7 +108,24 @@
 
   </div>
   <div class="league-div">
-  <div class="container">
+  <div class="container-fluid assign_order">
+  <div class="row">
+  <div class="col-lg-2">
+  <h2 class=" " style="width:100%;"><a style="color:#fff" href="#">Draft Board</a></h2>
+  </div>
+  <div class="col-lg-2">
+  <h2 class=" " style="width:100%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
+  </div>
+  <div class="col-lg-2">
+  <h2 class=" " style="width:100%;"><a style="color:#fff" href="#">Roaster View</a></h2>
+  </div>
+  <div class="col-lg-2">
+  <h2 class=" " style="width:100%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
+  </div>
+  </div>
+</div>
+  <div class="container ">
+ 
       @if($league->status == 'started')
       <!-- <div class="row">
         <div class="col-md-6">
@@ -204,7 +232,7 @@
             <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
               <div class="select_draft draft_round">
                 <div class="form-group drft-plr">
-                  <input id="myInput" type="text" name="myCountry" placeholder="Enter Player Name">
+                  <input id="myInput" type="text" name="myCountry" autocomplete="off"  placeholder="Enter Player Name">
                   <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
                     <option value="">Draft Player</option>
                     @foreach($players as $player)
@@ -232,15 +260,11 @@
 <div class="city_board_table">
   <div class="table-responsive">
   <?php if($league->status!="keeper"){ ?>
-
-  
-  
-  
-  
   
   <?php } ?>
   <div class="multiDiv">
   <div class="container">
+
   <div class="row">
     <div class="col-lg-4">
       <div class="d-flex">
@@ -363,16 +387,16 @@
         </div>
 
        
-    <table class="table">
+    <table class="table" style="table-layout:fixed;">
       <thead class="thead-dark">
-        <tr>
-          <th style="width:20px"></th>
-          <th style="width:80px"><span>Round</span></th>
+        <tr style="height:1em; ">
+          <th style="overflow:hidden;white-space:nowrap;  width:20px"></th>
+          <!-- <th style="width:80px"><span>Round</span></th> -->
           @foreach($league->teams as $team)
-            <th style="width: 150px;">{{ $team->team_name }}</th>
+            <th style="overflow:hidden;white-space:nowrap;  width: 150px;">{{ $team->team_name }}</th>
           @endforeach
-          <th style="width:80px"><span>Round</span></th>
-          <th style="width:20px"></th>
+          <!-- <th style="width:80px"><span>Round</span></th> -->
+          <th style="overflow:hidden;white-space:nowrap;  width:20px"></th>
         </tr>
       </thead>
       <tbody class="tbl-bdy-clr">
@@ -393,7 +417,7 @@
           
           <tr>
             <td>{!! $rightArrow !!}</td>
-            <td>{{ $index }}</td>
+            <!-- <td>{{ $index }}</td> -->
             @foreach($rounds as $round)
               <td 
                 data-round_id="{{ $round->id }}" 
@@ -443,7 +467,7 @@
                 @endif
               </td>
             @endforeach
-            <td>{{ $index }}</td>
+            <!-- <td>{{ $index }}</td> -->
             <td>{!! $leftArrow !!}</td>
           </tr>
         @endforeach
@@ -569,5 +593,23 @@ window.onclick = function(event) {
     }
   }
 }
+
+
+$('#zoom-in').click(function() {
+   updateZoom(0.1);
+});
+
+$('#zoom-out').click(function() {
+   updateZoom(-0.1);
+});
+
+
+zoomLevel = 1;
+
+var updateZoom = function(zoom) {
+   zoomLevel += zoom;
+   $('body').css({ zoom: zoomLevel, '-moz-transform': 'scale(' + zoomLevel + ')' });
+}
+
 </script>
 @endsection

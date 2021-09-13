@@ -1813,13 +1813,13 @@ a:hover {
 }
 /* line 1533, ../sass/app.scss */
 .city_board_table {
-    margin: 200px 0 30px;
+    margin: 310px 0 30px;
 }
 /* line 1538, ../sass/app.scss */
 .city_board_table .table .thead-dark tr th {
     text-align: center;
     background-color: #fecc08;
-    font: 700 26px "Neometric Bold";
+    font: 700 24px "Neometric Bold";
     text-transform: uppercase;
     color: #000;
 }
@@ -4012,3 +4012,5 @@ table {
   .league-div{
       background-color: #000;
   }
+  
+
