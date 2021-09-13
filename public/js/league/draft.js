@@ -1,17 +1,17 @@
 
-$(document).ready(function(){
-  
-  setTimeout(function() {   //calls click event after a certain time
-    if($(".dropDownDiv").css("display")=="block"){
+$(document).ready(function () {
 
-      $(".city_board_table").css("margin-top","310px")
-    } else{
+  setTimeout(function () {   //calls click event after a certain time
+    if ($(".dropDownDiv").css("display") == "block") {
+
+      $(".city_board_table").css("margin-top", "310px")
+    } else {
       console.log("hello")
-      $(".city_board_table").css("margin-top","200px")
+      $(".city_board_table").css("margin-top", "200px")
     }
- }, 1000);
-  
-  
+  }, 1000);
+
+
 })
 $('.modal').css('top', $(window).outerHeight() / 2 - ($(".modal-dialog").outerHeight()) / 2 + 'px');
 $(function () {
@@ -64,7 +64,7 @@ $(function () {
       val = "";
     }
   });
-    $("#saveKeeper").click(function () {
+  $("#saveKeeper").click(function () {
     // savePick(val);
     val = $("#myInput").attr('data-id')
     // alert(val);
@@ -163,8 +163,8 @@ $(function () {
   $('.addKeeper').on('click', function () {
     $('input[name="round_id"]').val($(this).parent('td').data('round_id'));
     $('#keeperModal').modal('toggle');
-    $("#myInput2").attr('round-order',$(this).attr('round-order'));
-    $("#myInput2").attr('round-number',$(this).attr('round-number'));
+    $("#myInput2").attr('round-order', $(this).attr('round-order'));
+    $("#myInput2").attr('round-number', $(this).attr('round-number'));
   });
 
   // $('#saveKeeper').on('click', function () {
@@ -199,13 +199,13 @@ function savePick(playerId, roundId = 0, type = 'draft') {
   let playerFirstName = $("#myInput2").attr('data-first_name');
   let position = $("#myInput2").attr('data-pos');
   let player_team = $("#myInput2").attr('data-team');
-  let round_order=$("#myInput2").attr('round-order');
-  let round_number=$("#myInput2").attr('round-number');
+  let round_order = $("#myInput2").attr('round-order');
+  let round_number = $("#myInput2").attr('round-number');
   if (playerId) {
     $.ajax({
       type: 'POST',
       url: '/league/' + leagueId + '/savePick',
-      data: { 'player_id': playerId, 'round_id': roundId,'round_order':round_order,'round_number':round_number },
+      data: { 'player_id': playerId, 'round_id': roundId, 'round_order': round_order, 'round_number': round_number },
       success: function (response) {
         console.log(response);
         if (response.status == 200) {
@@ -213,11 +213,11 @@ function savePick(playerId, roundId = 0, type = 'draft') {
           $('.select2Drp').select2('val', '');
           $(".select2Drp option[value='" + playerId + "']").remove();
           // var team_name = $("td[data-round_id='"+response.data.round_id+"']").children()[0].textContent;
-          
+
           //obaid work here
-          $("#team-round").html('TEAM '+(response.data.league_round.round_id+1));
-          $("#upNext").html('Up Next: Team '+(response.data.league_round.round_id+2));
-          $("#team-select").html('TEAM '+response.data.league_round.round_id);
+          $("#team-round").html('TEAM ' + (response.data.league_round.round_id + 1));
+          $("#upNext").html('Up Next: Team ' + (response.data.league_round.round_id + 2));
+          $("#team-select").html('TEAM ' + response.data.league_round.round_id + 'Selects');
           $("#team-slect-fname").html(playerFirstName);
           $("#team-slect-lname").html(playerLastName);
 
@@ -232,13 +232,11 @@ function savePick(playerId, roundId = 0, type = 'draft') {
             }
             team += '<option value=' + response.data.leagueteam.teams[i].id + '|' + response.data.league_round.round_number + '|' + response.data.leagueid + '|' + response.data.league_round.round_id + ' ' + selected + '>' + response.data.leagueteam.teams[i].team_name + '</option>'
           }
-          if(round_order)
-          {
-            $("td[data-round_id='"+response.data.nround_id+"']").children()[0].innerHTML = ('<select id="teamselect" name="teamselect" style="padding:9px 10px 8px 0px !important;">' + team + '</select><br><span style="font-size:13px;float: left;padding: 10px;">' + position + '</span ><span style="float: right;padding: 10px;font-size:13px;"> ' + player_team + ' </span><br><div class="team_info"><span style="font-size:13px;">' + playerFirstName + '</span>' + '<br><span style="font-weight:bold;font-size:22px;">' + playerLastName + '</span></div> ');
+          if (round_order) {
+            $("td[data-round_id='" + response.data.nround_id + "']").children()[0].innerHTML = ('<select id="teamselect" name="teamselect" style="padding:9px 10px 8px 0px !important;">' + team + '</select><br><span style="font-size:13px;float: left;padding: 10px;">' + position + '</span ><span style="float: right;padding: 10px;font-size:13px;"> ' + player_team + ' </span><br><div class="team_info"><span style="font-size:13px;">' + playerFirstName + '</span>' + '<br><span style="font-weight:bold;font-size:22px;">' + playerLastName + '</span></div> ');
           }
-          else
-          {
-           $("td[data-round_id='" + response.data.round_id + "']").children()[0].innerHTML = ('<select id="teamselect" name="teamselect" style="padding:9px 10px 8px 0px !important;">' + team + '</select><br><span style="font-size:13px;float: left;padding: 10px;">' + position + '</span ><span style="float: right;padding: 10px;font-size:13px;"> ' + player_team + ' </span><br><div class="team_info"><span style="font-size:13px;">' + playerFirstName + '</span>' + '<br><span style="font-weight:bold;font-size:22px;">' + playerLastName + '</span></div> ');
+          else {
+            $("td[data-round_id='" + response.data.round_id + "']").children()[0].innerHTML = ('<select id="teamselect" name="teamselect" style="padding:9px 10px 8px 0px !important;">' + team + '</select><br><span style="font-size:13px;float: left;padding: 10px;">' + position + '</span ><span style="float: right;padding: 10px;font-size:13px;"> ' + player_team + ' </span><br><div class="team_info"><span style="font-size:13px;">' + playerFirstName + '</span>' + '<br><span style="font-weight:bold;font-size:22px;">' + playerLastName + '</span></div> ');
           }
           if (type == 'draft') {
             //$("td[data-round_id='"+response.data.round_id+"']").text(playerLastName);
@@ -314,7 +312,7 @@ function updateLastPick(leagueRound, counts) {
 
 
 
-function autocomplete(inp, arr,arr1) {
+function autocomplete(inp, arr, arr1) {
 
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
@@ -344,28 +342,28 @@ function autocomplete(inp, arr,arr1) {
         /*insert a input field that will hold the current array item's value:*/
         var myArr = arr1[i].split("/");
         //alert(myArr[0]);
-        b.innerHTML += "<input type='hidden'  value='" + arr[i] + "' data-first_name='"+myArr[0]+"' data-last_name='"+myArr[1]+"' data-id='"+myArr[2]+"' data-team='"+myArr[3]+"' data-pos='"+myArr[4]+"'>";
+        b.innerHTML += "<input type='hidden'  value='" + arr[i] + "' data-first_name='" + myArr[0] + "' data-last_name='" + myArr[1] + "' data-id='" + myArr[2] + "' data-team='" + myArr[3] + "' data-pos='" + myArr[4] + "'>";
         /*execute a function when someone clicks on the item value (DIV element):*/
         b.addEventListener("click", function (e) {
           /*insert the value for the autocomplete text field:*/
           inp.value = this.getElementsByTagName("input")[0].value;
-          first_name=this.getElementsByTagName("input")[0].getAttribute('data-first_name');
-          last_name=this.getElementsByTagName("input")[0].getAttribute('data-last_name');
-          playerid=this.getElementsByTagName("input")[0].getAttribute('data-id');
-          playerteam=this.getElementsByTagName("input")[0].getAttribute('data-team');
-          playerpos=this.getElementsByTagName("input")[0].getAttribute('data-pos');
-          $("#myInput2").attr('value',inp.value);
-          $("#myInput2").attr('data-first_name',first_name);
-          $("#myInput2").attr('data-last_name',last_name);
-          $("#myInput2").attr('data-id',playerid);
-          $("#myInput2").attr('data-team',playerteam);
+          first_name = this.getElementsByTagName("input")[0].getAttribute('data-first_name');
+          last_name = this.getElementsByTagName("input")[0].getAttribute('data-last_name');
+          playerid = this.getElementsByTagName("input")[0].getAttribute('data-id');
+          playerteam = this.getElementsByTagName("input")[0].getAttribute('data-team');
+          playerpos = this.getElementsByTagName("input")[0].getAttribute('data-pos');
+          $("#myInput2").attr('value', inp.value);
+          $("#myInput2").attr('data-first_name', first_name);
+          $("#myInput2").attr('data-last_name', last_name);
+          $("#myInput2").attr('data-id', playerid);
+          $("#myInput2").attr('data-team', playerteam);
           $("#myInput2").attr('data-pos', playerpos);
 
-          $("#myInput").attr('value',inp.value);
-          $("#myInput").attr('data-first_name',first_name);
-          $("#myInput").attr('data-last_name',last_name);
-          $("#myInput").attr('data-id',playerid);
-          $("#myInput").attr('data-team',playerteam);
+          $("#myInput").attr('value', inp.value);
+          $("#myInput").attr('data-first_name', first_name);
+          $("#myInput").attr('data-last_name', last_name);
+          $("#myInput").attr('data-id', playerid);
+          $("#myInput").attr('data-team', playerteam);
           $("#myInput").attr('data-pos', playerpos);
           /*close the list of autocompleted values,
           (or any other open lists of autocompleted values:*/
@@ -434,25 +432,23 @@ function autocomplete(inp, arr,arr1) {
 }
 
 /*An array containing all the country names in the world:*/
-var leagid=$("input[name='league_id']").val();
+var leagid = $("input[name='league_id']").val();
 var countries = [];
-var newcountries=[];
+var newcountries = [];
 $.ajax({
-    url:'/league/team',
-    method:'get',
-    data:{id:leagid},
-    success:function(res)
-    {   
-        res=JSON.parse(res);
-         for(i=0;i<res.length;i++)
-         {
-            countries.push(res[i].first_name+' '+res[i].last_name)
-            newcountries.push(res[i].first_name+'/'+res[i].last_name+'/'+res[i].id+'/'+res[i].team+'/'+res[i].position)
-         }
+  url: '/league/team',
+  method: 'get',
+  data: { id: leagid },
+  success: function (res) {
+    res = JSON.parse(res);
+    for (i = 0; i < res.length; i++) {
+      countries.push(res[i].first_name + ' ' + res[i].last_name)
+      newcountries.push(res[i].first_name + '/' + res[i].last_name + '/' + res[i].id + '/' + res[i].team + '/' + res[i].position)
     }
+  }
 })
 //var countries = ["Afghanistan", "Albania", "Algeria"];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), countries,newcountries);
-autocomplete(document.getElementById("myInput2"), countries,newcountries);
+autocomplete(document.getElementById("myInput"), countries, newcountries);
+autocomplete(document.getElementById("myInput2"), countries, newcountries);
