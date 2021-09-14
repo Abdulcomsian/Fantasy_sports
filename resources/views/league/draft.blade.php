@@ -58,10 +58,10 @@
     </div>
     </form>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
           <h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
         <p onclick="myFunction()" class="dropbtn">Select <i class="fa fa-angle-down" aria-hidden="true"></i></p>
           <div id="myDropdown" class="dropdown-content">
             <a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad</a>
@@ -69,15 +69,15 @@
           </div>
         <!-- <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2> -->
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
           <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
         </div>
-        <div class="col-md-1">
+        <!-- <div class="col-md-1">
         <h2 style="width:100%" type="button" id="zoom-in">+</h2>
         </div>
         <div class="col-md-1">
         <h2 style="width:100%" type="button" id="zoom-out">-</h2>
-        </div>
+        </div> -->
 
 
 
@@ -111,17 +111,23 @@
   <div class="container-fluid assign_order">
   <div class="row">
   <div class="col-lg-2">
-  <h2 class=" " style="width:100%;"><a style="color:#fff" href="#">Draft Board</a></h2>
+  <h2 class=" " style="width:80%;"><a style="color:#fff" href="#">Draft Board</a></h2>
   </div>
   <div class="col-lg-2">
-  <h2 class=" " style="width:100%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
+  <h2 class=" " style="width:80%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
   </div>
   <div class="col-lg-2">
-  <h2 class=" " style="width:100%;"><a style="color:#fff" href="#">Roaster View</a></h2>
+  <h2 class=" " style="width:80%;"><a style="color:#fff" href="#">Roaster View</a></h2>
   </div>
   <div class="col-lg-2">
-  <h2 class=" " style="width:100%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
+  <h2 class=" " style="width:80%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
   </div>
+  <div class="col-md-2">
+        <h2 style="width:80%" type="button" id="zoom-in">+</h2>
+        </div>
+        <div class="col-md-2">
+        <h2 style="width:80%" type="button" id="zoom-out">-</h2>
+        </div>
   </div>
 </div>
   <div class="container ">
@@ -263,7 +269,7 @@
   
   <?php } ?>
   <div class="multiDiv">
-  <div class="container">
+  <div class="container-fluid">
 
   <div class="row">
     <div class="col-lg-4">

@@ -507,7 +507,7 @@ a:hover {
 
 /* line 311, ../sass/app.scss */
 .assign_order {
-    padding: 20px 0;
+    padding: 20px 30px;
 }
 /* line 314, ../sass/app.scss */
 .assign_order .side_detail {
@@ -580,7 +580,7 @@ a:hover {
     font: 700 18px "Neometric";
     color: #fff;
     border: 1px solid #fff;
-    padding: 13px 33px;
+    padding: 12px;
     text-align: center;
     width: 50%;
     margin: 0 auto 20px;
@@ -1605,7 +1605,7 @@ a:hover {
 
 /* line 1350, ../sass/app.scss */
 .city_charts {
-    padding: 70px 0;
+    padding: 35px 30px !important;
 }
 /* line 1353, ../sass/app.scss */
 .city_charts .city_name h3 {
@@ -3874,12 +3874,16 @@ table {
       padding: 34px;
       text-align: right;
       display: none;
+      width: 100%;
+    max-width: 60%;
+    margin: auto;
+
   }
   .select2-container{
       z-index: 99999999;
   }
   .city_name h3{
-    font-size: 56px;
+    font-size: 45px;
     /* position: relative;
     top: -30px; */
   }
@@ -4011,6 +4015,9 @@ table {
   .multiDiv,
   .league-div{
       background-color: #000;
+  }
+  .multiDiv{
+      padding: 0px 30px;
   }
   .edit_revert #myInputautocomplete-list{
     right: auto !important;
