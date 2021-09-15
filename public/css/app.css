@@ -44,7 +44,7 @@ table, th {
     color: #fff;
 }
 #countDownTimer{
-    font: 700 30px "Neometric Bold" !important;
+    font: 700 40px "Neometric Bold" !important;
 }
 .city_name{
     background: #000;
@@ -72,7 +72,7 @@ table, th {
     padding-bottom: 0px !important;
 }
 .onTheClock{
-    padding: 50px 20px 30px;
+    padding: 50px 70px 30px;
     text-align: left;
     color: #fff;
     display: flex;
@@ -577,7 +577,7 @@ a:hover {
 /* line 371, ../sass/app.scss */
 .assign_order h2 {
     background-image: linear-gradient(to right, #000, #353535);
-    font: 700 18px "Neometric";
+    font: 700 12px "Neometric";
     color: #fff;
     border: 1px solid #fff;
     padding: 12px;
@@ -4031,5 +4031,4 @@ table {
     right: 0 !important;
     left: 16px !important;
   }
-  
 
