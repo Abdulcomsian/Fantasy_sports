@@ -110,24 +110,20 @@
   <div class="league-div">
   <div class="container-fluid assign_order">
   <div class="row">
-  <div class="col-lg-2">
-  <h2 class=" " style="width:80%;"><a style="color:#fff" href="#">Draft Board</a></h2>
-  </div>
-  <div class="col-lg-2">
-  <h2 class=" " style="width:80%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
-  </div>
-  <div class="col-lg-2">
-  <h2 class=" " style="width:80%;"><a style="color:#fff" href="#">Roaster View</a></h2>
-  </div>
-  <div class="col-lg-2">
-  <h2 class=" " style="width:80%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
-  </div>
-  <div class="col-md-2">
-        <h2 style="width:80%" type="button" id="zoom-in">+</h2>
-        </div>
-        <div class="col-md-2">
-        <h2 style="width:80%" type="button" id="zoom-out">-</h2>
-        </div>
+    <div class="col-lg-6">
+      <div class="d-flex">
+        <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Draft Board</a></h2>
+        <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
+        <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Roster View</a></h2>
+        <h2 class=" " style="width:20%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
+      </div>
+    </div>
+    <div class="col-lg-6 text-right">
+      <div class="d-flex" style="justify-content:flex-end;">
+        <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-out">-</h2>
+        <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-in">+</h2>
+      </div>
+    </div>
   </div>
 </div>
   <div class="container ">
@@ -259,16 +255,7 @@
         </div>
         </div>
     </div>
-  </div>
-  </div>
-
-
-<div class="city_board_table">
-  <div class="table-responsive">
-  <?php if($league->status!="keeper"){ ?>
-  
-  <?php } ?>
-  <div class="multiDiv">
+    <div class="multiDiv">
   <div class="container-fluid">
 
   <div class="row">
@@ -389,6 +376,16 @@
   </div>
   </div>
   </div>
+  </div>
+  </div>
+
+
+<div class="city_board_table">
+  <div class="table-responsive">
+  <?php if($league->status!="keeper"){ ?>
+  
+  <?php } ?>
+
   
  
  
