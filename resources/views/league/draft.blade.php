@@ -554,7 +554,7 @@ function compare2($a, $b)
                         <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}"  data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                       @endforeach
                     </select> -->
-                    <input id="myInput2" type="text" name="myCountry" placeholder="Enter Player Name">
+                    <input id="myInput2" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
                   </div>
                 </div>
               </li>
