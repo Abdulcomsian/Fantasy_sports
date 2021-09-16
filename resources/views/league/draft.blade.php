@@ -331,6 +331,8 @@ function compare2($a, $b)
                 {
                   $roundunber=$leaguerecord->round_order+1;
                   $roundorderplus=$leaguerecord->round_order+2;
+                  $teamname=\App\Models\LeagueTeam::where('id',$leaguerecord->team_id+1)->where('league_id',$leaguerecord->league_id)->first();
+                  $nextteamname=\App\Models\LeagueTeam::where('id',$leaguerecord->team_id+2)->where('league_id',$leaguerecord->league_id)->first();
                 }
                 else
                 {
@@ -339,8 +341,8 @@ function compare2($a, $b)
                 }
                 
                 @endphp
-                <h3 id="team-round">TEAM {{$roundunber}}</h3>
-                <p class="upNext" id="upNext">Up Next: Team {{$roundorderplus}}</p>
+                <h3 id="team-round">@if($teamname){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
+                <p class="upNext" id="upNext">Up Next: @if($nextteamname){{$nextteamname->team_name}}@else{{'Team  '}}{{$roundorderplus}}@endif </p>
                 </div>
               
               </div>
@@ -362,6 +364,7 @@ function compare2($a, $b)
                 $roundunber=$leaguerecord->round_order;
                 $roundorderplus=$leaguerecord->round_order+1;
                 $playerdata=\App\Models\Player::where('id',$leaguerecord->player_id)->first();
+                $teamname=\App\Models\LeagueTeam::where('id',$leaguerecord->team_id)->where('league_id',$leaguerecord->league_id)->first();
               }
               else
               {
@@ -370,7 +373,7 @@ function compare2($a, $b)
               }
               
               @endphp
-              <p id="team-select">Team {{$leaguerecord->round_order ?? ''}} Selects</p>
+              <p id="team-select">@if($teamname){{ $teamname->team_name}}@else{{'Team '}} {{$leaguerecord->round_order ?? ''}}@endif  Selects</p>
               <p class="upNext" id="team-slect-fname" style="text-align: center;margin-bottom: 0px;">{{$playerdata->first_name ?? ''}}</p>
               <h3 style="text-align: center;" id="team-slect-lname">{{$playerdata->last_name ?? ''}}</h3>
               </div>
