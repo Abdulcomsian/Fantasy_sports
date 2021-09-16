@@ -16,8 +16,6 @@ class UserSeeder extends Seeder
 
     {
         User::create([
-            
-            
             'name'=>'Darrius',
             'email'=>'theoffseasongm21@gmail.com',
             'email_verified_at'=>'2021-07-30',  
