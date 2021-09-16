@@ -327,12 +327,17 @@ function compare2($a, $b)
                 <div>
                 <p>On The Clock</p>
                 @php 
+               
                 if($leaguerecord)
                 {
                   $roundunber=$leaguerecord->round_order+1;
                   $roundorderplus=$leaguerecord->round_order+2;
-                  $teamname=\App\Models\LeagueTeam::where('id',$leaguerecord->team_id+1)->where('league_id',$leaguerecord->league_id)->first();
-                  $nextteamname=\App\Models\LeagueTeam::where('id',$leaguerecord->team_id+2)->where('league_id',$leaguerecord->league_id)->first();
+
+                  $teamid=\App\Models\LeagueRound::where('round_number',$leaguerecord->round_number)->where('round_order',$leaguerecord->round_order+1)->first();
+                  $teamname=\App\Models\LeagueTeam::where('id',$teamid->team_id)->where('league_id',$leaguerecord->league_id)->first();
+
+                  $nextteamid=\App\Models\LeagueRound::where('round_number',$leaguerecord->round_number)->where('round_order',$leaguerecord->round_order+2)->first();
+                  $nextteamname=\App\Models\LeagueTeam::where('id',$nextteamid->team_id)->where('league_id',$leaguerecord->league_id)->first();
                 }
                 else
                 {
