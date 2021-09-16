@@ -341,8 +341,8 @@ function compare2($a, $b)
                 }
                 
                 @endphp
-                <h3 id="team-round">@if($teamname){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
-                <p class="upNext" id="upNext">Up Next: @if($nextteamname){{$nextteamname->team_name}}@else{{'Team  '}}{{$roundorderplus}}@endif </p>
+                <h3 id="team-round">@if(isset($teamname)){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
+                <p class="upNext" id="upNext">Up Next: @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team  '}}{{$roundorderplus}}@endif </p>
                 </div>
               
               </div>
@@ -373,7 +373,7 @@ function compare2($a, $b)
               }
               
               @endphp
-              <p id="team-select">@if($teamname){{ $teamname->team_name}}@else{{'Team '}} {{$leaguerecord->round_order ?? ''}}@endif  Selects</p>
+              <p id="team-select">@if(isset($teamname)){{ $teamname->team_name}}@else{{'Team '}} {{$leaguerecord->round_order ?? ''}}@endif  Selects</p>
               <p class="upNext" id="team-slect-fname" style="text-align: center;margin-bottom: 0px;">{{$playerdata->first_name ?? ''}}</p>
               <h3 style="text-align: center;" id="team-slect-lname">{{$playerdata->last_name ?? ''}}</h3>
               </div>
