@@ -255,8 +255,11 @@ function compare2($a, $b)
       </div>
       </div>
   </div>
-  @if($league->status == 'started')
-  <div class="multiDiv">
+  @if($league->status != 'started')
+  <div class="multiDiv" style="display:none;">
+   @else
+   <div class="multiDiv">
+   @endif  
     <div class="container-fluid">
 
     <div class="row">
@@ -377,7 +380,7 @@ function compare2($a, $b)
     </div>
 </div>
 </div>
-@endif  
+
 </div>
 
 </div>
