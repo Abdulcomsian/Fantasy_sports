@@ -255,9 +255,17 @@ function compare2($a, $b)
       </div>
       </div>
   </div>
-  @if($league->status != 'started')
+  @if($league->status != 'started') 
+  <div class="col-lg-12 text-center">
+      <div class="city_name">
+            <h3>{{ $league->name }}</h3>
+            
+          </div>
+      </div>
+      @endif  
+   @if($league->status != 'started') 
   <div class="multiDiv" style="display:none;">
-   @else
+   @else 
    <div class="multiDiv">
    @endif  
     <div class="container-fluid">

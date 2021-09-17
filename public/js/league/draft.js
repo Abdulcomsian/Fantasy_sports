@@ -8,7 +8,7 @@ $(document).ready(function () {
     } else {
       console.log("hello")
       $(".city_board_table").css("margin-top", "0px")
-      $(".city_board_table table").css("margin-top", "246px")
+      $(".city_board_table table").css("margin-top", "325px")
     }
   }, 1000);
 
