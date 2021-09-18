@@ -42,6 +42,7 @@ class DraftController extends Controller
             }
             $leaguerecord=leagueRound::where(['league_id'=>$id])->where('player_id','!=',Null)->orderBy('id', 'DESC')->first();
            //dd($leaguerecord);
+
             return view('league.draft', [
                 'league' => $league, 
                 'players' => Player::whereNotIn('id', $playerIds)->get(),

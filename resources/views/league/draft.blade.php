@@ -339,13 +339,12 @@ function compare2($a, $b)
                 if($leaguerecord)
                 {
                   $roundunber=$leaguerecord->round_order+1;
-                  $roundorderplus=$leaguerecord->round_order+2;
-
-                  $teamid=\App\Models\LeagueRound::where('round_number',$leaguerecord->round_number)->where('round_order',$leaguerecord->round_order+1)->first();
+                  $teamid=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
                   $teamname=\App\Models\LeagueTeam::where('id',$teamid->team_id)->where('league_id',$leaguerecord->league_id)->first();
 
-                  $nextteamid=\App\Models\LeagueRound::where('round_number',$leaguerecord->round_number)->where('round_order',$leaguerecord->round_order+2)->first();
-                  $nextteamname=\App\Models\LeagueTeam::where('id',$nextteamid->team_id)->where('league_id',$leaguerecord->league_id)->first();
+                  $nextteamid=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(2)->get();
+                  
+                  $nextteamname=\App\Models\LeagueTeam::where('id',$nextteamid[1]->team_id)->where('league_id',$leaguerecord->league_id)->first();
                 }
                 else
                 {
@@ -376,8 +375,13 @@ function compare2($a, $b)
               {
                 $roundunber=$leaguerecord->round_order;
                 $roundorderplus=$leaguerecord->round_order+1;
-                $playerdata=\App\Models\Player::where('id',$leaguerecord->player_id)->first();
-                $teamname=\App\Models\LeagueTeam::where('id',$leaguerecord->team_id)->where('league_id',$leaguerecord->league_id)->first();
+               
+                $roundata=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
+                $teamid=\App\Models\LeagueRound::where('round_order',$roundata->round_order-1)->where('round_number',$roundata->round_number)->where('league_id',$leaguerecord->league_id)->first();
+
+                $playerdata=\App\Models\Player::where('id',$teamid->player_id)->first();
+
+                $teamname=\App\Models\LeagueTeam::where('id',$teamid->team_id)->where('league_id',$leaguerecord->league_id)->first();
               }
               else
               {
