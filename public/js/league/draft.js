@@ -63,8 +63,9 @@ $(function () {
     if (val != "") {
       savePick(val);
       timerSettings($('#timerBtn'), 'refresh');
+      timerSettings($('#timerBtn'), 'start');
       val = "";
-      window.location = '/league/' + $("input[name='league_id']").val() + '/draft';
+      location = '/league/' + $("input[name='league_id']").val() + '/draft';
     }
   });
   $("#saveKeeper").click(function () {
@@ -98,7 +99,7 @@ $(function () {
       data: { 'teamdata': $teamdata },
       success: function (response) {
         //console.log(response);
-        window.location = '/league/' + $("input[name='league_id']").val() + '/draft';
+        location = '/league/' + $("input[name='league_id']").val() + '/draft';
       }
     });
 
@@ -336,12 +337,13 @@ function autocomplete(inp, arr, arr1) {
     /*for each item in the array...*/
     for (i = 0; i < arr.length; i++) {
       /*check if the item starts with the same letters as the text field value:*/
-      if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+      if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() || arr[i].indexOf(val) > -1) {
         /*create a DIV element for each matching element:*/
         b = document.createElement("DIV");
         /*make the matching letters bold:*/
         b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
         b.innerHTML += arr[i].substr(val.length);
+
         /*insert a input field that will hold the current array item's value:*/
         var myArr = arr1[i].split("/");
         //alert(myArr[0]);
