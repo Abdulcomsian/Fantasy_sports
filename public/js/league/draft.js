@@ -445,7 +445,7 @@ $.ajax({
   success: function (res) {
     res = JSON.parse(res);
     for (i = 0; i < res.length; i++) {
-      countries.push(res[i].first_name + ' ' + res[i].last_name)
+      countries.push(res[i].first_name + ' ' + res[i].last_name + ' ' + res[i].team + '/' + res[i].position)
       newcountries.push(res[i].first_name + '/' + res[i].last_name + '/' + res[i].id + '/' + res[i].team + '/' + res[i].position)
     }
   }
