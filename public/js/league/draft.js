@@ -62,6 +62,7 @@ $(function () {
     // alert(val);
     if (val != "") {
       savePick(val);
+      timerSettings($('#timerBtn'), 'refresh');
       val = "";
       window.location = '/league/' + $("input[name='league_id']").val() + '/draft';
     }
