@@ -1,5 +1,35 @@
 @extends('layouts.default')
 @section('title', 'City Chart')
+@section('css')
+<style type="text/css">
+    
+.circle {
+    /*background-color: rgba(255, 82, 82, 1);
+    border-radius: 50%;*/
+    
+    animation: pulse-red 2s infinite;
+    
+}
+
+
+@keyframes pulse-red {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+    }
+    
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+    }
+    
+    100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+    }
+}
+</style>
+@endsection
 @section('content')
 @php
 function compare1($a, $b)
@@ -13,6 +43,7 @@ function compare2($a, $b)
   return (($a->round_order) < ($b->round_order));
 }
 @endphp
+
 <div class="fixedBanner">
 <div class="overlay"></div>
 <audio id="timerBeep">
@@ -454,7 +485,16 @@ function compare2($a, $b)
               data-round_id="{{ $round->id }}" 
               data-team_order="{{ $round->team->team_order }}" 
               data-default_order="{{ $index.'.'.$round->default_order }}"
-            ><div style="min-height:140px;">
+            >
+             @php
+              
+             $class='';
+             if($teamid->round_number==$round->round_number && $teamid->round_order+1==$round->round_order)
+             {
+                    $class='circle';
+             }                 
+            @endphp
+            <div style="min-height:140px;" class="{{$class}}">
               @php
                   if((int)$round->team_id != (int)$round->old_team_id)
                   {

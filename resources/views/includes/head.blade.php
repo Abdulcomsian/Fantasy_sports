@@ -15,3 +15,4 @@
 
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/slick/css/slick.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/slick/css/slick-theme.css') }}">
+@yield('css')
