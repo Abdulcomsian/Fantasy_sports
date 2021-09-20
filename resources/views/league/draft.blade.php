@@ -366,7 +366,6 @@ function compare2($a, $b)
                 <div>
                 <p>On The Clock</p>
                 @php 
-               
                 if($leaguerecord)
                 {
                   $roundunber=$leaguerecord->round_order+1;
@@ -408,11 +407,11 @@ function compare2($a, $b)
                 $roundorderplus=$leaguerecord->round_order+1;
                
                 $roundata=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
-                $teamid=\App\Models\LeagueRound::where('round_order',$roundata->round_order-1)->where('round_number',$roundata->round_number)->where('league_id',$leaguerecord->league_id)->first();
+                $teamidd=\App\Models\LeagueRound::where('round_order',$roundata->round_order-1)->where('round_number',$roundata->round_number)->where('league_id',$leaguerecord->league_id)->first();
 
-                $playerdata=\App\Models\Player::where('id',$teamid->player_id)->first();
+                $playerdata=\App\Models\Player::where('id',$teamidd->player_id)->first();
 
-                $teamname=\App\Models\LeagueTeam::where('id',$teamid->team_id)->where('league_id',$leaguerecord->league_id)->first();
+                $teamname=\App\Models\LeagueTeam::where('id',$teamidd->team_id)->where('league_id',$leaguerecord->league_id)->first();
               }
               else
               {
@@ -487,12 +486,16 @@ function compare2($a, $b)
               data-default_order="{{ $index.'.'.$round->default_order }}"
             >
              @php
-              
+             
              $class='';
-             if($teamid->round_number==$round->round_number && $teamid->round_order+1==$round->round_order && $league->status != 'keeper')
+             if(isset($teamid))
+             {
+             if($teamid->round_number ==$round->round_number && $teamid->round_order==$round->round_order && $league->status != 'keeper')
              {
                     $class='circle';
-             }                 
+             }   
+             }
+                        
             @endphp
             <div style="min-height:140px;" class="{{$class}}">
               @php
