@@ -489,7 +489,7 @@ function compare2($a, $b)
              @php
               
              $class='';
-             if($teamid->round_number==$round->round_number && $teamid->round_order+1==$round->round_order)
+             if($teamid->round_number==$round->round_number && $teamid->round_order+1==$round->round_order && $league->status != 'keeper')
              {
                     $class='circle';
              }                 
