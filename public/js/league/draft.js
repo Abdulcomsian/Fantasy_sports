@@ -63,6 +63,7 @@ $(function () {
     if (val != "") {
       savePick(val);
       timerSettings($('#timerBtn'), 'refresh');
+      timerSettings($('#timerBtn'), 'start');
       val = "";
       location = '/league/' + $("input[name='league_id']").val() + '/draft';
     }
