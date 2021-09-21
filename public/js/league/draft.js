@@ -336,8 +336,12 @@ function autocomplete(inp, arr, arr1) {
     this.parentNode.appendChild(a);
     /*for each item in the array...*/
     for (i = 0; i < arr.length; i++) {
-      /*check if the item starts with the same letters as the text field value:*/
-      if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() || arr[i].indexOf(val) > -1) {
+        //make first letter capital
+        myarr=new Array();
+         myarr[i]=arr[i];
+
+
+      if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() ||  myarr[i].toUpperCase().indexOf(val.toUpperCase()) > -1) {
         /*create a DIV element for each matching element:*/
         b = document.createElement("DIV");
         /*make the matching letters bold:*/
