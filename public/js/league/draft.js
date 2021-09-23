@@ -65,7 +65,8 @@ $(function () {
       timerSettings($('#timerBtn'), 'refresh');
       timerSettings($('#timerBtn'), 'start');
       val = "";
-      location = '/league/' + $("input[name='league_id']").val() + '/draft';
+      //location = '/league/' + $("input[name='league_id']").val() + '/draft';
+      location.reload(true);
     }
   });
   $("#saveKeeper").click(function () {
@@ -75,6 +76,7 @@ $(function () {
     if (val != "") {
       savePick(val);
       val = "";
+      location.reload(true);
     }
   })
   $('.draftPlayer').select2();
@@ -99,7 +101,8 @@ $(function () {
       data: { 'teamdata': $teamdata },
       success: function (response) {
         //console.log(response);
-        location = '/league/' + $("input[name='league_id']").val() + '/draft';
+        //location = '/league/' + $("input[name='league_id']").val() + '/draft';
+        location.reload(true);
       }
     });
 
