@@ -343,7 +343,8 @@ function autocomplete(inp, arr, arr1) {
         myarr=new Array();
          myarr[i]=arr[i];
 
-
+         console.log(myarr[i].toUpperCase());
+         console.log(val.toUpperCase());
       if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() ||  myarr[i].toUpperCase().indexOf(val.toUpperCase()) > -1) {
         /*create a DIV element for each matching element:*/
         b = document.createElement("DIV");
