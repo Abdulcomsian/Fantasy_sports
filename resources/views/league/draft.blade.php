@@ -408,8 +408,15 @@ function compare2($a, $b)
                
                 $roundata=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
                 $teamidd=\App\Models\LeagueRound::where('round_order',$roundata->round_order-1)->where('round_number',$roundata->round_number)->where('league_id',$leaguerecord->league_id)->first();
-
-                $playerdata=\App\Models\Player::where('id',$teamidd->player_id)->first();
+                //dd($teamidd);
+                if(isset($teamidd->player_id))
+                {
+                  $playerdata=\App\Models\Player::where('id',$teamidd->player_id)->first();
+                }
+                else
+                {
+                    $playerdata='';
+                }
 
                 $teamname=\App\Models\LeagueTeam::where('id',$teamidd->team_id)->where('league_id',$leaguerecord->league_id)->first();
               }
