@@ -66,7 +66,7 @@ $(function () {
       timerSettings($('#timerBtn'), 'start');
       val = "";
       //location = '/league/' + $("input[name='league_id']").val() + '/draft';
-      location.reload(true);
+      window.location.reload();
     }
   });
   $("#saveKeeper").click(function () {
@@ -76,7 +76,7 @@ $(function () {
     if (val != "") {
       savePick(val);
       val = "";
-      location.reload(true);
+      window.location.reload();
     }
   })
   $('.draftPlayer').select2();
@@ -102,7 +102,7 @@ $(function () {
       success: function (response) {
         //console.log(response);
         //location = '/league/' + $("input[name='league_id']").val() + '/draft';
-        location.reload(true);
+        window.location.reload();
       }
     });
 
