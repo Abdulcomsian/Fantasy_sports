@@ -400,7 +400,11 @@ class LeagueController extends Controller
                     $playerIds[] = $round->player->id;
                 }
             }
-        $players=Player::whereNotIn('id', $playerIds)->get();
+        $players=Player::where('first_name','like',  $_GET['qparmas'] . '%')->whereNotIn('id', $playerIds)->get();
         echo json_encode($players);
+
+       // $players= Player::where('first_name','like',  $_GET['qparmas'] . '%')->orwhere('last_name','like',$_GET['qparmas'] . '%')->get();
+       //  echo json_encode($players);
+
     }
 }

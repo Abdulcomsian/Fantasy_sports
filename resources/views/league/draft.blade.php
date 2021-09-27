@@ -370,11 +370,15 @@ function compare2($a, $b)
                 {
                   $roundunber=$leaguerecord->round_order+1;
                   $teamid=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
-                  $teamname=\App\Models\LeagueTeam::where('id',$teamid->team_id)->where('league_id',$leaguerecord->league_id)->first();
-
+                  if($teamid)
+                  {
+                    $teamname=\App\Models\LeagueTeam::where('id',$teamid->team_id)->where('league_id',$leaguerecord->league_id)->first();
+                  }
                   $nextteamid=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(2)->get();
-                  
+                  if(isset($nextteamid))
+                  {
                   $nextteamname=\App\Models\LeagueTeam::where('id',$nextteamid[1]->team_id)->where('league_id',$leaguerecord->league_id)->first();
+                  }
                 }
                 else
                 {
@@ -418,7 +422,10 @@ function compare2($a, $b)
                     $playerdata='';
                 }
 
-                $teamname=\App\Models\LeagueTeam::where('id',$teamidd->team_id)->where('league_id',$leaguerecord->league_id)->first();
+                if(isset($teamidd->team_id))
+                {
+                 $teamname=\App\Models\LeagueTeam::where('id',$teamidd->team_id)->where('league_id',$leaguerecord->league_id)->first();
+                }
               }
               else
               {

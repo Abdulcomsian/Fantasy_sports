@@ -319,42 +319,60 @@ function updateLastPick(leagueRound, counts) {
 
 
 
-function autocomplete(inp, arr, arr1) {
-
+//function autocomplete(inp, arr, arr1) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
   /*execute a function when someone writes in the text field:*/
-  inp.addEventListener("input", function (e) {
+ // inp.addEventListener("input", function (e) {
+    var inp;
+   $("#myInput").on('keyup',function(e){
+    inp=document.getElementById("myInput");
+    qparmas=$("#myInput").val();
+    var leagid = $("input[name='league_id']").val();
+    var arr = [];
+    var arr1 = [];
+    $.ajax({
+      url: '/league/team',
+      method: 'get',
+      async: false,
+      data: { id:leagid,qparmas:qparmas },
+      success: function (res) {
+        res = JSON.parse(res);
+        console.log(res);
+        for (i = 0; i < res.length; i++) {
+          arr.push(res[i].first_name + ' ' + res[i].last_name + ' ' + res[i].team + '/' + res[i].position)
+          arr1.push(res[i].first_name + '/' + res[i].last_name + '/' + res[i].id + '/' + res[i].team + '/' + res[i].position)
+        }
+      }
+    })
     var a, b, i, val = this.value;
     /*close any already open lists of autocompleted values*/
     closeAllLists();
-    if (!val) { return false; }
+    if (!val) {return false; }
     currentFocus = -1;
     /*create a DIV element that will contain the items (values):*/
     a = document.createElement("DIV");
     a.setAttribute("id", this.id + "autocomplete-list");
     a.setAttribute("class", "autocomplete-items");
     /*append the DIV element as a child of the autocomplete container:*/
+   console.log(arr.length);
     this.parentNode.appendChild(a);
     /*for each item in the array...*/
-    for (i = 0; i < arr.length; i++) {
+    for (i = 0; i <= arr.length; i++) {
         //make first letter capital
-        myarr=new Array();
-         myarr[i]=arr[i];
-
-         console.log(myarr[i].toUpperCase());
-         console.log(val.toUpperCase());
-      if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() ||  myarr[i].toUpperCase().indexOf(val.toUpperCase()) > -1) {
+        console.log(arr);
+        //myarr=new Array();
+         //myarr[i]=arr[i];
+     // if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() ||  myarr[i].toUpperCase().indexOf(val.toUpperCase()) > -1) {
         /*create a DIV element for each matching element:*/
         b = document.createElement("DIV");
         /*make the matching letters bold:*/
-        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-        b.innerHTML += arr[i].substr(val.length);
+        b.innerHTML += "<strong>" + arr[i] + "</strong>";
+        //b.innerHTML += arr[i];
 
         /*insert a input field that will hold the current array item's value:*/
         var myArr = arr1[i].split("/");
-        //alert(myArr[0]);
         b.innerHTML += "<input type='hidden'  value='" + arr[i] + "' data-first_name='" + myArr[0] + "' data-last_name='" + myArr[1] + "' data-id='" + myArr[2] + "' data-team='" + myArr[3] + "' data-pos='" + myArr[4] + "'>";
         /*execute a function when someone clicks on the item value (DIV element):*/
         b.addEventListener("click", function (e) {
@@ -383,12 +401,12 @@ function autocomplete(inp, arr, arr1) {
           closeAllLists();
         });
         a.appendChild(b);
-      }
+     // }
     }
   });
   /*execute a function presses a key on the keyboard:*/
-  inp.addEventListener("keydown", function (e) {
-
+  //inp.addEventListener("keydown", function (e) {
+     $("#myInput").on("keydown",function(e){
     var x = document.getElementById(this.id + "autocomplete-list");
     if (x) x = x.getElementsByTagName("div");
     if (e.keyCode == 40) {
@@ -442,26 +460,26 @@ function autocomplete(inp, arr, arr1) {
   document.addEventListener("click", function (e) {
     closeAllLists(e.target);
   });
-}
+//}
 
 /*An array containing all the country names in the world:*/
-var leagid = $("input[name='league_id']").val();
-var countries = [];
-var newcountries = [];
-$.ajax({
-  url: '/league/team',
-  method: 'get',
-  data: { id: leagid },
-  success: function (res) {
-    res = JSON.parse(res);
-    for (i = 0; i < res.length; i++) {
-      countries.push(res[i].first_name + ' ' + res[i].last_name + ' ' + res[i].team + '/' + res[i].position)
-      newcountries.push(res[i].first_name + '/' + res[i].last_name + '/' + res[i].id + '/' + res[i].team + '/' + res[i].position)
-    }
-  }
-})
+// var leagid = $("input[name='league_id']").val();
+// var countries = [];
+// var newcountries = [];
+// $.ajax({
+//   url: '/league/team',
+//   method: 'get',
+//   data: { id: leagid },
+//   success: function (res) {
+//     res = JSON.parse(res);
+//     for (i = 0; i < res.length; i++) {
+//       countries.push(res[i].first_name + ' ' + res[i].last_name + ' ' + res[i].team + '/' + res[i].position)
+//       newcountries.push(res[i].first_name + '/' + res[i].last_name + '/' + res[i].id + '/' + res[i].team + '/' + res[i].position)
+//     }
+//   }
+// })
 //var countries = ["Afghanistan", "Albania", "Algeria"];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), countries, newcountries);
-autocomplete(document.getElementById("myInput2"), countries, newcountries);
+// autocomplete(document.getElementById("myInput"), countries, newcountries);
+// autocomplete(document.getElementById("myInput2"), countries, newcountries);
