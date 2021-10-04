@@ -113,11 +113,15 @@ $(function () {
                 method: "POST",
                 data: { id: val, teamid: teamid, round_number: round_number },
                 success: function (res) {
-                    document.getElementById("playerBeep").play();
-                    window.location =
-                        "/league/" +
-                        $("input[name='league_id']").val() +
-                        "/draft?type=keeperlist";
+                    if (res == "success") {
+                        document.getElementById("playerBeep").play();
+                        window.location =
+                            "/league/" +
+                            $("input[name='league_id']").val() +
+                            "/draft?type=keeperlist";
+                    } else {
+                        alert("something went wrong");
+                    }
                 },
             });
         }
@@ -429,7 +433,11 @@ function savekeeperlist(playerId, roundId, teamid, leagueId) {
                 teamid: teamid,
             },
             success: function (response) {
-                document.getElementById("playerBeep").play();
+                if (response == "success") {
+                    document.getElementById("playerBeep").play();
+                } else {
+                    alert("something went Wrong");
+                }
             },
         });
     }
