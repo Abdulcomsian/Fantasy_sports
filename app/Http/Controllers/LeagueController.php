@@ -8,6 +8,7 @@ use Auth;
 use App\Models\League;
 use App\Models\LeagueTeam;
 use App\Models\Player;
+use App\Models\KeeperList;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\LeagueRound;
 use DB;
@@ -21,7 +22,6 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -30,8 +30,8 @@ class LeagueController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {return view('league.create');
-        
+    {
+        return view('league.create');
     }
 
     /**
@@ -59,19 +59,19 @@ class LeagueController extends Controller
             $league->created_by = $user->id;
             $league->save();
 
-            if(isset($league->id) && $request->league_size){
+            if (isset($league->id) && $request->league_size) {
                 $teams = [];
                 for ($size = 0; $size < $request->league_size; $size++) {
-                    $teamNumber = $size+1;
+                    $teamNumber = $size + 1;
                     $teams[] = [
                         'league_id' => $league->id,
-                        'team_name' => 'Team '.$teamNumber,
+                        'team_name' => 'Team ' . $teamNumber,
                         'team_email' => $user->email,
                         'team_order' => $teamNumber,
                         'created_by' => $user->id,
-                    ];                
-                }               
-                $league->teams()->createMany($teams); 
+                    ];
+                }
+                $league->teams()->createMany($teams);
                 $league->users()->attach($user->id, ['permission_type' => 1]);
 
                 /*$permissions = [
@@ -82,21 +82,23 @@ class LeagueController extends Controller
                 return $this->sendResponse(200, 'League created successfully.', ['id' => $league->id]);
             }
             return $this->sendResponse(400, 'Something went wrong. Please try again later.');
-        }else{
-            return $this->sendResponse(400, 'Required fields are missing.');        
+        } else {
+            return $this->sendResponse(400, 'Required fields are missing.');
         }
     }
 
-    public function assignOrder(Request $request, $id){
+    public function assignOrder(Request $request, $id)
+    {
 
-        if(isset($id) && intval($id) > 0){
+        if (isset($id) && intval($id) > 0) {
             $league = League::with(['teams'])->find($id);
             return view('league.assignOrder', ['league_id' => $league->id, 'teams' => $league->teams ?? []]);
         }
         abort(404);
     }
 
-    public function updateOrder(Request $request, $leagueId){
+    public function updateOrder(Request $request, $leagueId)
+    {
         $validator = Validator::make($request->all(), [
             'teams' => 'required'
         ]);
@@ -106,18 +108,19 @@ class LeagueController extends Controller
             $league = League::findOrFail($leagueId);
             foreach ($request->teams as $key => $team) {
                 $dbTeam = LeagueTeam::find($team['team_id']);
-                $dbTeam->team_order = $key+1;
+                $dbTeam->team_order = $key + 1;
                 $dbTeam->updated_by = $user->id;
-                $dbTeam->save();          
+                $dbTeam->save();
             }
             League::saveLeagueRounds($league, 1, 'delete');
             return $this->sendResponse(200, 'Teams updated successfully.', ['id' => $league->id]);
-        }else{
-            return $this->sendResponse(400, 'Required fields are missing.');        
+        } else {
+            return $this->sendResponse(400, 'Required fields are missing.');
         }
     }
 
-    public function updateRoundOrder(Request $request, $leagueId){
+    public function updateRoundOrder(Request $request, $leagueId)
+    {
         $validator = Validator::make($request->all(), [
             'rounds' => 'required'
         ]);
@@ -129,14 +132,14 @@ class LeagueController extends Controller
                 foreach ($rounds as $key => $round) {
                     $dbRound = LeagueRound::find($round->round_id);
                     $dbRound->team_id = $round->team_id;
-                    $dbRound->round_order = $key+1;
+                    $dbRound->round_order = $key + 1;
                     $dbRound->updated_by = $user->id;
                     $dbRound->save();
-                }             
+                }
             }
             return $this->sendResponse(200, 'Rounds updated successfully.', ['id' => $league->id]);
-        }else{
-            return $this->sendResponse(400, 'Required fields are missing.');        
+        } else {
+            return $this->sendResponse(400, 'Required fields are missing.');
         }
     }
 
@@ -182,58 +185,62 @@ class LeagueController extends Controller
      */
     public function destroy($id)
     {
-        if(isset($id) && intval($id) > 0){
+        if (isset($id) && intval($id) > 0) {
             League::find($id)->delete();
             return $this->sendResponse(200, 'League deleted successfully.');
-        }else{
+        } else {
             return $this->sendResponse(400, 'Required fields are missing.');
         }
     }
 
-    public function teams(Request $request, $id){
-        if(isset($id) && intval($id) > 0){
+    public function teams(Request $request, $id)
+    {
+        if (isset($id) && intval($id) > 0) {
             $league = League::with(['teams', 'permissions'])->find($id);
             return view('league.teams', ['league_id' => $league->id, 'teams' => $league->teams ?? []]);
         }
         abort(404);
     }
 
-    public function updateTeams(Request $request, $id){
-        if(isset($id) && intval($id) > 0){
+    public function updateTeams(Request $request, $id)
+    {
+        if (isset($id) && intval($id) > 0) {
             $user = Auth::user();
             $league = League::find($id);
             $teams = [];
             foreach ($request->teams as $key => $team) {
-                
+
                 $teams[] = [
                     'league_id' => $league->id,
-                    'team_name' => $team['team_name'] ?? 'Team '.($key+1),
+                    'team_name' => $team['team_name'] ?? 'Team ' . ($key + 1),
                     'team_email' => $team['team_email'] ?? $user->email,
                     'created_by' => $user->id,
-                ];                
+                ];
             }
-            $league->teams()->delete();                
+            $league->teams()->delete();
             $league->teams()->createMany($teams);
             return $this->sendResponse(200, 'Data updated successfully.', ['id' => $league->id]);
-        }else{
+        } else {
             return $this->sendResponse(400, 'Required fields are missing.');
-        }    
+        }
     }
 
-    public function settings(Request $request, $id){
-        if(isset($id) && intval($id) > 0){
+    public function settings(Request $request, $id)
+    {
+        if (isset($id) && intval($id) > 0) {
             $league = League::with(['teams', 'users', 'permissions'])->findOrFail($id);
             $leaguser = DB::table('league_user')->select('team_id')
-            ->where('league_id', $id)
-            ->first();
+                ->where('league_id', $id)
+                ->first();
             // echo"<pre>"; print_r($leaguser);exit;
-            return view('league.settings', ['league' => $league,'leaguser'=> $leaguser]);
+            return view('league.settings', ['league' => $league, 'leaguser' => $leaguser]);
         }
         abort(404);
     }
 
-    public function updateSettings(Request $request){
-        
+    public function updateSettings(Request $request)
+    {
+
         $validator = Validator::make($request->all(), [
             'league_id' => 'required',
             'name' => 'required',
@@ -250,42 +257,43 @@ class LeagueController extends Controller
             $league->draft_round = $draftRound;
             $league->updated_by = $user->id;
             $league->save();
-            if($oldDraftRound != $draftRound){
-                if($oldDraftRound < $draftRound){
-                    League::saveLeagueRounds($league, $oldDraftRound+1);
-                }elseif($oldDraftRound > $draftRound){
+            if ($oldDraftRound != $draftRound) {
+                if ($oldDraftRound < $draftRound) {
+                    League::saveLeagueRounds($league, $oldDraftRound + 1);
+                } elseif ($oldDraftRound > $draftRound) {
                     League::deleteLeagueRounds($league, $draftRound);
                 }
             }
             $teamSize = $league->teams()->count();
             foreach ($request->teams as $key => $team) {
-                
+
                 $dbTeam = LeagueTeam::find($team['team_id']);
                 $isNewTeam = 0;
-                if(!isset($dbTeam->id)){
+                if (!isset($dbTeam->id)) {
                     $isNewTeam = 1;
                     $dbTeam = new LeagueTeam();
                     $dbTeam->league_id = $league->id;
                     $dbTeam->team_order = ++$teamSize;
                 }
-                $dbTeam->team_name = $team['team_name'] ?? 'Team '.($key+1);
+                $dbTeam->team_name = $team['team_name'] ?? 'Team ' . ($key + 1);
                 $dbTeam->team_email = $team['team_email'] ?? $user->email;
-                if(!$dbTeam->created_by){
+                if (!$dbTeam->created_by) {
                     $dbTeam->created_by = $user->id;
                 }
                 $dbTeam->updated_by = $user->id;
-                $dbTeam->save();      
-                if($isNewTeam){
+                $dbTeam->save();
+                if ($isNewTeam) {
                     League::addNewTeamLeagueRounds($league, $teamSize, $dbTeam->id);
-                }    
+                }
             }
             return $this->sendResponse(200, 'League updated successfully.', ['id' => $league->id]);
-        }else{
-            return $this->sendResponse(400, 'Required fields are missing.');        
+        } else {
+            return $this->sendResponse(400, 'Required fields are missing.');
         }
     }
 
-    public function deleteTeam(Request $request, $leagueId){
+    public function deleteTeam(Request $request, $leagueId)
+    {
         $validator = Validator::make($request->all(), [
             'team_id' => 'required'
         ]);
@@ -295,65 +303,69 @@ class LeagueController extends Controller
             $league->rounds()->where('team_id', $request->team_id)->delete();
             $league->teams()->where('id', $request->team_id)->delete();
             return $this->sendResponse(200, 'Team deleted successfully.', ['league' => $league]);
-        }else{
-            return $this->sendResponse(400, 'Required fields are missing.');  
+        } else {
+            return $this->sendResponse(400, 'Required fields are missing.');
         }
     }
 
-    public function joinLeague(Request $request){
-        
-        if(isset($request->key) && !empty($request->key)){
+    public function joinLeague(Request $request)
+    {
+
+        if (isset($request->key) && !empty($request->key)) {
             $league = League::fetchLeagueInfoByKey($request->key);
-            if($league){
-                return view('league.join', ['league' => $league]);    
+            if ($league) {
+                return view('league.join', ['league' => $league]);
             }
         }
         abort(404);
     }
 
-    public function joinLeagueTeam(Request $request, $leagueId){
+    public function joinLeagueTeam(Request $request, $leagueId)
+    {
         $validator = Validator::make($request->all(), [
             'team_id' => 'required',
             'team_name' => 'required'
         ]);
 
         if (!$validator->fails()) {
-            try{
+            try {
                 $league = League::findOrFail($leagueId);
                 $user = Auth::user();
                 $league->users()->attach($user->id, ['permission_type' => 3, 'team_id' => $request->team_id]);
                 $league->teams()->where('id', $request->team_id)->update(['team_name' => $request->team_name, 'team_email' => $user->email]);
                 return $this->sendResponse(200, 'League joined successfully.', ['league' => $league]);
-            }catch(ModelNotFoundException $exception){
+            } catch (ModelNotFoundException $exception) {
                 return $this->sendResponse(404, 'League not found.');
             }
-        }else{
-            return $this->sendResponse(400, 'Required fields are missing.');  
+        } else {
+            return $this->sendResponse(400, 'Required fields are missing.');
         }
     }
 
-    public function saveCommish(Request $request, $leagueId){
+    public function saveCommish(Request $request, $leagueId)
+    {
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
             'type' => 'required'
         ]);
 
         if (!$validator->fails()) {
-            try{
+            try {
                 $message = $request->type == 1 ? 'Commish' : 'Co commish';
                 $league = League::findOrFail($leagueId);
-                $league->users()->where('user_id',Auth::user()->id)->update(['permission_type' => $request->type,'team_id'=>$request->user_id]);
-                return $this->sendResponse(200, $message.' added successfully.', ['league' => $league]);
-            }catch(ModelNotFoundException $exception){
+                $league->users()->where('user_id', Auth::user()->id)->update(['permission_type' => $request->type, 'team_id' => $request->user_id]);
+                return $this->sendResponse(200, $message . ' added successfully.', ['league' => $league]);
+            } catch (ModelNotFoundException $exception) {
                 return $this->sendResponse(404, 'League not found.');
             }
-        }else{
-            return $this->sendResponse(400, 'Required fields are missing.');  
+        } else {
+            return $this->sendResponse(400, 'Required fields are missing.');
         }
     }
 
-    public function rounds(Request $request, $id){
-        if(isset($id) && intval($id) > 0){
+    public function rounds(Request $request, $id)
+    {
+        if (isset($id) && intval($id) > 0) {
             /*$league = League::with(['rounds.team', 'permissions'])->findOrFail($id);
             //If no round found then create round and fetch all rounds with team from the database
             if(isset($league->rounds) && $league->rounds->count() <= 0){
@@ -361,19 +373,20 @@ class LeagueController extends Controller
                 $league = League::with(['rounds.team', 'permissions'])->findOrFail($id);
             }*/
             $league = League::leagueData($id, 'teams');
-            
+
             //CHECKMATE ADDED BY AWAIS START
             $teams = new LeagueTeam();
-            $teams = $teams->where('league_id',$id)->get();
+            $teams = $teams->where('league_id', $id)->get();
             //CHECKMATE ADDED BY AWAIS END
-            
-            return view('league.rounds', ['league' => $league,'teams'=>$teams]);
+
+            return view('league.rounds', ['league' => $league, 'teams' => $teams]);
         }
         abort(404);
     }
 
-    public function changeStatus(Request $request, $leagueId){
-        
+    public function changeStatus(Request $request, $leagueId)
+    {
+
         $validator = Validator::make($request->all(), [
             'status' => 'required'
         ]);
@@ -385,28 +398,43 @@ class LeagueController extends Controller
             $league->updated_by = $user->id;
             $league->save();
             return $this->sendResponse(200, 'League status updated successfully.', ['id' => $league->id]);
-        }else{
-            return $this->sendResponse(400, 'Required fields are missing.');        
+        } else {
+            return $this->sendResponse(400, 'Required fields are missing.');
         }
     }
 
-    public function getteam()
+    public function getteam(Request $request)
     {
-        $id=$_GET['id'];
-        $league = League::leagueData($id);
+        $id = $_GET['id'];
+        if (isset($request->myinput3)) {
+            $leaguekeeperplayer = KeeperList::where('league_id', $id)->get();
             $playerIds = [];
-            if(isset($league->rounds)){
+            foreach ($leaguekeeperplayer as  $round) {
+                $playerIds[] = $round->player_id;
+            }
+            $players = Player::whereNotIn('id', $playerIds)->where(
+                function ($query) {
+                    return $query->where('first_name', 'like',  $_GET['qparmas'] . '%')
+                        ->orwhere('last_name', 'like',  $_GET['qparmas'] . '%');
+                }
+            )
+                ->get();
+        } else {
+            $league = League::leagueData($id);
+            $playerIds = [];
+            if (isset($league->rounds)) {
                 foreach ($league->rounds->whereNotNull('player_id') as $key => $round) {
                     $playerIds[] = $round->player->id;
                 }
             }
-        $players=Player::whereNotIn('id', $playerIds)->where(
-           function($query) {
-             return $query->where('first_name','like',  $_GET['qparmas'] . '%')
-                    ->orwhere('last_name','like',  $_GET['qparmas'] . '%');
-            })
-         ->get();
+            $players = Player::whereNotIn('id', $playerIds)->where(
+                function ($query) {
+                    return $query->where('first_name', 'like',  $_GET['qparmas'] . '%')
+                        ->orwhere('last_name', 'like',  $_GET['qparmas'] . '%');
+                }
+            )
+                ->get();
+        }
         echo json_encode($players);
-
     }
 }

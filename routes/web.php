@@ -14,18 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Route::get('league/join', 'LeagueController@joinLeague');
 Route::get('league/team', 'LeagueController@getteam');
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
 	Route::get('draft-roaster', function () {
 		return view('welcome');
 	});
 	Route::get('/home', 'HomeController@index');
-    Route::get('/account/edit','HomeController@accountedit')->name('editprofile');
-    Route::post('/account/update','HomeController@accountupdate')->name('updateprofile');
+	Route::get('/account/edit', 'HomeController@accountedit')->name('editprofile');
+	Route::post('/account/update', 'HomeController@accountupdate')->name('updateprofile');
 	Route::prefix('league')->group(function () {
 
 		Route::post('join/key', 'HomeController@fetchLeagueInfo');
@@ -46,15 +46,18 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::post('{id}/draft/pick/delete/{round_id}', 'DraftController@deletePick');
 		Route::post('{id}/draft/timer/save', 'DraftController@saveTimer');
 		Route::post('{id}/draft/timer/{type}', 'DraftController@timerSettings');
-        //my new work obaid
+		Route::post('{id}/saveroundkeeperlist', 'DraftController@saveroundkeeperlist');
+		Route::post('{id}/savekeeperlist', 'DraftController@savekeeperlist');
+
+		//my new work obaid
 
 		Route::get('{id}/squads', 'SquadController@index');
 		Route::get('{id}/team/{team_id}/players', 'SquadController@teamPlayers');
 		Route::post('{id}/keeper/cost', 'SquadController@saveKeeperCost');
 		Route::get('{id}/trading', 'TradeController@index');
 	});
-    Route::get('/changeTeam','DraftController@changeTeam')->name('changeTeam');
-    Route::get('/removePlayer','DraftController@removePlayer')->name('removePlayer');
+	Route::get('/changeTeam', 'DraftController@changeTeam')->name('changeTeam');
+	Route::get('/removePlayer', 'DraftController@removePlayer')->name('removePlayer');
 	Route::resource('league', LeagueController::class);
 
 	Route::get('yahon/index', 'YahooController@index');
@@ -62,8 +65,8 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::get('/contact', function () {
-    return view('contact');
+	return view('contact');
 });
 Route::get('/about', function () {
-    return view('about-us');
+	return view('about-us');
 });
