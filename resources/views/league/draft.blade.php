@@ -143,7 +143,9 @@ return (($a->round_order) < ($b->round_order));
           <div class="col-lg-6">
             <div class="d-flex">
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Draft Board</a></h2>
+              @if($league->status=="keeper")
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a></h2>
+              @endif
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Roster View</a></h2>
               <h2 class=" " style="width:20%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
