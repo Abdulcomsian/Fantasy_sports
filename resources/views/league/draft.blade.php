@@ -142,11 +142,13 @@ return (($a->round_order) < ($b->round_order));
         <div class="row">
           <div class="col-lg-6">
             <div class="d-flex">
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Draft Board</a></h2>
+              <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a></h2>
               @if($league->status=="keeper")
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a></h2>
               @endif
+              @if($league->status!="keeper")
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
+              @endif
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Roster View</a></h2>
               <h2 class=" " style="width:20%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
             </div>
@@ -478,7 +480,7 @@ return (($a->round_order) < ($b->round_order));
         </thead>
         <!-- my new work for keeper list -->
         @if(isset($_GET['type']) && $_GET['type']=="keeperlist")
-        <tbody class="tbl-bdy-clr">
+        <tbody class="tbl-bdy-clr" >
           <tr>
             <td></td>
             @foreach($league->teams as $team)
@@ -491,14 +493,13 @@ return (($a->round_order) < ($b->round_order));
               $playername=\App\Models\Player::where('id',$player->player_id)->first();
               @endphp
               <br>
-              <div class="team_info">
-                <span style="font-size:13px;">{{ $playername->first_name}}</span><br>
-                <span style="font-weight:bold;font-size:22px;">{{ $playername->last_name}}</span><br>
-                <span>{{ $player->round_number}}</span>
-              </div>
-              @endforeach
+              <span class="event"  id="{{$team->id.''.$player->player_id}}" data-round="{{$player->round_number}}" data-team="{{$team->id}}" data-player="{{$player->player_id}}" draggable="true">
+                <button class="btn btn-secondary" onclick="editkeeperlist('{{$team->id}}','{{$player->round_number}}','{{$playername->first_name.' '.$playername->last_name}}','{{$player->player_id}}')" style="font-size:12px">{{$playername->first_name}} {{ $playername->last_name}} {{ $player->round_number}}</button>
+             </span>
               <br>
-              <a href="javascript:void(0)" class="addKeeperlist" data-team-id="{{$team->id}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
+              @endforeach
+             
+              <a href="javascript:void(0)" class="addKeeperlist" data-team-id="{{$team->id}}" data-player="{{$player->player_id}}" data-round="{{$player->round_number}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
             </td>
             @endforeach
             <td></td>
@@ -721,6 +722,49 @@ return (($a->round_order) < ($b->round_order));
       </div>
     </div>
   </div>
+
+  <!-- keeper list edit -->
+  <div class="modal fade" id="editkeeperlistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Keeper</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="edit_revert">
+                <ul class="list-unstyled list-inline">
+                  <li class="list-inline-item draftPlayerLi">
+                    <div class="select_draft draft_round">
+                      <div class="form-group drft-plr">
+                        <input id="myInput4" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
+                        <br>
+
+                      </div>
+                      <div class="form-group drft-plr">
+                        <input id="editkeeperlistteamid" type="hidden" name="editkeeperlistteamid" placeholder="Enter Round number" ? />
+                        <input type="hidden" id="oldroundunber">
+                        <input type="hidden" id="oldplayerid">
+                        <input id="editkeeperlistround" type="text" name="editkeeperlistround" placeholder="Enter Round number" />
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary updatekeeperlistbutton" style="background-image: linear-gradient(to right, #000, #353535);border:1px solid #fff;">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
   @endsection
   @section('js')
   <script type="text/javascript">
@@ -773,5 +817,53 @@ return (($a->round_order) < ($b->round_order));
         '-moz-transform': 'scale(' + zoomLevel + ')'
       });
     }
+
+    function editkeeperlist(teamid, roundnumber, playername, playerid) {
+      $("#myInput4").val(playername);
+      $("#oldplayerid").val(playerid);
+      $("#editkeeperlistteamid").val(teamid);
+      $("#oldroundunber").val(roundnumber);
+      $("#editkeeperlistround").val(roundnumber);
+      $("#editkeeperlistModal").modal('show');
+    }
+
+$(document).ready(function(){
+        var oldroundunber;
+        var oldteamid;
+        var playerid;
+        $('.event').on("dragstart", function (event) {
+              var dt = event.originalEvent.dataTransfer;
+              dt.setData('Text', $(this).attr('id'));
+              oldroundunber=$(this).attr('data-round');
+              oldteamid=$(this).attr('data-team');
+              playerid=$(this).attr('data-player');
+            });
+        $('table td').on("dragenter dragover drop", function (event) {  
+           event.preventDefault();
+           if (event.type === 'drop') {
+              var data = event.originalEvent.dataTransfer.getData('Text',$(this).attr('id'));
+              de=$('#'+data).detach();
+              var newteamid=$(this).children("a").attr("data-team-id");
+               de.prependTo($(this));
+               $.ajax({
+                url: "/league/" + leagueId + "/movekeeperlist",
+                method: "get",
+                data: { id: playerid,oldteamid:oldteamid,newteamid:newteamid,oldroundunber:oldroundunber},
+                success: function (res) {
+                    if (res == "success") {
+                        document.getElementById("playerBeep").play();
+                        window.location =
+                            "/league/" +
+                            $("input[name='league_id']").val() +
+                            "/draft?type=keeperlist";
+                    } else {
+                        alert("something went wrong");
+                    }
+                },
+            });
+           };
+       });
+})
+
   </script>
   @endsection

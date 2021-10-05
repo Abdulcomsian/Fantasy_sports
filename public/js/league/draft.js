@@ -113,14 +113,21 @@ $(function () {
                 method: "POST",
                 data: { id: val, teamid: teamid, round_number: round_number },
                 success: function (res) {
-                    if (res == "success") {
+                    if (res == "success") 
+                    {
                         document.getElementById("playerBeep").play();
                         window.location =
                             "/league/" +
                             $("input[name='league_id']").val() +
                             "/draft?type=keeperlist";
-                    } else {
+                    } 
+                    else if(res=="error") 
+                    {
                         alert("something went wrong");
+                    } 
+                    else if(res=="exist")
+                    {
+                        alert("record already exist against round/team");
                     }
                 },
             });
@@ -969,6 +976,158 @@ $("#myInput3").on("keydown", function (e) {
     }
 });
 
+$("#myInput4").on("keyup", function (e) {
+    inp = document.getElementById("myInput4");
+    qparmas = $("#myInput4").val();
+    var leagid = $("input[name='league_id']").val();
+    var arr = [];
+    var arr1 = [];
+    $.ajax({
+        url: "/league/team",
+        method: "get",
+        async: false,
+        data: { id: leagid, qparmas: qparmas, myinput3: "myinput3" },
+        success: function (res) {
+            res = JSON.parse(res);
+            console.log(res);
+            for (i = 0; i < res.length; i++) {
+                arr.push(
+                    res[i].first_name +
+                        " " +
+                        res[i].last_name +
+                        " " +
+                        res[i].team +
+                        "/" +
+                        res[i].position
+                );
+                arr1.push(
+                    res[i].first_name +
+                        "/" +
+                        res[i].last_name +
+                        "/" +
+                        res[i].id +
+                        "/" +
+                        res[i].team +
+                        "/" +
+                        res[i].position
+                );
+            }
+        },
+    });
+
+    var a,
+        b,
+        i,
+        val = this.value;
+    /*close any already open lists of autocompleted values*/
+    closeAllLists();
+    if (!val) {
+        return false;
+    }
+    currentFocus = -1;
+    /*create a DIV element that will contain the items (values):*/
+    a = document.createElement("DIV");
+    a.setAttribute("id", this.id + "autocomplete-list");
+    a.setAttribute("class", "autocomplete-items");
+    /*append the DIV element as a child of the autocomplete container:*/
+    console.log(arr.length);
+    this.parentNode.appendChild(a);
+    /*for each item in the array...*/
+    for (i = 0; i <= arr.length; i++) {
+        //make first letter capital
+        console.log(arr[i]);
+        //myarr=new Array();
+        //myarr[i]=arr[i];
+        // if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() ||  myarr[i].toUpperCase().indexOf(val.toUpperCase()) > -1) {
+        /*create a DIV element for each matching element:*/
+        b = document.createElement("DIV");
+        /*make the matching letters bold:*/
+        b.innerHTML += "<strong>" + arr[i] + "</strong>";
+        //b.innerHTML += arr[i];
+
+        /*insert a input field that will hold the current array item's value:*/
+        var myArr = arr1[i].split("/");
+        b.innerHTML +=
+            "<input type='hidden'  value='" +
+            arr[i] +
+            "' data-first_name='" +
+            myArr[0] +
+            "' data-last_name='" +
+            myArr[1] +
+            "' data-id='" +
+            myArr[2] +
+            "' data-team='" +
+            myArr[3] +
+            "' data-pos='" +
+            myArr[4] +
+            "'>";
+        /*execute a function when someone clicks on the item value (DIV element):*/
+        b.addEventListener("click", function (e) {
+            /*insert the value for the autocomplete text field:*/
+            inp.value = this.getElementsByTagName("input")[0].value;
+            first_name =
+                this.getElementsByTagName("input")[0].getAttribute(
+                    "data-first_name"
+                );
+            last_name =
+                this.getElementsByTagName("input")[0].getAttribute(
+                    "data-last_name"
+                );
+            playerid =
+                this.getElementsByTagName("input")[0].getAttribute("data-id");
+            playerteam =
+                this.getElementsByTagName("input")[0].getAttribute("data-team");
+            playerpos =
+                this.getElementsByTagName("input")[0].getAttribute("data-pos");
+            $("#myInput4").attr("value", inp.value);
+            $("#myInput4").attr("data-first_name", first_name);
+            $("#myInput4").attr("data-last_name", last_name);
+            $("#myInput4").attr("data-id", playerid);
+            $("#myInput4").attr("data-team", playerteam);
+            $("#myInput4").attr("data-pos", playerpos);
+
+            $("#myInput").attr("value", inp.value);
+            $("#myInput").attr("data-first_name", first_name);
+            $("#myInput").attr("data-last_name", last_name);
+            $("#myInput").attr("data-id", playerid);
+            $("#myInput").attr("data-team", playerteam);
+            $("#myInput").attr("data-pos", playerpos);
+            /*close the list of autocompleted values,
+          (or any other open lists of autocompleted values:*/
+            closeAllLists();
+        });
+        a.appendChild(b);
+        // }
+    }
+});
+/*execute a function presses a key on the keyboard:*/
+//inp.addEventListener("keydown", function (e) {
+$("#myInput4").on("keydown", function (e) {
+    var x = document.getElementById(this.id + "autocomplete-list");
+    if (x) x = x.getElementsByTagName("div");
+    if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+      increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+    } else if (e.keyCode == 38) {
+        //up
+        /*If the arrow UP key is pressed,
+      decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+    } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+            /*and simulate a click on the "active" item:*/
+            if (x) x[currentFocus].click();
+        }
+    }
+});
+
 function addActive(x) {
     /*a function to classify an item as "active":*/
     if (!x) return false;
@@ -1022,3 +1181,38 @@ document.addEventListener("click", function (e) {
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 // autocomplete(document.getElementById("myInput"), countries, newcountries);
 // autocomplete(document.getElementById("myInput2"), countries, newcountries);
+
+
+  $(".updatekeeperlistbutton").on("click",function(){
+     if ($("#editkeeperlistround").val() == "") {
+            alert("plese enter round number");
+            return false;
+        }
+        val = $("#myInput4").attr("data-id");
+        if(!val)
+        {
+           val=$("#oldplayerid").val();
+        }
+        teamid = $("#editkeeperlistteamid").val();
+        round_number = $("#editkeeperlistround").val();
+        oldroundunber=$("#oldroundunber").val();
+        if (val != "") {
+            $.ajax({
+                url: "/league/" + leagueId + "/updatekeeperlist",
+                method: "get",
+                data: { id: val, teamid: teamid, round_number: round_number,oldroundunber:oldroundunber},
+                success: function (res) {
+                    if (res == "success") {
+                        document.getElementById("playerBeep").play();
+                        window.location =
+                            "/league/" +
+                            $("input[name='league_id']").val() +
+                            "/draft?type=keeperlist";
+                    } else {
+                        alert("something went wrong");
+                    }
+                },
+            });
+        }
+  })
+   
