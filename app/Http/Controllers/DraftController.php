@@ -177,15 +177,51 @@ class DraftController extends Controller
     //save keeperlist
     public function savekeeperlist(Request $request, $leagueId)
     {
-        $KeeperList = new KeeperList();
-        $KeeperList->team_id = $request->teamid;
-        $KeeperList->player_id = $request->id;
-        $KeeperList->league_id = $leagueId;
-        $KeeperList->round_number = $request->round_number;
-        if ($KeeperList->save()) {
-            echo "success";
-        } else {
-            echo "error";
+        // check if record alreay exist on that round against tem
+        $record=KeeperList::where('team_id',$request->teamid)->where('league_id',$leagueId)->where('round_number',$request->round_number)->first();
+        if(count($record)>0)
+        {
+            $KeeperList = new KeeperList();
+            $KeeperList->team_id = $request->teamid;
+            $KeeperList->player_id = $request->id;
+            $KeeperList->league_id = $leagueId;
+            $KeeperList->round_number = $request->round_number;
+            if ($KeeperList->save()) {
+                echo "success";
+            } else {
+                echo "error";
+            }
+        }
+        else
+        {
+            echo"exist";
+        }
+    }
+    //update keeper list
+    public function updatekeeperlist(Request $request, $leagueId)
+    {
+        $record=KeeperList::where('team_id',$request->teamid)->where('league_id',$leagueId)->where('round_number',$request->oldroundunber)->first();
+        $record->player_id=$request->id;
+         $record->round_number=$request->round_number;
+        if($record->save())
+        {
+            echo"success";
+        }
+        else{
+            echo"error";
+        }
+    }
+
+    public function movekeeperlist(Request $request,$leagueId)
+    {
+        $record=KeeperList::where('team_id',$request->oldteamid)->where('league_id',$leagueId)->where('round_number',$request->oldroundunber)->first();
+        $record->team_id=$request->newteamid;
+        if($record->save())
+        {
+            echo"success";
+        }
+        else{
+            echo"error";
         }
     }
 
