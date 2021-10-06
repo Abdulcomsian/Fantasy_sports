@@ -98,6 +98,27 @@ $(function () {
                 "/draft?type=keeperlist";
         }
     });
+    $("#updateKeeperlist").click(function () {
+        if ($("#editkeeperlistround").val() == "") {
+            alert("plese enter round number");
+            return false;
+        } else {
+            val = $("#myInput4").attr("data-id");
+            if (!val) {
+                val = $("#oldplayerid").val();
+            }
+            savekeeperlist(
+                val,
+                $("#editkeeperlistround").val(),
+                $("#editkeeperlistteamid").val(),
+                leagueId
+            );
+            window.location =
+                "/league/" +
+                $("input[name='league_id']").val() +
+                "/draft?type=keeperlist";
+        }
+    });
     //keeperlist button save work
     $(".keeperlistbutton").click(function () {
         if ($("#keeperlistround").val() == "") {
@@ -113,20 +134,15 @@ $(function () {
                 method: "POST",
                 data: { id: val, teamid: teamid, round_number: round_number },
                 success: function (res) {
-                    if (res == "success") 
-                    {
+                    if (res == "success") {
                         document.getElementById("playerBeep").play();
                         window.location =
                             "/league/" +
                             $("input[name='league_id']").val() +
                             "/draft?type=keeperlist";
-                    } 
-                    else if(res=="error") 
-                    {
+                    } else if (res == "error") {
                         alert("something went wrong");
-                    } 
-                    else if(res=="exist")
-                    {
+                    } else if (res == "exist") {
                         alert("record already exist against round/team");
                     }
                 },
@@ -440,10 +456,14 @@ function savekeeperlist(playerId, roundId, teamid, leagueId) {
                 teamid: teamid,
             },
             success: function (response) {
-                if (response == "success") {
+                if (response == "exist") {
+                    alert("Record already exist");
+                    return false;
+                } else if (response == "success") {
                     document.getElementById("playerBeep").play();
                 } else {
                     alert("something went Wrong");
+                    return false;
                 }
             },
         });
@@ -1182,37 +1202,39 @@ document.addEventListener("click", function (e) {
 // autocomplete(document.getElementById("myInput"), countries, newcountries);
 // autocomplete(document.getElementById("myInput2"), countries, newcountries);
 
-
-  $(".updatekeeperlistbutton").on("click",function(){
-     if ($("#editkeeperlistround").val() == "") {
-            alert("plese enter round number");
-            return false;
-        }
-        val = $("#myInput4").attr("data-id");
-        if(!val)
-        {
-           val=$("#oldplayerid").val();
-        }
-        teamid = $("#editkeeperlistteamid").val();
-        round_number = $("#editkeeperlistround").val();
-        oldroundunber=$("#oldroundunber").val();
-        if (val != "") {
-            $.ajax({
-                url: "/league/" + leagueId + "/updatekeeperlist",
-                method: "get",
-                data: { id: val, teamid: teamid, round_number: round_number,oldroundunber:oldroundunber},
-                success: function (res) {
-                    if (res == "success") {
-                        document.getElementById("playerBeep").play();
-                        window.location =
-                            "/league/" +
-                            $("input[name='league_id']").val() +
-                            "/draft?type=keeperlist";
-                    } else {
-                        alert("something went wrong");
-                    }
-                },
-            });
-        }
-  })
-   
+$(".updatekeeperlistbutton").on("click", function () {
+    if ($("#editkeeperlistround").val() == "") {
+        alert("plese enter round number");
+        return false;
+    }
+    val = $("#myInput4").attr("data-id");
+    if (!val) {
+        val = $("#oldplayerid").val();
+    }
+    teamid = $("#editkeeperlistteamid").val();
+    round_number = $("#editkeeperlistround").val();
+    oldroundunber = $("#oldroundunber").val();
+    if (val != "") {
+        $.ajax({
+            url: "/league/" + leagueId + "/updatekeeperlist",
+            method: "get",
+            data: {
+                id: val,
+                teamid: teamid,
+                round_number: round_number,
+                oldroundunber: oldroundunber,
+            },
+            success: function (res) {
+                if (res == "success") {
+                    document.getElementById("playerBeep").play();
+                    window.location =
+                        "/league/" +
+                        $("input[name='league_id']").val() +
+                        "/draft?type=keeperlist";
+                } else {
+                    alert("something went wrong");
+                }
+            },
+        });
+    }
+});

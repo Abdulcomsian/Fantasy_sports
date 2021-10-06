@@ -159,18 +159,28 @@ class DraftController extends Controller
 
     public function saveroundkeeperlist(Request $request, $leagueId)
     {
-        $league = League::leagueData($leagueId);
-        $KeeperList = new KeeperList();
-        $KeeperList->team_id = $request->teamid;
-        $KeeperList->player_id = $request->playerId;
-        $KeeperList->league_id = $leagueId;
-        $KeeperList->round_number =  $request->roundId;
-        $KeeperList->save();
-        $res = LeagueRound::where('round_number', $request->roundId)->where('team_id', $request->teamid)->update(['player_id' => $request->playerId]);
-        if ($res) {
-            echo "success";
+        $record = KeeperList::where('team_id', $request->teamid)->where('league_id', $leagueId)->where('round_number', $request->round_number)->first();
+        if ($record == null) {
+            $KeeperList = new KeeperList();
+            $KeeperList->team_id = $request->teamid;
+            $KeeperList->player_id = $request->playerId;
+            $KeeperList->league_id = $leagueId;
+            $KeeperList->round_number =  $request->roundId;
+            $KeeperList->save();
         } else {
-            echo "error";
+            echo "exist";
+            exit;
+        }
+        $leagueroundplayercheck = LeagueRound::where('round_number', $request->roundId)->where('team_id', $request->teamid)->first();
+        if ($leagueroundplayercheck->player_id == null) {
+            $res = LeagueRound::where('round_number', $request->roundId)->where('team_id', $request->teamid)->update(['player_id' => $request->playerId]);
+            if ($res) {
+                echo "success";
+            } else {
+                echo "error";
+            }
+        } else {
+            echo "exist";
         }
     }
 
@@ -178,9 +188,8 @@ class DraftController extends Controller
     public function savekeeperlist(Request $request, $leagueId)
     {
         // check if record alreay exist on that round against tem
-        $record=KeeperList::where('team_id',$request->teamid)->where('league_id',$leagueId)->where('round_number',$request->round_number)->first();
-        if(count($record)>0)
-        {
+        $record = KeeperList::where('team_id', $request->teamid)->where('league_id', $leagueId)->where('round_number', $request->round_number)->first();
+        if ($record == null) {
             $KeeperList = new KeeperList();
             $KeeperList->team_id = $request->teamid;
             $KeeperList->player_id = $request->id;
@@ -191,37 +200,31 @@ class DraftController extends Controller
             } else {
                 echo "error";
             }
-        }
-        else
-        {
-            echo"exist";
+        } else {
+            echo "exist";
         }
     }
     //update keeper list
     public function updatekeeperlist(Request $request, $leagueId)
     {
-        $record=KeeperList::where('team_id',$request->teamid)->where('league_id',$leagueId)->where('round_number',$request->oldroundunber)->first();
-        $record->player_id=$request->id;
-         $record->round_number=$request->round_number;
-        if($record->save())
-        {
-            echo"success";
-        }
-        else{
-            echo"error";
+        $record = KeeperList::where('team_id', $request->teamid)->where('league_id', $leagueId)->where('round_number', $request->oldroundunber)->first();
+        $record->player_id = $request->id;
+        $record->round_number = $request->round_number;
+        if ($record->save()) {
+            echo "success";
+        } else {
+            echo "error";
         }
     }
 
-    public function movekeeperlist(Request $request,$leagueId)
+    public function movekeeperlist(Request $request, $leagueId)
     {
-        $record=KeeperList::where('team_id',$request->oldteamid)->where('league_id',$leagueId)->where('round_number',$request->oldroundunber)->first();
-        $record->team_id=$request->newteamid;
-        if($record->save())
-        {
-            echo"success";
-        }
-        else{
-            echo"error";
+        $record = KeeperList::where('team_id', $request->oldteamid)->where('league_id', $leagueId)->where('round_number', $request->oldroundunber)->first();
+        $record->team_id = $request->newteamid;
+        if ($record->save()) {
+            echo "success";
+        } else {
+            echo "error";
         }
     }
 
