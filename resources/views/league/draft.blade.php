@@ -145,12 +145,17 @@ return (($a->round_order) < ($b->round_order));
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a></h2>
               @if($league->status=="keeper")
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a></h2>
+              <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Collapse View</a></h2>
+
+              <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Pick View</a></h2>
+              <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">League Notes</a></h2>
               @endif
               @if($league->status!="keeper")
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
-              @endif
+
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Roster View</a></h2>
               <h2 class=" " style="width:20%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
+              @endif
             </div>
           </div>
           <div class="col-lg-6 text-right">
@@ -480,7 +485,7 @@ return (($a->round_order) < ($b->round_order));
         </thead>
         <!-- my new work for keeper list -->
         @if(isset($_GET['type']) && $_GET['type']=="keeperlist")
-        <tbody class="tbl-bdy-clr" >
+        <tbody class="tbl-bdy-clr">
           <tr>
             <td></td>
             @foreach($league->teams as $team)
@@ -493,12 +498,12 @@ return (($a->round_order) < ($b->round_order));
               $playername=\App\Models\Player::where('id',$player->player_id)->first();
               @endphp
               <br>
-              <span class="event"  id="{{$team->id.''.$player->player_id}}" data-round="{{$player->round_number}}" data-team="{{$team->id}}" data-player="{{$player->player_id}}" draggable="true">
+              <span class="event" id="{{$team->id.''.$player->player_id}}" data-round="{{$player->round_number}}" data-team="{{$team->id}}" data-player="{{$player->player_id}}" draggable="true">
                 <button class="btn btn-secondary" onclick="editkeeperlist('{{$team->id}}','{{$player->round_number}}','{{$playername->first_name.' '.$playername->last_name}}','{{$player->player_id}}')" style="font-size:12px">{{$playername->first_name}} {{ $playername->last_name}} {{ $player->round_number}}</button>
-             </span>
+              </span>
               <br>
               @endforeach
-             
+
               <a href="javascript:void(0)" class="addKeeperlist" data-team-id="{{$team->id}}" data-player="{{$player->player_id}}" data-round="{{$player->round_number}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
             </td>
             @endforeach
@@ -684,40 +689,36 @@ return (($a->round_order) < ($b->round_order));
   <!-- Modal -->
   <div class="modal fade" id="keeperlistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Keeper</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      <div class="modal-content" style="border:2px solid black;border-radius:20px">
         <div class="modal-body">
           <div class="row">
             <div class="col-md-12">
               <div class="edit_revert">
-                <ul class="list-unstyled list-inline">
-                  <li class="list-inline-item draftPlayerLi">
-                    <div class="select_draft draft_round">
-                      <div class="form-group drft-plr">
-                        <input id="myInput3" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
-                        <br>
-
-                      </div>
-                      <div class="form-group drft-plr">
-                        <input id="keeperlistteamid" type="hidden" name="keeperlistteamid" placeholder="Enter Round number" ? />
-                        <input id="keeperlistround" type="text" name="keeperlistround" placeholder="Enter Round number" />
+                <div class="select_draft draft_round">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="background:black;color:white;padding:12px;" class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input style="background:black;color:white;padding:21px;" type="text" id="myInput3" name="myCountry" autocomplete="off" class="form-control" placeholder="Enter Player Name" aria-describedby="basic-addon1">
                       </div>
                     </div>
-                  </li>
-                </ul>
+                    <div class="col-md-2">
+                      <div class="form-group drft-plr">
+                        <input id="keeperlistteamid" type="hidden" name="keeperlistteamid" placeholder="Enter Round number" ? />
+                        <input style="background:black;color:white;padding:9px;text-align:center" id="keeperlistround" type="text" name="keeperlistround" placeholder="Enter Round number" />
+                      </div>
+                    </div>
+
+                  </div>
+                  <button type="button" class="btn btn-primary keeperlistbutton" style="float:left;background:lightseagreen;border:1px solid #fff;width:20%;border-radius:5px;margin:4px">Add</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" style="width:20%;border-radius:5px;margin:4px;">Remove</button>
+                  <button type="button" class="btn btn-primary draftbutton1" style="background:lightskyblue;border:1px solid #fff;width:40% ;border-radius:5px" id="saveKeeperlist">Add to Draft board</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary keeperlistbutton" style="background-image: linear-gradient(to right, #000, #353535);border:1px solid #fff;">Save</button>
-          <button type="button" class="btn btn-primary draftbutton1" style="background-image: linear-gradient(to right, #000, #353535);border:1px solid #fff;" id="saveKeeperlist">Add Draft</button>
         </div>
       </div>
     </div>
@@ -726,41 +727,37 @@ return (($a->round_order) < ($b->round_order));
   <!-- keeper list edit -->
   <div class="modal fade" id="editkeeperlistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Keeper</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      <div class="modal-content" style="border:2px solid black;border-radius:20px">
         <div class="modal-body">
           <div class="row">
             <div class="col-md-12">
               <div class="edit_revert">
-                <ul class="list-unstyled list-inline">
-                  <li class="list-inline-item draftPlayerLi">
-                    <div class="select_draft draft_round">
-                      <div class="form-group drft-plr">
-                        <input id="myInput4" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
-                        <br>
-
+                <div class="select_draft draft_round">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span style="background:black;color:white;padding:12px;" class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input style="background:black;color:white;padding:21px;" type="text" id="myInput4" name="myCountry" autocomplete="off" class="form-control" placeholder="Enter Player Name" aria-describedby="basic-addon1">
                       </div>
+                    </div>
+                    <div class="col-md-2">
                       <div class="form-group drft-plr">
                         <input id="editkeeperlistteamid" type="hidden" name="editkeeperlistteamid" placeholder="Enter Round number" ? />
                         <input type="hidden" id="oldroundunber">
                         <input type="hidden" id="oldplayerid">
-                        <input id="editkeeperlistround" type="text" name="editkeeperlistround" placeholder="Enter Round number" />
+                        <input style="background:black;color:white;padding:21px" id="editkeeperlistround" type="text" class="form-control" name="editkeeperlistround" placeholder="Enter Round number" />
                       </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                  <button type="button" class="btn btn-primary updatekeeperlistbutton" style="background:lightseagreen;width:20%;border-radius:5px;margin:4px;border:1px solid #fff;">Add</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" style="width:20%;border-radius:5px;margin:4px;">Remove</button>
+                  <button type="button" class="btn btn-primary draftbutton1" style="background:lightskyblue;border:1px solid #fff;width:40%; border-radius:5px" id="updateKeeperlist">Add to Draft board</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary updatekeeperlistbutton" style="background-image: linear-gradient(to right, #000, #353535);border:1px solid #fff;">Update</button>
         </div>
       </div>
     </div>
@@ -827,43 +824,47 @@ return (($a->round_order) < ($b->round_order));
       $("#editkeeperlistModal").modal('show');
     }
 
-$(document).ready(function(){
-        var oldroundunber;
-        var oldteamid;
-        var playerid;
-        $('.event').on("dragstart", function (event) {
-              var dt = event.originalEvent.dataTransfer;
-              dt.setData('Text', $(this).attr('id'));
-              oldroundunber=$(this).attr('data-round');
-              oldteamid=$(this).attr('data-team');
-              playerid=$(this).attr('data-player');
-            });
-        $('table td').on("dragenter dragover drop", function (event) {  
-           event.preventDefault();
-           if (event.type === 'drop') {
-              var data = event.originalEvent.dataTransfer.getData('Text',$(this).attr('id'));
-              de=$('#'+data).detach();
-              var newteamid=$(this).children("a").attr("data-team-id");
-               de.prependTo($(this));
-               $.ajax({
-                url: "/league/" + leagueId + "/movekeeperlist",
-                method: "get",
-                data: { id: playerid,oldteamid:oldteamid,newteamid:newteamid,oldroundunber:oldroundunber},
-                success: function (res) {
-                    if (res == "success") {
-                        document.getElementById("playerBeep").play();
-                        window.location =
-                            "/league/" +
-                            $("input[name='league_id']").val() +
-                            "/draft?type=keeperlist";
-                    } else {
-                        alert("something went wrong");
-                    }
-                },
-            });
-           };
-       });
-})
-
+    $(document).ready(function() {
+      var oldroundunber;
+      var oldteamid;
+      var playerid;
+      $('.event').on("dragstart", function(event) {
+        var dt = event.originalEvent.dataTransfer;
+        dt.setData('Text', $(this).attr('id'));
+        oldroundunber = $(this).attr('data-round');
+        oldteamid = $(this).attr('data-team');
+        playerid = $(this).attr('data-player');
+      });
+      $('table td').on("dragenter dragover drop", function(event) {
+        event.preventDefault();
+        if (event.type === 'drop') {
+          var data = event.originalEvent.dataTransfer.getData('Text', $(this).attr('id'));
+          de = $('#' + data).detach();
+          var newteamid = $(this).children("a").attr("data-team-id");
+          de.prependTo($(this));
+          $.ajax({
+            url: "/league/" + leagueId + "/movekeeperlist",
+            method: "get",
+            data: {
+              id: playerid,
+              oldteamid: oldteamid,
+              newteamid: newteamid,
+              oldroundunber: oldroundunber
+            },
+            success: function(res) {
+              if (res == "success") {
+                document.getElementById("playerBeep").play();
+                window.location =
+                  "/league/" +
+                  $("input[name='league_id']").val() +
+                  "/draft?type=keeperlist";
+              } else {
+                alert("something went wrong");
+              }
+            },
+          });
+        };
+      });
+    })
   </script>
   @endsection
