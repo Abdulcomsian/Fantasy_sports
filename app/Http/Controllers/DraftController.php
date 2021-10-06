@@ -204,6 +204,17 @@ class DraftController extends Controller
             echo "exist";
         }
     }
+    //remove keeper list
+    public function removekeeperlist(Request $request,$leagueId)
+    {
+        $record = KeeperList::where('team_id', $request->teamid)->where('league_id', $leagueId)->where('round_number', $request->round_number)->delete();
+        if($record)
+        {
+            echo "success";
+        } else {
+            echo "error";
+        }
+    }
     //update keeper list
     public function updatekeeperlist(Request $request, $leagueId)
     {

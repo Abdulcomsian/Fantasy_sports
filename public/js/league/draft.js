@@ -149,6 +149,32 @@ $(function () {
             });
         }
     });
+    //remove keeper list
+    $("#removekeeperlist").click(function(){
+        val = $("#myInput4").attr("data-id");
+         round_number=$("#editkeeperlistround").val();
+                teamid= $("#editkeeperlistteamid").val();
+        if (val != "") {
+            $.ajax({
+                url: "/league/" + leagueId + "/removekeeperlist",
+                method: "POST",
+                data: { id: val, teamid: teamid, round_number: round_number },
+                success: function (res) {
+                    if (res == "success") {
+                        document.getElementById("playerBeep").play();
+                        window.location =
+                            "/league/" +
+                            $("input[name='league_id']").val() +
+                            "/draft?type=keeperlist";
+                    } else if (res == "error") {
+                        alert("something went wrong");
+                    } 
+                },
+            });
+        }
+    })
+
+
     $(".draftPlayer").select2();
     $(".keeperPlayer").select2({
         dropdownParent: $("#keeperModal"),

@@ -707,13 +707,13 @@ return (($a->round_order) < ($b->round_order));
                     <div class="col-md-2">
                       <div class="form-group drft-plr">
                         <input id="keeperlistteamid" type="hidden" name="keeperlistteamid" placeholder="Enter Round number" ? />
-                        <input style="background:black;color:white;padding:9px;text-align:center" id="keeperlistround" type="text" name="keeperlistround" placeholder="Enter Round number" />
+                        <input style="background:black;color:white;padding:9px;text-align:center;width: 120%;" id="keeperlistround" type="number" name="keeperlistround" />
                       </div>
                     </div>
 
                   </div>
                   <button type="button" class="btn btn-primary keeperlistbutton" style="float:left;background:lightseagreen;border:1px solid #fff;width:20%;border-radius:5px;margin:4px">Add</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal" style="width:20%;border-radius:5px;margin:4px;">Remove</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:20%;border-radius:5px;margin:4px;">Close</button>
                   <button type="button" class="btn btn-primary draftbutton1" style="background:lightskyblue;border:1px solid #fff;width:40% ;border-radius:5px" id="saveKeeperlist">Add to Draft board</button>
                 </div>
               </div>
@@ -747,12 +747,12 @@ return (($a->round_order) < ($b->round_order));
                         <input id="editkeeperlistteamid" type="hidden" name="editkeeperlistteamid" placeholder="Enter Round number" ? />
                         <input type="hidden" id="oldroundunber">
                         <input type="hidden" id="oldplayerid">
-                        <input style="background:black;color:white;padding:21px" id="editkeeperlistround" type="text" class="form-control" name="editkeeperlistround" placeholder="Enter Round number" />
+                        <input style="background:black;color:white;padding:9px;width: 120%" id="editkeeperlistround" type="text"  name="editkeeperlistround" placeholder="Enter Round number" />
                       </div>
                     </div>
                   </div>
                   <button type="button" class="btn btn-primary updatekeeperlistbutton" style="background:lightseagreen;width:20%;border-radius:5px;margin:4px;border:1px solid #fff;">Add</button>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal" style="width:20%;border-radius:5px;margin:4px;">Remove</button>
+                  <button type="button" class="btn btn-danger" id="removekeeperlist" style="width:20%;border-radius:5px;margin:4px;">Remove</button>
                   <button type="button" class="btn btn-primary draftbutton1" style="background:lightskyblue;border:1px solid #fff;width:40%; border-radius:5px" id="updateKeeperlist">Add to Draft board</button>
                 </div>
               </div>
