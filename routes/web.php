@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('{id}/draft/timer/{type}', 'DraftController@timerSettings');
 		Route::post('{id}/saveroundkeeperlist', 'DraftController@saveroundkeeperlist');
 		Route::post('{id}/savekeeperlist', 'DraftController@savekeeperlist');
+        Route::post('{id}/removekeeperlist', 'DraftController@removekeeperlist');
         Route::get('{id}/updatekeeperlist', 'DraftController@updatekeeperlist');
         Route::get('{id}/movekeeperlist','DraftController@movekeeperlist');
 
