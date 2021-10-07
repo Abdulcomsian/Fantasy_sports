@@ -150,10 +150,10 @@ $(function () {
         }
     });
     //remove keeper list
-    $("#removekeeperlist").click(function(){
+    $(document).on("click", "#removekeeperlist", function () {
         val = $("#myInput4").attr("data-id");
-         round_number=$("#editkeeperlistround").val();
-                teamid= $("#editkeeperlistteamid").val();
+        round_number = $("#editkeeperlistround").val();
+        teamid = $("#editkeeperlistteamid").val();
         if (val != "") {
             $.ajax({
                 url: "/league/" + leagueId + "/removekeeperlist",
@@ -168,12 +168,11 @@ $(function () {
                             "/draft?type=keeperlist";
                     } else if (res == "error") {
                         alert("something went wrong");
-                    } 
+                    }
                 },
             });
         }
-    })
-
+    });
 
     $(".draftPlayer").select2();
     $(".keeperPlayer").select2({
