@@ -159,18 +159,6 @@ class DraftController extends Controller
 
     public function saveroundkeeperlist(Request $request, $leagueId)
     {
-        $record = KeeperList::where('team_id', $request->teamid)->where('league_id', $leagueId)->where('round_number', $request->round_number)->first();
-        if ($record == null) {
-            $KeeperList = new KeeperList();
-            $KeeperList->team_id = $request->teamid;
-            $KeeperList->player_id = $request->playerId;
-            $KeeperList->league_id = $leagueId;
-            $KeeperList->round_number =  $request->roundId;
-            $KeeperList->save();
-        } else {
-            echo "exist";
-            exit;
-        }
         $leagueroundplayercheck = LeagueRound::where('round_number', $request->roundId)->where('team_id', $request->teamid)->first();
         if ($leagueroundplayercheck->player_id == null) {
             $res = LeagueRound::where('round_number', $request->roundId)->where('team_id', $request->teamid)->update(['player_id' => $request->playerId]);

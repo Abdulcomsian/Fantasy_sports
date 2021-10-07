@@ -145,9 +145,9 @@ return (($a->round_order) < ($b->round_order));
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a></h2>
               @if($league->status=="keeper")
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a></h2>
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Collapse View</a></h2>
+              <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}">Collapse View</a></h2>
 
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Pick View</a></h2>
+              <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}">Pick View</a></h2>
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">League Notes</a></h2>
               @endif
               @if($league->status!="keeper")
@@ -464,12 +464,7 @@ return (($a->round_order) < ($b->round_order));
         <?php if ($league->status != "keeper") { ?>
 
         <?php } ?>
-
-
-
-
       </div>
-
 
       <table class="table" style="table-layout:fixed;">
         <thead class="thead-dark">
@@ -510,6 +505,87 @@ return (($a->round_order) < ($b->round_order));
             <td></td>
           </tr>
         </tbody>
+        @elseif(isset($_GET['type']) && $_GET['type']=="collapseview")
+        <tbody class="tbl-bdy-clr">
+          @foreach($league_rounds as $index => $rounds)
+          @php
+          if($index%2 == 0 && $league->draft_type == 'snake'){
+          $leftArrow = '<i class="fa fa-angle-left"></i>';
+          $rightArrow = '';
+          usort($rounds, "compare2");
+          }else{
+          $rightArrow = '<i class="fa fa-angle-right"></i>';
+          $leftArrow = '';
+          usort($rounds, "compare1");
+          }
+
+
+          @endphp
+
+          <tr>
+            <td>{!! $rightArrow !!}</td>
+            <!-- <td>{{ $index }}</td> -->
+            @foreach($rounds as $round)
+            @php
+            if((int)$round->team_id != (int)$round->old_team_id)
+            {
+            $background="background:red";
+            }else
+            {
+            $background="background:#b7b7b7";
+            }
+            @endphp
+            <td data-round_id="{{ $round->id }}" data-team_order="{{ $round->team->team_order }}" data-default_order="{{ $index.'.'.$round->default_order }}">
+              <div style="min-height:140px;">
+                @foreach($league->teams as $team)
+                @if($team->id == $round->team->id)
+                <p style="{{$background}};padding: 8px 10px 7px 0px; ">{{ $team->team_name }}</p>
+                @endif
+                @endforeach
+            </td>
+            @endforeach
+            <!-- <td>{{ $index }}</td> -->
+            <td>{!! $leftArrow !!}</td>
+          </tr>
+          @endforeach
+        </tbody>
+        @elseif(isset($_GET['type']) && $_GET['type']=="pickview")
+        <tbody class="tbl-bdy-clr">
+          <tr>
+            <td>
+            </td>
+            @foreach($league->teams as $team)
+            @php
+            $data=\App\Models\LeagueRound::where('team_id',$team->id)->get();
+            @endphp
+            <td>
+              <table class="table">
+                @foreach($data as $myteam)
+                <tr>
+                  <td>
+                    <div style="min-height:50px;align-item:2px">
+                      <p style="padding: 8px 10px 7px 0px; ">{{$myteam->round_number}}.{{$myteam->round_order}}</p>
+                    </div>
+                  </td>
+                </tr>
+                @endforeach
+                <tr style="background-color: black;color:white;">
+                  <td>
+                    <div>
+                      <p style="padding-top:20px;font-size:20px"><strong>{{count($data)}}</strong></p>
+                    </div>
+                  </td>
+                </tr>
+
+              </table>
+
+            </td>
+
+            @endforeach
+            <td></td>
+          </tr>
+        </tbody>
+
         @else
         <tbody class="tbl-bdy-clr">
           @foreach($league_rounds as $index => $rounds)
@@ -747,7 +823,7 @@ return (($a->round_order) < ($b->round_order));
                         <input id="editkeeperlistteamid" type="hidden" name="editkeeperlistteamid" placeholder="Enter Round number" ? />
                         <input type="hidden" id="oldroundunber">
                         <input type="hidden" id="oldplayerid">
-                        <input style="background:black;color:white;padding:9px;width: 120%" id="editkeeperlistround" type="text"  name="editkeeperlistround" placeholder="Enter Round number" />
+                        <input style="background:black;color:white;padding:9px;width: 120%" id="editkeeperlistround" type="text" name="editkeeperlistround" placeholder="Enter Round number" />
                       </div>
                     </div>
                   </div>

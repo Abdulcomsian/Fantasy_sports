@@ -31,22 +31,23 @@
     font-style: normal;
     font-display: swap;
 }
-table, th {
+table,
+th {
     border: 1px solid black;
 }
-.table{
+.table {
     border-collapse: collapse;
 }
 #countDownTimer,
-.onTheClock h3{
+.onTheClock h3 {
     font-size: 30px;
     font-weight: 700;
     color: #fff;
 }
-#countDownTimer{
+#countDownTimer {
     font: 700 40px "Neometric Bold" !important;
 }
-.city_name{
+.city_name {
     background: #000;
     text-align: center;
     padding: 10px;
@@ -57,21 +58,21 @@ table, th {
     height: 100%;
 }
 .city_name ul,
-.city_name .form-group{
+.city_name .form-group {
     margin: 0px;
 }
-.city_name .edit_revert{
+.city_name .edit_revert {
     margin-left: 50px;
 }
-.timer_box{
+.timer_box {
     padding: 50px 20px 30px;
     position: relative;
     left: -30px;
 }
-.city_charts{
+.city_charts {
     padding-bottom: 0px !important;
 }
-.onTheClock{
+.onTheClock {
     padding: 50px 70px 30px;
     text-align: left;
     color: #fff;
@@ -80,34 +81,34 @@ table, th {
     position: relative;
     right: -37px;
 }
-.tbl-bdy-clr td select{
+.tbl-bdy-clr td select {
     background: #b7b7b7;
-    padding:5px 6px 4px 10px;
+    padding: 5px 6px 4px 10px;
     width: 100%;
     text-indent: calc(50% - 23px);
     font-size: 12px !important;
     top: -3px;
     position: relative;
 }
-.team_info span:nth-child(1){
+.team_info span:nth-child(1) {
     font-size: 13px !important;
 }
-.team_info span:nth-child(3){
+.team_info span:nth-child(3) {
     font-size: 18px !important;
 }
-.team_info span:nth-child(2){
+.team_info span:nth-child(2) {
     font-size: 13px !important;
 }
 
-.btn_view button{
+.btn_view button {
     background-image: linear-gradient(to right, #000, #353535);
     border: none;
     padding: 5px 10px;
 }
-.btn_view button i{
+.btn_view button i {
     color: #fff;
 }
-.onTheClock .upNext{
+.onTheClock .upNext {
     font-weight: 600;
 }
 /* line 2, ../sass/app.scss */
@@ -289,8 +290,8 @@ a:hover {
 .create_league form .select_view .select_draft ul {
     margin: 0;
     /* display: flex; */
-    
-    text-align:center;
+
+    text-align: center;
 }
 /* line 138, ../sass/app.scss */
 .create_league form .select_view .select_draft ul li {
@@ -346,7 +347,7 @@ a:hover {
 .create_league form .select_view .select_draft.draft_round {
     margin-top: 30px;
 }
-.create_league form .select_view .draft-round{
+.create_league form .select_view .draft-round {
     padding-left: 30px;
 }
 /* line 184, ../sass/app.scss */
@@ -710,12 +711,12 @@ a:hover {
     margin-bottom: 12px;
 }
 /* line 505, ../sass/app.scss */
-.draft_boards .list_edit h4{
+.draft_boards .list_edit h4 {
     font: 500 24px "Neometric Medium";
     color: #fff;
     padding: 0px 0px 20px !important;
 }
-.draft_boards .list_edit h4 span{
+.draft_boards .list_edit h4 span {
     padding: 0;
 }
 /* .draft_boards .list_edit h4, */
@@ -1435,16 +1436,16 @@ a:hover {
     margin: 20px 0 40px;
     text-align: left;
 }
-.setting .inviteUrl{
+.setting .inviteUrl {
     background-image: linear-gradient(to right, #000, #353535);
     color: #fff;
     padding: 10px;
     font-family: "Neometric Medium";
 }
-.setting .inviteUrl p{
+.setting .inviteUrl p {
     font-size: 12px;
 }
-.setting .inviteUrl p>a{
+.setting .inviteUrl p > a {
     color: #fff;
     text-decoration: underline;
 }
@@ -1468,7 +1469,7 @@ a:hover {
 .setting .save button {
     padding: 13px 33px;
     width: 270px;
-    font-size:13px;
+    font-size: 13px;
 }
 /* line 1220, ../sass/app.scss */
 .setting .save button:before {
@@ -1686,9 +1687,7 @@ a:hover {
     color: #000;
 }
 /* line 1428, ../sass/app.scss */
-.time_duration
-    .form-group
-    input {
+.time_duration .form-group input {
     width: 60px;
     border: 1px solid #000;
     padding: 0px 14px;
@@ -1696,9 +1695,7 @@ a:hover {
 }
 /* line 1434, ../sass/app.scss */
 
-    .time_duration
-    .form-group
-    span {
+.time_duration .form-group span {
     font: 500 15px "Neometric Medium";
     color: #000;
     background-color: transparent;
@@ -1706,20 +1703,17 @@ a:hover {
 }
 /* line 1441, ../sass/app.scss */
 
-    .time_duration.time_on {
+.time_duration.time_on {
     display: block;
 }
 /* line 1444, ../sass/app.scss */
 
-    .time_duration
-    .btn_submit {
+.time_duration .btn_submit {
     text-align: center;
 }
 /* line 1446, ../sass/app.scss */
 
-    .time_duration
-    .btn_submit
-    button {
+.time_duration .btn_submit button {
     background-color: #f40007;
     font: 500 18px "Neometric Medium";
     color: #fff;
@@ -1797,10 +1791,10 @@ a:hover {
     text-transform: uppercase;
     color: #fff;
 }
-.swal-overlay{
+.swal-overlay {
     z-index: 99999999999999999999999999999;
 }
-.fixedBanner{
+.fixedBanner {
     padding: 20px 0px 0px;
     position: fixed;
     top: 0;
@@ -2441,7 +2435,7 @@ label#joiner_key-error {
     }
 }
 @media (max-width: 1112px) {
-    .create_league form .select_view .select_draft.draft_round ul li button{
+    .create_league form .select_view .select_draft.draft_round ul li button {
         padding: 23px 14px;
     }
     /* line 310, ../sass/_screen.scss */
@@ -2514,18 +2508,18 @@ label#joiner_key-error {
     }
 }
 @media (max-width: 992px) {
-    .create_league form .select_view:before{
+    .create_league form .select_view:before {
         height: 300px;
     }
-    .create_league form .select_view .select_draft ul{
+    .create_league form .select_view .select_draft ul {
         display: initial;
     }
-    #banner .multi-div .contact-box{
+    #banner .multi-div .contact-box {
         text-align: center;
     }
     .create_league form .select_view .select_draft ul li,
     .create_league form .select_view .select_draft ul li select,
-    .create_league form .select_view .select_draft ul li button{
+    .create_league form .select_view .select_draft ul li button {
         width: 100%;
     }
     .create_league form .select_view .select_draft ul,
@@ -2747,17 +2741,17 @@ label#joiner_key-error {
     }
 }
 @media (max-width: 768px) {
-    #side-nav .side-nav-content button{
+    #side-nav .side-nav-content button {
         display: block !important;
     }
-    .leave-your-message .form-div{
+    .leave-your-message .form-div {
         max-width: 100% !important;
     }
     .our-sponsors img,
-    #banner .multi-div .contact-box{
+    #banner .multi-div .contact-box {
         margin-bottom: 50px;
     }
-    #banner .underline{
+    #banner .underline {
         max-width: 94px;
         margin: auto !important;
         margin-top: 20px !important;
@@ -2767,21 +2761,21 @@ label#joiner_key-error {
     #banner .title,
     #banner .story-div,
     #banner .title-span,
-    #banner{
+    #banner {
         text-align: center;
     }
-    .the_lottery .draft_lottery_board{
+    .the_lottery .draft_lottery_board {
         margin-left: 0px;
     }
-    .draft_boards .draft_lottery_board .draft_setting h3{
+    .draft_boards .draft_lottery_board .draft_setting h3 {
         width: 100%;
     }
-    #side-nav{
+    #side-nav {
         background-image: linear-gradient(to right, #000, #353535);
         width: 375px;
         height: 100vh;
     }
-    .season_fall .openBtn{
+    .season_fall .openBtn {
         position: relative !important;
         top: -18px !important;
         z-index: 0 !important;
@@ -3492,18 +3486,16 @@ select.lg-size {
     padding: 20px;
     margin-top: 13px;
     text-align: center;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .forget-pasw a {
-    
     font: 300 12px "Neometric";
     color: #fff;
-    
 }
-.forget-pasw a button{
+.forget-pasw a button {
     padding: 0px 17px;
     background-image: linear-gradient(to right, #000, #353535) !important;
     border: 1px solid #fff;
@@ -3570,13 +3562,12 @@ select.lg-size {
     margin-bottom: 3px;
     padding-bottom: 2px;
     color: white;
-    background-color: #2B2B2B;
+    background-color: #2b2b2b;
     padding-top: 4px;
 }
 
-
 /***************** New - CSS *********************/
-#side-nav{
+#side-nav {
     position: fixed;
     width: 350px;
     left: 0;
@@ -3584,16 +3575,15 @@ select.lg-size {
     height: 100%;
     z-index: 99999999999999999999999999999999;
     display: none;
-    transition: display .6s ease;
-    
+    transition: display 0.6s ease;
 }
-#side-nav .side-nav-content{
+#side-nav .side-nav-content {
     padding: 150px 0px 0px;
     position: relative;
     background: #313131ee;
-    opacity: .8;
+    opacity: 0.8;
 }
-.season_fall .openBtn{
+.season_fall .openBtn {
     position: fixed;
     left: 30px;
     top: 50px;
@@ -3604,7 +3594,7 @@ select.lg-size {
     font-size: 20px;
     z-index: 99999999;
 }
-#side-nav .side-nav-content button{
+#side-nav .side-nav-content button {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -3619,19 +3609,19 @@ select.lg-size {
     padding: 0px;
     list-style: none;
 }
-#side-nav .side-nav-content ul li{
+#side-nav .side-nav-content ul li {
     padding: 15px 20px;
 }
-#side-nav .side-nav-content ul li>a{
+#side-nav .side-nav-content ul li > a {
     color: #fff;
     font-family: "Neometric Medium";
 }
 /************** Contact - Us - CSS ******************/
-#banner{
+#banner {
     padding: 0px 0px 100px;
     font-family: "Neometric Medium";
 }
-.about-us-banner{
+.about-us-banner {
     background-image: url("../images/MicrosoftTeams-image.png");
     padding: 100px 0px;
     height: 350px;
@@ -3639,73 +3629,73 @@ select.lg-size {
     background-repeat: no-repeat;
     background-position: center;
 }
-#banner .title{
+#banner .title {
     font-size: 60px;
     font-weight: 700;
     color: #fff;
     margin-top: 80px;
 }
-#banner .title-span{
+#banner .title-span {
     font-size: 20px;
     color: #fff;
     font-style: italic;
 }
-#banner .multi-div{
+#banner .multi-div {
     margin: 100px 0px;
     font-family: "Neometric Medium";
 }
-#banner .multi-div .contact-box{
+#banner .multi-div .contact-box {
     color: #fff;
     padding: 15px;
 }
-#banner .multi-div .contact-box i{
+#banner .multi-div .contact-box i {
     font-size: 35px;
 }
-#banner .multi-div .contact-box h5{
+#banner .multi-div .contact-box h5 {
     margin: 40px 0px 30px;
     font-size: 25px;
     font-weight: 700;
 }
-#banner .multi-div .contact-box p{
+#banner .multi-div .contact-box p {
     margin-bottom: 30px;
 }
-#banner .multi-div .contact-box a{
+#banner .multi-div .contact-box a {
     color: #fff;
 }
-.leave-your-message{
+.leave-your-message {
     margin-top: 120px;
 }
 .leave-your-message h2,
-.our-sponsors h2{
+.our-sponsors h2 {
     text-align: center;
     font-size: 40px;
     color: #fff;
     font-weight: 700;
     font-family: "Neometric Medium";
 }
-.our-sponsors h2{
+.our-sponsors h2 {
     margin-bottom: 50px;
 }
-.leave-your-message p{
+.leave-your-message p {
     text-align: center;
     color: #fff;
     font-family: "Neometric Medium";
 }
-.leave-your-message .form-div{
+.leave-your-message .form-div {
     width: 100%;
     max-width: 60%;
     margin: auto;
     margin-top: 50px;
     font-family: "Neometric Medium";
 }
-.leave-your-message .form-div .inputDiv{
+.leave-your-message .form-div .inputDiv {
     margin-bottom: 20px;
 }
 .leave-your-message .form-div .inputDiv input,
-.leave-your-message .form-div .inputDiv textarea{
+.leave-your-message .form-div .inputDiv textarea {
     width: 100%;
 }
-.leave-your-message .form-div button{
+.leave-your-message .form-div button {
     width: 100%;
     padding: 10px;
     border: none;
@@ -3715,73 +3705,73 @@ select.lg-size {
     font-weight: 500;
     border-radius: 6px;
 }
-.leave-your-message .social-icon{
+.leave-your-message .social-icon {
     margin: 30px 0px;
     text-align: center;
 }
-.social-icon a{
+.social-icon a {
     color: #fff;
     margin-left: 25px;
 }
-#banner .story-div{
+#banner .story-div {
     margin: 80px 0px;
     color: #fff;
     font-family: "Neometric Medium";
 }
-#banner .underline{
+#banner .underline {
     width: 94px;
     height: 1px;
     background: #fff;
     margin: 25px 0;
 }
-.about-div .contact-box h5{
+.about-div .contact-box h5 {
     font-size: 16px !important;
 }
-.about-div .contact-box p{
+.about-div .contact-box p {
     font-size: 14px !important;
 }
-.about-div .contact-box a{
+.about-div .contact-box a {
     font-size: 12px !important;
 }
-.multi-div{
+.multi-div {
     margin: 50px 0px;
 }
-.multi-div .img-div img{
+.multi-div .img-div img {
     width: 100%;
 }
-.multi-div p{
+.multi-div p {
     margin-bottom: 20px;
     color: #fff;
 }
 .multi-div .col-lg-6 {
     padding: 0px;
 }
-.multi-div .about-content{
+.multi-div .about-content {
     padding: 23px 20px 0px;
 }
-.our-sponsors .description-div{
+.our-sponsors .description-div {
     padding: 20px 0px;
 }
-.our-sponsors .description-div h3{
+.our-sponsors .description-div h3 {
     font-size: 20px;
     font-weight: 600;
     color: #fff;
 }
-.our-sponsors .description-div p{
+.our-sponsors .description-div p {
     font-size: 16px;
     color: #fff;
 }
-.overlay{
+.overlay {
     background: #000;
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    opacity: .5;
+    opacity: 0.5;
     z-index: -1;
 }
-.openBtn{
+.openBtn {
     position: absolute;
     top: 18px;
     left: 50px;
@@ -3792,31 +3782,35 @@ select.lg-size {
     font-size: 26px;
     z-index: 99999999;
 }
-#updateLeague.draftFrom{
+#updateLeague.draftFrom {
     display: flex;
     width: 100%;
 }
-#updateLeague.draftFrom h4{
+#updateLeague.draftFrom h4 {
     color: #fff;
     font-size: 18px;
 }
-#updateLeague.draftFrom .list_edit{
+#updateLeague.draftFrom .list_edit {
     width: 50%;
 }
 
-
-#teamselect{border:0px !important;}
-
-#teamselect  {
-	appearance: none;font-size: 16px;
+#teamselect {
+    border: 0px !important;
 }
-#teamselect  option{font-size:14px;}
-table {
-    table-layout: fixed ;
-    width: 100% ;
-  }
 
-.dropbtn i{
+#teamselect {
+    appearance: none;
+    font-size: 16px;
+}
+#teamselect option {
+    font-size: 14px;
+}
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.dropbtn i {
     position: absolute;
     right: 10px;
     top: 15px;
@@ -3830,83 +3824,87 @@ table {
     padding: 13px 33px;
     text-align: center;
     margin: 0 auto 20px;
-  }
-  
-  .dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
-  }
-  
-  .dropdown {
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #2980b9;
+}
+
+.dropdown {
     position: relative;
     display: inline-block;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
     background-image: linear-gradient(to right, #000, #353535);
     min-width: 160px;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-  }
-  
-  .dropdown-content a {
+}
+
+.dropdown-content a {
     color: #fff;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
-  
-  .dropdown a:hover {background-color: #ddd;}
-  .team_info a{
-      display: none;
-  }
-  .team_info:hover a{
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+.team_info a {
+    display: none;
+}
+.team_info:hover a {
     display: block;
     position: absolute;
     text-align: center;
     left: 70px;
-  }
-  .show {display: block;}
-  .dropDownDiv{
-      background-color: #000;
-      padding: 34px;
-      text-align: right;
-      display: none;
-      width: 100%;
+}
+.show {
+    display: block;
+}
+.dropDownDiv {
+    background-color: #000;
+    padding: 34px;
+    text-align: right;
+    display: none;
+    width: 100%;
     max-width: 60%;
     margin: auto;
-
-  }
-  .select2-container{
-      z-index: 99999999;
-  }
-  .city_name h3{
+}
+.select2-container {
+    z-index: 99999999;
+}
+.city_name h3 {
     font-size: 45px;
     /* position: relative;
     top: -30px; */
-  }
-  .dropDownDiv .list-inline,
-  .dropDownDiv .form-group{
-      margin-bottom: 0px;
-  }
-  .dropDownDiv .list-inline{
+}
+.dropDownDiv .list-inline,
+.dropDownDiv .form-group {
+    margin-bottom: 0px;
+}
+.dropDownDiv .list-inline {
     position: relative;
-  }
-  .dropDownDiv input{
+}
+.dropDownDiv input {
     padding: 10px 20px;
-  }
-  .city_board_table .table tbody tr td{
-      padding: 0px;
-      overflow: hidden;
-  }
-  .city_board_table .table tbody tr td .team_info{
-      padding: 0px 10px;
-      position: relative;
-      top: -10px;
-  }
-  .draftButton{
+}
+.city_board_table .table tbody tr td {
+    padding: 0px;
+    overflow: hidden;
+}
+.city_board_table .table tbody tr td .team_info {
+    padding: 0px 10px;
+    position: relative;
+    top: -10px;
+}
+.draftButton {
     background-image: linear-gradient(to right, #000, #353535);
     font: 700 18px "Neometric";
     color: #fff;
@@ -3914,60 +3912,57 @@ table {
     padding: 13px 33px;
     text-align: center;
     margin-left: 20px;
-  }
-  .select2-container--open .select2-dropdown{
-      top: -60px;
-      height: 62px;
-  }
-  #project-label {
+}
+.select2-container--open .select2-dropdown {
+    top: -60px;
+    height: 62px;
+}
+#project-label {
     display: block;
     font-weight: bold;
     margin-bottom: 1em;
- }
- #project-icon {
+}
+#project-icon {
     float: left;
     height: 32px;
     width: 32px;
- }
- #project-description {
+}
+#project-description {
     margin: 0;
     padding: 0;
- }
- #project{
+}
+#project {
     width: 100%;
     padding: 10px 20px;
- }
- .list-inline-item.draftPlayerLi{
-     width: 100%;
- }
+}
+.list-inline-item.draftPlayerLi {
+    width: 100%;
+}
 
-
-
-
- .autocomplete {
+.autocomplete {
     position: relative;
     display: inline-block;
-  }
-  
-  input {
+}
+
+input {
     border: 1px solid transparent;
     background-color: #f1f1f1;
     padding: 10px;
     font-size: 16px;
-  }
-  
-  input[type=text] {
+}
+
+input[type="text"] {
     background-color: #f1f1f1;
     width: 100%;
-  }
-  
-  input[type=submit] {
+}
+
+input[type="submit"] {
     background-color: DodgerBlue;
     color: #fff;
     cursor: pointer;
-  }
-  
-  .autocomplete-items {
+}
+
+.autocomplete-items {
     position: absolute;
     border: 1px solid #d4d4d4;
     border-bottom: none;
@@ -3978,57 +3973,60 @@ table {
     right: 0;
     right: 162px;
     width: 232px;
-  }
-  #myInput2autocomplete-list div{
-      text-align: left;
-  }
-  .modal-body #myInputautocomplete-list{
-      width: 100%;
-      right: 0;
-  }
-  .autocomplete-items div {
+}
+#myInput2autocomplete-list div {
+    text-align: left;
+}
+.modal-body #myInputautocomplete-list {
+    width: 100%;
+    right: 0;
+}
+.autocomplete-items div {
     padding: 10px;
     cursor: pointer;
-    background-color: #fff; 
-    border-bottom: 1px solid #d4d4d4; 
-  }
-  
-  /*when hovering an item:*/
-  .autocomplete-items div:hover {
-    background-color: #e9e9e9; 
-  }
-  
-  /*when navigating through the items using the arrow keys:*/
-  .autocomplete-active {
-    background-color: DodgerBlue !important; 
-    color: #ffffff; 
-  }
-  .dropDownDiv .select_draft .form-group{
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+    background-color: #e9e9e9;
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+.dropDownDiv .select_draft .form-group {
     display: flex;
     justify-content: center;
     position: relative;
-  }
-  .dropDownDiv #myInput2{
-      width: auto;
-      margin-right: 30px;
-  }
-  .multiDiv,
-  .league-div{
-      background-color: #000;
-  }
-  .multiDiv{
-      padding: 0px 30px;
-  }
-  .edit_revert #myInputautocomplete-list{
+}
+.dropDownDiv #myInput2 {
+    width: auto;
+    margin-right: 30px;
+}
+.multiDiv,
+.league-div {
+    background-color: #000;
+}
+.multiDiv {
+    padding: 0px 30px;
+}
+.edit_revert #myInputautocomplete-list {
     right: auto !important;
     left: 0px !important;
-  } 
-  .edit_revert .autocomplete-items div{
-      text-align: left !important;
-  }
-  .modal-dialog .autocomplete-items{
+}
+.edit_revert .autocomplete-items div {
+    text-align: left !important;
+}
+.modal-dialog .autocomplete-items {
     top: 60% !important;
     right: 0 !important;
     left: 16px !important;
-  }
+}
 
+.tbl-bdy-clr td table {
+    margin: 0px !important;
+}
