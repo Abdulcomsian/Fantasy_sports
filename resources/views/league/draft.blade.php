@@ -554,122 +554,134 @@ return (($a->round_order) < ($b->round_order));
           <tr>
             <td>
             </td>
+            @php
+            $max=0;
+            @endphp
+            @foreach($league->teams as $team)
+            @php
+            $mydata=\App\Models\LeagueRound::where('team_id',$team->id)->count();
+            if($mydata>$max)
+            {
+            $max=$mydata;
+            }
+            @endphp
+            @endforeach
             @foreach($league->teams as $team)
             @php
             $data=\App\Models\LeagueRound::where('team_id',$team->id)->get();
             @endphp
             <td>
               <table class="table">
-                @foreach($data as $myteam)
-                <tr>
+                @php
+                for($i=0;$i<$max;$i++) { @endphp <tr>
                   <td>
                     <div style="min-height:50px;align-item:2px">
-                      <p style="padding: 8px 10px 7px 0px; ">{{$myteam->round_number}}.{{$myteam->round_order}}</p>
+                      <p style="padding: 8px 10px 7px 0px; ">{{$data[$i]->round_number ?? ''}}.{{$data[$i]->round_order ?? ''}}</p>
                     </div>
                   </td>
-                </tr>
-                @endforeach
-                <tr style="background-color: black;color:white;">
-                  <td>
-                    <div>
-                      <p style="padding-top:20px;font-size:20px"><strong>{{count($data)}}</strong></p>
-                    </div>
-                  </td>
-                </tr>
-
-              </table>
-
-            </td>
-
-            @endforeach
-            <td></td>
           </tr>
-        </tbody>
+          @php } @endphp
+          <tr style="background-color: black;color:white;z-index:99999;">
+            <td>
+              <div>
+                <p style="padding-top:20px;font-size:20px"><strong>{{count($data)}}</strong></p>
+              </div>
+            </td>
+          </tr>
 
-        @else
-        <tbody class="tbl-bdy-clr">
-          @foreach($league_rounds as $index => $rounds)
-          @php
-          if($index%2 == 0 && $league->draft_type == 'snake'){
-          $leftArrow = '<i class="fa fa-angle-left"></i>';
-          $rightArrow = '';
-          usort($rounds, "compare2");
-          }else{
-          $rightArrow = '<i class="fa fa-angle-right"></i>';
-          $leftArrow = '';
-          usort($rounds, "compare1");
-          }
+      </table>
+      <br>
+      </td>
+
+      @endforeach
+      <td></td>
+      </tr>
+      </tbody>
+
+      @else
+      <tbody class="tbl-bdy-clr">
+        @foreach($league_rounds as $index => $rounds)
+        @php
+        if($index%2 == 0 && $league->draft_type == 'snake'){
+        $leftArrow = '<i class="fa fa-angle-left"></i>';
+        $rightArrow = '';
+        usort($rounds, "compare2");
+        }else{
+        $rightArrow = '<i class="fa fa-angle-right"></i>';
+        $leftArrow = '';
+        usort($rounds, "compare1");
+        }
 
 
-          @endphp
+        @endphp
 
-          <tr>
-            <td>{!! $rightArrow !!}</td>
-            <!-- <td>{{ $index }}</td> -->
-            @foreach($rounds as $round)
-            <td data-round_id="{{ $round->id }}" data-team_order="{{ $round->team->team_order }}" data-default_order="{{ $index.'.'.$round->default_order }}">
+        <tr>
+          <td>{!! $rightArrow !!}</td>
+          <!-- <td>{{ $index }}</td> -->
+          @foreach($rounds as $round)
+          <td data-round_id="{{ $round->id }}" data-team_order="{{ $round->team->team_order }}" data-default_order="{{ $index.'.'.$round->default_order }}">
+            @php
+
+            $class='';
+            if(isset($teamid))
+            {
+            if($teamid->round_number ==$round->round_number && $teamid->round_order==$round->round_order && $league->status != 'keeper')
+            {
+            $class='circle';
+            }
+            }
+
+            @endphp
+            <div style="min-height:140px;" class="{{$class}}">
               @php
-
-              $class='';
-              if(isset($teamid))
+              if((int)$round->team_id != (int)$round->old_team_id)
               {
-              if($teamid->round_number ==$round->round_number && $teamid->round_order==$round->round_order && $league->status != 'keeper')
+              $background="background:red";
+              }else
               {
-              $class='circle';
+              $background="background:#b7b7b7";
               }
-              }
-
               @endphp
-              <div style="min-height:140px;" class="{{$class}}">
-                @php
-                if((int)$round->team_id != (int)$round->old_team_id)
-                {
-                $background="background:red";
-                }else
-                {
-                $background="background:#b7b7b7";
-                }
-                @endphp
 
-                <select style="{{$background}};padding: 8px 10px 7px 0px; " id="teamselect" name="teamselect">
-                  @foreach($league->teams as $team)
-                  <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->default_order}}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
-                    @endforeach
-                </select><br>
-                @if(isset($round->player) && isset($round->player->first_name))
-                <!-- <span class="indraft_team_name">{{$round->team->team_name}}</span> -->
+              <select style="{{$background}};padding: 8px 10px 7px 0px; " id="teamselect" name="teamselect">
+                @foreach($league->teams as $team)
+                <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->default_order}}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
+                  @endforeach
+              </select><br>
+              @if(isset($round->player) && isset($round->player->first_name))
+              <!-- <span class="indraft_team_name">{{$round->team->team_name}}</span> -->
 
-                <!-- <select style="    background: #b7b7b7;padding: 8px 10px 7px 0px; width:80%;" id="teamselect" name="teamselect">
+              <!-- <select style="    background: #b7b7b7;padding: 8px 10px 7px 0px; width:80%;" id="teamselect" name="teamselect">
                   @foreach($league->teams as $team)
                     <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                   @endforeach 
               </select><br> -->
-                <span style="font-size:13px;float: left;padding: 5px;">{{$round->player->position }}</span> <span style="float: right;padding: 5px;font-size:13px;">{{ $round->player->team}}</span><br>
-                <div class="team_info">
-                  <a href="javascript:void(0)" data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></a><br>
-                  <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
-                  <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
-                  <span style="font-weight:bold;font-size:22px;">{{ $round->player->last_name}}</span><br>
-                  <span>{{ $index.'.'.$round->default_order }}</span>
-                </div>
-
-                @else
-                <span class="indraft_team_name" style="display: none">{{$round->team->team_name}}</span>
+              <span style="font-size:13px;float: left;padding: 5px;">{{$round->player->position }}</span> <span style="float: right;padding: 5px;font-size:13px;">{{ $round->player->team}}</span><br>
+              <div class="team_info">
+                <a href="javascript:void(0)" data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></a><br>
+                <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
+                <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
+                <span style="font-weight:bold;font-size:22px;">{{ $round->player->last_name}}</span><br>
                 <span>{{ $index.'.'.$round->default_order }}</span>
-                @endif
+              </div>
 
-                @if((!isset($round->player) || !isset($round->player->last_name)) && $league->status == 'keeper')
-                <br>
-                <a href="javascript:void(0)" round-number='{{$index}}' round-order='{{$round->default_order}}' class="addKeeper"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                @endif
-            </td>
-            @endforeach
-            <!-- <td>{{ $index }}</td> -->
-            <td>{!! $leftArrow !!}</td>
-          </tr>
+              @else
+              <span class="indraft_team_name" style="display: none">{{$round->team->team_name}}</span>
+              <span>{{ $index.'.'.$round->default_order }}</span>
+              @endif
+
+              @if((!isset($round->player) || !isset($round->player->last_name)) && $league->status == 'keeper')
+              <br>
+              <a href="javascript:void(0)" round-number='{{$index}}' round-order='{{$round->default_order}}' class="addKeeper"><i class="fa fa-plus" aria-hidden="true"></i></a>
+              @endif
+          </td>
           @endforeach
-        </tbody>
-        @endif
+          <!-- <td>{{ $index }}</td> -->
+          <td>{!! $leftArrow !!}</td>
+        </tr>
+        @endforeach
+      </tbody>
+      @endif
       </table>
     </div>
   </div>
