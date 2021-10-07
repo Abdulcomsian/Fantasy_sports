@@ -1826,6 +1826,17 @@ a:hover {
     text-align: center;
     font: 500 13px "Neometric Medium";
 }
+.city_board_table .table tbody .customeTable tr td {
+    text-align: center;
+    font: 500 13px "Neometric Medium";
+    background-color: #000;
+}
+.city_board_table .table tbody.customeTable tr td{
+    background-color: #000;
+}
+.city_board_table .table tbody.customeTable tr td table td{
+    background-color: #fff;
+}
 /* line 1557, ../sass/app.scss */
 .city_board_table .table tbody tr td.red {
     background-color: #f40007;

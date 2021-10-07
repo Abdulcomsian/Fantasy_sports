@@ -469,7 +469,7 @@ return (($a->round_order) < ($b->round_order));
       <table class="table" style="table-layout:fixed;">
         <thead class="thead-dark">
           <tr style="height:1em; ">
-            <th style="overflow:hidden;white-space:nowrap;  width:20px"></th>
+            <th style="overflow:hidden;white-space:nowrap;  width:85px"></th>
             <!-- <th style="width:80px"><span>Round</span></th> -->
             @foreach($league->teams as $team)
             <th style="overflow:hidden;white-space:nowrap;  width: 150px;">{{ $team->team_name }}</th>
@@ -506,7 +506,7 @@ return (($a->round_order) < ($b->round_order));
           </tr>
         </tbody>
         @elseif(isset($_GET['type']) && $_GET['type']=="collapseview")
-        <tbody class="tbl-bdy-clr">
+        <tbody class="tbl-bdy-clr collpaseTable">
           @foreach($league_rounds as $index => $rounds)
           @php
           if($index%2 == 0 && $league->draft_type == 'snake'){
@@ -536,7 +536,7 @@ return (($a->round_order) < ($b->round_order));
             }
             @endphp
             <td data-round_id="{{ $round->id }}" data-team_order="{{ $round->team->team_order }}" data-default_order="{{ $index.'.'.$round->default_order }}">
-              <div style="min-height:140px;">
+              <div >
                 @foreach($league->teams as $team)
                 @if($team->id == $round->team->id)
                 <p style="{{$background}};padding: 8px 10px 7px 0px; ">{{ $team->team_name }}</p>
@@ -550,10 +550,11 @@ return (($a->round_order) < ($b->round_order));
           @endforeach
         </tbody>
         @elseif(isset($_GET['type']) && $_GET['type']=="pickview")
-        <tbody class="tbl-bdy-clr">
+        <tbody class="tbl-bdy-clr customeTable">
           <tr>
-            <td>
-              Draft pick
+            <td style="background: #000;color: #fff;vertical-align: middle;position:relative;">
+              <p style="transform: rotate(-90deg);font-size: 30px;font-weight: 700;">Draft pick</p> 
+              <p style="position: absolute;bottom: 25px;left: 8px;">Total Picks</p>
             </td>
             @php
             $max=0;
@@ -583,7 +584,7 @@ return (($a->round_order) < ($b->round_order));
           </tr>
           @php } @endphp
           <tr style="background-color: black;color:white;z-index:99999;">
-            <td>
+            <td style="background-color: black;">
               <div>
                 <p style="padding-top:20px;font-size:20px"><strong>{{count($data)}}</strong></p>
               </div>
@@ -595,7 +596,7 @@ return (($a->round_order) < ($b->round_order));
       </td>
 
       @endforeach
-      <td></td>
+      <td>asdas</td>
       </tr>
       </tbody>
 
