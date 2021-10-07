@@ -1834,6 +1834,9 @@ a:hover {
 .city_board_table .table tbody.customeTable tr td{
     background-color: #000;
 }
+.city_board_table .table .collpaseTable tr td p{
+    margin: 0px !important;
+}
 .city_board_table .table tbody.customeTable tr td table td{
     background-color: #fff;
 }
