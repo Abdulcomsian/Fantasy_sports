@@ -553,6 +553,7 @@ return (($a->round_order) < ($b->round_order));
         <tbody class="tbl-bdy-clr">
           <tr>
             <td>
+              Draft pick
             </td>
             @php
             $max=0;
