@@ -577,8 +577,8 @@ return (($a->round_order) < ($b->round_order));
                 @php
                 for($i=0;$i<$max;$i++) { @endphp <tr>
                   <td>
-                    <div style="min-height:50px;align-item:2px">
-                      <p style="padding: 8px 10px 7px 0px; ">{{$data[$i]->round_number ?? ''}}.{{$data[$i]->round_order ?? ''}}</p>
+                    <div style="align-item:2px">
+                      <p style="margin:0px;">{{$data[$i]->round_number ?? ''}}.{{$data[$i]->round_order ?? ''}}</p>
                     </div>
                   </td>
           </tr>
