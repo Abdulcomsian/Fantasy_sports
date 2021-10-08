@@ -518,10 +518,7 @@ return (($a->round_order) < ($b->round_order));
           $leftArrow = '';
           usort($rounds, "compare1");
           }
-
-
           @endphp
-
           <tr>
             <td>{!! $rightArrow !!}</td>
             <!-- <td>{{ $index }}</td> -->
@@ -536,12 +533,12 @@ return (($a->round_order) < ($b->round_order));
             }
             @endphp
             <td data-round_id="{{ $round->id }}" data-team_order="{{ $round->team->team_order }}" data-default_order="{{ $index.'.'.$round->default_order }}">
-              <div >
-                @foreach($league->teams as $team)
-                @if($team->id == $round->team->id)
-                <p style="{{$background}};padding: 8px 10px 7px 0px; ">{{ $team->team_name }}</p>
-                @endif
-                @endforeach
+              <div>
+                <select style="{{$background}};padding: 8px 10px 7px 0px; " data-view="collapse" id="teamselect" class="teamselect" name="teamselect">
+                  @foreach($league->teams as $team)
+                  <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->default_order}}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
+                    @endforeach
+                </select>
             </td>
             @endforeach
             <!-- <td>{{ $index }}</td> -->
@@ -553,7 +550,7 @@ return (($a->round_order) < ($b->round_order));
         <tbody class="tbl-bdy-clr customeTable">
           <tr>
             <td style="background: #000;color: #fff;vertical-align: middle;position:relative;">
-              <p style="transform: rotate(-90deg);font-size: 30px;font-weight: 700;">Draft pick</p> 
+              <p style="transform: rotate(-90deg);font-size: 30px;font-weight: 700;">Draft pick</p>
               <p style="position: absolute;bottom: 25px;left: 8px;">Total Picks</p>
             </td>
             @php
@@ -594,12 +591,10 @@ return (($a->round_order) < ($b->round_order));
       </table>
       <br>
       </td>
-
       @endforeach
       <td>asdas</td>
       </tr>
       </tbody>
-
       @else
       <tbody class="tbl-bdy-clr">
         @foreach($league_rounds as $index => $rounds)
@@ -613,17 +608,13 @@ return (($a->round_order) < ($b->round_order));
         $leftArrow = '';
         usort($rounds, "compare1");
         }
-
-
         @endphp
-
         <tr>
           <td>{!! $rightArrow !!}</td>
           <!-- <td>{{ $index }}</td> -->
           @foreach($rounds as $round)
           <td data-round_id="{{ $round->id }}" data-team_order="{{ $round->team->team_order }}" data-default_order="{{ $index.'.'.$round->default_order }}">
             @php
-
             $class='';
             if(isset($teamid))
             {
@@ -645,7 +636,7 @@ return (($a->round_order) < ($b->round_order));
               }
               @endphp
 
-              <select style="{{$background}};padding: 8px 10px 7px 0px; " id="teamselect" name="teamselect">
+              <select style="{{$background}};padding: 8px 10px 7px 0px; " data-view="draft" id="teamselect" class="teamselect" name="teamselect">
                 @foreach($league->teams as $team)
                 <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->default_order}}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                   @endforeach
@@ -824,7 +815,7 @@ return (($a->round_order) < ($b->round_order));
               <div class="edit_revert">
                 <div class="select_draft draft_round">
                   <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span style="background:black;color:white;padding:12px;" class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
@@ -834,10 +825,17 @@ return (($a->round_order) < ($b->round_order));
                     </div>
                     <div class="col-md-2">
                       <div class="form-group drft-plr">
-                        <input id="editkeeperlistteamid" type="hidden" name="editkeeperlistteamid" placeholder="Enter Round number" ? />
+                        <input id="editkeeperlistteamid" type="hidden" name="editkeeperlistteamid" placeholder="Enter Round number" />
                         <input type="hidden" id="oldroundunber">
                         <input type="hidden" id="oldplayerid">
-                        <input style="background:black;color:white;padding:9px;width: 120%" id="editkeeperlistround" type="text" name="editkeeperlistround" placeholder="Enter Round number" />
+                        <input style="background:black;color:white;padding:9px;width: 120%" id="editkeeperlistround" type="number" name="editkeeperlistround" placeholder="Enter Round number" />
+
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group" id="roundappend" style="color:white;background:gray;">
+
+
                       </div>
                     </div>
                   </div>
@@ -906,6 +904,27 @@ return (($a->round_order) < ($b->round_order));
     }
 
     function editkeeperlist(teamid, roundnumber, playername, playerid) {
+      //get posibble round order against round and team
+      $.ajax({
+        url: "/league/" + leagueId + "/get-round-order",
+        method: "POST",
+        data: {
+          roundnumber: roundnumber,
+          teamid: teamid
+        },
+        success: function(res) {
+          res = JSON.parse(res);
+          if (res.length > 1) {
+            list = '<select id="roundorder" class="form-control" style="width:120px;">';
+            for (i = 0; i < res.length; i++) {
+              list += '<option value=' + res[i].round_order + ' selected>' + res[i].round_order + '</option>';
+            }
+            list += '</select>';
+            $("#roundappend").html(list);
+          }
+        }
+      })
+
       $("#myInput4").val(playername);
       $("#oldplayerid").val(playerid);
       $("#editkeeperlistteamid").val(teamid);
@@ -955,6 +974,35 @@ return (($a->round_order) < ($b->round_order));
           });
         };
       });
+    })
+  </script>
+  <script>
+    $("#editkeeperlistround").change(function() {
+      roundnumber = $(this).val();
+      teamid = $("#editkeeperlistteamid").val();
+      //get posibble round order against round and team
+      $.ajax({
+        url: "/league/" + leagueId + "/get-round-order",
+        method: "POST",
+        data: {
+          roundnumber: roundnumber,
+          teamid: teamid
+        },
+        success: function(res) {
+          res = JSON.parse(res);
+          if (res.length > 1) {
+            list = '<select id="roundorder" class="form-control" style="width:120px;">';
+            for (i = 0; i < res.length; i++) {
+              list += '<option value=' + res[i].round_order + ' selected>' + res[i].round_order + '</option>';
+            }
+            list += '</select>';
+            $("#roundappend").html(list);
+          } else {
+            $("#roundorder").remove();
+          }
+        }
+      })
+
     })
   </script>
   @endsection

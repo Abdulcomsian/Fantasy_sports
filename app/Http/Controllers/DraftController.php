@@ -159,19 +159,38 @@ class DraftController extends Controller
 
     public function saveroundkeeperlist(Request $request, $leagueId)
     {
-        $leagueroundplayercheck = LeagueRound::where('round_number', $request->roundId)->where('team_id', $request->teamid)->first();
-        if ($leagueroundplayercheck->player_id == null) {
-            $res = LeagueRound::where('round_number', $request->roundId)->where('team_id', $request->teamid)->update(['player_id' => $request->playerId]);
-            if ($res) {
-                echo "success";
+
+        $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->where('player_id', NULL)->first();
+        if ($leagueroundplayercheck) {
+            if ($leagueroundplayercheck->player_id == null) {
+                $leagueroundplayercheck->player_id = $request->playerId;
+                if ($leagueroundplayercheck->save()) {
+                    echo "success";
+                } else {
+                    echo "error";
+                }
             } else {
-                echo "error";
+                echo "exist";
             }
         } else {
             echo "exist";
         }
     }
 
+    public function updateroundkeeperlist(Request $request, $leagueId)
+    {
+        if (isset($request->roundorder) && $request->roundorder != "") {
+            $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->where('round_order', $request->roundorder)->update([
+                'player_id' => $request->playerId
+            ]);
+            echo "success";
+        } else {
+            $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->update([
+                'player_id' => $request->playerId
+            ]);
+            echo "success";
+        }
+    }
     //save keeperlist
     public function savekeeperlist(Request $request, $leagueId)
     {
@@ -193,11 +212,11 @@ class DraftController extends Controller
         }
     }
     //remove keeper list
-    public function removekeeperlist(Request $request,$leagueId)
+    public function removekeeperlist(Request $request, $leagueId)
     {
+
         $record = KeeperList::where('team_id', $request->teamid)->where('league_id', $leagueId)->where('round_number', $request->round_number)->delete();
-        if($record)
-        {
+        if ($record) {
             echo "success";
         } else {
             echo "error";
@@ -303,5 +322,11 @@ class DraftController extends Controller
         // $player_id=$data[3];
         LeagueRound::where(['league_id' => $request->league_id, 'team_id' => $request->team_id, 'round_number' => $request->round_id, 'player_id' => $request->player_id])->update(['player_id' => NULL]);
         return $this->sendResponse(200, 'Player Removed Successfully.');
+    }
+
+    public function get_round_order(Request $request, $leagueId)
+    {
+        $get_round_order = LeagueRound::select('round_order')->where('league_id', $leagueId)->where('team_id', $request->teamid)->where('round_number', $request->roundnumber)->get();
+        echo json_encode($get_round_order);
     }
 }

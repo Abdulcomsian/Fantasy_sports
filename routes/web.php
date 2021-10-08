@@ -47,10 +47,12 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('{id}/draft/timer/save', 'DraftController@saveTimer');
 		Route::post('{id}/draft/timer/{type}', 'DraftController@timerSettings');
 		Route::post('{id}/saveroundkeeperlist', 'DraftController@saveroundkeeperlist');
+		Route::post('{id}/updateroundkeeperlist', 'DraftController@updateroundkeeperlist');
 		Route::post('{id}/savekeeperlist', 'DraftController@savekeeperlist');
-        Route::post('{id}/removekeeperlist', 'DraftController@removekeeperlist');
-        Route::get('{id}/updatekeeperlist', 'DraftController@updatekeeperlist');
-        Route::get('{id}/movekeeperlist','DraftController@movekeeperlist');
+		Route::post('{id}/removekeeperlist', 'DraftController@removekeeperlist');
+		Route::get('{id}/updatekeeperlist', 'DraftController@updatekeeperlist');
+		Route::get('{id}/movekeeperlist', 'DraftController@movekeeperlist');
+		Route::post('{id}/get-round-order', 'DraftController@get_round_order')->name("get-round-order");
 
 		//my new work obaid
 

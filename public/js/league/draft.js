@@ -107,7 +107,7 @@ $(function () {
             if (!val) {
                 val = $("#oldplayerid").val();
             }
-            savekeeperlist(
+            updatekeeperlist(
                 val,
                 $("#editkeeperlistround").val(),
                 $("#editkeeperlistteamid").val(),
@@ -158,7 +158,11 @@ $(function () {
             $.ajax({
                 url: "/league/" + leagueId + "/removekeeperlist",
                 method: "POST",
-                data: { id: val, teamid: teamid, round_number: round_number },
+                data: {
+                    id: val,
+                    teamid: teamid,
+                    round_number: round_number,
+                },
                 success: function (res) {
                     if (res == "success") {
                         document.getElementById("playerBeep").play();
@@ -187,16 +191,26 @@ $(function () {
         val = $(this).val();
     });
     //my work here obaid
-    $(document).on("change", "#teamselect", function () {
+    $(document).on("change", ".teamselect", function () {
         $teamdata = $(this).val();
+        view = $(this).attr("data-view");
         $.ajax({
             type: "get",
             url: "/changeTeam",
             data: { teamdata: $teamdata },
             success: function (response) {
                 //console.log(response);
-                window.location =
-                    "/league/" + $("input[name='league_id']").val() + "/draft";
+                if (view == "collapse") {
+                    window.location =
+                        "/league/" +
+                        $("input[name='league_id']").val() +
+                        "/draft?type=collapseview";
+                } else {
+                    window.location =
+                        "/league/" +
+                        $("input[name='league_id']").val() +
+                        "/draft";
+                }
             },
         });
     });
@@ -411,7 +425,7 @@ function savePick(playerId, roundId = 0, type = "draft") {
                                 response.data.nround_id +
                                 "']"
                         ).children()[0].innerHTML =
-                            '<select id="teamselect" name="teamselect" style="padding:9px 10px 8px 0px !important;">' +
+                            '<select id="teamselect" class="teamselect" name="teamselect" style="padding:9px 10px 8px 0px !important;">' +
                             team +
                             '</select><br><span style="font-size:13px;float: left;padding: 10px;">' +
                             position +
@@ -471,6 +485,10 @@ function savePick(playerId, roundId = 0, type = "draft") {
 }
 
 function savekeeperlist(playerId, roundId, teamid, leagueId) {
+    roundorder = $("#roundorder").val();
+    if (!roundorder) {
+        roundorder = "";
+    }
     if (playerId) {
         $.ajax({
             type: "POST",
@@ -479,6 +497,7 @@ function savekeeperlist(playerId, roundId, teamid, leagueId) {
                 playerId: playerId,
                 roundId: roundId,
                 teamid: teamid,
+                roundorder: roundorder,
             },
             success: function (response) {
                 if (response == "exist") {
@@ -494,7 +513,35 @@ function savekeeperlist(playerId, roundId, teamid, leagueId) {
         });
     }
 }
-
+function updatekeeperlist(playerId, roundId, teamid, leagueId) {
+    roundorder = $("#roundorder").val();
+    if (!roundorder) {
+        roundorder = "";
+    }
+    if (playerId) {
+        $.ajax({
+            type: "POST",
+            url: "/league/" + leagueId + "/updateroundkeeperlist",
+            data: {
+                playerId: playerId,
+                roundId: roundId,
+                teamid: teamid,
+                roundorder: roundorder,
+            },
+            success: function (response) {
+                if (response == "exist") {
+                    alert("Record already exist");
+                    return false;
+                } else if (response == "success") {
+                    document.getElementById("playerBeep").play();
+                } else {
+                    alert("something went Wrong");
+                    return false;
+                }
+            },
+        });
+    }
+}
 function confirmationDiv(lastPick) {
     var div = document.createElement("div");
     div.innerHTML =
@@ -1250,7 +1297,9 @@ $(".updatekeeperlistbutton").on("click", function () {
                 oldroundunber: oldroundunber,
             },
             success: function (res) {
-                if (res == "success") {
+                if (res == "exist") {
+                    alert("Record Already Exists");
+                } else if (res == "success") {
                     document.getElementById("playerBeep").play();
                     window.location =
                         "/league/" +
