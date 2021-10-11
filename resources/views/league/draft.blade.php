@@ -473,10 +473,21 @@ return (($a->round_order) < ($b->round_order));
             <!-- <th style="width:80px"><span>Round</span></th> -->
             @foreach($league->teams as $team)
             <th style="overflow:hidden;white-space:nowrap;  width: 150px;">{{ $team->team_name }}</th>
+
             @endforeach
             <!-- <th style="width:80px"><span>Round</span></th> -->
-            <th style="overflow:hidden;white-space:nowrap;  width:20px"></th>
+            <th style="overflow:hidden;white-space:nowrap;width:50px"></th>
           </tr>
+          <tr style="background:white;">
+            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;width:85px;text-align:center">Round</td>
+            <!-- <th style="width:80px"><span>Round</span></th> -->
+            @foreach($league->teams as $team)
+            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;width: 150px;text-align:center">{{ $loop->index+1 }}</td>
+            @endforeach
+            <!-- <th style="width:80px"><span>Round</span></th> -->
+            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;  width:40px;text-align:center">Round</td>
+          </tr>
+
         </thead>
         <!-- my new work for keeper list -->
         @if(isset($_GET['type']) && $_GET['type']=="keeperlist")
@@ -520,8 +531,8 @@ return (($a->round_order) < ($b->round_order));
           }
           @endphp
           <tr>
-            <td>{!! $rightArrow !!}</td>
-            <!-- <td>{{ $index }}</td> -->
+            <!-- <td>{!! $rightArrow !!}</td> -->
+            <td>{{ $index }}</td>
             @foreach($rounds as $round)
             @php
             if((int)$round->team_id != (int)$round->old_team_id)
@@ -541,8 +552,8 @@ return (($a->round_order) < ($b->round_order));
                 </select>
             </td>
             @endforeach
-            <!-- <td>{{ $index }}</td> -->
-            <td>{!! $leftArrow !!}</td>
+            <td>{{ $index }}</td>
+            <!-- <td>{!! $leftArrow !!}</td> -->
           </tr>
           @endforeach
         </tbody>
@@ -778,6 +789,7 @@ return (($a->round_order) < ($b->round_order));
                 <div class="select_draft draft_round">
                   <div class="row">
                     <div class="col-md-8">
+                      <label> </label>
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span style="background:black;color:white;padding:12px;" class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
@@ -786,6 +798,7 @@ return (($a->round_order) < ($b->round_order));
                       </div>
                     </div>
                     <div class="col-md-2">
+                      <label>Round</label>
                       <div class="form-group drft-plr">
                         <input id="keeperlistteamid" type="hidden" name="keeperlistteamid" placeholder="Enter Round number" ? />
                         <input style="background:black;color:white;padding:9px;text-align:center;width: 120%;" id="keeperlistround" type="number" name="keeperlistround" />
@@ -816,6 +829,7 @@ return (($a->round_order) < ($b->round_order));
                 <div class="select_draft draft_round">
                   <div class="row">
                     <div class="col-md-6">
+                      <label> </label>
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span style="background:black;color:white;padding:12px;" class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
@@ -825,6 +839,7 @@ return (($a->round_order) < ($b->round_order));
                     </div>
                     <div class="col-md-2">
                       <div class="form-group drft-plr">
+                        <label>Round</label>
                         <input id="editkeeperlistteamid" type="hidden" name="editkeeperlistteamid" placeholder="Enter Round number" />
                         <input type="hidden" id="oldroundunber">
                         <input type="hidden" id="oldplayerid">
@@ -833,7 +848,7 @@ return (($a->round_order) < ($b->round_order));
                       </div>
                     </div>
                     <div class="col-md-2">
-                      <div class="form-group" id="roundappend" style="color:white;background:gray;">
+                      <div class="form-group" id="roundappend">
 
 
                       </div>
@@ -915,7 +930,7 @@ return (($a->round_order) < ($b->round_order));
         success: function(res) {
           res = JSON.parse(res);
           if (res.length > 1) {
-            list = '<select id="roundorder" class="form-control" style="width:120px;">';
+            list = '<label>Pick</label><select id="roundorder" class="form-control" style="width:100px;background:black;color:white;padding:9px;height:44px">';
             for (i = 0; i < res.length; i++) {
               list += '<option value=' + res[i].round_order + ' selected>' + res[i].round_order + '</option>';
             }
