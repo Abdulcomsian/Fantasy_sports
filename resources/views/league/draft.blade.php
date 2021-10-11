@@ -478,16 +478,6 @@ return (($a->round_order) < ($b->round_order));
             <!-- <th style="width:80px"><span>Round</span></th> -->
             <th style="overflow:hidden;white-space:nowrap;width:50px"></th>
           </tr>
-          <tr style="background:white;">
-            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;width:85px;text-align:center">Round</td>
-            <!-- <th style="width:80px"><span>Round</span></th> -->
-            @foreach($league->teams as $team)
-            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;width: 150px;text-align:center">{{ $loop->index+1 }}</td>
-            @endforeach
-            <!-- <th style="width:80px"><span>Round</span></th> -->
-            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;  width:40px;text-align:center">Round</td>
-          </tr>
-
         </thead>
         <!-- my new work for keeper list -->
         @if(isset($_GET['type']) && $_GET['type']=="keeperlist")
@@ -518,6 +508,15 @@ return (($a->round_order) < ($b->round_order));
         </tbody>
         @elseif(isset($_GET['type']) && $_GET['type']=="collapseview")
         <tbody class="tbl-bdy-clr collpaseTable">
+          <tr style="background:white;">
+            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;width:85px;text-align:center">Round</td>
+            <!-- <th style="width:80px"><span>Round</span></th> -->
+            @foreach($league->teams as $team)
+            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;width: 150px;text-align:center">{{ $loop->index+1 }}</td>
+            @endforeach
+            <!-- <th style="width:80px"><span>Round</span></th> -->
+            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;  width:40px;text-align:center">Round</td>
+          </tr>
           @foreach($league_rounds as $index => $rounds)
           @php
           if($index%2 == 0 && $league->draft_type == 'snake'){
@@ -532,7 +531,7 @@ return (($a->round_order) < ($b->round_order));
           @endphp
           <tr>
             <!-- <td>{!! $rightArrow !!}</td> -->
-            <td>{{ $index }}</td>
+            <td>{!! $rightArrow !!} {{ $index }}</td>
             @foreach($rounds as $round)
             @php
             if((int)$round->team_id != (int)$round->old_team_id)
@@ -552,7 +551,7 @@ return (($a->round_order) < ($b->round_order));
                 </select>
             </td>
             @endforeach
-            <td>{{ $index }}</td>
+            <td>{{ $index }} {!! $leftArrow !!}</td>
             <!-- <td>{!! $leftArrow !!}</td> -->
           </tr>
           @endforeach
