@@ -1286,6 +1286,7 @@ $(".updatekeeperlistbutton").on("click", function () {
     teamid = $("#editkeeperlistteamid").val();
     round_number = $("#editkeeperlistround").val();
     oldroundunber = $("#oldroundunber").val();
+    oldplayerid = $("#oldplayerid").val();
     if (val != "") {
         $.ajax({
             url: "/league/" + leagueId + "/updatekeeperlist",
@@ -1295,6 +1296,7 @@ $(".updatekeeperlistbutton").on("click", function () {
                 teamid: teamid,
                 round_number: round_number,
                 oldroundunber: oldroundunber,
+                oldplayerid: oldplayerid,
             },
             success: function (res) {
                 if (res == "exist") {
