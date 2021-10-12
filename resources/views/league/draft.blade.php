@@ -469,8 +469,12 @@ return (($a->round_order) < ($b->round_order));
       <table class="table" style="table-layout:fixed;">
         <thead class="thead-dark">
           <tr style="height:1em; ">
-            <th style="overflow:hidden;white-space:nowrap;  width:85px"></th>
-            <!-- <th style="width:80px"><span>Round</span></th> -->
+            <th style="overflow:hidden;white-space:nowrap;  width:85px">
+            @if($_GET['type']=='collapseview')
+            Round
+            @endif
+            </th>
+            <!-- <th style="width:80px"><span></span></th> -->
             @foreach($league->teams as $team)
             <th style="overflow:hidden;white-space:nowrap;  width: 150px;">{{ $team->team_name }}           
             </th>
