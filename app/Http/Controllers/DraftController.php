@@ -195,21 +195,21 @@ class DraftController extends Controller
     public function savekeeperlist(Request $request, $leagueId)
     {
         // check if record alreay exist on that round against tem
-        $record = KeeperList::where('team_id', $request->teamid)->where('league_id', $leagueId)->where('round_number', $request->round_number)->first();
-        if ($record == null) {
-            $KeeperList = new KeeperList();
-            $KeeperList->team_id = $request->teamid;
-            $KeeperList->player_id = $request->id;
-            $KeeperList->league_id = $leagueId;
-            $KeeperList->round_number = $request->round_number;
-            if ($KeeperList->save()) {
-                echo "success";
-            } else {
-                echo "error";
-            }
+        // $record = KeeperList::where('team_id', $request->teamid)->where('league_id', $leagueId)->where('round_number', $request->round_number)->first();
+        // if ($record == null) {
+        $KeeperList = new KeeperList();
+        $KeeperList->team_id = $request->teamid;
+        $KeeperList->player_id = $request->id;
+        $KeeperList->league_id = $leagueId;
+        $KeeperList->round_number = $request->round_number;
+        if ($KeeperList->save()) {
+            echo "success";
         } else {
-            echo "exist";
+            echo "error";
         }
+        // } else {
+        //     echo "exist";
+        // }
     }
     //remove keeper list
     public function removekeeperlist(Request $request, $leagueId)
@@ -225,7 +225,7 @@ class DraftController extends Controller
     //update keeper list
     public function updatekeeperlist(Request $request, $leagueId)
     {
-        $record = KeeperList::where('team_id', $request->teamid)->where('league_id', $leagueId)->where('round_number', $request->oldroundunber)->first();
+        $record = KeeperList::where('team_id', $request->teamid)->where('player_id', $request->oldplayerid)->where('league_id', $leagueId)->where('round_number', $request->oldroundunber)->first();
         $record->player_id = $request->id;
         $record->round_number = $request->round_number;
         if ($record->save()) {

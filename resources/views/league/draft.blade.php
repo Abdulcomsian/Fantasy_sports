@@ -472,7 +472,7 @@ return (($a->round_order) < ($b->round_order));
             <th style="overflow:hidden;white-space:nowrap;  width:85px"></th>
             <!-- <th style="width:80px"><span>Round</span></th> -->
             @foreach($league->teams as $team)
-            <th style="overflow:hidden;white-space:nowrap;  width: 150px;">{{ $team->team_name }}</th>
+            <th style="overflow:hidden;white-space:nowrap;  width: 150px;">{{ $team->team_name }}<br><span style="font-size:10px">{{$loop->index+1}}</span></th>
 
             @endforeach
             <!-- <th style="width:80px"><span>Round</span></th> -->
@@ -508,15 +508,6 @@ return (($a->round_order) < ($b->round_order));
         </tbody>
         @elseif(isset($_GET['type']) && $_GET['type']=="collapseview")
         <tbody class="tbl-bdy-clr collpaseTable">
-          <tr style="background:white;">
-            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;width:85px;text-align:center">Round</td>
-            <!-- <th style="width:80px"><span>Round</span></th> -->
-            @foreach($league->teams as $team)
-            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;width: 150px;text-align:center">{{ $loop->index+1 }}</td>
-            @endforeach
-            <!-- <th style="width:80px"><span>Round</span></th> -->
-            <td style="overflow:hidden;white-space:nowrap;border:1px solid black;  width:40px;text-align:center">Round</td>
-          </tr>
           @foreach($league_rounds as $index => $rounds)
           @php
           if($index%2 == 0 && $league->draft_type == 'snake'){
@@ -855,7 +846,7 @@ return (($a->round_order) < ($b->round_order));
                   </div>
                   <button type="button" class="btn btn-primary updatekeeperlistbutton" style="background:lightseagreen;width:20%;border-radius:5px;margin:4px;border:1px solid #fff;">Add</button>
                   <button type="button" class="btn btn-danger" id="removekeeperlist" style="width:20%;border-radius:5px;margin:4px;">Remove</button>
-                  <button type="button" class="btn btn-primary draftbutton1" style="background:lightskyblue;border:1px solid #fff;width:40%; border-radius:5px" id="updateKeeperlist">Add to Draft board</button>
+                  <button type="button" class="btn btn-primary" style="background:lightskyblue;border:1px solid #fff;width:40%; border-radius:5px" id="updateKeeperlist">Add to Draft board</button>
                 </div>
               </div>
             </div>
@@ -1005,14 +996,14 @@ return (($a->round_order) < ($b->round_order));
         success: function(res) {
           res = JSON.parse(res);
           if (res.length > 1) {
-            list = '<select id="roundorder" class="form-control" style="width:120px;">';
+            list = '<label>Pick</label><select id="roundorder" class="form-control"  style="width:100px;background:black;color:white;padding:9px;height:44px">';
             for (i = 0; i < res.length; i++) {
               list += '<option value=' + res[i].round_order + ' selected>' + res[i].round_order + '</option>';
             }
             list += '</select>';
             $("#roundappend").html(list);
           } else {
-            $("#roundorder").remove();
+            $("#roundappend").html('');
           }
         }
       })
