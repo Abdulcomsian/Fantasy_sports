@@ -472,7 +472,8 @@ return (($a->round_order) < ($b->round_order));
             <th style="overflow:hidden;white-space:nowrap;  width:85px"></th>
             <!-- <th style="width:80px"><span>Round</span></th> -->
             @foreach($league->teams as $team)
-            <th style="overflow:hidden;white-space:nowrap;  width: 150px;">{{ $team->team_name }}<br><span style="font-size:10px">{{$loop->index+1}}</span></th>
+            <th style="overflow:hidden;white-space:nowrap;  width: 150px;">{{ $team->team_name }}           
+            </th>
 
             @endforeach
             <!-- <th style="width:80px"><span>Round</span></th> -->
