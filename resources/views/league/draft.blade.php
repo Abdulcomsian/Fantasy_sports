@@ -469,7 +469,7 @@ return (($a->round_order) < ($b->round_order));
       <table class="table" style="table-layout:fixed;">
         <thead class="thead-dark">
           <tr style="height:1em; ">
-            <th style="overflow:hidden;white-space:nowrap;  width:85px">
+            <th style="overflow:hidden;white-space:nowrap;  width:85px;font-size: 10px;">
             @if($_GET['type']=='collapseview')
             Round
             @endif
@@ -481,7 +481,11 @@ return (($a->round_order) < ($b->round_order));
 
             @endforeach
             <!-- <th style="width:80px"><span>Round</span></th> -->
-            <th style="overflow:hidden;white-space:nowrap;width:50px"></th>
+            <th style="overflow:hidden;white-space:nowrap;width:50px;font-size: 10px;">
+             @if($_GET['type']=='collapseview')
+            Round
+            @endif
+            </th>
           </tr>
         </thead>
         <!-- my new work for keeper list -->
