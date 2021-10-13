@@ -287,8 +287,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		<div class="colorPickerDiv">
 			<div class="incrementNumber">
 				<button type="button" class="minusBtn">-</button>
-				<input type="text" value="0" min="0" oninput="this.value = 
- !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+				<input type="text" value="0" min="0">
 				<button type="button" class="plusBtn">+</button>
 			</div>
 			<div class="colorPicker">
@@ -299,8 +298,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		<div class="colorPickerDiv">
 			<div class="incrementNumber">
 				<button type="button" class="minusBtn">-</button>
-				<input type="text" value="0" min="0" oninput="this.value = 
- !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+				<input type="text" value="0" min="0">
 				<button type="button" class="plusBtn">+</button>
 			</div>
 			<div class="colorPicker">
@@ -311,8 +309,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		<div class="colorPickerDiv">
 			<div class="incrementNumber">
 				<button type="button" class="minusBtn">-</button>
-				<input type="text" value="0" min="0" oninput="this.value = 
- !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+				<input type="text" value="0" min="0">
 				<button type="button" class="plusBtn">+</button>
 			</div>
 			<div class="colorPicker">
@@ -323,8 +320,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		<div class="colorPickerDiv">
 			<div class="incrementNumber">
 				<button type="button" class="minusBtn">-</button>
-				<input type="text" value="0" min="0" oninput="this.value = 
- !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+				<input type="text" value="0" min="0">
 				<button type="button" class="plusBtn">+</button>
 			</div>
 			<div class="colorPicker">
@@ -335,8 +331,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		<div class="colorPickerDiv">
 			<div class="incrementNumber">
 				<button type="button" class="minusBtn">-</button>
-				<input type="text" value="0" min="0" oninput="this.value = 
- !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+				<input type="text" value="0" min="0">
 				<button type="button" class="plusBtn">+</button>
 			</div>
 			<div class="colorPicker">
@@ -377,7 +372,7 @@ window.onclick = function(event) {
 var val=0;
 $(".plusBtn").click(function(){
 	val=val+1;
-	$(this).parent().find("input").val(val);
+	$(this).parent().find("input").attr("value",val);
 })
 $(".minusBtn").click(function(){
 	val=val-1;
