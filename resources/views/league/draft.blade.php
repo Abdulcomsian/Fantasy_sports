@@ -470,21 +470,21 @@ return (($a->round_order) < ($b->round_order));
         <thead class="thead-dark">
           <tr style="height:1em; ">
             <th style="overflow:hidden;white-space:nowrap;  width:85px;font-size: 10px;">
-            @if($_GET['type']=='collapseview')
-            Round
-            @endif
+              @if(isset($_GET['type']) && $_GET['type'] =='collapseview')
+              Round
+              @endif
             </th>
             <!-- <th style="width:80px"><span></span></th> -->
             @foreach($league->teams as $team)
-            <th style="overflow:hidden;white-space:nowrap;  width: 150px;">{{ $team->team_name }}           
+            <th style="overflow:hidden;white-space:nowrap;  width: 150px;">{{ $team->team_name }}
             </th>
 
             @endforeach
             <!-- <th style="width:80px"><span>Round</span></th> -->
             <th style="overflow:hidden;white-space:nowrap;width:50px;font-size: 10px;">
-             @if($_GET['type']=='collapseview')
-            Round
-            @endif
+              @if(isset($_GET['type']) && $_GET['type'] =='collapseview')
+              Round
+              @endif
             </th>
           </tr>
         </thead>
