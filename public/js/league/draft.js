@@ -134,16 +134,14 @@ $(function () {
                 method: "POST",
                 data: { id: val, teamid: teamid, round_number: round_number },
                 success: function (res) {
-                    if (res == "success") {
+                    if (res.status == "success") {
                         document.getElementById("playerBeep").play();
                         window.location =
                             "/league/" +
                             $("input[name='league_id']").val() +
                             "/draft?type=keeperlist";
-                    } else if (res == "error") {
-                        alert("something went wrong");
-                    } else if (res == "exist") {
-                        alert("record already exist against round/team");
+                    } else if (res.status == "error") {
+                        alert(res.message);
                     }
                 },
             });
@@ -500,13 +498,13 @@ function savekeeperlist(playerId, roundId, teamid, leagueId) {
                 roundorder: roundorder,
             },
             success: function (response) {
-                if (response == "exist") {
-                    alert("Record already exist");
+                if (response.status == "exist") {
+                    alert(response.message);
                     return false;
                 } else if (response == "success") {
                     document.getElementById("playerBeep").play();
-                } else {
-                    alert("something went Wrong");
+                } else if (response.status == "error") {
+                    alert(response.message);
                     return false;
                 }
             },
@@ -529,13 +527,10 @@ function updatekeeperlist(playerId, roundId, teamid, leagueId) {
                 roundorder: roundorder,
             },
             success: function (response) {
-                if (response == "exist") {
-                    alert("Record already exist");
-                    return false;
-                } else if (response == "success") {
+                if (response.status == "success") {
                     document.getElementById("playerBeep").play();
-                } else {
-                    alert("something went Wrong");
+                } else if (response.status == "error") {
+                    alert(response.message);
                     return false;
                 }
             },
@@ -1299,16 +1294,16 @@ $(".updatekeeperlistbutton").on("click", function () {
                 oldplayerid: oldplayerid,
             },
             success: function (res) {
-                if (res == "exist") {
+                if (res.status == "exist") {
                     alert("Record Already Exists");
-                } else if (res == "success") {
+                } else if (res.status == "success") {
                     document.getElementById("playerBeep").play();
                     window.location =
                         "/league/" +
                         $("input[name='league_id']").val() +
                         "/draft?type=keeperlist";
-                } else {
-                    alert("something went wrong");
+                } else if (res.status == "error") {
+                    alert(res.message);
                 }
             },
         });

@@ -159,57 +159,73 @@ class DraftController extends Controller
 
     public function saveroundkeeperlist(Request $request, $leagueId)
     {
-
-        $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->where('player_id', NULL)->first();
-        if ($leagueroundplayercheck) {
-            if ($leagueroundplayercheck->player_id == null) {
-                $leagueroundplayercheck->player_id = $request->playerId;
-                if ($leagueroundplayercheck->save()) {
-                    echo "success";
+        $leagueround = League::find($leagueId);
+        if ($request->roundId > $leagueround->draft_round) {
+            return response()->json(['status' => 'error', 'message' => 'Round number dose not exist']);
+        } else {
+            $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->where('player_id', NULL)->first();
+            if ($leagueroundplayercheck) {
+                if ($leagueroundplayercheck->player_id == null) {
+                    $leagueroundplayercheck->player_id = $request->playerId;
+                    if ($leagueroundplayercheck->save()) {
+                        return response()->json(['status' => 'success', 'message' => '']);
+                    } else {
+                        return response()->json(['status' => 'error', 'message' => 'something went wrong']);
+                    }
                 } else {
-                    echo "error";
+                    return response()->json(['status' => 'exist', 'message' => 'record already exsit']);
                 }
             } else {
-                echo "exist";
+                return response()->json(['status' => 'exist', 'message' => 'record already exsit']);
             }
-        } else {
-            echo "exist";
         }
     }
 
     public function updateroundkeeperlist(Request $request, $leagueId)
     {
-        if (isset($request->roundorder) && $request->roundorder != "") {
-            $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->where('round_order', $request->roundorder)->update([
-                'player_id' => $request->playerId
-            ]);
-            echo "success";
+        $leagueround = League::find($leagueId);
+        if ($request->roundId > $leagueround->draft_round) {
+            return response()->json(['status' => 'error', 'message' => 'Round number dose not exist']);
         } else {
-            $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->update([
-                'player_id' => $request->playerId
-            ]);
-            echo "success";
+            if (isset($request->roundorder) && $request->roundorder != "") {
+                $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->where('round_order', $request->roundorder)->update([
+                    'player_id' => $request->playerId
+                ]);
+                if ($leagueroundplayercheck) {
+                    return response()->json(['status' => 'success', 'message' => '']);
+                } else {
+                    return response()->json(['status' => 'error', 'message' => 'something went wrong']);
+                }
+            } else {
+                $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->update([
+                    'player_id' => $request->playerId
+                ]);
+                if ($leagueroundplayercheck) {
+                    return response()->json(['status' => 'success', 'message' => '']);
+                } else {
+                    return response()->json(['status' => 'error', 'message' => 'something went wrong']);
+                }
+            }
         }
     }
     //save keeperlist
     public function savekeeperlist(Request $request, $leagueId)
     {
-        // check if record alreay exist on that round against tem
-        // $record = KeeperList::where('team_id', $request->teamid)->where('league_id', $leagueId)->where('round_number', $request->round_number)->first();
-        // if ($record == null) {
-        $KeeperList = new KeeperList();
-        $KeeperList->team_id = $request->teamid;
-        $KeeperList->player_id = $request->id;
-        $KeeperList->league_id = $leagueId;
-        $KeeperList->round_number = $request->round_number;
-        if ($KeeperList->save()) {
-            echo "success";
+        $leagueround = League::find($leagueId);
+        if ($request->round_number > $leagueround->draft_round) {
+            return response()->json(['status' => 'error', 'message' => 'Round number dose not exist']);
         } else {
-            echo "error";
+            $KeeperList = new KeeperList();
+            $KeeperList->team_id = $request->teamid;
+            $KeeperList->player_id = $request->id;
+            $KeeperList->league_id = $leagueId;
+            $KeeperList->round_number = $request->round_number;
+            if ($KeeperList->save()) {
+                return response()->json(['status' => 'success', 'message' => 'Round number dose not exist']);
+            } else {
+                return response()->json(['status' => 'error', 'message' => 'something went wrong']);
+            }
         }
-        // } else {
-        //     echo "exist";
-        // }
     }
     //remove keeper list
     public function removekeeperlist(Request $request, $leagueId)
@@ -225,13 +241,18 @@ class DraftController extends Controller
     //update keeper list
     public function updatekeeperlist(Request $request, $leagueId)
     {
-        $record = KeeperList::where('team_id', $request->teamid)->where('player_id', $request->oldplayerid)->where('league_id', $leagueId)->where('round_number', $request->oldroundunber)->first();
-        $record->player_id = $request->id;
-        $record->round_number = $request->round_number;
-        if ($record->save()) {
-            echo "success";
+        $leagueround = League::find($leagueId);
+        if ($request->round_number > $leagueround->draft_round) {
+            return response()->json(['status' => 'error', 'message' => 'Round number dose not exist']);
         } else {
-            echo "error";
+            $record = KeeperList::where('team_id', $request->teamid)->where('player_id', $request->oldplayerid)->where('league_id', $leagueId)->where('round_number', $request->oldroundunber)->first();
+            $record->player_id = $request->id;
+            $record->round_number = $request->round_number;
+            if ($record->save()) {
+                return response()->json(['status' => 'sucess', 'message' => '']);
+            } else {
+                return response()->json(['status' => 'error', 'message' => 'something went wrong']);
+            }
         }
     }
 
