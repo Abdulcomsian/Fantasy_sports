@@ -4044,3 +4044,73 @@ input[type="submit"] {
 .tbl-bdy-clr td table {
     margin: 0px !important;
 }
+
+.colorPickerDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rosterSetting{
+    background: #1c212d;
+    padding: 20px;
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+    margin-right: 0px;
+    margin-top: 50px;
+}
+.colorPicker,
+.incrementNumber{
+    width: 136px;
+    text-align: center;
+}
+.rosterSetting h5,
+.rosterSetting p{
+    color: #fff;
+    margin: 0px;
+}
+.rosterSetting p{
+
+    margin-bottom: 30px;
+}
+.colorPickerDiv p{
+    width: 136px;
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+.incrementNumber{
+    background: #4a5870;
+    border-radius: 100px;
+    background: #4a5870;
+    border-radius: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.incrementNumber input,
+.incrementNumber button{
+    background-color: transparent;
+}
+.incrementNumber input{
+    width: 50px;
+    text-align: center;
+    color: #fff;
+    font-weight: 500;
+}
+.incrementNumber button{
+    border: none;
+    color: #fff;
+    font-size: 30px;
+}
+.incrementNumber button:focus,
+.incrementNumber input:focus{
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+}
+.favcolor{
+    height: 60px;
+    background: transparent;
+    width: 60px;
+    border: none;
+}

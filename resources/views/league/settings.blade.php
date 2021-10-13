@@ -281,6 +281,71 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<button type="submit">Save Changes</button>
 		</div>
 	</div>
+	<div class="rosterSetting">
+		<h5>Roster Setting</h5>
+		<p>Set Roster Position</p>
+		<div class="colorPickerDiv">
+			<div class="incrementNumber">
+				<button type="button" class="minusBtn">-</button>
+				<input type="text" value="0" min="0" oninput="this.value = 
+ !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+				<button type="button" class="plusBtn">+</button>
+			</div>
+			<div class="colorPicker">
+				<input class="favcolor" id="colorInput" name="favcolor" type="color" value="">
+			</div>
+			<p>QUARTERBACK (QB)</p>
+		</div>
+		<div class="colorPickerDiv">
+			<div class="incrementNumber">
+				<button type="button" class="minusBtn">-</button>
+				<input type="text" value="0" min="0" oninput="this.value = 
+ !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+				<button type="button" class="plusBtn">+</button>
+			</div>
+			<div class="colorPicker">
+				<input class="favcolor" id="colorInput" name="favcolor" type="color" value="">
+			</div>
+			<p>RUNNING BACK (RB)</p>
+		</div>
+		<div class="colorPickerDiv">
+			<div class="incrementNumber">
+				<button type="button" class="minusBtn">-</button>
+				<input type="text" value="0" min="0" oninput="this.value = 
+ !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+				<button type="button" class="plusBtn">+</button>
+			</div>
+			<div class="colorPicker">
+				<input class="favcolor" id="colorInput" name="favcolor" type="color" value="">
+			</div>
+			<p>WIDE RECEIVER (WR)</p>
+		</div>
+		<div class="colorPickerDiv">
+			<div class="incrementNumber">
+				<button type="button" class="minusBtn">-</button>
+				<input type="text" value="0" min="0" oninput="this.value = 
+ !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+				<button type="button" class="plusBtn">+</button>
+			</div>
+			<div class="colorPicker">
+				<input class="favcolor" id="colorInput" name="favcolor" type="color" value="">
+			</div>
+			<p>TIGHT END (TE)</p>
+		</div>
+		<div class="colorPickerDiv">
+			<div class="incrementNumber">
+				<button type="button" class="minusBtn">-</button>
+				<input type="text" value="0" min="0" oninput="this.value = 
+ !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+				<button type="button" class="plusBtn">+</button>
+			</div>
+			<div class="colorPicker">
+				<input class="favcolor" id="colorInput" name="favcolor" type="color" value="">
+			</div>
+			<p>(FLEX(W/R/T))</p>
+		</div>
+
+	</div>
 </div>
 </div>
 </form>
@@ -309,5 +374,26 @@ window.onclick = function(event) {
     }
   }
 }
+var val=0;
+$(".plusBtn").click(function(){
+	val=val+1;
+	$(this).parent().find("input").val(val);
+})
+$(".minusBtn").click(function(){
+	val=val-1;
+	if(val<0)
+	{
+		$(this).parent().find("input").val(0);
+	} else{
+		$(this).parent().find("input").val(val);
+	}
+	
+})
+let colorInput = document.getElementById('colorInput');
+
+
+colorInput.addEventListener('input', () =>{
+$(".favcolor").attr("value",colorInput.value)
+});
 </script>
 @endsection
