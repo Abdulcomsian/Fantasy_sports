@@ -16,22 +16,22 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		<div class="successMessage"></div>
 		<form id="updateLeague">
 			<div class="row">
-			<div class="col-md-6"></div>
-			
-			<div class="col-md-2">
-				<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft Board</a></h2>
-			</div>
-			<div class="col-md-2">
-				<p onclick="myFunction()" class="dropbtn">Select <i class="fa fa-angle-down" aria-hidden="true"></i></p>
-				<div id="myDropdown" class="dropdown-content">
-					<a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad</a>
-					<a href="{{url('draft-roaster')}}">Draft Roaster</a>
+				<div class="col-md-6"></div>
+
+				<div class="col-md-2">
+					<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft Board</a></h2>
 				</div>
-			<!-- <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2> -->
-			</div>
-			<div class="col-md-2">
-				<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
-			</div>
+				<div class="col-md-2">
+					<p onclick="myFunction()" class="dropbtn">Select <i class="fa fa-angle-down" aria-hidden="true"></i></p>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad</a>
+						<a href="{{url('draft-roaster')}}">Draft Roaster</a>
+					</div>
+					<!-- <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2> -->
+				</div>
+				<div class="col-md-2">
+					<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+				</div>
 				<div class="col-md-5">
 					<div class="side_detail">
 						<h4>Settings</h4>
@@ -129,9 +129,9 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		</div>
 	</div>
 	<div class="list_edit">
-	<div class="row">
+		<div class="row">
 			<div class="col-md-6">
-			<h4 ><span style="padding-top:10px;"><i class="fa fa-star yellow"></i>Draft Type</span></h4>
+				<h4><span style="padding-top:10px;"><i class="fa fa-star yellow"></i>Draft Type</span></h4>
 			</div>
 			<div class="col-md-6">
 				<button type="button" style="" class="addCommish">{{$league->draft_type}}</button>
@@ -155,7 +155,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<select name="commish_user_id">
 					<option value="">Select User</option>
 					@foreach($league->teams as $user)
-					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}"  @if($leaguser->team_id==$user->id)selected="{{'selected'}}"@endif>{{$user->team_name}}</option>
+					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" @if($leaguser->team_id==$user->id)selected="{{'selected'}}"@endif>{{$user->team_name}}</option>
 					@endforeach
 				</select>
 			</div>
@@ -199,7 +199,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	
 
 	@endif -->
-	<div class="list_edit" >
+	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-12 no-bdr">
 				<h4 style="text-align:left;">Joiner Key</h4>
@@ -275,75 +275,158 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		</div>
 		@endif
 		<div class="save" style="margin-bottom:21px;">
-		<button type="button" class="addTeam"><a href="{{url('league/'.$league->id.'/rounds')}}" style="color:#fff;">Enter Draft Picks Manually</a></button>
+			<button type="button" class="addTeam"><a href="{{url('league/'.$league->id.'/rounds')}}" style="color:#fff;">Enter Draft Picks Manually</a></button>
 		</div>
 		<div class="save">
 			<button type="submit">Save Changes</button>
 		</div>
 	</div>
+	</form>
 	<div class="rosterSetting">
 		<h5>Roster Setting</h5>
 		<p>Set Roster Position</p>
-		<div class="colorPickerDiv">
-			<div class="incrementNumber">
-				<button type="button" class="minusBtn">-</button>
-				<input type="text" value="0" min="0">
-				<button type="button" class="plusBtn">+</button>
+		<form method="post" action="{{url('league/'.$league->id.'/save-roster')}}" id="rosterform">
+			@csrf
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="QB" />
+				<p>QUARTERBACK (QB)</p>
 			</div>
-			<div class="colorPicker">
-				<input class="favcolor" id="colorInput" name="favcolor" type="color" value="">
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="RB" />
+				<p>RUNNING BACK (RB)</p>
 			</div>
-			<p>QUARTERBACK (QB)</p>
-		</div>
-		<div class="colorPickerDiv">
-			<div class="incrementNumber">
-				<button type="button" class="minusBtn">-</button>
-				<input type="text" value="0" min="0">
-				<button type="button" class="plusBtn">+</button>
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="WR" />
+				<p>WIDE RECEIVER (WR)</p>
 			</div>
-			<div class="colorPicker">
-				<input class="favcolor" id="colorInput" name="favcolor" type="color" value="">
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="te" />
+				<p>TIGHT END (TE)</p>
 			</div>
-			<p>RUNNING BACK (RB)</p>
-		</div>
-		<div class="colorPickerDiv">
-			<div class="incrementNumber">
-				<button type="button" class="minusBtn">-</button>
-				<input type="text" value="0" min="0">
-				<button type="button" class="plusBtn">+</button>
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="WRT" />
+				<p>(FLEX(W/R/T))</p>
 			</div>
-			<div class="colorPicker">
-				<input class="favcolor" id="colorInput" name="favcolor" type="color" value="">
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="K" />
+				<p>k</p>
 			</div>
-			<p>WIDE RECEIVER (WR)</p>
-		</div>
-		<div class="colorPickerDiv">
-			<div class="incrementNumber">
-				<button type="button" class="minusBtn">-</button>
-				<input type="text" value="0" min="0">
-				<button type="button" class="plusBtn">+</button>
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="DEF" />
+				<p>DEF</p>
 			</div>
-			<div class="colorPicker">
-				<input class="favcolor" id="colorInput" name="favcolor" type="color" value="">
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="DL" />
+				<p>DL</p>
 			</div>
-			<p>TIGHT END (TE)</p>
-		</div>
-		<div class="colorPickerDiv">
-			<div class="incrementNumber">
-				<button type="button" class="minusBtn">-</button>
-				<input type="text" value="0" min="0">
-				<button type="button" class="plusBtn">+</button>
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="LB" />
+				<p>LB</p>
 			</div>
-			<div class="colorPicker">
-				<input class="favcolor" id="colorInput" name="favcolor" type="color" value="">
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="IDP" />
+				<p>IDP</p>
 			</div>
-			<p>(FLEX(W/R/T))</p>
-		</div>
-
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="DB" />
+				<p>DB</p>
+			</div>
+			<div>
+				<center><input type="submit" value="submit"></center>
+			</div>
+		</form>
 	</div>
 </div>
 </div>
-</form>
+<!-- </form> -->
 </div>
 </div>
 @endsection
@@ -353,42 +436,47 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 <script type="text/javascript" src="{{ asset('js/league/settings.js') }}"></script>
 <script>
 	function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-var val=0;
-$(".plusBtn").click(function(){
-	val=val+1;
-	$(this).parent().find("input").attr("value",val);
-})
-$(".minusBtn").click(function(){
-	val=val-1;
-	if(val<0)
-	{
-		$(this).parent().find("input").val(0);
-	} else{
-		$(this).parent().find("input").val(val);
+		document.getElementById("myDropdown").classList.toggle("show");
 	}
-	
-})
-let colorInput = document.getElementById('colorInput');
+
+	// Close the dropdown if the user clicks outside of it
+	window.onclick = function(event) {
+		if (!event.target.matches('.dropbtn')) {
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			var i;
+			for (i = 0; i < dropdowns.length; i++) {
+				var openDropdown = dropdowns[i];
+				if (openDropdown.classList.contains('show')) {
+					openDropdown.classList.remove('show');
+				}
+			}
+		}
+	}
+	var val = 0;
+	$(".plusBtn").click(function() {
+		val = val + 1;
+		$(this).parent().find("input").attr("value", val);
+	})
+	$(".minusBtn").click(function() {
+		val = val - 1;
+		if (val < 0) {
+			$(this).parent().find("input").val(0);
+		} else {
+			$(this).parent().find("input").val(val);
+		}
+
+	})
+	let colorInput = document.getElementById('colorInput');
 
 
-colorInput.addEventListener('input', () =>{
-$(".favcolor").attr("value",colorInput.value)
-});
+	colorInput.addEventListener('input', () => {
+		$(".favcolor").attr("value", colorInput.value)
+	});
+</script>
+<script>
+	$(".save-roster-btn").click(function() {
+		alert();
+		$("#rosterform").submit();
+	})
 </script>
 @endsection

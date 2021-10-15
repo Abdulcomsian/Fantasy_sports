@@ -11,6 +11,7 @@ use App\Models\Player;
 use App\Models\KeeperList;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\LeagueRound;
+use App\Models\Roster;
 use DB;
 
 class LeagueController extends Controller
@@ -436,5 +437,27 @@ class LeagueController extends Controller
                 ->get();
         }
         echo json_encode($players);
+    }
+
+    public function save_roster(Request $request, $leagueId)
+    {
+        for ($i = 0; $i < count($request->posrow); $i++) {
+            if ($request->posrow[$i] > 1) {
+                for ($j = 0; $j < $request->posrow[$i]; $j++) {
+                    $roster = new Roster();
+                    $roster->league_id = $leagueId;
+                    $roster->position = $request->pos[$i];
+                    $roster->color = $request->favcolor[$i];
+                    $roster->save();
+                }
+            } elseif ($request->posrow[$i] == 1) {
+                $roster = new Roster();
+                $roster->league_id = $leagueId;
+                $roster->position = $request->pos[$i];
+                $roster->color = $request->favcolor[$i];
+                $roster->save();
+            }
+        }
+        return back();
     }
 }

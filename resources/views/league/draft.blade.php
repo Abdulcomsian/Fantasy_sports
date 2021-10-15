@@ -153,7 +153,7 @@ return (($a->round_order) < ($b->round_order));
               @if($league->status!="keeper")
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
 
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">Roster View</a></h2>
+              <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}">Roster View</a></h2>
               <h2 class=" " style="width:20%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
               @endif
             </div>

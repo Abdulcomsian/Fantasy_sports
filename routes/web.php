@@ -53,7 +53,8 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('{id}/updatekeeperlist', 'DraftController@updatekeeperlist');
 		Route::get('{id}/movekeeperlist', 'DraftController@movekeeperlist');
 		Route::post('{id}/get-round-order', 'DraftController@get_round_order')->name("get-round-order");
-
+		Route::post('{id}/save-roster', 'LeagueController@save_roster')->name("save-roster");
+		Route::get('{id}/roster-view', 'DraftController@roster_view')->name("roster-view");
 		//my new work obaid
 
 		Route::get('{id}/squads', 'SquadController@index');

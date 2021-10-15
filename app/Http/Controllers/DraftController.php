@@ -10,6 +10,8 @@ use App\Models\Player;
 use App\Models\LeagueRound;
 use App\Models\KeeperList;
 use App\Models\LeagueTeam;
+use App\Models\Roster;
+use App\Models\RosterTeamplayer;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
 
@@ -142,12 +144,26 @@ class DraftController extends Controller
                     $league = League::leagueData($leagueId);
                     $leaguerounddata = LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order])->first();
                     LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order])->update(['player_id' => $request->player_id]);
-
-                    return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
+                    $mydata = LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $roundId])->first();
+                    //work for roster
+                    $RosterTeamplayer = new RosterTeamplayer();
+                    $RosterTeamplayer->team_id = $mydata->team_id;
+                    $RosterTeamplayer->player_id = $mydata->player_id;
+                    $RosterTeamplayer->save();
+                    return $this->sendResponse(200, 'Pick saved successfully.', ['mydata' => $mydata, 'nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 } else {
                     $league = League::leagueData($leagueId);
                     LeagueRound::where('id', $roundId)->update(['player_id' => $request->player_id]);
-                    return $this->sendResponse(200, 'Pick saved successfully.', ['round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
+                    $mydata = LeagueRound::where('id', $roundId)->first();
+                    //get player postion
+                    $playerposition = Player::where('id', $mydata->player_id)->first();
+                    $position = Roster::where('position', $playerposition->position)->first();
+                    $RosterTeamplayer = new RosterTeamplayer();
+                    $RosterTeamplayer->team_id = $mydata->team_id;
+                    $RosterTeamplayer->player_id = $mydata->player_id;
+                    $RosterTeamplayer->rosters_id = $position->id;
+                    $RosterTeamplayer->save();
+                    return $this->sendResponse(200, 'Pick saved successfully.', ['data' => $mydata, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 }
             } else {
                 return $this->sendResponse(400, 'Something went wrong. Please try again later.');
@@ -349,5 +365,43 @@ class DraftController extends Controller
     {
         $get_round_order = LeagueRound::select('round_order')->where('league_id', $leagueId)->where('team_id', $request->teamid)->where('round_number', $request->roundnumber)->get();
         echo json_encode($get_round_order);
+    }
+
+    //roster view
+    //roster view
+    public function roster_view($id)
+    {
+
+        if (isset($id) && intval($id) > 0) {
+            $league = League::leagueData($id);
+            $playerIds = [];
+            if (isset($league->rounds)) {
+                foreach ($league->rounds->whereNotNull('player_id') as $key => $round) {
+                    $playerIds[] = $round->player->id;
+                }
+            }
+            $roundsArr = [];
+            $roundNumber = 0;
+
+            foreach ($league->rounds as $index => $round) {
+                if ($round->round_number != $roundNumber) {
+                    $roundNumber = $round->round_number;
+                    $subround = 0;
+                }
+                $roundsArr[$roundNumber][$subround] = $round;
+                $subround++;
+            }
+            $leaguerecord = leagueRound::where(['league_id' => $id])->where('player_id', '!=', Null)->orderBy('id', 'DESC')->first();
+            //dd($leaguerecord);
+            return view('league.roster', [
+                'league' => $league,
+                'players' => Player::whereNotIn('id', $playerIds)->get(),
+                'last_pick' => leagueRound::fetchData($id, 'desc'),
+                'league_rounds' => $roundsArr,
+                'leaugeid' => $id,
+                'leaguerecord' => $leaguerecord,
+            ]);
+        }
+        abort(404);
     }
 }
