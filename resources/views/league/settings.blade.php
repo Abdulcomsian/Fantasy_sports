@@ -432,7 +432,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<p>BEN</p>
 			</div>
 			<div>
-				<center><input type="submit" value="submit"></center>
+				@if(count($rosterdata)<=0) <center><input type="submit" value="submit"></center>
+					@endif
 			</div>
 		</form>
 	</div>
@@ -464,12 +465,13 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			}
 		}
 	}
-	var val = 0;
 	$(".plusBtn").click(function() {
+		val = parseInt($(this).parent().find("input").val());
 		val = val + 1;
-		$(this).parent().find("input").attr("value", val);
+		$(this).parent().find("input").val(val);
 	})
 	$(".minusBtn").click(function() {
+		val = parseInt($(this).parent().find("input").val());
 		val = val - 1;
 		if (val < 0) {
 			$(this).parent().find("input").val(0);
@@ -484,11 +486,5 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	colorInput.addEventListener('input', () => {
 		$(".favcolor").attr("value", colorInput.value)
 	});
-</script>
-<script>
-	$(".save-roster-btn").click(function() {
-		alert();
-		$("#rosterform").submit();
-	})
 </script>
 @endsection
