@@ -18,6 +18,7 @@ class CreateRosterTeamplayersTable extends Migration
             $table->foreignId('rosters_id')->nullable();
             $table->foreignId('team_id')->nullable();
             $table->string('player_id')->nullable();
+            $table->foreignId('league_id')->nullable();
             $table->timestamps();
         });
     }

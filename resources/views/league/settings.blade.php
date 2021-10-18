@@ -290,7 +290,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="1" min="0">
 					<button type="button" class="plusBtn">+</button>
 				</div>
 				<div class="colorPicker">
@@ -302,7 +302,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="2" min="0">
 					<button type="button" class="plusBtn">+</button>
 				</div>
 				<div class="colorPicker">
@@ -314,7 +314,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="3" min="0">
 					<button type="button" class="plusBtn">+</button>
 				</div>
 				<div class="colorPicker">
@@ -326,13 +326,13 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="1" min="0">
 					<button type="button" class="plusBtn">+</button>
 				</div>
 				<div class="colorPicker">
 					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
-				<input type="hidden" name="pos[]" value="te" />
+				<input type="hidden" name="pos[]" value="TE" />
 				<p>TIGHT END (TE)</p>
 			</div>
 			<div class="colorPickerDiv">
@@ -350,7 +350,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="1" min="0">
 					<button type="button" class="plusBtn">+</button>
 				</div>
 				<div class="colorPicker">
@@ -362,7 +362,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="1" min="0">
 					<button type="button" class="plusBtn">+</button>
 				</div>
 				<div class="colorPicker">
@@ -419,8 +419,21 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<input type="hidden" name="pos[]" value="DB" />
 				<p>DB</p>
 			</div>
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="5" min="0">
+					<button type="button" class="plusBtn">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name="pos[]" value="BEN" />
+				<p>BEN</p>
+			</div>
 			<div>
-				<center><input type="submit" value="submit"></center>
+				@if(count($rosterdata)<=0) <center><input type="submit" value="submit"></center>
+					@endif
 			</div>
 		</form>
 	</div>
@@ -452,12 +465,13 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			}
 		}
 	}
-	var val = 0;
 	$(".plusBtn").click(function() {
+		val = parseInt($(this).parent().find("input").val());
 		val = val + 1;
-		$(this).parent().find("input").attr("value", val);
+		$(this).parent().find("input").val(val);
 	})
 	$(".minusBtn").click(function() {
+		val = parseInt($(this).parent().find("input").val());
 		val = val - 1;
 		if (val < 0) {
 			$(this).parent().find("input").val(0);
@@ -472,11 +486,5 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	colorInput.addEventListener('input', () => {
 		$(".favcolor").attr("value", colorInput.value)
 	});
-</script>
-<script>
-	$(".save-roster-btn").click(function() {
-		alert();
-		$("#rosterform").submit();
-	})
 </script>
 @endsection
