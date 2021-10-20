@@ -80,6 +80,33 @@ class LeagueController extends Controller
                     ['league_id' => $league->id, 'permission_type' => 2, 'created_by' => $user->id]
                 ];
                 $league->permissions()->createMany($permissions); */
+                //work for roster view==============================================
+                 $data[]=['number'=>1,'name'=>'QB'];
+                 $data[]=['number'=>2,'name'=>'RB'];
+                 $data[]=['number'=>3,'name'=>'WR'];
+                 $data[]=['number'=>1,'name'=>'TE'];
+                 $data[]=['number'=>1,'name'=>'TE'];
+                 $data[]=['number'=>1,'name'=>'K'];
+                 $data[]=['number'=>1,'name'=>'DEF'];
+                 $data[]=['number'=>5,'name'=>'BEN'];
+                  for ($i = 0; $i < count($data); $i++) {
+                    if ($data[$i]['number'] > 1) {
+                        for ($j = 0; $j < $data[$i]['number']; $j++) {
+                            $roster = new Roster();
+                            $roster->league_id = $league->id;
+                            $roster->position =$data[$i]['name'];
+                            $roster->color = '#000';
+                            $roster->save();
+                        }
+                    } elseif ($data[$i]['number'] == 1) {
+                        $roster = new Roster();
+                        $roster->league_id = $league->id;
+                        $roster->position = $data[$i]['name'];
+                        $roster->color = '#000';
+                        $roster->save();
+                    }
+                }
+                //==================================================================
                 return $this->sendResponse(200, 'League created successfully.', ['id' => $league->id]);
             }
             return $this->sendResponse(400, 'Something went wrong. Please try again later.');
@@ -459,5 +486,24 @@ class LeagueController extends Controller
             }
         }
         return back();
+    }
+
+    //insert new row for roster when click on plush button
+    public function insertrow(Request $request)
+    {
+        $leagueId=$request->leagueId;
+        $pos=$request->pos;
+        $color=$request->color;
+        $roster = new Roster();
+        $roster->league_id = $leagueId;
+        $roster->position = $pos;
+        $roster->color = $color;
+        if($roster->save())
+        {
+            echo"success";
+        }
+        else{
+            echo"error";
+        }
     }
 }
