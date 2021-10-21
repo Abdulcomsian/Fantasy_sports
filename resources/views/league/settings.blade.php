@@ -339,7 +339,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
 					<input type="text" name="posrow[]" value="0" min="0">
-					<button type="button" class="plusBtn" data-id="posid5">+</button>
+					<button type="button" class="plusBtn" data-id="5">+</button>
 				</div>
 				<div class="colorPicker">
 					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
@@ -347,6 +347,42 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<input type="hidden" name="pos[]" value="WRT" id="posid5"/>
 				<p>(FLEX(W/R/T))</p>
 			</div>
+            <div class="colorPickerDiv">
+                <div class="incrementNumber">
+                    <button type="button" class="minusBtn">-</button>
+                    <input type="text" name="posrow[]" value="0" min="0">
+                    <button type="button" class="plusBtn" data-id="13">+</button>
+                </div>
+                <div class="colorPicker">
+                    <input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+                </div>
+                <input type="hidden" name="pos[]" value="WR/TE" id="posid13"/>
+                <p>Flex (WR/TE)</p>
+            </div>
+             <div class="colorPickerDiv">
+                <div class="incrementNumber">
+                    <button type="button" class="minusBtn">-</button>
+                    <input type="text" name="posrow[]" value="0" min="0">
+                    <button type="button" class="plusBtn" data-id="14">+</button>
+                </div>
+                <div class="colorPicker">
+                    <input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+                </div>
+                <input type="hidden" name="pos[]" value="WR/RB" id="posid14"/>
+                <p>Flex (WR/RB)</p>
+            </div>
+            <div class="colorPickerDiv">
+                <div class="incrementNumber">
+                    <button type="button" class="minusBtn">-</button>
+                    <input type="text" name="posrow[]" value="0" min="0">
+                    <button type="button" class="plusBtn" data-id="15">+</button>
+                </div>
+                <div class="colorPicker">
+                    <input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+                </div>
+                <input type="hidden" name="pos[]" value="QB/WR/RB/TE" id="posid15"/>
+                <p>Flex (QB/WR/RB/TE)</p>
+            </div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
