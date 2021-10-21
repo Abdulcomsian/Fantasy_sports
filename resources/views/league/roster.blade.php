@@ -163,7 +163,7 @@ return (($a->round_order) < ($b->round_order));
         <?php } ?>
       </div>
 
-      <table class="table" style="table-layout:fixed;">
+      <table class="table">
         <thead class="thead-dark">
           <tr style="height:1em; ">
             <th style="overflow:hidden;white-space:nowrap;  width:85px;font-size: 10px;">
@@ -180,12 +180,11 @@ return (($a->round_order) < ($b->round_order));
         </thead>
         <tbody class="tbl-bdy-clr">
           @php
-          $rosterdata=\App\Models\Roster::where('league_id',$league->id)->get();
+          $rosterdata=\App\Models\Roster::where('league_id',$league->id)->orderBy('position','desc')->get();
           @endphp
-
           @foreach($rosterdata as $data)
           <tr>
-            <td style="line-height:130px">
+            <td style="line-height: 80px">
               {{$data->position}}
             </td>
             @foreach($league->teams as $team)
@@ -198,22 +197,20 @@ return (($a->round_order) < ($b->round_order));
             else{
             $playername='';
             }
-
             @endphp
-            <td style="border: 1px solid gray;">
-              <div style="min-height:140px;background:@if($playername){{$data->color}};color:white;@endif">
+            <td style="border: 1px solid gray;height: 1px;">
+              <div style="min-height:82px;background:@if($playername){{$data->color}};color:white;@endif">
                 <span style="font-size:13px;float: left;padding: 5px;">{{$playername->position ?? ''}}</span> <span style="float: right;padding: 5px;font-size:13px;">{{$playername->team ?? ''}}</span><br>
                 @if($playerdata)
                 <span style="font-size:13px;">{{ $playername->first_name ?? ''}}</span><br>
-                <span style="font-weight:bold;font-size:22px;">{{ $playername->last_name ?? ''}}</span><br>
+                <span style="font-weight:bold;font-size:13px;">{{ $playername->last_name ?? ''}}</span><br>
                 @else
                 {{$data->position}}
                 @endif
               </div>
             </td>
             @endforeach
-            <td style="line-height:130px">
-              {{$data->position}}
+            <td style="line-height: 80px">
             </td>
           </tr>
           @endforeach
