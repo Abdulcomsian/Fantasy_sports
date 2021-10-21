@@ -184,7 +184,7 @@ return (($a->round_order) < ($b->round_order));
           @endphp
           @foreach($rosterdata as $data)
           <tr>
-            <td style="line-height: 80px">
+            <td style="">
               {{$data->position}}
             </td>
             @foreach($league->teams as $team)
