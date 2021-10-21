@@ -200,10 +200,10 @@ return (($a->round_order) < ($b->round_order));
             @endphp
             <td style="border: 1px solid gray;height: 1px;">
               <div style="min-height:82px;background:@if($playername){{$data->color}};color:white;@endif">
-                <span style="font-size:13px;float: left;padding: 5px;">{{$playername->position ?? ''}}</span> <span style="float: right;padding: 5px;font-size:13px;">{{$playername->team ?? ''}}</span><br>
+                <span style="font-size:13px;float: left;padding: 5px;">{{$playername->position ?? ''}}</span> <span style="float: right;padding: 5px;font-size:13px;">{{$playername->team ?? ''}}</span>
                 @if($playerdata)
-                <span style="font-size:13px;">{{ $playername->first_name ?? ''}}</span><br>
-                <span style="font-weight:bold;font-size:13px;">{{ $playername->last_name ?? ''}}</span><br>
+                <span style="font-size:13px;">{{ $playername->first_name ?? ''}}</span>
+                <span style="font-weight:bold;font-size:13px;">{{ $playername->last_name ?? ''}}</span>
                 @else
                 {{$data->position}}
                 @endif
