@@ -294,8 +294,9 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="1">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" id="colorInput" data-id="1" name="favcolor[]" type="color" value="">
 				</div>
+				<input type="hidden" name=order[]" value="1" id="order1" />
 				<input type="hidden" name="pos[]" value="QB" id="posid1" />
 				<p>QUARTERBACK (QB)</p>
 			</div>
@@ -306,8 +307,9 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="2">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="2" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
+				<input type="hidden" name=order[]" value="2" id="order2" />
 				<input type="hidden" name="pos[]" value="RB" id="posid2" />
 				<p>RUNNING BACK (RB)</p>
 			</div>
@@ -318,9 +320,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="3">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="3" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
-				<input type="hidden" name="pos[]" value="WR" id="posid3"/>
+				<input type="hidden" name=order[]" value="3" id="order3" />
+				<input type="hidden" name="pos[]" value="WR" id="posid3" />
 				<p>WIDE RECEIVER (WR)</p>
 			</div>
 			<div class="colorPickerDiv">
@@ -330,8 +333,9 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="4">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="4" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
+				<input type="hidden" name=order[]" value="4" id="order4" />
 				<input type="hidden" name="pos[]" value="TE" id="posid4" />
 				<p>TIGHT END (TE)</p>
 			</div>
@@ -342,47 +346,51 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="5">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="5" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
-				<input type="hidden" name="pos[]" value="WRT" id="posid5"/>
-				<p>(FLEX(W/R/T))</p>
+				<input type="hidden" name=order[]" value="5" id="order5" />
+				<input type="hidden" name="pos[]" value="WRT" id="posid5" />
+				<p>(Flex(WR/RB/TE))</p>
 			</div>
-            <div class="colorPickerDiv">
-                <div class="incrementNumber">
-                    <button type="button" class="minusBtn">-</button>
-                    <input type="text" name="posrow[]" value="0" min="0">
-                    <button type="button" class="plusBtn" data-id="13">+</button>
-                </div>
-                <div class="colorPicker">
-                    <input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
-                </div>
-                <input type="hidden" name="pos[]" value="WR/TE" id="posid13"/>
-                <p>Flex (WR/TE)</p>
-            </div>
-             <div class="colorPickerDiv">
-                <div class="incrementNumber">
-                    <button type="button" class="minusBtn">-</button>
-                    <input type="text" name="posrow[]" value="0" min="0">
-                    <button type="button" class="plusBtn" data-id="14">+</button>
-                </div>
-                <div class="colorPicker">
-                    <input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
-                </div>
-                <input type="hidden" name="pos[]" value="WR/RB" id="posid14"/>
-                <p>Flex (WR/RB)</p>
-            </div>
-            <div class="colorPickerDiv">
-                <div class="incrementNumber">
-                    <button type="button" class="minusBtn">-</button>
-                    <input type="text" name="posrow[]" value="0" min="0">
-                    <button type="button" class="plusBtn" data-id="15">+</button>
-                </div>
-                <div class="colorPicker">
-                    <input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
-                </div>
-                <input type="hidden" name="pos[]" value="QB/WR/RB/TE" id="posid15"/>
-                <p>Flex (QB/WR/RB/TE)</p>
-            </div>
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn" data-id="13">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" data-id="13" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name=order[]" value="6" id="order13" />
+				<input type="hidden" name="pos[]" value="WR/TE" id="posid13" />
+				<p>Flex (WR/TE)</p>
+			</div>
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn" data-id="14">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" data-id="14" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name=order[]" value="7" id="order14" />
+				<input type="hidden" name="pos[]" value="WR/RB" id="posid14" />
+				<p>Flex (WR/RB)</p>
+			</div>
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="0" min="0">
+					<button type="button" class="plusBtn" data-id="15">+</button>
+				</div>
+				<div class="colorPicker">
+					<input class="favcolor" data-id="15" id="colorInput" name="favcolor[]" type="color" value="">
+				</div>
+				<input type="hidden" name=order[]" value="1" id="order15" />
+				<input type="hidden" name="pos[]" value="QB/WR/RB/TE" id="posid15" />
+				<p>Flex (QB/WR/RB/TE)</p>
+			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
@@ -390,10 +398,11 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="6">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="6" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
-				<input type="hidden" name="pos[]" value="K" id="posid6"/>
-				<p>k</p>
+				<input type="hidden" name=order[]" value="8" id="order6" />
+				<input type="hidden" name="pos[]" value="K" id="posid6" />
+				<p>K</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
@@ -402,9 +411,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="7">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="7" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
-				<input type="hidden" name="pos[]" value="DEF" id="posid7"/>
+				<input type="hidden" name=order[]" value="9" id="order7" />
+				<input type="hidden" name="pos[]" value="DEF" id="posid7" />
 				<p>DEF</p>
 			</div>
 			<div class="colorPickerDiv">
@@ -414,9 +424,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="8">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="8" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
-				<input type="hidden" name="pos[]" value="DL" id="posid8"/>
+				<input type="hidden" name=order[]" value="10" id="order8" />
+				<input type="hidden" name="pos[]" value="DL" id="posid8" />
 				<p>DL</p>
 			</div>
 			<div class="colorPickerDiv">
@@ -426,9 +437,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="9">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="9" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
-				<input type="hidden" name="pos[]" value="LB" id="posid9"/>
+				<input type="hidden" name=order[]" value="11" id="order9" />
+				<input type="hidden" name="pos[]" value="LB" id="posid9" />
 				<p>LB</p>
 			</div>
 			<div class="colorPickerDiv">
@@ -438,9 +450,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="10">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="10" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
-				<input type="hidden" name="pos[]" value="IDP" id="posid10"/>
+				<input type="hidden" name=order[]" value="12" id="order10" />
+				<input type="hidden" name="pos[]" value="IDP" id="posid10" />
 				<p>IDP</p>
 			</div>
 			<div class="colorPickerDiv">
@@ -450,9 +463,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="11">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="11" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
-				<input type="hidden" name="pos[]" value="DB" id="posid11"/>
+				<input type="hidden" name=order[]" value="13" id="order11" />
+				<input type="hidden" name="pos[]" value="DB" id="posid11" />
 				<p>DB</p>
 			</div>
 			<div class="colorPickerDiv">
@@ -462,9 +476,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="12">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" name="favcolor[]" type="color" value="">
+					<input class="favcolor" data-id="12" id="colorInput" name="favcolor[]" type="color" value="">
 				</div>
-				<input type="hidden" name="pos[]" value="BEN" id="posid12"/>
+				<input type="hidden" name=order[]" value="14" id="order12" />
+				<input type="hidden" name="pos[]" value="BEN" id="posid12" />
 				<p>BEN</p>
 			</div>
 			<div>
@@ -502,25 +517,32 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		}
 	}
 	$(".plusBtn").click(function() {
-        id = $(this).attr('data-id');
-        pos=$("#posid"+id+"").val();
+		id = $(this).attr('data-id');
+		pos = $("#posid" + id + "").val();
 		val = parseInt($(this).parent().find("input").val());
-        color = $(this).parent().next().find("input").val();
+		color = $(this).parent().next().find("input").val();
+		orderno = $("#order" + id + "").val();
 		val = val + 1;
 		$(this).parent().find("input").val(val);
-        //AJAX FOR INSERT NEW ROW
-         $.ajax({
-            type: 'POST',
-             url: "/league/" + $("input[name='league_id']").val() + "/insertrow",
-            data: {val:val,pos:pos,color:color,leagueId:$("input[name='league_id']").val()},
-            success: function (response) {
-                if (response=="success") {
-                    successMessage('New roster inserted successfully');
-                } else {
-                     errorMessage("Something Went Wrong");
-                }
-            },
-        });
+		//AJAX FOR INSERT NEW ROW
+		$.ajax({
+			type: 'POST',
+			url: "/league/" + $("input[name='league_id']").val() + "/insertrow",
+			data: {
+				val: val,
+				pos: pos,
+				color: color,
+				leagueId: $("input[name='league_id']").val(),
+				orderno: orderno
+			},
+			success: function(response) {
+				if (response == "success") {
+					successMessage('New roster inserted successfully');
+				} else {
+					errorMessage("Something Went Wrong");
+				}
+			},
+		});
 	})
 	$(".minusBtn").click(function() {
 		val = parseInt($(this).parent().find("input").val());
@@ -532,9 +554,28 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		}
 
 	})
-	let colorInput = document.getElementById('colorInput');
-	colorInput.addEventListener('input', () => {
-		$(".favcolor").attr("value", colorInput.value)
-	});
+
+	$(document).on('input', '.favcolor', function() {
+		$(this).attr("value", $(this).val());
+		color = $(this).val();
+		id = $(this).attr('data-id');
+		pos = $("#order" + id + "").next().val();
+		$.ajax({
+			type: 'POST',
+			url: "/league/" + $("input[name='league_id']").val() + "/addcolor",
+			data: {
+				pos: pos,
+				color: color,
+				leagueId: $("input[name='league_id']").val(),
+			},
+			success: function(response) {
+				if (response == "success") {
+					successMessage('color for postion inserted successfully');
+				} else {
+					errorMessage("Something Went Wrong");
+				}
+			},
+		});
+	})
 </script>
 @endsection

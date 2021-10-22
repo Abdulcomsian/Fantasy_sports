@@ -81,20 +81,20 @@ class LeagueController extends Controller
                 ];
                 $league->permissions()->createMany($permissions); */
                 //work for roster view==============================================
-                 $data[]=['number'=>1,'name'=>'QB'];
-                 $data[]=['number'=>2,'name'=>'RB'];
-                 $data[]=['number'=>3,'name'=>'WR'];
-                 $data[]=['number'=>1,'name'=>'TE'];
-                 $data[]=['number'=>1,'name'=>'TE'];
-                 $data[]=['number'=>1,'name'=>'K'];
-                 $data[]=['number'=>1,'name'=>'DEF'];
-                 $data[]=['number'=>5,'name'=>'BEN'];
-                  for ($i = 0; $i < count($data); $i++) {
+                $data[] = ['number' => 1, 'name' => 'QB', 'order' => 1];
+                $data[] = ['number' => 2, 'name' => 'RB', 'order' => 2];
+                $data[] = ['number' => 3, 'name' => 'WR', 'order' => 3];
+                $data[] = ['number' => 1, 'name' => 'TE', 'order' => 4];
+                $data[] = ['number' => 1, 'name' => 'K', 'order' => 9];
+                $data[] = ['number' => 1, 'name' => 'DEF', 'order' => 10];
+                $data[] = ['number' => 5, 'name' => 'BENCH', 'order' => 15];
+                for ($i = 0; $i < count($data); $i++) {
                     if ($data[$i]['number'] > 1) {
                         for ($j = 0; $j < $data[$i]['number']; $j++) {
                             $roster = new Roster();
                             $roster->league_id = $league->id;
-                            $roster->position =$data[$i]['name'];
+                            $roster->position = $data[$i]['name'];
+                            $roster->orderno = $data[$i]['order'];
                             $roster->color = '#000';
                             $roster->save();
                         }
@@ -102,6 +102,7 @@ class LeagueController extends Controller
                         $roster = new Roster();
                         $roster->league_id = $league->id;
                         $roster->position = $data[$i]['name'];
+                        $roster->orderno = $data[$i]['order'];
                         $roster->color = '#000';
                         $roster->save();
                     }
@@ -491,19 +492,30 @@ class LeagueController extends Controller
     //insert new row for roster when click on plush button
     public function insertrow(Request $request)
     {
-        $leagueId=$request->leagueId;
-        $pos=$request->pos;
-        $color=$request->color;
+        $leagueId = $request->leagueId;
+        $pos = $request->pos;
+        $color = $request->color;
         $roster = new Roster();
         $roster->league_id = $leagueId;
         $roster->position = $pos;
         $roster->color = $color;
-        if($roster->save())
-        {
-            echo"success";
+        $roster->orderno = $request->orderno;
+        if ($roster->save()) {
+            echo "success";
+        } else {
+            echo "error";
         }
-        else{
-            echo"error";
+    }
+    //add color
+    public function addcolor(Request $request)
+    {
+        $res = Roster::where(['position' => $request->pos, 'league_id' => $request->leagueId])->update([
+            'color' => $request->color
+        ]);
+        if ($res) {
+            echo "success";
+        } else {
+            echo "error";
         }
     }
 }
