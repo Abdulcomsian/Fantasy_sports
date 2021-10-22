@@ -196,19 +196,38 @@ class DraftController extends Controller
                     //COUNT ROSTER ROW
                     $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
                     if (count($roster_row) > 1) {
+                        //new work here
                         foreach ($roster_row as $row) {
-                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId])->count();
-                            if ($rosterteamcount < count($league->teams)) {
+                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                            if ($rosterteamcount == 0) {
                                 $position_id = $row->id;
                                 break;
                             }
                         }
-                    } else {
-                        if (count($roster_row) > 0) {
+                        //for bench work
+                        $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
+                        foreach ($roster_ben_row as $ben_row) {
+                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                            if ($rosterteamcount == 0) {
+                                $position_id = $ben_row->id;
+                                break;
+                            }
+                        }
+                        
+                    }elseif (count($roster_row) == 1) {
+                        //new work here
+                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                        if ($rosterteamcount == 0) {
                             $position_id = $roster_row[0]->id;
                         } else {
-                            $position = Roster::where(['position' => 'BEN', 'league_id' => $leagueId])->first();
-                            $position_id = $position->id;
+                            $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
+                            foreach ($roster_ben_row as $ben_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $ben_row->id;
+                                    break;
+                                }
+                            }
                         }
                     }
                     $RosterTeamplayer = new RosterTeamplayer();
