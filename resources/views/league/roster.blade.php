@@ -180,7 +180,7 @@ return (($a->round_order) < ($b->round_order));
         </thead>
         <tbody class="tbl-bdy-clr">
           @php
-          $rosterdata=\App\Models\Roster::where('league_id',$league->id)->orderBy('position','desc')->get();
+          $rosterdata=\App\Models\Roster::where('league_id',$league->id)->orderBy('orderno','asc')->get();
           @endphp
           @foreach($rosterdata as $data)
           <tr>

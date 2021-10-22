@@ -17,6 +17,7 @@ class CreateRostersTable extends Migration
             $table->id();
             $table->string('position')->nullable();
             $table->string('color')->nullable();
+            $table->integer('orderno')->nullable();
             $table->foreignId('league_id')->nullable();
             $table->timestamps();
         });
