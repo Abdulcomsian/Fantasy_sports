@@ -679,28 +679,28 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 
 	})
 
-	$(document).on('input', '.favcolor', function() {
-		$(this).attr("value", $(this).val());
-		color = $(this).val();
-		id = $(this).attr('data-id');
-		pos = $("#order" + id + "").next().val();
-		$.ajax({
-			type: 'POST',
-			url: "/league/" + $("input[name='league_id']").val() + "/addcolor",
-			data: {
-				pos: pos,
-				color: color,
-				leagueId: $("input[name='league_id']").val(),
-			},
-			success: function(response) {
-				if (response == "success") {
-					successMessage('color for postion inserted successfully');
-				} else {
-					errorMessage("Something Went Wrong");
-				}
-			},
-		});
-	})
+	// $(document).on('input', '.favcolor', function() {
+	// 	$(this).attr("value", $(this).val());
+	// 	color = $(this).val();
+	// 	id = $(this).attr('data-id');
+	// 	pos = $("#order" + id + "").next().val();
+	// 	$.ajax({
+	// 		type: 'POST',
+	// 		url: "/league/" + $("input[name='league_id']").val() + "/addcolor",
+	// 		data: {
+	// 			pos: pos,
+	// 			color: color,
+	// 			leagueId: $("input[name='league_id']").val(),
+	// 		},
+	// 		success: function(response) {
+	// 			if (response == "success") {
+	// 				successMessage('color for postion inserted successfully');
+	// 			} else {
+	// 				errorMessage("Something Went Wrong");
+	// 			}
+	// 		},
+	// 	});
+	// })
 
 	//$(".colorPickSelector").colorPick();
 	$(".PickSelector").colorPick({
@@ -714,7 +714,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			// 	'backgroundColor': this.color,
 			// 	'color': this.color
 			// });
-			if (this.color != '' && this.color != '#3498DB') {
+			if (this.color != '' && this.color != '#000') {
 				id = this.element.attr('data-button-id');
 				color = this.color;
 				$("[data-id='" + id + "']").val(this.color);
