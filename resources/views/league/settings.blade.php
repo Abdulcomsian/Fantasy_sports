@@ -5,6 +5,33 @@
 @php
 $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]->pivot) && isset($league->permissions[0]->pivot->permission_type)) ? $league->permissions[0]->pivot->permission_type : 0;
 @endphp
+<style>
+	.colorPickSelector {
+		border-radius: 5px;
+		width: 36px;
+		height: 36px;
+		margin-left: 50px;
+		cursor: pointer;
+		-webkit-transition: all linear .2s;
+		-moz-transition: all linear .2s;
+		-ms-transition: all linear .2s;
+		-o-transition: all linear .2s;
+		transition: all linear .2s;
+	}
+
+	.colorPickSelector:hover {
+		transform: scale(1.1);
+	}
+
+	.colorPicker {
+		width: 220px;
+	}
+
+	.PickSelector {
+		width: 100px;
+		height: 50px;
+	}
+</style>
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
 	<div class="container">
 		<div class="alert alert-warning alert-dismissible hide" role="alert">
@@ -284,203 +311,300 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	</form>
 	<div class="rosterSetting">
 		<h5>Roster Setting</h5>
-		<p>Set Roster Position</p>
+		<br>
+		<center>
+			<P>Roster Spots & Draft Rounds:14</P>
+		</center>
 		<form method="post" action="{{url('league/'.$league->id.'/save-roster')}}" id="rosterform">
 			@csrf
+			@foreach($rosterdata as $data)
+			@php
+			if($data->position=="QB")
+			{
+			$qbcount=$data->totalcount;
+			$qbcolor=$data->color;
+			}
+			elseif($data->position=="RB")
+			{
+			$rbcount=$data->totalcount;
+			$rbcolor=$data->color;
+			}
+			elseif($data->position=="WR")
+			{
+			$wrcount=$data->totalcount;
+			$wrcolor=$data->color;
+			}
+			elseif($data->position=="TE")
+			{
+			$tecount=$data->totalcount;
+			$tecolor=$data->color;
+			}
+			elseif($data->position=="WRT")
+			{
+			$wrtcount=$data->totalcount;
+			$wrtcolor=$data->color;
+			}
+			elseif($data->position=='WR/TE')
+			{
+			$wrtecount=$data->totalcount;
+			$wrtecolor=$data->color;
+			}
+			elseif($data->position=="WR/RB")
+			{
+			$wrrbcount=$data->totalcount;
+			$wrrbcolor=$data->color;
+			}
+			elseif($data->position=="QB/WR/RB/TE")
+			{
+			$qbwrrbtecount=$data->totalcount;
+			$qbwrrbtecolor=$data->color;
+			}
+			elseif($data->position=="K")
+			{
+			$kcount=$data->totalcount;
+			$kcolor=$data->color;
+			}
+			elseif($data->position=="DEF")
+			{
+			$defcount=$data->totalcount;
+			$defcolor=$data->color;
+			}
+			elseif($data->position=="DL")
+			{
+			$dlcount=$data->totalcount;
+			$dlcolor=$data->color;
+			}
+			elseif($data->position=="LB")
+			{
+			$lbcount=$data->totalcount;
+			$lbcolor=$data->color;
+			}
+			elseif($data->position=="IDP")
+			{
+			$idpcount=$data->totalcount;
+			$idpcolor=$data->color;
+			}
+			elseif($data->position=="DB")
+			{
+			$dbcount=$data->totalcount;
+			$dbcolor=$data->color;
+			}
+			elseif($data->position=="BENCH")
+			{
+			$bencount=$data->totalcount;
+			$bencolor=$data->color;
+			}
+			@endphp
+			@endforeach
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="1" min="0">
+					<input type="text" name="posrow[]" value="{{$qbcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="1">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" id="colorInput" data-id="1" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="1" class="PickSelector">Select Color</button>
+					<input type="color" disabled class="favcolor" id="colorInput" data-id="1" name="favcolor[]" value="{{$qbcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="1" id="order1" />
+				<input type="hidden" name="order[]" value="1" id="order1" />
 				<input type="hidden" name="pos[]" value="QB" id="posid1" />
 				<p>QUARTERBACK (QB)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="2" min="0">
+					<input type="text" name="posrow[]" value="{{$rbcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="2">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="2" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="2" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="2" id="colorInput" name="favcolor[]" type="color" value="{{$rbcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="2" id="order2" />
+				<input type="hidden" name="order[]" value="2" id="order2" />
 				<input type="hidden" name="pos[]" value="RB" id="posid2" />
 				<p>RUNNING BACK (RB)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="3" min="0">
+					<input type="text" name="posrow[]" value="{{$wrcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="3">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="3" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="3" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="3" id="colorInput" name="favcolor[]" type="color" value="{{$wrcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="3" id="order3" />
+				<input type="hidden" name="order[]" value="3" id="order3" />
 				<input type="hidden" name="pos[]" value="WR" id="posid3" />
 				<p>WIDE RECEIVER (WR)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="1" min="0">
+					<input type="text" name="posrow[]" value="{{$tecount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="4">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="4" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="4" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="4" id="colorInput" name="favcolor[]" type="color" value="{{$tecolor ?? ''}}">
 				</div>
-				<input type="hidden" name=order[]" value="4" id="order4" />
+				<input type="hidden" name="order[]" value="4" id="order4" />
 				<input type="hidden" name="pos[]" value="TE" id="posid4" />
 				<p>TIGHT END (TE)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="{{$wrtcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="5">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="5" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="5" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="5" id="colorInput" name="favcolor[]" type="color" value="{{$wrtcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="5" id="order5" />
+				<input type="hidden" name="order[]" value="5" id="order5" />
 				<input type="hidden" name="pos[]" value="WRT" id="posid5" />
-				<p>(Flex(WR/RB/TE))</p>
+				<p>(FLEX (WR/RB/TE))</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="{{$wrtecount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="13">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="13" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="13" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="13" id="colorInput" name="favcolor[]" type="color" value="{{$wrtecolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="6" id="order13" />
+				<input type="hidden" name="order[]" value="6" id="order13" />
 				<input type="hidden" name="pos[]" value="WR/TE" id="posid13" />
-				<p>Flex (WR/TE)</p>
+				<p>FLEX (WR/TE)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="{{$wrrbcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="14">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="14" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="14" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="14" id="colorInput" name="favcolor[]" type="color" value="{{$wrrbcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="7" id="order14" />
+				<input type="hidden" name="order[]" value="7" id="order14" />
 				<input type="hidden" name="pos[]" value="WR/RB" id="posid14" />
-				<p>Flex (WR/RB)</p>
+				<p>FLEX (WR/RB)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="{{$qbwrrbtecount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="15">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="15" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="15" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="15" id="colorInput" name="favcolor[]" type="color" value="{{$qbwrrbtecolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="1" id="order15" />
+				<input type="hidden" name="order[]" value="8" id="order15" />
 				<input type="hidden" name="pos[]" value="QB/WR/RB/TE" id="posid15" />
-				<p>Flex (QB/WR/RB/TE)</p>
+				<p>FLEX (QB/WR/RB/TE)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="1" min="0">
+					<input type="text" name="posrow[]" value="{{$kcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="6">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="6" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="6" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="6" id="colorInput" name="favcolor[]" type="color" value="{{$kcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="8" id="order6" />
+				<input type="hidden" name="order[]" value="9" id="order6" />
 				<input type="hidden" name="pos[]" value="K" id="posid6" />
 				<p>K</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="1" min="0">
+					<input type="text" name="posrow[]" value="{{$defcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="7">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="7" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="7" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="7" id="colorInput" name="favcolor[]" type="color" value="{{$defcolor}}">
 				</div>
-				<input type="hidden" name=order[]" value="9" id="order7" />
+				<input type="hidden" name="order[]" value="10" id="order7" />
 				<input type="hidden" name="pos[]" value="DEF" id="posid7" />
 				<p>DEF</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="{{$bencount ?? '0'}}" min="0">
+					<button type="button" class="plusBtn" data-id="12">+</button>
+				</div>
+				<div class="colorPicker">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="12" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="12" id="colorInput" name="favcolor[]" type="color" value="{{$bencolor ?? '#000'}}">
+				</div>
+				<input type="hidden" name="order[]" value="11" id="order12" />
+				<input type="hidden" name="pos[]" value="BEN" id="posid12" />
+				<p>Bench</p>
+			</div>
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="{{$dlcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="8">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="8" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="8" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="8" id="colorInput" name="favcolor[]" type="color" value="{{$dlcount ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="10" id="order8" />
+				<input type="hidden" name="order[]" value="12" id="order8" />
 				<input type="hidden" name="pos[]" value="DL" id="posid8" />
 				<p>DL</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="{{$lbcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="9">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="9" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="9" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="9" id="colorInput" name="favcolor[]" type="color" value="{{$lbcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="11" id="order9" />
+				<input type="hidden" name="order[]" value="13" id="order9" />
 				<input type="hidden" name="pos[]" value="LB" id="posid9" />
 				<p>LB</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
-					<button type="button" class="plusBtn" data-id="10">+</button>
-				</div>
-				<div class="colorPicker">
-					<input class="favcolor" data-id="10" id="colorInput" name="favcolor[]" type="color" value="">
-				</div>
-				<input type="hidden" name=order[]" value="12" id="order10" />
-				<input type="hidden" name="pos[]" value="IDP" id="posid10" />
-				<p>IDP</p>
-			</div>
-			<div class="colorPickerDiv">
-				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="0" min="0">
+					<input type="text" name="posrow[]" value="{{$dbcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="11">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="11" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="11" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="11" id="colorInput" name="favcolor[]" type="color" value="{{$dbcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="13" id="order11" />
+				<input type="hidden" name="order[]" value="14" id="order11" />
 				<input type="hidden" name="pos[]" value="DB" id="posid11" />
 				<p>DB</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="5" min="0">
-					<button type="button" class="plusBtn" data-id="12">+</button>
+					<input type="text" name="posrow[]" value="{{$idpcount ?? '0'}}" min="0">
+					<button type="button" class="plusBtn" data-id="10">+</button>
 				</div>
 				<div class="colorPicker">
-					<input class="favcolor" data-id="12" id="colorInput" name="favcolor[]" type="color" value="">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="10" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="10" id="colorInput" name="favcolor[]" type="color" value="{{$idpcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name=order[]" value="14" id="order12" />
-				<input type="hidden" name="pos[]" value="BEN" id="posid12" />
-				<p>BEN</p>
+				<input type="hidden" name="order[]" value="15" id="order10" />
+				<input type="hidden" name="pos[]" value="IDP" id="posid10" />
+				<p>IDP</p>
 			</div>
 			<div>
 				@if(count($rosterdata)<=0) <center><input type="submit" value="submit"></center>
@@ -577,5 +701,44 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			},
 		});
 	})
+
+	//$(".colorPickSelector").colorPick();
+	$(".PickSelector").colorPick({
+		'initialColor': '#3498db',
+		'allowRecent': true,
+		'recentMax': 5,
+		'allowCustomColor': false,
+		'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#3498db", "#2980b9", "#9b59b6", "#8e44ad", "#34495e", "#2c3e50", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#e74c3c", "#c0392b", "#ecf0f1", "#bdc3c7", "#95a5a6", "#7f8c8d"],
+		'onColorSelected': function() {
+			// this.element.css({
+			// 	'backgroundColor': this.color,
+			// 	'color': this.color
+			// });
+			if (this.color != '#3498DB') {
+				id = this.element.attr('data-button-id');
+				color = this.color;
+				$("[data-id='" + id + "']").val(this.color);
+				pos = $("#order" + id + "").next().val();
+
+				$.ajax({
+					type: 'POST',
+					url: "/league/" + $("input[name='league_id']").val() + "/addcolor",
+					data: {
+						pos: pos,
+						color: color,
+						leagueId: $("input[name='league_id']").val(),
+					},
+					success: function(response) {
+						if (response == "success") {
+							successMessage('color for postion inserted successfully');
+						} else {
+							errorMessage("Something Went Wrong");
+						}
+					},
+				});
+			}
+
+		}
+	});
 </script>
 @endsection
