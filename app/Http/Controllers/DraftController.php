@@ -481,8 +481,11 @@ class DraftController extends Controller
         // $round_id=$data[1];
         // $league_id=$data[2];
         // $player_id=$data[3];
-        LeagueRound::where(['league_id' => $request->league_id, 'team_id' => $request->team_id, 'round_number' => $request->round_id, 'player_id' => $request->player_id])->update(['player_id' => NULL]);
-        return $this->sendResponse(200, 'Player Removed Successfully.');
+        $res = LeagueRound::where(['league_id' => $request->league_id, 'team_id' => $request->team_id, 'round_number' => $request->round_id, 'player_id' => $request->player_id])->update(['player_id' => NULL]);
+        if ($res) {
+            RosterTeamplayer::where(['league_id' => $request->league_id, 'team_id' => $request->team_id, 'player_id' => $request->player_id])->delete();
+            return $this->sendResponse(200, 'Player Removed Successfully.');
+        }
     }
 
     public function get_round_order(Request $request, $leagueId)
