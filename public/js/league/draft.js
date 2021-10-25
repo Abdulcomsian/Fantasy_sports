@@ -92,10 +92,10 @@ $(function () {
                 $("#keeperlistteamid").val(),
                 leagueId
             );
-            // window.location =
-            //     "/league/" +
-            //     $("input[name='league_id']").val() +
-            //     "/draft?type=keeperlist";
+            window.location =
+                "/league/" +
+                $("input[name='league_id']").val() +
+                "/draft?type=keeperlist";
         }
     });
     $("#updateKeeperlist").click(function () {
