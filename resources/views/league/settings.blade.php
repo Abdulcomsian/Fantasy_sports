@@ -704,7 +704,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 
 	//$(".colorPickSelector").colorPick();
 	$(".PickSelector").colorPick({
-		'initialColor': '#3498db',
+		// 'initialColor': '#3498db',
 		'allowRecent': true,
 		'recentMax': 5,
 		'allowCustomColor': false,
@@ -714,7 +714,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			// 	'backgroundColor': this.color,
 			// 	'color': this.color
 			// });
-			if (this.color != '#3498DB') {
+			if (this.color != '' && this.color != '#3498DB') {
 				id = this.element.attr('data-button-id');
 				color = this.color;
 				$("[data-id='" + id + "']").val(this.color);
@@ -730,9 +730,12 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					},
 					success: function(response) {
 						if (response == "success") {
+
 							successMessage('color for postion inserted successfully');
+							location.reload();
 						} else {
 							errorMessage("Something Went Wrong");
+							location.reload();
 						}
 					},
 				});
