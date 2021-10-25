@@ -664,7 +664,7 @@ return (($a->round_order) < ($b->round_order));
                 <a href="javascript:void(0)" data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></a><br>
                 <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
                 <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
-                <span style="font-weight:bold;font-size:22px;">{{ $round->player->last_name}}</span><br>
+                <span style="font-weight:bold;font-size:16px;">{{ $round->player->last_name}}</span><br>
                 <span>{{ $index.'.'.$round->default_order }}</span>
               </div>
 
@@ -672,9 +672,7 @@ return (($a->round_order) < ($b->round_order));
               <span class="indraft_team_name" style="display: none">{{$round->team->team_name}}</span>
               <span>{{ $index.'.'.$round->default_order }}</span>
               @endif
-
               @if((!isset($round->player) || !isset($round->player->last_name)) && $league->status == 'keeper')
-              <br>
               <a href="javascript:void(0)" round-number='{{$index}}' round-order='{{$round->default_order}}' class="addKeeper"><i class="fa fa-plus" aria-hidden="true"></i></a>
               @endif
           </td>

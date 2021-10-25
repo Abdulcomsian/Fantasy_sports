@@ -311,7 +311,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	</form>
 	<div class="rosterSetting">
 		<h5>Roster Setting</h5>
-		<p>Set Roster Position</p>
+		<br>
+		<center>
+			<P>Roster Spots & Draft Rounds:14</P>
+		</center>
 		<form method="post" action="{{url('league/'.$league->id.'/save-roster')}}" id="rosterform">
 			@csrf
 			@foreach($rosterdata as $data)
@@ -386,7 +389,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			$dbcount=$data->totalcount;
 			$dbcolor=$data->color;
 			}
-			elseif($data->position=="BEN")
+			elseif($data->position=="BENCH")
 			{
 			$bencount=$data->totalcount;
 			$bencolor=$data->color;
@@ -461,7 +464,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 				<input type="hidden" name="order[]" value="5" id="order5" />
 				<input type="hidden" name="pos[]" value="WRT" id="posid5" />
-				<p>(Flex(WR/RB/TE))</p>
+				<p>(FLEX (WR/RB/TE))</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
@@ -475,7 +478,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 				<input type="hidden" name="order[]" value="6" id="order13" />
 				<input type="hidden" name="pos[]" value="WR/TE" id="posid13" />
-				<p>Flex (WR/TE)</p>
+				<p>FLEX (WR/TE)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
@@ -489,7 +492,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 				<input type="hidden" name="order[]" value="7" id="order14" />
 				<input type="hidden" name="pos[]" value="WR/RB" id="posid14" />
-				<p>Flex (WR/RB)</p>
+				<p>FLEX (WR/RB)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
@@ -501,9 +504,9 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="15" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="15" id="colorInput" name="favcolor[]" type="color" value="{{$qbwrrbtecolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name="order[]" value="1" id="order15" />
+				<input type="hidden" name="order[]" value="8" id="order15" />
 				<input type="hidden" name="pos[]" value="QB/WR/RB/TE" id="posid15" />
-				<p>Flex (QB/WR/RB/TE)</p>
+				<p>FLEX (QB/WR/RB/TE)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
@@ -515,7 +518,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="6" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="6" id="colorInput" name="favcolor[]" type="color" value="{{$kcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name="order[]" value="8" id="order6" />
+				<input type="hidden" name="order[]" value="9" id="order6" />
 				<input type="hidden" name="pos[]" value="K" id="posid6" />
 				<p>K</p>
 			</div>
@@ -529,9 +532,23 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="7" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="7" id="colorInput" name="favcolor[]" type="color" value="{{$defcolor}}">
 				</div>
-				<input type="hidden" name="order[]" value="9" id="order7" />
+				<input type="hidden" name="order[]" value="10" id="order7" />
 				<input type="hidden" name="pos[]" value="DEF" id="posid7" />
 				<p>DEF</p>
+			</div>
+			<div class="colorPickerDiv">
+				<div class="incrementNumber">
+					<button type="button" class="minusBtn">-</button>
+					<input type="text" name="posrow[]" value="{{$bencount ?? '0'}}" min="0">
+					<button type="button" class="plusBtn" data-id="12">+</button>
+				</div>
+				<div class="colorPicker">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="12" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="12" id="colorInput" name="favcolor[]" type="color" value="{{$bencolor ?? '#000'}}">
+				</div>
+				<input type="hidden" name="order[]" value="11" id="order12" />
+				<input type="hidden" name="pos[]" value="BEN" id="posid12" />
+				<p>Bench</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
@@ -543,7 +560,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="8" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="8" id="colorInput" name="favcolor[]" type="color" value="{{$dlcount ?? '#000'}}">
 				</div>
-				<input type="hidden" name="order[]" value="10" id="order8" />
+				<input type="hidden" name="order[]" value="12" id="order8" />
 				<input type="hidden" name="pos[]" value="DL" id="posid8" />
 				<p>DL</p>
 			</div>
@@ -557,23 +574,9 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="9" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="9" id="colorInput" name="favcolor[]" type="color" value="{{$lbcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name="order[]" value="11" id="order9" />
+				<input type="hidden" name="order[]" value="13" id="order9" />
 				<input type="hidden" name="pos[]" value="LB" id="posid9" />
 				<p>LB</p>
-			</div>
-			<div class="colorPickerDiv">
-				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="{{$idpcount ?? '0'}}" min="0">
-					<button type="button" class="plusBtn" data-id="10">+</button>
-				</div>
-				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="10" class="PickSelector">Select Color</button>
-					<input class="favcolor" disabled data-id="10" id="colorInput" name="favcolor[]" type="color" value="{{$idpcolor ?? '#000'}}">
-				</div>
-				<input type="hidden" name="order[]" value="12" id="order10" />
-				<input type="hidden" name="pos[]" value="IDP" id="posid10" />
-				<p>IDP</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
@@ -585,23 +588,23 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="11" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="11" id="colorInput" name="favcolor[]" type="color" value="{{$dbcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name="order[]" value="13" id="order11" />
+				<input type="hidden" name="order[]" value="14" id="order11" />
 				<input type="hidden" name="pos[]" value="DB" id="posid11" />
 				<p>DB</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
 					<button type="button" class="minusBtn">-</button>
-					<input type="text" name="posrow[]" value="{{$bencount ?? '0'}}" min="0">
-					<button type="button" class="plusBtn" data-id="12">+</button>
+					<input type="text" name="posrow[]" value="{{$idpcount ?? '0'}}" min="0">
+					<button type="button" class="plusBtn" data-id="10">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="12" class="PickSelector">Select Color</button>
-					<input class="favcolor" disabled data-id="12" id="colorInput" name="favcolor[]" type="color" value="{{$bencolor ?? '#000'}}">
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="10" class="PickSelector">Select Color</button>
+					<input class="favcolor" disabled data-id="10" id="colorInput" name="favcolor[]" type="color" value="{{$idpcolor ?? '#000'}}">
 				</div>
-				<input type="hidden" name="order[]" value="14" id="order12" />
-				<input type="hidden" name="pos[]" value="BEN" id="posid12" />
-				<p>BEN</p>
+				<input type="hidden" name="order[]" value="15" id="order10" />
+				<input type="hidden" name="pos[]" value="IDP" id="posid10" />
+				<p>IDP</p>
 			</div>
 			<div>
 				@if(count($rosterdata)<=0) <center><input type="submit" value="submit"></center>

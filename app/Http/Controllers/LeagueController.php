@@ -87,7 +87,7 @@ class LeagueController extends Controller
                 $data[] = ['number' => 1, 'name' => 'TE', 'order' => 4];
                 $data[] = ['number' => 1, 'name' => 'K', 'order' => 9];
                 $data[] = ['number' => 1, 'name' => 'DEF', 'order' => 10];
-                $data[] = ['number' => 5, 'name' => 'BENCH', 'order' => 15];
+                $data[] = ['number' => 5, 'name' => 'BENCH', 'order' => 11];
                 for ($i = 0; $i < count($data); $i++) {
                     if ($data[$i]['number'] > 1) {
                         for ($j = 0; $j < $data[$i]['number']; $j++) {
@@ -262,10 +262,10 @@ class LeagueController extends Controller
                 ->where('league_id', $id)
                 ->first();
             $rosterdata = DB::table('rosters')
-                 ->select('color','position', DB::raw('count(id) as totalcount'))
-                 ->groupBy('position')
-                 ->orderBy('orderno')
-                 ->get();
+                ->select('color', 'position', DB::raw('count(id) as totalcount'))
+                ->groupBy('position')
+                ->orderBy('orderno')
+                ->get();
             return view('league.settings', ['league' => $league, 'leaguser' => $leaguser, 'rosterdata' => $rosterdata]);
         }
         abort(404);

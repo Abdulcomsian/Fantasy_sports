@@ -1831,13 +1831,13 @@ a:hover {
     font: 500 13px "Neometric Medium";
     background-color: #000;
 }
-.city_board_table .table tbody.customeTable tr td{
+.city_board_table .table tbody.customeTable tr td {
     background-color: #000;
 }
-.city_board_table .table .collpaseTable tr td p{
+.city_board_table .table .collpaseTable tr td p {
     margin: 0px !important;
 }
-.city_board_table .table tbody.customeTable tr td table td{
+.city_board_table .table tbody.customeTable tr td table td {
     background-color: #fff;
 }
 /* line 1557, ../sass/app.scss */
@@ -4045,40 +4045,39 @@ input[type="submit"] {
     margin: 0px !important;
 }
 
-.colorPickerDiv{
+.colorPickerDiv {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.rosterSetting{
+.rosterSetting {
     background: #1c212d;
     padding: 20px;
     width: 100%;
-    max-width: 450px;
+    max-width: 535px;
     margin: auto;
     margin-right: 0px;
     margin-top: 50px;
 }
 .colorPicker,
-.incrementNumber{
+.incrementNumber {
     width: 136px;
     text-align: center;
 }
 .rosterSetting h5,
-.rosterSetting p{
+.rosterSetting p {
     color: #fff;
     margin: 0px;
 }
-.rosterSetting p{
-
+.rosterSetting p {
     margin-bottom: 30px;
 }
-.colorPickerDiv p{
+.colorPickerDiv p {
     width: 136px;
     margin-bottom: 0px;
     font-size: 14px;
 }
-.incrementNumber{
+.incrementNumber {
     background: #4a5870;
     border-radius: 100px;
     background: #4a5870;
@@ -4088,27 +4087,27 @@ input[type="submit"] {
     align-items: center;
 }
 .incrementNumber input,
-.incrementNumber button{
+.incrementNumber button {
     background-color: transparent;
 }
-.incrementNumber input{
+.incrementNumber input {
     width: 50px;
     text-align: center;
     color: #fff;
     font-weight: 500;
 }
-.incrementNumber button{
+.incrementNumber button {
     border: none;
     color: #fff;
     font-size: 30px;
 }
 .incrementNumber button:focus,
-.incrementNumber input:focus{
+.incrementNumber input:focus {
     box-shadow: none !important;
     border: none !important;
     outline: none !important;
 }
-.favcolor{
+.favcolor {
     height: 60px;
     background: transparent;
     width: 60px;
