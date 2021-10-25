@@ -8,55 +8,56 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('plugins/sweet-alert/sweetalert.min.js') }}"></script>
 <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+<script src="{{ asset('js/colorPick.js') }}"></script>
 <script type="text/javascript">
-	$(function(){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });   
-
-		$(document).ajaxSend(function(e, xhr, opt){
-			let url = opt.url.split('/');
-			if(!(url[4] && url[4] == 'timer')){
-				$('.ajax-loader').css("visibility", "visible");	
+	$(function() {
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			}
 		});
-		$(document).ajaxComplete(function(){
-		    $('.ajax-loader').css("visibility", "hidden");
+
+		$(document).ajaxSend(function(e, xhr, opt) {
+			let url = opt.url.split('/');
+			if (!(url[4] && url[4] == 'timer')) {
+				$('.ajax-loader').css("visibility", "visible");
+			}
 		});
-    });
+		$(document).ajaxComplete(function() {
+			$('.ajax-loader').css("visibility", "hidden");
+		});
+	});
 
-    function successMessage(message) {
-    	$.toast({
-		    heading: 'Success',
-		    text: message,
-		    showHideTransition: 'slide',
-		    icon: 'success',
-		    position: 'top-right'
+	function successMessage(message) {
+		$.toast({
+			heading: 'Success',
+			text: message,
+			showHideTransition: 'slide',
+			icon: 'success',
+			position: 'top-right'
 		})
-    }
+	}
 
-    function errorMessage(message) {
-    	$.toast({
-		    heading: 'Error',
-		    text: message,
-		    showHideTransition: 'fade',
-		    icon: 'error',
-		    position: 'top-right',
+	function errorMessage(message) {
+		$.toast({
+			heading: 'Error',
+			text: message,
+			showHideTransition: 'fade',
+			icon: 'error',
+			position: 'top-right',
 		})
-    }
-	jQuery(".openBtn").click(function(){
-		if(jQuery("#side-nav").css("display")=="none"){
-			jQuery("#side-nav").css("display","block")
-			jQuery(".openBtn").css("display","none")
-			jQuery("#side-nav .side-nav-content button").css("display","block")
-		} else{
-			jQuery("#side-nav").css("display","none")
+	}
+	jQuery(".openBtn").click(function() {
+		if (jQuery("#side-nav").css("display") == "none") {
+			jQuery("#side-nav").css("display", "block")
+			jQuery(".openBtn").css("display", "none")
+			jQuery("#side-nav .side-nav-content button").css("display", "block")
+		} else {
+			jQuery("#side-nav").css("display", "none")
 		}
 	})
-	jQuery(".side-nav-content button").click(function(){
-		jQuery("#side-nav").css("display","none")
-		jQuery(".openBtn").css("display","block")
+	jQuery(".side-nav-content button").click(function() {
+		jQuery("#side-nav").css("display", "none")
+		jQuery(".openBtn").css("display", "block")
 	})
 </script>

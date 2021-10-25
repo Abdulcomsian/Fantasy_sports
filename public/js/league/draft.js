@@ -92,10 +92,10 @@ $(function () {
                 $("#keeperlistteamid").val(),
                 leagueId
             );
-            window.location =
-                "/league/" +
-                $("input[name='league_id']").val() +
-                "/draft?type=keeperlist";
+            // window.location =
+            //     "/league/" +
+            //     $("input[name='league_id']").val() +
+            //     "/draft?type=keeperlist";
         }
     });
     $("#updateKeeperlist").click(function () {
@@ -109,14 +109,15 @@ $(function () {
             }
             updatekeeperlist(
                 val,
+                $("#oldplayerid").val(),
                 $("#editkeeperlistround").val(),
                 $("#editkeeperlistteamid").val(),
                 leagueId
             );
-            window.location =
-                "/league/" +
-                $("input[name='league_id']").val() +
-                "/draft?type=keeperlist";
+            // window.location =
+            //     "/league/" +
+            //     $("input[name='league_id']").val() +
+            //     "/draft?type=keeperlist";
         }
     });
     //keeperlist button save work
@@ -511,7 +512,7 @@ function savekeeperlist(playerId, roundId, teamid, leagueId) {
         });
     }
 }
-function updatekeeperlist(playerId, roundId, teamid, leagueId) {
+function updatekeeperlist(playerId, oldplayerid, roundId, teamid, leagueId) {
     roundorder = $("#roundorder").val();
     if (!roundorder) {
         roundorder = "";
@@ -522,6 +523,7 @@ function updatekeeperlist(playerId, roundId, teamid, leagueId) {
             url: "/league/" + leagueId + "/updateroundkeeperlist",
             data: {
                 playerId: playerId,
+                oldplayerid: oldplayerid,
                 roundId: roundId,
                 teamid: teamid,
                 roundorder: roundorder,

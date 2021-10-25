@@ -261,7 +261,11 @@ class LeagueController extends Controller
             $leaguser = DB::table('league_user')->select('team_id')
                 ->where('league_id', $id)
                 ->first();
-            $rosterdata = Roster::where('league_id', $id)->get();
+            $rosterdata = DB::table('rosters')
+                 ->select('color','position', DB::raw('count(id) as totalcount'))
+                 ->groupBy('position')
+                 ->orderBy('orderno')
+                 ->get();
             return view('league.settings', ['league' => $league, 'leaguser' => $leaguser, 'rosterdata' => $rosterdata]);
         }
         abort(404);
