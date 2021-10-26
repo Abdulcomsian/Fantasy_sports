@@ -459,7 +459,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="5">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="5" class="PickSelector">Select Color</button>
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px;@if(!isset($wrtcount )){{'cursor: no-drop;'}}@endif" data-button-id="5" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="5" id="colorInput" name="favcolor[]" type="color" value="{{$wrtcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="5" id="order5" />
@@ -473,7 +473,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="13">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="13" class="PickSelector">Select Color</button>
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px;@if(!isset($wrtecount)){{'cursor: no-drop;'}}@endif" data-button-id="13" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="13" id="colorInput" name="favcolor[]" type="color" value="{{$wrtecolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="6" id="order13" />
@@ -487,7 +487,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="14">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="14" class="PickSelector">Select Color</button>
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px;@if(!isset($wrrbcount)){{'cursor: no-drop;'}}@endif" data-button-id="14" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="14" id="colorInput" name="favcolor[]" type="color" value="{{$wrrbcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="7" id="order14" />
@@ -501,7 +501,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="15">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="15" class="PickSelector">Select Color</button>
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px;@if(!isset($qbwrrbtecount)){{'cursor: no-drop;'}}@endif" data-button-id="15" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="15" id="colorInput" name="favcolor[]" type="color" value="{{$qbwrrbtecolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="8" id="order15" />
@@ -515,7 +515,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="6">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="6" class="PickSelector">Select Color</button>
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px;@if(!isset($kcount)){{'cursor: no-drop;'}}@endif" data-button-id="6" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="6" id="colorInput" name="favcolor[]" type="color" value="{{$kcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="9" id="order6" />
@@ -529,7 +529,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="7">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="7" class="PickSelector">Select Color</button>
+					<button type="button" style="background:black;color:white;border:1px solid;width:105px;@if(!isset($defcount)){{'cursor: no-drop;'}}@endif" data-button-id="7" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="7" id="colorInput" name="favcolor[]" type="color" value="{{$defcolor}}">
 				</div>
 				<input type="hidden" name="order[]" value="10" id="order7" />
@@ -543,7 +543,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="12">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="12" class="PickSelector">Select Color</button>
+					<button type="button" style="@if(!isset($bencount)){{'cursor: no-drop;'}}@endif background:black;color:white;border:1px solid;width:105px" data-button-id="12" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="12" id="colorInput" name="favcolor[]" type="color" value="{{$bencolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="11" id="order12" />
@@ -557,7 +557,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="8">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="8" class="PickSelector">Select Color</button>
+					<button type="button" style="@if(!isset($dlcount)){{'cursor: no-drop;'}}@endif background:black;color:white;border:1px solid;width:105px" data-button-id="8" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="8" id="colorInput" name="favcolor[]" type="color" value="{{$dlcount ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="12" id="order8" />
@@ -571,7 +571,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="9">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="9" class="PickSelector">Select Color</button>
+					<button type="button" style="@if(!isset($lbcount)){{'cursor: no-drop;'}}@endif background:black;color:white;border:1px solid;width:105px" data-button-id="9" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="9" id="colorInput" name="favcolor[]" type="color" value="{{$lbcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="13" id="order9" />
@@ -585,7 +585,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="11">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="11" class="PickSelector">Select Color</button>
+					<button type="button" style="@if(!isset($dbcount)){{'cursor: no-drop;'}}@endif background:black;color:white;border:1px solid;width:105px" data-button-id="11" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="11" id="colorInput" name="favcolor[]" type="color" value="{{$dbcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="14" id="order11" />
@@ -599,7 +599,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="10">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:black;color:white;border:1px solid;width:105px" data-button-id="10" class="PickSelector">Select Color</button>
+					<button type="button" style="@if(!isset($idpcount)){{'cursor: no-drop;'}}@endif background:black;color:white;border:1px solid;width:105px" data-button-id="10" class="PickSelector">Select Color</button>
 					<input class="favcolor" disabled data-id="10" id="colorInput" name="favcolor[]" type="color" value="{{$idpcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="15" id="order10" />
@@ -679,28 +679,28 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 
 	})
 
-	$(document).on('input', '.favcolor', function() {
-		$(this).attr("value", $(this).val());
-		color = $(this).val();
-		id = $(this).attr('data-id');
-		pos = $("#order" + id + "").next().val();
-		$.ajax({
-			type: 'POST',
-			url: "/league/" + $("input[name='league_id']").val() + "/addcolor",
-			data: {
-				pos: pos,
-				color: color,
-				leagueId: $("input[name='league_id']").val(),
-			},
-			success: function(response) {
-				if (response == "success") {
-					successMessage('color for postion inserted successfully');
-				} else {
-					errorMessage("Something Went Wrong");
-				}
-			},
-		});
-	})
+	// $(document).on('input', '.favcolor', function() {
+	// 	$(this).attr("value", $(this).val());
+	// 	color = $(this).val();
+	// 	id = $(this).attr('data-id');
+	// 	pos = $("#order" + id + "").next().val();
+	// 	$.ajax({
+	// 		type: 'POST',
+	// 		url: "/league/" + $("input[name='league_id']").val() + "/addcolor",
+	// 		data: {
+	// 			pos: pos,
+	// 			color: color,
+	// 			leagueId: $("input[name='league_id']").val(),
+	// 		},
+	// 		success: function(response) {
+	// 			if (response == "success") {
+	// 				successMessage('color for postion inserted successfully');
+	// 			} else {
+	// 				errorMessage("Something Went Wrong");
+	// 			}
+	// 		},
+	// 	});
+	// })
 
 	//$(".colorPickSelector").colorPick();
 	$(".PickSelector").colorPick({
@@ -714,7 +714,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			// 	'backgroundColor': this.color,
 			// 	'color': this.color
 			// });
-			if (this.color != '' && this.color != '#3498DB') {
+			if (this.color != '' && this.color != '#000') {
 				id = this.element.attr('data-button-id');
 				color = this.color;
 				$("[data-id='" + id + "']").val(this.color);
