@@ -937,7 +937,7 @@ return (($a->round_order) < ($b->round_order));
         }
       })
 
-      $("#myInput4").val(playername);
+      //$("#myInput4").val(playername);
       $("#oldplayerid").val(playerid);
       $("#editkeeperlistteamid").val(teamid);
       $("#oldroundunber").val(roundnumber);

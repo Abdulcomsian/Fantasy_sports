@@ -47,18 +47,43 @@ class LeagueController extends Controller
             'name' => 'required',
             'draft_type' => 'required',
             'league_size' => 'required',
-            'draft_round' => 'required'
+            // 'draft_round' => 'required'
         ]);
-
         if (!$validator->fails()) {
             $user = Auth::user();
             $league = new League();
             $league->name = $request->name;
             $league->draft_type = $request->draft_type;
-            $league->draft_round = $request->draft_round;
+            $league->draft_round = $request->draft_round ?? '0';
             $league->joiner_key = strtoupper(md5(uniqid()));
             $league->created_by = $user->id;
             $league->save();
+
+            //work for roster view
+            $draft_round = 0;
+            for ($i = 0; $i < count($request->posrow); $i++) {
+                if ($request->posrow[$i] > 1) {
+                    $draft_round += $request->posrow[$i];
+                    for ($j = 0; $j < $request->posrow[$i]; $j++) {
+                        $roster = new Roster();
+                        $roster->league_id = $league->id;
+                        $roster->position = $request->pos[$i];
+                        $roster->orderno = $request->order[$i];
+                        $roster->color = $request->favcolor[$i] ?? '#000';
+                        $roster->save();
+                    }
+                } elseif ($request->posrow[$i] == 1) {
+                    $draft_round += $request->posrow[$i];
+                    $roster = new Roster();
+                    $roster->league_id = $league->id;
+                    $roster->position = $request->pos[$i];
+                    $roster->orderno = $request->order[$i];
+                    $roster->color = $request->favcolor[$i] ?? '#000';
+                    $roster->save();
+                }
+            }
+            League::where('id', $league->id)->update(['draft_round' => $draft_round]);
+            ///end of roster view
 
             if (isset($league->id) && $request->league_size) {
                 $teams = [];
@@ -80,34 +105,6 @@ class LeagueController extends Controller
                     ['league_id' => $league->id, 'permission_type' => 2, 'created_by' => $user->id]
                 ];
                 $league->permissions()->createMany($permissions); */
-                //work for roster view==============================================
-                $data[] = ['number' => 1, 'name' => 'QB', 'order' => 1];
-                $data[] = ['number' => 2, 'name' => 'RB', 'order' => 2];
-                $data[] = ['number' => 3, 'name' => 'WR', 'order' => 3];
-                $data[] = ['number' => 1, 'name' => 'TE', 'order' => 4];
-                $data[] = ['number' => 1, 'name' => 'K', 'order' => 9];
-                $data[] = ['number' => 1, 'name' => 'DEF', 'order' => 10];
-                $data[] = ['number' => 5, 'name' => 'BENCH', 'order' => 11];
-                for ($i = 0; $i < count($data); $i++) {
-                    if ($data[$i]['number'] > 1) {
-                        for ($j = 0; $j < $data[$i]['number']; $j++) {
-                            $roster = new Roster();
-                            $roster->league_id = $league->id;
-                            $roster->position = $data[$i]['name'];
-                            $roster->orderno = $data[$i]['order'];
-                            $roster->color = '#000';
-                            $roster->save();
-                        }
-                    } elseif ($data[$i]['number'] == 1) {
-                        $roster = new Roster();
-                        $roster->league_id = $league->id;
-                        $roster->position = $data[$i]['name'];
-                        $roster->orderno = $data[$i]['order'];
-                        $roster->color = '#000';
-                        $roster->save();
-                    }
-                }
-                //==================================================================
                 return $this->sendResponse(200, 'League created successfully.', ['id' => $league->id]);
             }
             return $this->sendResponse(400, 'Something went wrong. Please try again later.');
@@ -440,10 +437,17 @@ class LeagueController extends Controller
     {
         $id = $_GET['id'];
         if (isset($request->myinput3)) {
-            $leaguekeeperplayer = KeeperList::where('league_id', $id)->get();
+            // $leaguekeeperplayer = KeeperList::where('league_id', $id)->get();
+            // $playerIds = [];
+            // foreach ($leaguekeeperplayer as  $round) {
+            //     $playerIds[] = $round->player_id;
+            // }
+            $league = League::leagueData($id);
             $playerIds = [];
-            foreach ($leaguekeeperplayer as  $round) {
-                $playerIds[] = $round->player_id;
+            if (isset($league->rounds)) {
+                foreach ($league->rounds->whereNotNull('player_id') as $key => $round) {
+                    $playerIds[] = $round->player->id;
+                }
             }
             $players = Player::whereNotIn('id', $playerIds)->where(
                 function ($query) {

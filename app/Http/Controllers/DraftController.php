@@ -185,6 +185,8 @@ class DraftController extends Controller
                     $RosterTeamplayer->player_id = $request->player_id;
                     $RosterTeamplayer->rosters_id = $position_id;
                     $RosterTeamplayer->league_id = $leagueId;
+                    $RosterTeamplayer->round_number = $request->round_number;
+                    $RosterTeamplayer->round_order = $request->round_order;
                     $RosterTeamplayer->save();
                     return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 } else {
@@ -256,6 +258,13 @@ class DraftController extends Controller
                 if ($leagueroundplayercheck->player_id == null) {
                     $leagueroundplayercheck->player_id = $request->playerId;
                     if ($leagueroundplayercheck->save()) {
+                        //save player in keeper list as well
+                        $KeeperList = new KeeperList();
+                        $KeeperList->team_id = $request->teamid;
+                        $KeeperList->player_id = $request->playerId;
+                        $KeeperList->league_id = $leagueId;
+                        $KeeperList->round_number = $request->roundId;
+                        $KeeperList->save();
                         //work for roster view here
                         //get player postion
                         $playerposition = Player::where('id', $request->playerId)->first();
@@ -271,12 +280,14 @@ class DraftController extends Controller
                                 }
                             }
                             //for bench work
-                            $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
-                            foreach ($roster_ben_row as $ben_row) {
-                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
-                                if ($rosterteamcount == 0) {
-                                    $position_id = $ben_row->id;
-                                    break;
+                            if (!$position_id) {
+                                $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
+                                foreach ($roster_ben_row as $ben_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $ben_row->id;
+                                        break;
+                                    }
                                 }
                             }
                         } elseif (count($roster_row) == 1) {
@@ -300,6 +311,7 @@ class DraftController extends Controller
                         $RosterTeamplayer->player_id = $request->playerId;
                         $RosterTeamplayer->rosters_id = $position_id;
                         $RosterTeamplayer->league_id = $leagueId;
+                        $RosterTeamplayer->round_number = $request->roundId;
                         $RosterTeamplayer->save();
 
                         //end of roster view work 
@@ -327,8 +339,13 @@ class DraftController extends Controller
                     'player_id' => $request->playerId
                 ]);
                 if ($leagueroundplayercheck) {
+                    //work for keeper list update
+                    $record = KeeperList::where('team_id', $request->teamid)->where('player_id', $request->oldplayerid)->where('league_id', $leagueId)->where('round_number', $request->oldroundunber)->first();
+                    $record->player_id = $request->playerId;
+                    $record->round_number = $request->roundId;
+                    $record->save();
                     //work for roster view here
-                    $this->update_roster_from_keeper($request->playerId, $request->oldplayerid, $leagueId, $request->teamid);
+                    $this->update_roster_from_keeper($request->playerId, $request->oldplayerid, $request->roundId, $request->oldroundunber, $leagueId, $request->teamid);
                     return response()->json(['status' => 'success', 'message' => '']);
                 } else {
                     return response()->json(['status' => 'error', 'message' => 'something went wrong']);
@@ -338,8 +355,13 @@ class DraftController extends Controller
                     'player_id' => $request->playerId
                 ]);
                 if ($leagueroundplayercheck) {
+                    //work for keeper list update
+                    $record = KeeperList::where('team_id', $request->teamid)->where('player_id', $request->oldplayerid)->where('league_id', $leagueId)->where('round_number', $request->oldroundunber)->first();
+                    $record->player_id = $request->playerId;
+                    $record->round_number = $request->roundId;
+                    $record->save();
                     //work for roster view here
-                    $this->update_roster_from_keeper($request->playerId, $request->oldplayerid, $leagueId, $request->teamid);
+                    $this->update_roster_from_keeper($request->playerId, $request->oldplayerid, $request->roundId, $request->oldroundunber, $leagueId, $request->teamid);
                     //end for roster veiw here
                     return response()->json(['status' => 'success', 'message' => '']);
                 } else {
@@ -537,71 +559,93 @@ class DraftController extends Controller
     }
 
     //update roster veiw from keeper list
-    public function update_roster_from_keeper($playerId, $oldplayerid, $leagueId, $teamid)
+    public function update_roster_from_keeper($playerId, $oldplayerid, $round_number, $old_round_number, $leagueId, $teamid)
     {
-        $playerposition = Player::where('id', $playerId)->first();
-        $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
-        if (count($roster_row) > 1) {
-            //new work here
-            foreach ($roster_row as $row) {
-                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
-                if ($rosterteamcount == 0) {
-                    $position_id = $row->id;
-                    break;
-                } else {
-                    $res = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
-                    if ($res) {
-                        return response()->json(['status' => 'success', 'message' => '']);
-                    } else {
-                        //for bench work
-                        $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
-                        foreach ($roster_ben_row as $ben_row) {
-                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
-                            if ($rosterteamcount == 0) {
-                                $position_id = $ben_row->id;
-                                break;
-                            } else {
-                                RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' =>  $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
-                                return response()->json(['status' => 'success', 'message' => '']);
-                                break;
-                            }
-                        }
+        if ($round_number == $old_round_number) {
+            $rostertemplayerdata = RosterTeamplayer::where(['league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid, 'round_number' => $old_round_number])->first();
+            if ($rostertemplayerdata) {
+                $rostertemplayerdata->player_id = $playerId;
+                $rostertemplayerdata->round_number = $round_number;
+                $rostertemplayerdata->save();
+                return response()->json(['status' => 'success', 'message' => '']);
+            }
+        } else {
+            $playerposition = Player::where('id', $playerId)->first();
+            $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
+            if (count($roster_row) > 1) {
+                //new work here
+                foreach ($roster_row as $row) {
+                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                    if ($rosterteamcount == 0) {
+                        $position_id = $row->id;
+                        break;
+                        // } else {
+                        //     $res = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
+                        //     if ($res) {
+                        //         return response()->json(['status' => 'success', 'message' => '']);
+                        //     } else {
+                        //         //for bench work
+                        //         $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
+                        //         foreach ($roster_ben_row as $ben_row) {
+                        //             $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                        //             if ($rosterteamcount == 0) {
+                        //                 $position_id = $ben_row->id;
+                        //                 break;
+                        //             } else {
+                        //                 RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' =>  $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
+                        //                 return response()->json(['status' => 'success', 'message' => '']);
+                        //                 break;
+                        //             }
+                        //         }
+                        //     }
                     }
                 }
-            }
-        } elseif (count($roster_row) == 1) {
-            //new work here
-            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' =>  $teamid, 'player_id' => $playerId])->count();
-            if ($rosterteamcount == 0) {
-                $position_id = $roster_row[0]->id;
-            } else {
-                $res = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
-                if ($res) {
-                    return response()->json(['status' => 'success', 'message' => '']);
-                } else {
+                //for bench work
+                if (!$position_id) {
                     $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
                     foreach ($roster_ben_row as $ben_row) {
-                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid])->count();
                         if ($rosterteamcount == 0) {
                             $position_id = $ben_row->id;
                             break;
-                        } else {
-                            RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
-                            return response()->json(['status' => 'success', 'message' => '']);
-                            break;
                         }
                     }
                 }
+            } elseif (count($roster_row) == 1) {
+                //new work here
+                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' =>  $teamid, 'player_id' => $oldplayerid])->count();
+                if ($rosterteamcount == 0) {
+                    $position_id = $roster_row[0]->id;
+                } else {
+                    // $res = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
+                    // if ($res) {
+                    //     return response()->json(['status' => 'success', 'message' => '']);
+                    // } else {
+                    $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
+                    foreach ($roster_ben_row as $ben_row) {
+                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                        if ($rosterteamcount == 0) {
+                            $position_id = $ben_row->id;
+                            break;
+                        }
+                        // else {
+                        //     RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
+                        //     return response()->json(['status' => 'success', 'message' => '']);
+                        //     break;
+                        // }
+                    }
+                    //}
+                }
             }
-        }
-        if ($position_id) {
-            $RosterTeamplayer = new RosterTeamplayer();
-            $RosterTeamplayer->team_id = $teamid;
-            $RosterTeamplayer->player_id = $playerId;
-            $RosterTeamplayer->rosters_id = $position_id;
-            $RosterTeamplayer->league_id = $leagueId;
-            if ($RosterTeamplayer->save()) {
-                return response()->json(['status' => 'success', 'message' => '']);
+            if ($position_id) {
+                $RosterTeamplayer = new RosterTeamplayer();
+                $RosterTeamplayer->team_id = $teamid;
+                $RosterTeamplayer->player_id = $playerId;
+                $RosterTeamplayer->rosters_id = $position_id;
+                $RosterTeamplayer->league_id = $leagueId;
+                if ($RosterTeamplayer->save()) {
+                    return response()->json(['status' => 'success', 'message' => '']);
+                }
             }
         }
         //end for roster veiw here

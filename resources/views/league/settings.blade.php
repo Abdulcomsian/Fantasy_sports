@@ -120,7 +120,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<div class="col-md-6">
 				<!-- <h4>17</h4> -->
 				<div class="form-group f-wdth">
-					<select name="draft_round" {{ $permissions == 3 ? "disabled" : "" }}>
+					<select name="draft_round" {{ $permissions == 3 ? "disabled" : "" }} disabled>
 						@foreach(Config::get('rounds') as $round)
 						<option class="text-dark" value="{{$round}}" {{$league->draft_round == $round ? 'selected' : ''}}>{{$round}}</option>
 						@endforeach
@@ -313,7 +313,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		<h5>Roster Setting</h5>
 		<br>
 		<center>
-			<P>Roster Spots & Draft Rounds:14</P>
+			<P>Roster Spots & Draft Rounds:{{$league->draft_round ?? ''}}</P>
 		</center>
 		<form method="post" action="{{url('league/'.$league->id.'/save-roster')}}" id="rosterform">
 			@csrf
@@ -547,7 +547,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<input class="favcolor" disabled data-id="12" id="colorInput" name="favcolor[]" type="color" value="{{$bencolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="11" id="order12" />
-				<input type="hidden" name="pos[]" value="BEN" id="posid12" />
+				<input type="hidden" name="pos[]" value="BENCH" id="posid12" />
 				<p>Bench</p>
 			</div>
 			<div class="colorPickerDiv">
