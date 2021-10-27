@@ -398,7 +398,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			@endforeach
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="1">-</button>
 					<input type="text" name="posrow[]" value="{{$qbcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="1">+</button>
 				</div>
@@ -412,7 +412,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="2">-</button>
 					<input type="text" name="posrow[]" value="{{$rbcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="2">+</button>
 				</div>
@@ -426,7 +426,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="3">-</button>
 					<input type="text" name="posrow[]" value="{{$wrcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="3">+</button>
 				</div>
@@ -440,7 +440,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="4">-</button>
 					<input type="text" name="posrow[]" value="{{$tecount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="4">+</button>
 				</div>
@@ -454,7 +454,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="5">-</button>
 					<input type="text" name="posrow[]" value="{{$wrtcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="5">+</button>
 				</div>
@@ -468,7 +468,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="13">-</button>
 					<input type="text" name="posrow[]" value="{{$wrtecount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="13">+</button>
 				</div>
@@ -482,7 +482,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="14">-</button>
 					<input type="text" name="posrow[]" value="{{$wrrbcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="14">+</button>
 				</div>
@@ -496,7 +496,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="15">-</button>
 					<input type="text" name="posrow[]" value="{{$qbwrrbtecount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="15">+</button>
 				</div>
@@ -510,7 +510,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="6">-</button>
 					<input type="text" name="posrow[]" value="{{$kcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="6">+</button>
 				</div>
@@ -524,7 +524,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="7">-</button>
 					<input type="text" name="posrow[]" value="{{$defcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="7">+</button>
 				</div>
@@ -538,7 +538,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="12">-</button>
 					<input type="text" name="posrow[]" value="{{$bencount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="12">+</button>
 				</div>
@@ -552,7 +552,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="8">-</button>
 					<input type="text" name="posrow[]" value="{{$dlcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="8">+</button>
 				</div>
@@ -566,7 +566,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn"  data-id="9">-</button>
 					<input type="text" name="posrow[]" value="{{$lbcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="9">+</button>
 				</div>
@@ -580,7 +580,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="11">-</button>
 					<input type="text" name="posrow[]" value="{{$dbcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="11">+</button>
 				</div>
@@ -594,7 +594,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">
-					<button type="button" class="minusBtn">-</button>
+					<button type="button" class="minusBtn" data-id="10">-</button>
 					<input type="text" name="posrow[]" value="{{$idpcount ?? '0'}}" min="0">
 					<button type="button" class="plusBtn" data-id="10">+</button>
 				</div>
@@ -642,6 +642,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	}
 	$(".plusBtn").click(function() {
 		id = $(this).attr('data-id');
+		let teams = prepareTeamData();
 		pos = $("#posid" + id + "").val();
 		val = parseInt($(this).parent().find("input").val());
 		color = $(this).parent().next().find("input").val();
@@ -657,7 +658,11 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				pos: pos,
 				color: color,
 				leagueId: $("input[name='league_id']").val(),
-				orderno: orderno
+				orderno: orderno,
+				'league_id': $("input[name='league_id']").val(),
+				'name': $("input[name='name']").val(),
+				'draft_round': '{{$league->draft_round+1}}',
+				'teams': teams
 			},
 			success: function(response) {
 				if (response == "success") {
@@ -674,7 +679,36 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		if (val < 0) {
 			$(this).parent().find("input").val(0);
 		} else {
+			id = $(this).attr('data-id');
+			let teams = prepareTeamData();
+			pos = $("#posid" + id + "").val();
+			val = parseInt($(this).parent().find("input").val());
+			color = $(this).parent().next().find("input").val();
+			orderno = $("#order" + id + "").val();
 			$(this).parent().find("input").val(val);
+			//AJAX FOR INSERT NEW ROW
+			$.ajax({
+				type: 'POST',
+				url: "/league/" + $("input[name='league_id']").val() + "/deleterow",
+				data: {
+					val: val,
+					pos: pos,
+					color: color,
+					leagueId: $("input[name='league_id']").val(),
+					orderno: orderno,
+					'league_id': $("input[name='league_id']").val(),
+					'name': $("input[name='name']").val(),
+					'draft_round': '{{$league->draft_round-1}}',
+					'teams': teams
+				},
+				success: function(response) {
+					if (response == "success") {
+						successMessage('roster Deleted  successfully');
+					} else {
+						errorMessage("Something Went Wrong");
+					}
+				},
+			});
 		}
 
 	})

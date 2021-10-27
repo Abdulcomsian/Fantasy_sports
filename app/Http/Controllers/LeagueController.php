@@ -12,6 +12,7 @@ use App\Models\KeeperList;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\LeagueRound;
 use App\Models\Roster;
+use App\Models\RosterTeamplayer;
 use DB;
 
 class LeagueController extends Controller
@@ -500,6 +501,44 @@ class LeagueController extends Controller
     //insert new row for roster when click on plush button
     public function insertrow(Request $request)
     {
+        //add new round when click on plus
+        $user = Auth::user();
+        $league = League::findOrFail($request->league_id);
+        $oldDraftRound = intval($league->draft_round);
+        $draftRound = intval($request->draft_round);
+        $league->name = $request->name;
+        $league->draft_round = $draftRound;
+        $league->updated_by = $user->id;
+        $league->save();
+        if ($oldDraftRound != $draftRound) {
+            if ($oldDraftRound < $draftRound) {
+                League::saveLeagueRounds($league, $oldDraftRound + 1);
+            } elseif ($oldDraftRound > $draftRound) {
+                League::deleteLeagueRounds($league, $draftRound);
+            }
+        }
+        $teamSize = $league->teams()->count();
+        foreach ($request->teams as $key => $team) {
+
+            $dbTeam = LeagueTeam::find($team['team_id']);
+            $isNewTeam = 0;
+            if (!isset($dbTeam->id)) {
+                $isNewTeam = 1;
+                $dbTeam = new LeagueTeam();
+                $dbTeam->league_id = $league->id;
+                $dbTeam->team_order = ++$teamSize;
+            }
+            $dbTeam->team_name = $team['team_name'] ?? 'Team ' . ($key + 1);
+            $dbTeam->team_email = $team['team_email'] ?? $user->email;
+            if (!$dbTeam->created_by) {
+                $dbTeam->created_by = $user->id;
+            }
+            $dbTeam->updated_by = $user->id;
+            $dbTeam->save();
+            if ($isNewTeam) {
+                League::addNewTeamLeagueRounds($league, $teamSize, $dbTeam->id);
+            }
+        }
         $leagueId = $request->leagueId;
         $pos = $request->pos;
         $color = $request->color;
@@ -509,6 +548,57 @@ class LeagueController extends Controller
         $roster->color = $color;
         $roster->orderno = $request->orderno;
         if ($roster->save()) {
+            echo "success";
+        } else {
+            echo "error";
+        }
+    }
+
+    //delete new row for roster when click on plush button
+    public function deleterow(Request $request)
+    {
+        //delete round when click on minus
+        $user = Auth::user();
+        $league = League::findOrFail($request->league_id);
+        $oldDraftRound = intval($league->draft_round);
+        $draftRound = intval($request->draft_round);
+        $league->name = $request->name;
+        $league->draft_round = $draftRound;
+        $league->updated_by = $user->id;
+        $league->save();
+        if ($oldDraftRound != $draftRound) {
+            if ($oldDraftRound < $draftRound) {
+                League::saveLeagueRounds($league, $oldDraftRound + 1);
+            } elseif ($oldDraftRound > $draftRound) {
+                League::deleteLeagueRounds($league, $draftRound);
+            }
+        }
+        $teamSize = $league->teams()->count();
+        foreach ($request->teams as $key => $team) {
+
+            $dbTeam = LeagueTeam::find($team['team_id']);
+            $isNewTeam = 0;
+            if (!isset($dbTeam->id)) {
+                $isNewTeam = 1;
+                $dbTeam = new LeagueTeam();
+                $dbTeam->league_id = $league->id;
+                $dbTeam->team_order = ++$teamSize;
+            }
+            $dbTeam->team_name = $team['team_name'] ?? 'Team ' . ($key + 1);
+            $dbTeam->team_email = $team['team_email'] ?? $user->email;
+            if (!$dbTeam->created_by) {
+                $dbTeam->created_by = $user->id;
+            }
+            $dbTeam->updated_by = $user->id;
+            $dbTeam->save();
+            if ($isNewTeam) {
+                League::addNewTeamLeagueRounds($league, $teamSize, $dbTeam->id);
+            }
+        }
+        $leagueId = $request->leagueId;
+        $pos = $request->pos;
+        $res = Roster::where(['position' => $pos, 'league_id' => $leagueId])->orderBy('id', 'DESC')->limit(1)->delete();
+        if ($res) {
             echo "success";
         } else {
             echo "error";
