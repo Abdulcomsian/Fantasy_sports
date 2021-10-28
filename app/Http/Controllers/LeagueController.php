@@ -570,7 +570,7 @@ class LeagueController extends Controller
             if ($oldDraftRound < $draftRound) {
                 League::saveLeagueRounds($league, $oldDraftRound + 1);
             } elseif ($oldDraftRound > $draftRound) {
-                League::deleteLeagueRounds($league, $draftRoun, $request->posd);
+                League::deleteLeagueRounds($league, $draftRound, $request->posd);
             }
         }
         // $teamSize = $league->teams()->count();
