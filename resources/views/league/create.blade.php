@@ -359,6 +359,7 @@
                                     <p>IDP</p>
                                 </div>
                             </div>
+                            <br>
                             <!-- END OF ROSTER WORK -->
                             <ul class="list-unstyled list-inline">
                                 <li class="list-inline-item">
