@@ -113,9 +113,17 @@ class League extends Model
         return false;
     }
 
-    protected static function deleteLeagueRounds($league, $draftRound)
+    protected static function deleteLeagueRounds($league, $draftRound, $pos = NULL)
     {
         if (isset($league->rounds)) {
+            //check player in this round
+            $deletedround = $league->rounds()->where('round_number', '>', $draftRound)->get();
+            foreach ($deletedround as $dplayer) {
+                if ($dplayer->player_id) {
+
+                    RosterTeamplayer::where(['league_id' => $league->id, 'team_id' => $dplayer->team_id, 'player_id' => $dplayer->player_id])->delete();
+                }
+            }
             $league->rounds()->where('round_number', '>', $draftRound)->delete();
             return true;
         }

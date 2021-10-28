@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('{id}/save-roster', 'LeagueController@save_roster')->name("save-roster");
 		Route::get('{id}/roster-view', 'DraftController@roster_view')->name("roster-view");
 		Route::post('{id}/insertrow', 'LeagueController@insertrow')->name('insertrow');
+		Route::post('{id}/deleterow', 'LeagueController@deleterow')->name('deleterow');
 		Route::post('{id}/addcolor', 'LeagueController@addcolor')->name('addcolor');
 		//my new work obaid
 
