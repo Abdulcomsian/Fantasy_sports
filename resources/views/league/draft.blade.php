@@ -635,7 +635,7 @@ return (($a->round_order) < ($b->round_order));
             }
 
             @endphp
-            <div style="height:auto;" class="{{$class}}">
+            <div style="height:105px;" class="{{$class}}">
               @php
               if((int)$round->team_id != (int)$round->old_team_id)
               {
