@@ -635,7 +635,7 @@ return (($a->round_order) < ($b->round_order));
             }
 
             @endphp
-            <div style="min-height:140px;" class="{{$class}}">
+            <div style="height:auto;" class="{{$class}}">
               @php
               if((int)$round->team_id != (int)$round->old_team_id)
               {
@@ -661,7 +661,7 @@ return (($a->round_order) < ($b->round_order));
               </select><br> -->
               <span style="font-size:13px;float: left;padding: 5px;">{{$round->player->position }}</span> <span style="float: right;padding: 5px;font-size:13px;">{{ $round->player->team}}</span><br>
               <div class="team_info">
-                <a href="javascript:void(0)" data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></a><br>
+                <a href="javascript:void(0)" data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></a>
                 <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
                 <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
                 <span style="font-weight:bold;font-size:16px;">{{ $round->player->last_name}}</span><br>
