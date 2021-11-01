@@ -4058,6 +4058,8 @@ input[type="submit"] {
     margin: auto;
     margin-right: 0px;
     margin-top: 50px;
+    position: relative;
+    margin: 0 auto;
 }
 .colorPicker,
 .incrementNumber {
