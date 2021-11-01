@@ -52,7 +52,7 @@
     };
 
     $.fn.colorPick.defaults = {
-        initialColor: "#000",
+        initialColor: "#000xxx",
         paletteLabel: "Default palette:",
         allowRecent: true,
         recentMax: 5,

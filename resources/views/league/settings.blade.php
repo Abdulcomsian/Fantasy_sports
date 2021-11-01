@@ -558,7 +558,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 				<div class="colorPicker">
 					<button type="button" style="@if(!isset($dlcount)){{'cursor: no-drop;'}}@endif background:black;color:white;border:1px solid;width:105px" data-button-id="8" class="PickSelector">Select Color</button>
-					<input class="favcolor" disabled data-id="8" id="colorInput" name="favcolor[]" type="color" value="{{$dlcount ?? '#000'}}">
+					<input class="favcolor" disabled data-id="8" id="colorInput" name="favcolor[]" type="color" value="{{$dlcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="12" id="order8" />
 				<input type="hidden" name="pos[]" value="DL" id="posid8" />
@@ -702,11 +702,11 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					'teams': teams
 				},
 				success: function(response) {
-					// if (response == "success") {
-					// 	successMessage('roster Deleted  successfully');
-					// } else {
-					// 	errorMessage("Something Went Wrong");
-					// }
+					if (response == "success") {
+						successMessage('roster Deleted  successfully');
+					} else {
+						errorMessage("Something Went Wrong");
+					}
 				},
 			});
 		}
@@ -748,7 +748,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			// 	'backgroundColor': this.color,
 			// 	'color': this.color
 			// });
-			if (this.color != '' && this.color != '#000') {
+			if (this.color != '#000XXX') {
 				id = this.element.attr('data-button-id');
 				color = this.color;
 				$("[data-id='" + id + "']").val(this.color);
@@ -764,7 +764,6 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					},
 					success: function(response) {
 						if (response == "success") {
-
 							successMessage('color for postion inserted successfully');
 							location.reload();
 						} else {

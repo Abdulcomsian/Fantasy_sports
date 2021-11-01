@@ -44,6 +44,7 @@ class LeagueController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'draft_type' => 'required',
@@ -261,6 +262,7 @@ class LeagueController extends Controller
                 ->first();
             $rosterdata = DB::table('rosters')
                 ->select('color', 'position', DB::raw('count(id) as totalcount'))
+                ->where('league_id', $id)
                 ->groupBy('position')
                 ->orderBy('orderno')
                 ->get();
