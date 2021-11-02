@@ -687,11 +687,13 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				'teams': teams
 			},
 			success: function(response) {
-				// if (response == "success") {
-				// 	successMessage('New roster inserted successfully');
-				// } else {
-				// 	errorMessage("Something Went Wrong");
-				// }
+				if (response == "success") {
+					successMessage('New roster inserted successfully');
+                     location.reload();
+				} else {
+					errorMessage("Something Went Wrong");
+                     location.reload();
+				}
 			},
 		});
 	})
@@ -725,8 +727,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				success: function(response) {
 					if (response == "success") {
 						successMessage('roster Deleted  successfully');
+                        location.reload();
 					} else {
 						errorMessage("Something Went Wrong");
+                         location.reload();
 					}
 				},
 			});
