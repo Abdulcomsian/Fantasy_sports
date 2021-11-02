@@ -53,18 +53,18 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<div class="row">
 				<div class="col-md-6"></div>
 
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft Board</a></h2>
 				</div>
-				<div class="col-md-2">
+				<!-- <div class="col-md-2">
 					<p onclick="myFunction()" class="dropbtn">Select <i class="fa fa-angle-down" aria-hidden="true"></i></p>
 					<div id="myDropdown" class="dropdown-content">
 						<a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad</a>
 						<a href="{{url('draft-roaster')}}">Draft Roaster</a>
 					</div>
-					<!-- <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2> -->
-				</div>
-				<div class="col-md-2">
+					<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2>
+				</div> -->
+				<div class="col-md-3">
 					<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
 				</div>
 				<div class="col-md-5">
@@ -121,12 +121,23 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		</div>
 	</div>--}}
 	<div class="list_edit">
+						<div class="row">
+							<div class="col-md-6 no-bdr">
+								<h4><span><i class="fa fa-star yellow"></i>Draft Round</span> </h4>
+							</div>
+							<div class="col-md-6 f-wdth">
+								<input type="text" name="name" value="{{$league->draft_round}}">
+								<!-- <h4>League Name</h4> -->
+							</div>
+						</div>
+					</div>
+	<!-- <div class="list_edit">
 		<div class="row">
 			<div class="col-md-6 no-bdr">
 				<h4><span><i class="fa fa-star yellow"></i>Draft Round</span></h4>
 			</div>
 			<div class="col-md-6">
-				<!-- <h4>17</h4> -->
+			<h4>17</h4> 
 				<div class="form-group f-wdth">
 					<select name="draft_round" {{ $permissions == 3 ? "disabled" : "" }} disabled>
 						@foreach(Config::get('rounds') as $round)
@@ -136,8 +147,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="list_edit">
+	</div> -->
+	<!-- <div class="list_edit">
 		<div class="row">
 			<div class="col-md-6 no-bdr">
 				<h4><span><i class="fa fa-star yellow"></i>Edit Mode</span></h4>
@@ -149,8 +160,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="list_edit">
+	</div> -->
+	<!-- <div class="list_edit">
 		<div class="row">
 			<div class="col-md-6 no-bdr">
 				<h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
@@ -162,7 +173,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-6">
@@ -309,19 +320,19 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			<button type="button" class="addTeam">Add Team</button>
 		</div>
 		@endif
-		<div class="save" style="margin-bottom:21px;">
+		<!-- <div class="save" style="margin-bottom:21px;">
 			<button type="button" class="addTeam"><a href="{{url('league/'.$league->id.'/rounds')}}" style="color:#fff;">Enter Draft Picks Manually</a></button>
-		</div>
+		</div> -->
 		<div class="save">
 			<button type="submit">Save Changes</button>
 		</div>
 	</div>
 	</form>
 	<div class="rosterSetting">
-		<h5>Roster Setting</h5>
+		<h5 class="text-center">Roster Setting</h5>
 		<br>
 		<center>
-			<P>Roster Spots & Draft Rounds:{{$league->draft_round ?? ''}}</P>
+			<P>Roster Spots & Draft Rounds:<span class="draftRound">{{$league->draft_round ?? ''}}</span></P>
 		</center>
 		<form method="post" action="{{url('league/'.$league->id.'/save-roster')}}" id="rosterform">
 			@csrf
@@ -648,7 +659,11 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			}
 		}
 	}
+	var i=1;
 	$(".plusBtn").click(function() {
+		let roundValue=$(".draftRound").text();
+		roundValue=parseInt(roundValue)+i;
+		$(".draftRound").text(roundValue)
 		id = $(this).attr('data-id');
 		let teams = prepareTeamData();
 		pos = $("#posid" + id + "").val();
