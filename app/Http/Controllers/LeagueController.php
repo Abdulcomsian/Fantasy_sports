@@ -515,45 +515,25 @@ class LeagueController extends Controller
         if ($oldDraftRound != $draftRound) {
             if ($oldDraftRound < $draftRound) {
                 League::saveLeagueRounds($league, $oldDraftRound + 1);
+                //insert roster row
+                $leagueId = $request->leagueId;
+                $pos = $request->pos;
+                $color = $request->color;
+                $roster = new Roster();
+                $roster->league_id = $leagueId;
+                $roster->position = $pos;
+                $roster->color = $color;
+                $roster->orderno = $request->orderno;
+                if ($roster->save()) {
+                    echo "success";
+                } else {
+                    echo "error";
+                }
             } elseif ($oldDraftRound > $draftRound) {
                 League::deleteLeagueRounds($league, $draftRound);
             }
         }
-        $teamSize = $league->teams()->count();
-        foreach ($request->teams as $key => $team) {
-
-            $dbTeam = LeagueTeam::find($team['team_id']);
-            $isNewTeam = 0;
-            if (!isset($dbTeam->id)) {
-                $isNewTeam = 1;
-                $dbTeam = new LeagueTeam();
-                $dbTeam->league_id = $league->id;
-                $dbTeam->team_order = ++$teamSize;
-            }
-            $dbTeam->team_name = $team['team_name'] ?? 'Team ' . ($key + 1);
-            $dbTeam->team_email = $team['team_email'] ?? $user->email;
-            if (!$dbTeam->created_by) {
-                $dbTeam->created_by = $user->id;
-            }
-            $dbTeam->updated_by = $user->id;
-            $dbTeam->save();
-            if ($isNewTeam) {
-                League::addNewTeamLeagueRounds($league, $teamSize, $dbTeam->id);
-            }
-        }
-        $leagueId = $request->leagueId;
-        $pos = $request->pos;
-        $color = $request->color;
-        $roster = new Roster();
-        $roster->league_id = $leagueId;
-        $roster->position = $pos;
-        $roster->color = $color;
-        $roster->orderno = $request->orderno;
-        if ($roster->save()) {
-            echo "success";
-        } else {
-            echo "error";
-        }
+        
     }
 
     //delete new row for roster when click on plush button
@@ -573,38 +553,18 @@ class LeagueController extends Controller
                 League::saveLeagueRounds($league, $oldDraftRound + 1);
             } elseif ($oldDraftRound > $draftRound) {
                 League::deleteLeagueRounds($league, $draftRound, $request->posd);
+                //delete roster row
+                 $leagueId = $request->leagueId;
+                $pos = $request->pos;
+                $res = Roster::where(['position' => $pos, 'league_id' => $leagueId])->orderBy('id', 'DESC')->limit(1)->delete();
+                if ($res) {
+                    echo "success";
+                } else {
+                    echo "error";
+                }
             }
         }
-        // $teamSize = $league->teams()->count();
-        // foreach ($request->teams as $key => $team) {
-
-        //     $dbTeam = LeagueTeam::find($team['team_id']);
-        //     $isNewTeam = 0;
-        //     if (!isset($dbTeam->id)) {
-        //         $isNewTeam = 1;
-        //         $dbTeam = new LeagueTeam();
-        //         $dbTeam->league_id = $league->id;
-        //         $dbTeam->team_order = ++$teamSize;
-        //     }
-        //     $dbTeam->team_name = $team['team_name'] ?? 'Team ' . ($key + 1);
-        //     $dbTeam->team_email = $team['team_email'] ?? $user->email;
-        //     if (!$dbTeam->created_by) {
-        //         $dbTeam->created_by = $user->id;
-        //     }
-        //     $dbTeam->updated_by = $user->id;
-        //     $dbTeam->save();
-        //     if ($isNewTeam) {
-        //         League::addNewTeamLeagueRounds($league, $teamSize, $dbTeam->id);
-        //     }
-        // }
-        $leagueId = $request->leagueId;
-        $pos = $request->pos;
-        $res = Roster::where(['position' => $pos, 'league_id' => $leagueId])->orderBy('id', 'DESC')->limit(1)->delete();
-        if ($res) {
-            echo "success";
-        } else {
-            echo "error";
-        }
+       
     }
     //add color
     public function addcolor(Request $request)
