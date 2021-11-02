@@ -121,8 +121,8 @@
                             </ul>
                         </div>
                         <div class="select_draft draft_round draft-round">
-                            <h4 style="width:100%">Draft Round</h4>
-                            <p>(Total number of roster positions on each team)</p>
+                            <!-- <h4 style="width:100%">Draft Round</h4>
+                            <p>(Total number of roster positions on each team)</p> -->
                             <!-- <ul class="list-unstyled list-inline">
                                     <li class="list-inline-item">
                                         <div class="form-group">
@@ -137,7 +137,7 @@
                                 </ul> -->
                             <!-- ROSTER WORK FROM HERE TO START -->
                             <div class="rosterSetting">
-                                <h5>Roster Setting</h5>
+                                <h5 class="text-center">Roster Setting</h5>
                                 <br>
                                 <center>
                                     <P>Roster Spots & Draft Rounds:14</P>
