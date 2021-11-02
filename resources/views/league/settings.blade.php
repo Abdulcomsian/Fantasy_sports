@@ -659,10 +659,9 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			}
 		}
 	}
-	var i=1;
 	$(".plusBtn").click(function() {
 		let roundValue=$(".draftRound").text();
-		roundValue=parseInt(roundValue)+i;
+		roundValue=parseInt(roundValue)+1;
 		$(".draftRound").text(roundValue)
 		id = $(this).attr('data-id');
 		let teams = prepareTeamData();
@@ -690,8 +689,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			success: function(response) {
 				if (response == "success") {
 					successMessage('New roster inserted successfully');
+                     location.reload();
 				} else {
 					errorMessage("Something Went Wrong");
+                     location.reload();
 				}
 			},
 		});
@@ -705,7 +706,6 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			id = $(this).attr('data-id');
 			let teams = prepareTeamData();
 			pos = $("#posid" + id + "").val();
-			val = parseInt($(this).parent().find("input").val());
 			color = $(this).parent().next().find("input").val();
 			orderno = $("#order" + id + "").val();
 			$(this).parent().find("input").val(val);
@@ -727,8 +727,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				success: function(response) {
 					if (response == "success") {
 						successMessage('roster Deleted  successfully');
+                        location.reload();
 					} else {
 						errorMessage("Something Went Wrong");
+                         location.reload();
 					}
 				},
 			});
