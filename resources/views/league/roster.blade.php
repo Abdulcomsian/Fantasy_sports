@@ -88,19 +88,11 @@ return (($a->round_order) < ($b->round_order));
             </div>
           </form>
         </div>
-        <div class="col-md-2">
-          <h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
+        <div class="col-md-3">
+          <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
         </div>
-        <div class="col-md-2">
-          <p onclick="myFunction()" class="dropbtn">Select <i class="fa fa-angle-down" aria-hidden="true"></i></p>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad</a>
-            <a href="{{url('draft-roaster')}}">Draft Roaster</a>
-          </div>
-          <!-- <h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2> -->
-        </div>
-        <div class="col-md-2">
-          <h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+        <div class="col-md-3">
+          <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
         </div>
 
 
