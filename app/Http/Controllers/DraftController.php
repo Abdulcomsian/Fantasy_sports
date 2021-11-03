@@ -149,6 +149,7 @@ class DraftController extends Controller
                     $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
 
                     if (count($roster_row) > 1) {
+                        $position_id = '';
                         foreach ($roster_row as $row) {
                             $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
                             if ($rosterteamcount == 0) {
@@ -156,7 +157,125 @@ class DraftController extends Controller
                                 break;
                             }
                         }
-                        //for bench work
+                        //work for possible combination
+                        if (!$position_id) {
+                            if ($playerposition->position == "QB") { //qb
+                                $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                            } elseif ($playerposition->position == "RB") { //rb
+                                $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                            } elseif ($playerposition->position == "WR") {
+                                $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                            } elseif ($playerposition->position == "TE") {
+                                $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        //end of posssible combination
                         if (!$position_id) {
                             $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
                             foreach ($roster_ben_row as $ben_row) {
@@ -168,27 +287,153 @@ class DraftController extends Controller
                             }
                         }
                     } elseif (count($roster_row) == 1) {
+                        $position_id = '';
                         $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
                         if ($rosterteamcount == 0) {
                             $position_id = $roster_row[0]->id;
                         } else {
-                            $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
-                            foreach ($roster_ben_row as $ben_row) {
-                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
-                                if ($rosterteamcount == 0) {
-                                    $position_id = $ben_row->id;
-                                    break;
+                            //WORK FOR POSSIBLE COMBINATION
+                            if (!$position_id) {
+                                if ($playerposition->position == "QB") { //qb
+                                    $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                } elseif ($playerposition->position == "RB") { //rb
+                                    $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } elseif ($playerposition->position == "WR") {
+                                    $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } elseif ($playerposition->position == "TE") {
+                                    $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            //END OF POSSIBLE COMBINATION
+
+                            //WORK FOR BENCH
+                            if (!$position_id) {
+                                $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
+                                foreach ($roster_ben_row as $ben_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $ben_row->id;
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
-                    $RosterTeamplayer = new RosterTeamplayer();
-                    $RosterTeamplayer->team_id = $mydata->team_id;
-                    $RosterTeamplayer->player_id = $request->player_id;
-                    $RosterTeamplayer->rosters_id = $position_id;
-                    $RosterTeamplayer->league_id = $leagueId;
-                    $RosterTeamplayer->round_number = $request->round_number;
-                    $RosterTeamplayer->save();
+                    if ($position_id) {
+                        $RosterTeamplayer = new RosterTeamplayer();
+                        $RosterTeamplayer->team_id = $mydata->team_id;
+                        $RosterTeamplayer->player_id = $request->player_id;
+                        $RosterTeamplayer->rosters_id = $position_id;
+                        $RosterTeamplayer->league_id = $leagueId;
+                        $RosterTeamplayer->round_number = $request->round_number;
+                        $RosterTeamplayer->save();
+                    }
+
                     return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 } else {
                     $league = League::leagueData($leagueId);
@@ -200,6 +445,7 @@ class DraftController extends Controller
                     $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
                     if (count($roster_row) > 1) {
                         //new work here
+                        $position_id = '';
                         foreach ($roster_row as $row) {
                             $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
                             if ($rosterteamcount == 0) {
@@ -207,6 +453,125 @@ class DraftController extends Controller
                                 break;
                             }
                         }
+                        //work for possible combination
+                        if (!$position_id) {
+                            if ($playerposition->position == "QB") { //qb
+                                $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                            } elseif ($playerposition->position == "RB") { //rb
+                                $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                            } elseif ($playerposition->position == "WR") {
+                                $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                            } elseif ($playerposition->position == "TE") {
+                                $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                                //
+                                if (!$position_id) {
+                                    $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        //end of posssible combination
+
                         //for bench work
                         if (!$position_id) {
                             $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
@@ -220,26 +585,151 @@ class DraftController extends Controller
                         }
                     } elseif (count($roster_row) == 1) {
                         //new work here
+                        $position_id = '';
                         $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
                         if ($rosterteamcount == 0) {
                             $position_id = $roster_row[0]->id;
                         } else {
-                            $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
-                            foreach ($roster_ben_row as $ben_row) {
-                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
-                                if ($rosterteamcount == 0) {
-                                    $position_id = $ben_row->id;
-                                    break;
+                            //work for possible combination
+                            if (!$position_id) {
+                                if ($playerposition->position == "QB") { //qb
+                                    $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                } elseif ($playerposition->position == "RB") { //rb
+                                    $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } elseif ($playerposition->position == "WR") {
+                                    $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } elseif ($playerposition->position == "TE") {
+                                    $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            //end of posssible combination
+
+                            //work for bench row
+                            if (!$position_id) {
+                                $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
+                                foreach ($roster_ben_row as $ben_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $ben_row->id;
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
-                    $RosterTeamplayer = new RosterTeamplayer();
-                    $RosterTeamplayer->team_id = $mydata->team_id;
-                    $RosterTeamplayer->player_id = $mydata->player_id;
-                    $RosterTeamplayer->rosters_id = $position_id;
-                    $RosterTeamplayer->league_id = $leagueId;
-                    $RosterTeamplayer->save();
+                    if ($position_id) {
+                        $RosterTeamplayer = new RosterTeamplayer();
+                        $RosterTeamplayer->team_id = $mydata->team_id;
+                        $RosterTeamplayer->player_id = $mydata->player_id;
+                        $RosterTeamplayer->rosters_id = $position_id;
+                        $RosterTeamplayer->league_id = $leagueId;
+                        $RosterTeamplayer->save();
+                    }
                     return $this->sendResponse(200, 'Pick saved successfully.', ['data' => $mydata, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 }
             } else {
@@ -275,6 +765,7 @@ class DraftController extends Controller
                         $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
                         if (count($roster_row) > 1) {
                             //new work here
+                            $position_id = '';
                             foreach ($roster_row as $row) {
                                 $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
                                 if ($rosterteamcount == 0) {
@@ -282,6 +773,126 @@ class DraftController extends Controller
                                     break;
                                 }
                             }
+                            //work for possible combination
+                            if (!$position_id) {
+                                if ($playerposition->position == "QB") { //qb
+                                    $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                } elseif ($playerposition->position == "RB") { //rb
+                                    $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } elseif ($playerposition->position == "WR") {
+                                    $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } elseif ($playerposition->position == "TE") {
+                                    $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                    foreach ($combination_row as $comb_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $comb_row->id;
+                                            break;
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //
+                                    if (!$position_id) {
+                                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            //end of posssible combination
+
+
                             //for bench work
                             if (!$position_id) {
                                 $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
@@ -295,28 +906,152 @@ class DraftController extends Controller
                             }
                         } elseif (count($roster_row) == 1) {
                             //new work here
+                            $position_id = '';
                             $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
                             if ($rosterteamcount == 0) {
                                 $position_id = $roster_row[0]->id;
                             } else {
-                                $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
-                                foreach ($roster_ben_row as $ben_row) {
-                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
-                                    if ($rosterteamcount == 0) {
-                                        $position_id = $ben_row->id;
-                                        break;
+                                //work for possible combination
+                                if (!$position_id) {
+                                    if ($playerposition->position == "QB") { //qb
+                                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                    } elseif ($playerposition->position == "RB") { //rb
+                                        $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                        //
+                                        if (!$position_id) {
+                                            $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                            foreach ($combination_row as $comb_row) {
+                                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                                if ($rosterteamcount == 0) {
+                                                    $position_id = $comb_row->id;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        //
+                                        if (!$position_id) {
+                                            $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                            foreach ($combination_row as $comb_row) {
+                                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                                if ($rosterteamcount == 0) {
+                                                    $position_id = $comb_row->id;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    } elseif ($playerposition->position == "WR") {
+                                        $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                        //
+                                        if (!$position_id) {
+                                            $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                            foreach ($combination_row as $comb_row) {
+                                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                                if ($rosterteamcount == 0) {
+                                                    $position_id = $comb_row->id;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        //
+                                        if (!$position_id) {
+                                            $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                            foreach ($combination_row as $comb_row) {
+                                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                                if ($rosterteamcount == 0) {
+                                                    $position_id = $comb_row->id;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        //
+                                        if (!$position_id) {
+                                            $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                            foreach ($combination_row as $comb_row) {
+                                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                                if ($rosterteamcount == 0) {
+                                                    $position_id = $comb_row->id;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    } elseif ($playerposition->position == "TE") {
+                                        $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                                        foreach ($combination_row as $comb_row) {
+                                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                            if ($rosterteamcount == 0) {
+                                                $position_id = $comb_row->id;
+                                                break;
+                                            }
+                                        }
+                                        //
+                                        if (!$position_id) {
+                                            $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                            foreach ($combination_row as $comb_row) {
+                                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                                if ($rosterteamcount == 0) {
+                                                    $position_id = $comb_row->id;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        //
+                                        if (!$position_id) {
+                                            $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                            foreach ($combination_row as $comb_row) {
+                                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                                if ($rosterteamcount == 0) {
+                                                    $position_id = $comb_row->id;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                //end of posssible combination
+
+                                //work for bench
+                                if (!$position_id) {
+                                    $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
+                                    foreach ($roster_ben_row as $ben_row) {
+                                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
+                                        if ($rosterteamcount == 0) {
+                                            $position_id = $ben_row->id;
+                                            break;
+                                        }
                                     }
                                 }
                             }
                         }
-                        $RosterTeamplayer = new RosterTeamplayer();
-                        $RosterTeamplayer->team_id = $request->teamid;
-                        $RosterTeamplayer->player_id = $request->playerId;
-                        $RosterTeamplayer->rosters_id = $position_id;
-                        $RosterTeamplayer->league_id = $leagueId;
-                        $RosterTeamplayer->round_number = $request->roundId;
-                        $RosterTeamplayer->save();
-
+                        if ($position_id) {
+                            $RosterTeamplayer = new RosterTeamplayer();
+                            $RosterTeamplayer->team_id = $request->teamid;
+                            $RosterTeamplayer->player_id = $request->playerId;
+                            $RosterTeamplayer->rosters_id = $position_id;
+                            $RosterTeamplayer->league_id = $leagueId;
+                            $RosterTeamplayer->round_number = $request->roundId;
+                            $RosterTeamplayer->save();
+                        }
                         //end of roster view work 
                         return response()->json(['status' => 'success', 'message' => '']);
                     } else {
@@ -597,37 +1332,138 @@ class DraftController extends Controller
             RosterTeamplayer::where(['league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->delete();
             if (count($roster_row) > 1) {
                 //new work here
+                $position_id = '';
                 foreach ($roster_row as $row) {
                     $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
                     if ($rosterteamcount == 0) {
                         $position_id = $row->id;
                         break;
-                        // } else {
-                        //     $res = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
-                        //     if ($res) {
-                        //         return response()->json(['status' => 'success', 'message' => '']);
-                        //     } else {
-                        //         //for bench work
-                        //         $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
-                        //         foreach ($roster_ben_row as $ben_row) {
-                        //             $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
-                        //             if ($rosterteamcount == 0) {
-                        //                 $position_id = $ben_row->id;
-                        //                 break;
-                        //             } else {
-                        //                 RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' =>  $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
-                        //                 return response()->json(['status' => 'success', 'message' => '']);
-                        //                 break;
-                        //             }
-                        //         }
-                        //     }
                     }
                 }
+                //work for possible combination
+                if (!$position_id) {
+                    if ($playerposition->position == "QB") { //qb
+                        $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                        foreach ($combination_row as $comb_row) {
+                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                            if ($rosterteamcount == 0) {
+                                $position_id = $comb_row->id;
+                                break;
+                            }
+                        }
+                    } elseif ($playerposition->position == "RB") { //rb
+                        $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                        foreach ($combination_row as $comb_row) {
+                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                            if ($rosterteamcount == 0) {
+                                $position_id = $comb_row->id;
+                                break;
+                            }
+                        }
+                        //
+                        if (!$position_id) {
+                            $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                        }
+                        //
+                        if (!$position_id) {
+                            $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                        }
+                    } elseif ($playerposition->position == "WR") {
+                        $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                        foreach ($combination_row as $comb_row) {
+                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                            if ($rosterteamcount == 0) {
+                                $position_id = $comb_row->id;
+                                break;
+                            }
+                        }
+                        //
+                        if (!$position_id) {
+                            $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                        }
+                        //
+                        if (!$position_id) {
+                            $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                        }
+                        //
+                        if (!$position_id) {
+                            $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                        }
+                    } elseif ($playerposition->position == "TE") {
+                        $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                        foreach ($combination_row as $comb_row) {
+                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                            if ($rosterteamcount == 0) {
+                                $position_id = $comb_row->id;
+                                break;
+                            }
+                        }
+                        //
+                        if (!$position_id) {
+                            $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                        }
+                        //
+                        if (!$position_id) {
+                            $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                //end of posssible combination
+
                 //for bench work
                 if (!$position_id) {
                     $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
                     foreach ($roster_ben_row as $ben_row) {
-                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid])->count();
+                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
                         if ($rosterteamcount == 0) {
                             $position_id = $ben_row->id;
                             break;
@@ -636,28 +1472,141 @@ class DraftController extends Controller
                 }
             } elseif (count($roster_row) == 1) {
                 //new work here
+                $position_id = '';
                 $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' =>  $teamid, 'player_id' => $oldplayerid])->count();
                 if ($rosterteamcount == 0) {
                     $position_id = $roster_row[0]->id;
                 } else {
-                    // $res = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
-                    // if ($res) {
-                    //     return response()->json(['status' => 'success', 'message' => '']);
-                    // } else {
-                    $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
-                    foreach ($roster_ben_row as $ben_row) {
-                        $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
-                        if ($rosterteamcount == 0) {
-                            $position_id = $ben_row->id;
-                            break;
+                    //work for possible combination
+                    if (!$position_id) {
+                        if ($playerposition->position == "QB") { //qb
+                            $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                        } elseif ($playerposition->position == "RB") { //rb
+                            $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                            //
+                            if (!$position_id) {
+                                $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                            }
+                            //
+                            if (!$position_id) {
+                                $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                            }
+                        } elseif ($playerposition->position == "WR") {
+                            $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                            //
+                            if (!$position_id) {
+                                $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                            }
+                            //
+                            if (!$position_id) {
+                                $combination_row = Roster::where(['position' => 'WR/RB', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                            }
+                            //
+                            if (!$position_id) {
+                                $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                            }
+                        } elseif ($playerposition->position == "TE") {
+                            $combination_row = Roster::where(['position' => 'WRT', 'league_id' => $leagueId])->get();
+                            foreach ($combination_row as $comb_row) {
+                                $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                if ($rosterteamcount == 0) {
+                                    $position_id = $comb_row->id;
+                                    break;
+                                }
+                            }
+                            //
+                            if (!$position_id) {
+                                $combination_row = Roster::where(['position' => 'WR/TE', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                            }
+                            //
+                            if (!$position_id) {
+                                $combination_row = Roster::where(['position' => 'QB/WR/RB/TE', 'league_id' => $leagueId])->get();
+                                foreach ($combination_row as $comb_row) {
+                                    $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $comb_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                                    if ($rosterteamcount == 0) {
+                                        $position_id = $comb_row->id;
+                                        break;
+                                    }
+                                }
+                            }
                         }
-                        // else {
-                        //     RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->update(['player_id' => $playerId]);
-                        //     return response()->json(['status' => 'success', 'message' => '']);
-                        //     break;
-                        // }
                     }
-                    //}
+                    //end of posssible combination
+
+                    //work for bench
+                    if (!$position_id) {
+                        $roster_ben_row = Roster::where(['position' => 'BENCH', 'league_id' => $leagueId])->get();
+                        foreach ($roster_ben_row as $ben_row) {
+                            $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $ben_row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->count();
+                            if ($rosterteamcount == 0) {
+                                $position_id = $ben_row->id;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             if ($position_id) {

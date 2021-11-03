@@ -533,7 +533,6 @@ class LeagueController extends Controller
                 League::deleteLeagueRounds($league, $draftRound);
             }
         }
-        
     }
 
     //delete new row for roster when click on plush button
@@ -554,7 +553,7 @@ class LeagueController extends Controller
             } elseif ($oldDraftRound > $draftRound) {
                 League::deleteLeagueRounds($league, $draftRound, $request->posd);
                 //delete roster row
-                 $leagueId = $request->leagueId;
+                $leagueId = $request->leagueId;
                 $pos = $request->pos;
                 $res = Roster::where(['position' => $pos, 'league_id' => $leagueId])->orderBy('id', 'DESC')->limit(1)->delete();
                 if ($res) {
@@ -564,7 +563,6 @@ class LeagueController extends Controller
                 }
             }
         }
-       
     }
     //add color
     public function addcolor(Request $request)

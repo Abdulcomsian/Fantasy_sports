@@ -120,24 +120,25 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 		</div>
 	</div>--}}
-	<div class="list_edit">
-						<div class="row">
-							<div class="col-md-6 no-bdr">
-								<h4><span><i class="fa fa-star yellow"></i>Draft Round</span> </h4>
-							</div>
-							<div class="col-md-6 f-wdth">
-								<input type="text" name="name" value="{{$league->draft_round}}">
-								<!-- <h4>League Name</h4> -->
-							</div>
-						</div>
-					</div>
+    <div class="list_edit">
+        <div class="row">
+            <div class="col-md-6 no-bdr">
+                <h4><span><i class="fa fa-star yellow"></i>Draft Round</span></h4>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group f-wdth">
+                    <input type="text" name="draft_round" value="{{$league->draft_round}}" disabled="disabled">
+                </div>
+            </div>
+        </div>
+    </div>
+	
 	<!-- <div class="list_edit">
 		<div class="row">
 			<div class="col-md-6 no-bdr">
 				<h4><span><i class="fa fa-star yellow"></i>Draft Round</span></h4>
 			</div>
 			<div class="col-md-6">
-			<h4>17</h4> 
 				<div class="form-group f-wdth">
 					<select name="draft_round" {{ $permissions == 3 ? "disabled" : "" }} disabled>
 						@foreach(Config::get('rounds') as $round)
@@ -148,7 +149,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 		</div>
 	</div> -->
-	<!-- <div class="list_edit">
+	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-6 no-bdr">
 				<h4><span><i class="fa fa-star yellow"></i>Edit Mode</span></h4>
@@ -160,8 +161,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 			</div>
 		</div>
-	</div> -->
-	<!-- <div class="list_edit">
+	</div>
+	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-6 no-bdr">
 				<h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
@@ -173,7 +174,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-6">
@@ -201,7 +202,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<select name="commish_user_id">
 					<option value="">Select User</option>
 					@foreach($league->teams as $user)
-					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" @if($leaguser->team_id==$user->id)selected="{{'selected'}}"@endif>{{$user->team_name}}</option>
+					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" @if($leaguser->team_id==$user->id && $permissions==1)selected="{{'selected'}}"@endif>{{$user->team_name}}</option>
 					@endforeach
 				</select>
 			</div>
@@ -220,7 +221,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<select name="co_commish_user_id">
 					<option value="">Select User</option>
 					@foreach($league->teams as $user)
-					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" @if($leaguser->team_id==$user->id)selected="{{'selected'}}"@endif>{{$user->team_name}}</option>
+					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" @if($leaguser->team_id==$user->id && $permissions==2)selected="{{'selected'}}"@endif>{{$user->team_name}}</option>
 					@endforeach
 				</select>
 			</div>
@@ -328,6 +329,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		</div>
 	</div>
 	</form>
+    <br>
 	<div class="rosterSetting">
 		<h5 class="text-center">Roster Setting</h5>
 		<br>
@@ -478,8 +480,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="5">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$wrtcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrtcount )){{'cursor: no-drop;'}}@endif" data-button-id="5" class="PickSelector"></button>
-					<input class="favcolor" disabled data-id="5" id="colorInput" name="favcolor[]" type="color" value="{{$wrtcolor ?? '#000'}}">
+					<button type="button" style="background:{{$wrtcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrtcount )){{'cursor: no-drop;'}}@endif" data-button-id="5" class="PickSelector d-none"></button>
+					<input class="favcolor d-none" disabled data-id="5" id="colorInput" name="favcolor[]" type="color" value="{{$wrtcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="5" id="order5" />
 				<input type="hidden" name="pos[]" value="WRT" id="posid5" />
@@ -492,8 +494,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="13">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$wrtecolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrtecount)){{'cursor: no-drop;'}}@endif" data-button-id="13" class="PickSelector"></button>
-					<input class="favcolor" disabled data-id="13" id="colorInput" name="favcolor[]" type="color" value="{{$wrtecolor ?? '#000'}}">
+					<button type="button" style="background:{{$wrtecolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrtecount)){{'cursor: no-drop;'}}@endif" data-button-id="13" class="PickSelector d-none"></button>
+					<input class="favcolor d-none" disabled data-id="13" id="colorInput" name="favcolor[]" type="color" value="{{$wrtecolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="6" id="order13" />
 				<input type="hidden" name="pos[]" value="WR/TE" id="posid13" />
@@ -506,8 +508,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="14">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$wrrbcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrrbcount)){{'cursor: no-drop;'}}@endif" data-button-id="14" class="PickSelector"></button>
-					<input class="favcolor" disabled data-id="14" id="colorInput" name="favcolor[]" type="color" value="{{$wrrbcolor ?? '#000'}}">
+					<button type="button" style="background:{{$wrrbcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrrbcount)){{'cursor: no-drop;'}}@endif" data-button-id="14" class="PickSelector d-none"></button>
+					<input class="favcolor d-none" disabled data-id="14" id="colorInput" name="favcolor[]" type="color" value="{{$wrrbcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="7" id="order14" />
 				<input type="hidden" name="pos[]" value="WR/RB" id="posid14" />
@@ -520,8 +522,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="15">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$qbwrrbtecolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($qbwrrbtecount)){{'cursor: no-drop;'}}@endif" data-button-id="15" class="PickSelector"></button>
-					<input class="favcolor" disabled data-id="15" id="colorInput" name="favcolor[]" type="color" value="{{$qbwrrbtecolor ?? '#000'}}">
+					<button type="button" style="background:{{$qbwrrbtecolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($qbwrrbtecount)){{'cursor: no-drop;'}}@endif" data-button-id="15" class="PickSelector d-none"></button>
+					<input class="favcolor d-none" disabled data-id="15" id="colorInput" name="favcolor[]" type="color" value="{{$qbwrrbtecolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="8" id="order15" />
 				<input type="hidden" name="pos[]" value="QB/WR/RB/TE" id="posid15" />
