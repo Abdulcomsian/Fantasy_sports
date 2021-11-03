@@ -480,8 +480,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="5">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$wrtcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrtcount )){{'cursor: no-drop;'}}@endif" data-button-id="5" class="PickSelector"></button>
-					<input class="favcolor" disabled data-id="5" id="colorInput" name="favcolor[]" type="color" value="{{$wrtcolor ?? '#000'}}">
+					<button type="button" style="background:{{$wrtcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrtcount )){{'cursor: no-drop;'}}@endif" data-button-id="5" class="PickSelector d-none"></button>
+					<input class="favcolor d-none" disabled data-id="5" id="colorInput" name="favcolor[]" type="color" value="{{$wrtcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="5" id="order5" />
 				<input type="hidden" name="pos[]" value="WRT" id="posid5" />
@@ -494,8 +494,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="13">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$wrtecolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrtecount)){{'cursor: no-drop;'}}@endif" data-button-id="13" class="PickSelector"></button>
-					<input class="favcolor" disabled data-id="13" id="colorInput" name="favcolor[]" type="color" value="{{$wrtecolor ?? '#000'}}">
+					<button type="button" style="background:{{$wrtecolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrtecount)){{'cursor: no-drop;'}}@endif" data-button-id="13" class="PickSelector d-none"></button>
+					<input class="favcolor d-none" disabled data-id="13" id="colorInput" name="favcolor[]" type="color" value="{{$wrtecolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="6" id="order13" />
 				<input type="hidden" name="pos[]" value="WR/TE" id="posid13" />
@@ -508,8 +508,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="14">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$wrrbcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrrbcount)){{'cursor: no-drop;'}}@endif" data-button-id="14" class="PickSelector"></button>
-					<input class="favcolor" disabled data-id="14" id="colorInput" name="favcolor[]" type="color" value="{{$wrrbcolor ?? '#000'}}">
+					<button type="button" style="background:{{$wrrbcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrrbcount)){{'cursor: no-drop;'}}@endif" data-button-id="14" class="PickSelector d-none"></button>
+					<input class="favcolor d-none" disabled data-id="14" id="colorInput" name="favcolor[]" type="color" value="{{$wrrbcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="7" id="order14" />
 				<input type="hidden" name="pos[]" value="WR/RB" id="posid14" />
@@ -522,8 +522,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<button type="button" class="plusBtn" data-id="15">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$qbwrrbtecolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($qbwrrbtecount)){{'cursor: no-drop;'}}@endif" data-button-id="15" class="PickSelector"></button>
-					<input class="favcolor" disabled data-id="15" id="colorInput" name="favcolor[]" type="color" value="{{$qbwrrbtecolor ?? '#000'}}">
+					<button type="button" style="background:{{$qbwrrbtecolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($qbwrrbtecount)){{'cursor: no-drop;'}}@endif" data-button-id="15" class="PickSelector d-none"></button>
+					<input class="favcolor d-none" disabled data-id="15" id="colorInput" name="favcolor[]" type="color" value="{{$qbwrrbtecolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="8" id="order15" />
 				<input type="hidden" name="pos[]" value="QB/WR/RB/TE" id="posid15" />
