@@ -4,6 +4,7 @@
 
 @php
 $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]->pivot) && isset($league->permissions[0]->pivot->permission_type)) ? $league->permissions[0]->pivot->permission_type : 0;
+$permissions2 = (isset($league->permissions[0]) && isset($league->permissions[0]->pivot) && isset($league->permissions[0]->pivot->permission_type)) ? $league->permissions[0]->pivot->permission_type2 : 0;
 @endphp
 <style>
 	.colorPickSelector {
@@ -221,7 +222,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<select name="co_commish_user_id">
 					<option value="">Select User</option>
 					@foreach($league->teams as $user)
-					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" @if($leaguser->team_id==$user->id && $permissions==2)selected="{{'selected'}}"@endif>{{$user->team_name}}</option>
+					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" @if($league->permissions[0]->pivot->team_id2==$user->id && $permissions2==2)selected="{{'selected'}}"@endif>{{$user->team_name}}</option>
 					@endforeach
 				</select>
 			</div>
