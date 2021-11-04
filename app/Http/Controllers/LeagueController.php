@@ -386,7 +386,14 @@ class LeagueController extends Controller
             try {
                 $message = $request->type == 1 ? 'Commish' : 'Co commish';
                 $league = League::findOrFail($leagueId);
+                if($request->type==1)
+                {
                 $league->users()->where('user_id', Auth::user()->id)->update(['permission_type' => $request->type, 'team_id' => $request->user_id]);
+                }
+                elseif($request->type==2)
+                {
+                    $league->users()->where('user_id', Auth::user()->id)->update(['permission_type2' => $request->type, 'team_id2' => $request->user_id]);
+                }
                 return $this->sendResponse(200, $message . ' added successfully.', ['league' => $league]);
             } catch (ModelNotFoundException $exception) {
                 return $this->sendResponse(404, 'League not found.');
