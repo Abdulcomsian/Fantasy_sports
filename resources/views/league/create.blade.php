@@ -140,7 +140,7 @@
                                 <h5 class="text-center">Roster Setting</h5>
                                 <br>
                                 <center>
-                                    <P>Roster Spots & Draft Rounds:14</P>
+                                    <P>Roster Spots & Draft Rounds:<span class="draftRound">14</span></P>
                                 </center>
                                 <div class="colorPickerDiv">
                                     <div class="incrementNumber">
@@ -408,6 +408,8 @@
         id = $(this).attr('data-id');
         pos = $("#posid" + id + "").val();
         val = parseInt($(this).parent().find("input").val());
+        roundValue = parseInt($(".draftRound").text());
+        $(".draftRound").text(roundValue + 1)
         color = $(this).parent().next().find("input").val();
         orderno = $("#order" + id + "").val();
         val = val + 1;
@@ -415,10 +417,12 @@
     })
     $(".minusBtn").click(function() {
         val = parseInt($(this).parent().find("input").val());
+        roundValue = parseInt($(".draftRound").text());
         val = val - 1;
         if (val < 0) {
             $(this).parent().find("input").val(0);
         } else {
+            $(".draftRound").text(roundValue - 1)
             $(this).parent().find("input").val(val);
         }
 

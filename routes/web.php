@@ -23,10 +23,11 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('draft-roaster', function () {
 		return view('welcome');
 	});
-	Route::get('new-home', function () {
-		return view('new-home');
-	});
-	Route::get('/home', 'HomeController@index');
+	// Route::get('/home', 'HomeController@index');
+	Route::get('/home', 'HomeController@new_index');
+	Route::get('/completed-league', 'HomeController@completed_league');
+	Route::get('/renew/league', 'HomeController@renew_league');
+	Route::post('/renew-league', 'HomeController@renew_league_save');
 	Route::get('/account/edit', 'HomeController@accountedit')->name('editprofile');
 	Route::post('/account/update', 'HomeController@accountupdate')->name('updateprofile');
 	Route::prefix('league')->group(function () {
