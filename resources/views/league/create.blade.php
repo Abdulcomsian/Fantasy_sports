@@ -359,9 +359,9 @@
                                         <button type="button" class="plusBtn">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="10" class="PickSelector"></button>
+                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="10" class="PickSelector d-none"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="10" value="#000" />
-                                        <input class="favcolor" disabled data-id="10" id="colorInput" type="color" value="">
+                                        <input class="favcolor d-none" disabled data-id="10" id="colorInput" type="color" value="">
                                     </div>
                                     <input type="hidden" name="order[]" value="15" />
                                     <input type="hidden" name="pos[]" value="IDP" />

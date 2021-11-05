@@ -621,8 +621,8 @@ $permissions2 = (isset($league->permissions[0]) && isset($league->permissions[0]
 					<button type="button" class="plusBtn" data-id="10">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="@if(!isset($idpcount)){{'cursor: no-drop;'}}@endif background:{{$idpcolor ?? '#000'}};color:white;border:1px solid;" data-button-id="10" class="PickSelector"></button>
-					<input class="favcolor" disabled data-id="10" id="colorInput" name="favcolor[]" type="color" value="{{$idpcolor ?? '#000'}}">
+					<button type="button" style="@if(!isset($idpcount)){{'cursor: no-drop;'}}@endif background:{{$idpcolor ?? '#000'}};color:white;border:1px solid;" data-button-id="10" class="PickSelector d-none"></button>
+					<input class="favcolor d-none" disabled data-id="10" id="colorInput" name="favcolor[]" type="color" value="{{$idpcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="15" id="order10" />
 				<input type="hidden" name="pos[]" value="IDP" id="posid10" />

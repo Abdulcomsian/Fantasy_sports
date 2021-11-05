@@ -130,6 +130,7 @@
                 <form method="post" id="renewform" action="{{url('renew-league')}}">
                     @csrf
                     <input type="hidden" id="lagueid" name="leagueid" value="" />
+                    <input type="hidden" id="leaguename" name="leaguename" value="" />
                     <button type="submit" class="btn btn-primary">Yes Renew It!</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </form>
@@ -147,16 +148,24 @@
         e.preventDefault();
         leagueid = $(this).attr('data-id');
         $("#lagueid").val(leagueid);
-        $("#renewleaguemodal").modal();
-        // swal({
-        //     title: 'Are you sure to renew it?',
-        //     text: "You won't be able to revert this!",
-        //     icon: 'success',
-        // }).then((result) => {
-        //     if (result) {
-        //         $('#renewform').submit();
-        //     }
-        // });
+        // $("#renewleaguemodal").modal();
+        swal({
+            title: 'Are you sure to renew League?',
+            content: {
+                element: "input",
+                attributes: {
+                    placeholder: "Type League Name",
+                    type: "text",
+                    required: true,
+                },
+            },
+            buttons: true,
+        }).then((result) => {
+            if (result) {
+                $("#leaguename").val(result);
+                $('#renewform').submit();
+            }
+        });
 
     })
 </script>

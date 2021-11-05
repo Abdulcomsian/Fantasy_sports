@@ -68,9 +68,12 @@ class HomeController extends Controller
     //save renew league
     public function renew_league_save(Request $request)
     {
+
         $league_id = $request->leagueid;
+        $laguename = $request->leaguename;
         $leagrecord = League::find($league_id);
         $newLeague =  $leagrecord->replicate();
+        $newLeague->name = $laguename;
         if ($newLeague->save()) {
             $leagroundrecord = LeagueRound::where('league_id', $league_id)->get(); //league round duplicate
             foreach ($leagroundrecord as $record) {
@@ -90,10 +93,6 @@ class HomeController extends Controller
             DB::table('league_user')->insert([
                 'league_id' => $newLeague->id,
                 'user_id' => $leagueuser->user_id,
-                'permission_type' => $leagueuser->permission_type,
-                'permission_type2' => $leagueuser->permission_type2,
-                'team_id' => $leagueuser->team_id,
-                'team_id2' => $leagueuser->team_id2,
             ]);
             //Work for roster
             $rosterrecord = Roster::where('league_id', $league_id)->get();
