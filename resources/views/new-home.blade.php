@@ -72,7 +72,7 @@
                     <div class="sideBar">
                         <h4>League Draft Board</h4>
                         <ul>
-                            <a href="{{url('/new-home')}}">
+                            <a href="{{url('/home')}}">
                                 <li class="{{$activeclass ?? ''}}">Active</li>
                             </a>
                             <a href="{{url('/completed-league')}}">
