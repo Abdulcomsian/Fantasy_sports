@@ -114,10 +114,29 @@
         </div>
     </div>
 </div>
-<form class="d-none" method="post" id="renewform" action="{{url('renew-league')}}">
-    @csrf
-    <input type="hidden" id="lagueid" name="leagueid" value="" />
-</form>
+<div class="modal" tabindex="-1" role="dialog" id="renewleaguemodal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Renew League</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to renew it?</p>
+            </div>
+            <div class="modal-footer">
+                <form method="post" id="renewform" action="{{url('renew-league')}}">
+                    @csrf
+                    <input type="hidden" id="lagueid" name="leagueid" value="" />
+                    <button type="submit" class="btn btn-primary">Yes Renew It!</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('js')
@@ -128,15 +147,16 @@
         e.preventDefault();
         leagueid = $(this).attr('data-id');
         $("#lagueid").val(leagueid);
-        swal({
-            title: 'Are you sure to renew it?',
-            text: "You won't be able to revert this!",
-            icon: 'success',
-        }).then((result) => {
-            if (result) {
-                $('#renewform').submit();
-            }
-        });
+        $("#renewleaguemodal").modal();
+        // swal({
+        //     title: 'Are you sure to renew it?',
+        //     text: "You won't be able to revert this!",
+        //     icon: 'success',
+        // }).then((result) => {
+        //     if (result) {
+        //         $('#renewform').submit();
+        //     }
+        // });
 
     })
 </script>
