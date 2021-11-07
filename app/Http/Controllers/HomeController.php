@@ -51,7 +51,7 @@ class HomeController extends Controller
     {
         $leagues = League::select('leagues.id', 'leagues.name')
             ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
-            ->where('league_rounds.player_id', !NULL)
+            ->whereNotNull('league_rounds.player_id')
             ->groupBy('league_rounds.league_id')
             ->paginate(8);
         $compclass = "active";
