@@ -42,7 +42,7 @@ class HomeController extends Controller
             ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
             ->where('league_rounds.player_id', NULL)
             ->groupBy('league_rounds.league_id')
-            ->paginate(8);
+            ->paginate(9);
         $activeclass = "active";
         return view('new-home', compact('activeclass', 'leagues'));
     }
@@ -53,7 +53,7 @@ class HomeController extends Controller
             ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
             ->whereNotNull('league_rounds.player_id')
             ->groupBy('league_rounds.league_id')
-            ->paginate(8);
+            ->paginate(9);
         $compclass = "active";
 
         return view('new-home', compact('leagues', 'compclass'));
