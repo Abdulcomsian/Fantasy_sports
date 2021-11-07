@@ -376,9 +376,16 @@ return (($a->round_order) < ($b->round_order));
                       $teamname=\App\Models\LeagueTeam::where('id',$teamid->team_id)->where('league_id',$leaguerecord->league_id)->first();
                       }
                       $nextteamid=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(2)->get();
-                      if(isset($nextteamid))
+                      if(isset($nextteamid) && count($nextteamid)>0)
                       {
-                      $nextteamname=\App\Models\LeagueTeam::where('id',$nextteamid[1]->team_id)->where('league_id',$leaguerecord->league_id)->first();
+                        if(isset($nextteamid[1]->team_id))
+                        {
+                            $nextteamid=$nextteamid[1]->team_id;
+                        }
+                        else{
+                                $nextteamid=$nextteamid[0]->team_id;
+                          }
+                      $nextteamname=\App\Models\LeagueTeam::where('id', $nextteamid)->where('league_id',$leaguerecord->league_id)->first();
                       }
                       }
                       else
@@ -412,8 +419,12 @@ return (($a->round_order) < ($b->round_order));
                     $roundorderplus=$leaguerecord->round_order+1;
 
                     $roundata=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
-                    $teamidd=\App\Models\LeagueRound::where('round_order',$roundata->round_order-1)->where('round_number',$roundata->round_number)->where('league_id',$leaguerecord->league_id)->first();
-                    //dd($teamidd);
+                    if(isset($rounddata) && count($roundata)>0)
+                    {
+                        $teamidd=\App\Models\LeagueRound::where('round_order',$roundata->round_order-1)->where('round_number',$roundata->round_number)->where('league_id',$leaguerecord->league_id)->first();
+                        //dd($teamidd);
+                    }
+                    
                     if(isset($teamidd->player_id))
                     {
                     $playerdata=\App\Models\Player::where('id',$teamidd->player_id)->first();
