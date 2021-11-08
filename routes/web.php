@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('{id}/insertrow', 'LeagueController@insertrow')->name('insertrow');
 		Route::post('{id}/deleterow', 'LeagueController@deleterow')->name('deleterow');
 		Route::post('{id}/addcolor', 'LeagueController@addcolor')->name('addcolor');
+		Route::get('{id}/delete', 'LeagueController@delete_league');
 		//my new work obaid
 
 		Route::get('{id}/squads', 'SquadController@index');
