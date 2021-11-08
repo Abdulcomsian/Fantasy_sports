@@ -12,14 +12,20 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run() 
+    public function run()
 
     {
         User::create([
-            'name'=>'Darrius',
-            'email'=>'theoffseasongm21@gmail.com',
-            'email_verified_at'=>'2021-07-30',  
-            'password'=>bcrypt('Offseason@321'),
+            'name' => 'Darrius',
+            'email' => 'theoffseasongm21@gmail.com',
+            'email_verified_at' => '2021-07-30',
+            'password' => bcrypt('Offseason@321'),
+        ]);
+        User::create([
+            'name' => 'obaid',
+            'email' => 'obaidkust@gmail.com',
+            'email_verified_at' => '2021-07-30',
+            'password' => bcrypt('obaid123'),
         ]);
     }
 }

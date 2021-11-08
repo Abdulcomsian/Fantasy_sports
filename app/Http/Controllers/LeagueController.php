@@ -9,6 +9,7 @@ use App\Models\League;
 use App\Models\LeagueTeam;
 use App\Models\Player;
 use App\Models\KeeperList;
+use App\Models\LeaguePermission;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\LeagueRound;
 use App\Models\Roster;
@@ -386,12 +387,9 @@ class LeagueController extends Controller
             try {
                 $message = $request->type == 1 ? 'Commish' : 'Co commish';
                 $league = League::findOrFail($leagueId);
-                if($request->type==1)
-                {
-                $league->users()->where('user_id', Auth::user()->id)->update(['permission_type' => $request->type, 'team_id' => $request->user_id]);
-                }
-                elseif($request->type==2)
-                {
+                if ($request->type == 1) {
+                    $league->users()->where('user_id', Auth::user()->id)->update(['permission_type' => $request->type, 'team_id' => $request->user_id]);
+                } elseif ($request->type == 2) {
                     $league->users()->where('user_id', Auth::user()->id)->update(['permission_type2' => $request->type, 'team_id2' => $request->user_id]);
                 }
                 return $this->sendResponse(200, $message . ' added successfully.', ['league' => $league]);
@@ -581,6 +579,25 @@ class LeagueController extends Controller
             echo "success";
         } else {
             echo "error";
+        }
+    }
+
+    //delete league
+    public function delete_league($id)
+    {
+        if (isset($id) && intval($id) > 0) {
+            $res = League::find($id)->delete();
+            if ($res) {
+                LeagueRound::where('league_id', $id)->delete();
+                LeagueTeam::where('league_id', $id)->delete();
+                Roster::where('league_id', $id)->delete();
+                RosterTeamplayer::where('league_id', $id)->delete();
+                LeaguePermission::where('league_id', $id)->delete();
+                KeeperList::where('league_id', $id)->delete();
+                return back();
+            }
+        } else {
+            return back();
         }
     }
 }

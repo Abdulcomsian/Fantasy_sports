@@ -95,8 +95,10 @@
                             @foreach($leagues as $league)
                             <div class="col-md-4">
                                 <div class="leagueDiv">
-                                    <h4>{{$league->name}}</h4>
-                                    <a href="{{url('league/'.$league->id.'/settings')}}">
+                                    <h4>
+                                        <sapn style="font-size:10px;padding:20px;"><a href="{{url('league/'.$league->id.'/settings')}}" class="text-white">Setting</a></sapn>{{$league->name}}<span style="font-size:10px;padding:20px;"><a href="{{url('league/'.$league->id.'/delete')}}" class="text-white delete-league">Delete</a></span>
+                                    </h4>
+                                    <a href="{{url('league/'.$league->id.'/draft')}}">
                                         <img src="{{asset('images/City_Chart.png')}}" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
                                     </a>
                                 </div>
@@ -167,6 +169,20 @@
             }
         });
 
+    })
+
+    //delete league
+    $(".delete-league").on('click', function(e) {
+        e.preventDefault();
+        url = $(this).attr('href');
+        swal({
+            title: 'Are you sure to Delete League?',
+            buttons: true,
+        }).then((result) => {
+            if (result) {
+                window.location = url;
+            }
+        });
     })
 </script>
 
