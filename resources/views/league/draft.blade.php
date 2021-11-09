@@ -91,9 +91,21 @@ return (($a->round_order) < ($b->round_order));
         <div class="col-md-3">
           <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
         </div>
+
+        @if(auth::user()->role=="Admin")
         <div class="col-md-3">
           <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
         </div>
+        @else
+            @php
+            $dta=\DB::table('league_user')->where(['league_id'=>$league->id,'user_id'=>\Auth::user()->id])->first();
+            @endphp
+            @if($dta->permission_type==1 || $dta->permission_type==2)
+            <div class="col-md-3">
+              <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+            </div>
+            @endif
+        @endif
         <!-- <div class="col-md-1">
       <h2 style="width:100%" type="button" id="zoom-in">+</h2>
       </div>
@@ -150,12 +162,14 @@ return (($a->round_order) < ($b->round_order));
               @endif
             </div>
           </div>
+        @if(auth::user()->role=="Admin")
           <div class="col-lg-6 text-right">
             <div class="d-flex" style="justify-content:flex-end;">
               <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-out">-</h2>
               <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-in">+</h2>
             </div>
           </div>
+        @endif
         </div>
       </div>
       <div class="container ">
@@ -265,6 +279,7 @@ return (($a->round_order) < ($b->round_order));
             <ul class="list-unstyled list-inline">
               <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
                 <div class="select_draft draft_round">
+                    @if(\Auth::user()->role=="Admin")
                   <div class="form-group drft-plr">
                     <input id="myInput" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
                     <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
@@ -275,6 +290,7 @@ return (($a->round_order) < ($b->round_order));
                 </select> -->
                     <button class="draftButton">Draft</button>
                   </div>
+                  @endif
                 </div>
               </li>
               <!-- <li class="list-inline-item">
@@ -511,8 +527,9 @@ return (($a->round_order) < ($b->round_order));
               </span>
               <br>
               @endforeach
-
+              @if(\Auth::user()->role=="Admin")
               <a href="javascript:void(0)" class="addKeeperlist" data-team-id="{{$team->id}}" data-player="{{$player->player_id}}" data-round="{{$player->round_number}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
+              @endif
             </td>
             @endforeach
             <td></td>
@@ -675,7 +692,7 @@ return (($a->round_order) < ($b->round_order));
               <span class="indraft_team_name" style="display: none">{{$round->team->team_name}}</span>
               <span>{{ $index.'.'.$round->default_order }}</span><br>
               @endif
-              @if((!isset($round->player) || !isset($round->player->last_name)) && $league->status == 'keeper')
+              @if(\Auth::user()->role=="Admin" && (!isset($round->player) || !isset($round->player->last_name)) && $league->status == 'keeper')
               <a href="javascript:void(0)" round-number='{{$index}}' round-order='{{$round->default_order}}' class="addKeeper"><i class="fa fa-plus" aria-hidden="true"></i></a>
               @endif
           </td>

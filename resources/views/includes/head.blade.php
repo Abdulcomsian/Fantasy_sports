@@ -17,5 +17,5 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/slick/css/slick-theme.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/colorPick.dark.theme.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/colorPick.css') }}">
-
+@toastr_css
 @yield('css')

@@ -133,11 +133,6 @@
                                         </sapn>
                                         @endif
                                         {{$league->name}}
-                                        @if($dta->permission_type=="1" || $dta->permission_type=="2")
-                                        <span style="font-size:10px;padding:20px;">
-                                            <a href="{{url('league/'.$league->id.'/delete')}}" class="text-white delete-league">Delete</a>
-                                        </span>
-                                        @endif
                                     </h4>
                                     <a href="{{url('league/'.$league->id.'/draft')}}">
                                         <img src="{{asset('images/City_Chart.png')}}" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
