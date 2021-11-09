@@ -38,19 +38,12 @@ class HomeController extends Controller
     //new home page temporary here
     public function new_index()
     {
-        if (Auth::user()->role == "Admin") {
-            $leagues = League::select('leagues.id', 'leagues.name')
-                ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
-                ->where('league_rounds.player_id', NULL)
-                ->groupBy('league_rounds.league_id')
-                ->paginate(9);
-        } else {
-            $leagues = League::select('leagues.id', 'leagues.name')
-                ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
-                ->where('league_rounds.player_id', NULL)
-                ->groupBy('league_rounds.league_id')
-                ->paginate(9);
-        }
+        $leagues = League::select('leagues.id', 'leagues.name')
+            ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
+            ->where('league_rounds.player_id', NULL)
+            ->groupBy('league_rounds.league_id')
+            ->orderBy('leagues.id', 'desc')
+            ->paginate(9);
         $activeclass = "active";
         return view('new-home', compact('activeclass', 'leagues'));
     }
@@ -61,6 +54,7 @@ class HomeController extends Controller
             ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
             ->whereNotNull('league_rounds.player_id')
             ->groupBy('league_rounds.league_id')
+            ->orderBy('leagues.id', 'desc')
             ->paginate(9);
         $compclass = "active";
 
@@ -69,7 +63,7 @@ class HomeController extends Controller
     //renew league
     public function renew_league()
     {
-        $leagues = League::paginate(8);
+        $leagues = League::paginate(9);
         $renewclass = "active";
         return view('new-home', compact('leagues', 'renewclass'));
     }
@@ -109,7 +103,7 @@ class HomeController extends Controller
                 $newrow->league_id = $newLeague->id;
                 $newrow->save();
             }
-            toastr()->succss('League Duplicated Successfully!');
+            toastr()->success('League Duplicated Successfully!');
             return redirect()->back();
         }
     }
