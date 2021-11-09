@@ -3,22 +3,23 @@
 @section('content')
 <div class="season_fall create_league">
     <div class="container">
-            <div class="heading">
+        <div class="heading">
             <h1>The Offseason GM</h1>
         </div>
     </div>
-  
+
     <div class="container-fluid">
         <form name="signin" action="{{ route('login') }}" method="POST">
             @csrf
+            <input type="hidden" name="key" value="@if(isset($key)){{$key}}@else{{''}}@endif" />
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="form-group">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email Address" autofocus>
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
                 </div>
@@ -28,9 +29,9 @@
                     <div class="form-group">
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
                 </div>
@@ -46,8 +47,9 @@
             </div>
             <div class="row">
                 <div class="col-md-6 offset-md-3 forget-pasw">
-                     <a href="/forgot-password" style="color:#000;margin-right:20px;">Forgot Password?</a>
-                     <a href="#" style="color:#000;">Sign Up</a>
+                    <a href="/forgot-password" style="color:#000;margin-right:20px;">Forgot Password?</a>
+                    @php if(!isset($key)){$key='';} @endphp
+                    <a href="{{url('register?key='.$key.'')}}" style="color:#000;">Sign Up</a>
                 </div>
             </div>
             <!-- <div class="row">

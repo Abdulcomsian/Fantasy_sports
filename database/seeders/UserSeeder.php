@@ -19,12 +19,14 @@ class UserSeeder extends Seeder
             'name' => 'Darrius',
             'email' => 'theoffseasongm21@gmail.com',
             'email_verified_at' => '2021-07-30',
+            'role' => 'Admin',
             'password' => bcrypt('Offseason@321'),
         ]);
         User::create([
             'name' => 'obaid',
             'email' => 'obaidkust@gmail.com',
             'email_verified_at' => '2021-07-30',
+            'role' => 'User',
             'password' => bcrypt('obaid123'),
         ]);
     }
