@@ -78,21 +78,37 @@
                             <a href="{{url('/completed-league')}}">
                                 <li class="{{$compclass ?? ''}}">Completed Draft</li>
                             </a>
+                            @if(\Auth::user()->role=="Admin")
                             <a href="{{url('/league/create')}}">
                                 <li>Create League</li>
                             </a>
                             <a href="{{url('/renew/league')}}">
                                 <li class="{{$renewclass ?? ''}}">Renew Exsisting League</li>
                             </a>
+                            @endif
                             <li>Join Exsisting League</li>
                             <li>
-                                <input type="text" placeholder="Enter Join Key ....">
+                                <form id="checkLeagueExist">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <input type="text" name="joiner_key" placeholder="Enter Join Key .." class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn_green">Join</button>
+                                        </div>
+
+                                    </div>
+                                </form>
                             </li>
                         </ul>
                     </div>
                     <div class="viewDiv">
                         <div class="row">
                             @foreach($leagues as $league)
+                            @if(\Auth::user()->role=="Admin")
                             <div class="col-md-4">
                                 <div class="leagueDiv">
                                     <h4>
@@ -103,6 +119,33 @@
                                     </a>
                                 </div>
                             </div>
+                            @else
+                            @php
+                            $dta=\DB::table('league_user')->where(['league_id'=>$league->id,'user_id'=>\Auth::user()->id])->first();
+                            @endphp
+                            @if($dta)
+                            <div class="col-md-4">
+                                <div class="leagueDiv">
+                                    <h4>
+                                        @if($dta->permission_type=="1" || $dta->permission_type=="2")
+                                        <sapn style="font-size:10px;padding:20px;">
+                                            <a href="{{url('league/'.$league->id.'/settings')}}" class="text-white">Setting</a>
+                                        </sapn>
+                                        @endif
+                                        {{$league->name}}
+                                        @if($dta->permission_type=="1" || $dta->permission_type=="2")
+                                        <span style="font-size:10px;padding:20px;">
+                                            <a href="{{url('league/'.$league->id.'/delete')}}" class="text-white delete-league">Delete</a>
+                                        </span>
+                                        @endif
+                                    </h4>
+                                    <a href="{{url('league/'.$league->id.'/draft')}}">
+                                        <img src="{{asset('images/City_Chart.png')}}" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
+                                    </a>
+                                </div>
+                            </div>
+                            @endif
+                            @endif
                             @endforeach
                         </div>
                         <div class="row">

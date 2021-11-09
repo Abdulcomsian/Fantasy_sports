@@ -258,9 +258,15 @@ class LeagueController extends Controller
     {
         if (isset($id) && intval($id) > 0) {
             $league = League::with(['teams', 'users', 'permissions'])->findOrFail($id);
-            $leaguser = DB::table('league_user')->select('team_id')
-                ->where('league_id', $id)
-                ->first();
+            // $leaguser = DB::table('league_user')->select('team_id')
+            //     ->where('league_id', $id)
+            //     ->first();
+            //new work 
+            $leaguser = DB::table('league_user')
+                ->join('users', 'users.id', '=', 'league_user.user_id')
+                ->join('league_teams', 'league_teams.id', '=', 'league_user.team_id')
+                ->where('league_user.league_id', $id)
+                ->get();
             $rosterdata = DB::table('rosters')
                 ->select('color', 'position', DB::raw('count(id) as totalcount'))
                 ->where('league_id', $id)
@@ -344,14 +350,19 @@ class LeagueController extends Controller
 
     public function joinLeague(Request $request)
     {
-
-        if (isset($request->key) && !empty($request->key)) {
-            $league = League::fetchLeagueInfoByKey($request->key);
-            if ($league) {
-                return view('league.join', ['league' => $league]);
+        $key = $request->key;
+        if (Auth::check()) {
+            if (isset($request->key) && !empty($request->key)) {
+                $league = League::fetchLeagueInfoByKey($request->key);
+                if ($league) {
+                    return view('league.join', ['league' => $league]);
+                }
+            } else {
+                abort(404);
             }
+        } else {
+            return view('auth.login', compact('key'));
         }
-        abort(404);
     }
 
     public function joinLeagueTeam(Request $request, $leagueId)
@@ -387,11 +398,14 @@ class LeagueController extends Controller
             try {
                 $message = $request->type == 1 ? 'Commish' : 'Co commish';
                 $league = League::findOrFail($leagueId);
+                // $league->users()->where('user_id', Auth::user()->id)->update(['permission_type' => $request->type, 'team_id' => $request->user_id]);
                 if ($request->type == 1) {
-                    $league->users()->where('user_id', Auth::user()->id)->update(['permission_type' => $request->type, 'team_id' => $request->user_id]);
-                } elseif ($request->type == 2) {
-                    $league->users()->where('user_id', Auth::user()->id)->update(['permission_type2' => $request->type, 'team_id2' => $request->user_id]);
+                    $league->users()->where(['permission_type' => 1])->update(['permission_type' => 3]);
                 }
+                if ($request->type == 2) {
+                    $league->users()->where(['permission_type' => 2])->update(['permission_type' => 3]);
+                }
+                $league->users()->where(['user_id' => $request->user_id, 'league_id' => $leagueId])->update(['permission_type' => $request->type]);
                 return $this->sendResponse(200, $message . ' added successfully.', ['league' => $league]);
             } catch (ModelNotFoundException $exception) {
                 return $this->sendResponse(404, 'League not found.');

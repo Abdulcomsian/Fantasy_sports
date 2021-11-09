@@ -38,11 +38,19 @@ class HomeController extends Controller
     //new home page temporary here
     public function new_index()
     {
-        $leagues = League::select('leagues.id', 'leagues.name')
-            ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
-            ->where('league_rounds.player_id', NULL)
-            ->groupBy('league_rounds.league_id')
-            ->paginate(9);
+        if (Auth::user()->role == "Admin") {
+            $leagues = League::select('leagues.id', 'leagues.name')
+                ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
+                ->where('league_rounds.player_id', NULL)
+                ->groupBy('league_rounds.league_id')
+                ->paginate(9);
+        } else {
+            $leagues = League::select('leagues.id', 'leagues.name')
+                ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
+                ->where('league_rounds.player_id', NULL)
+                ->groupBy('league_rounds.league_id')
+                ->paginate(9);
+        }
         $activeclass = "active";
         return view('new-home', compact('activeclass', 'leagues'));
     }

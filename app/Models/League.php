@@ -38,7 +38,7 @@ class League extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\Models\User')->withPivot('permission_type','permission_type2', 'team_id','team_id2')->withTimestamps();
+        return $this->belongsToMany('App\Models\User')->withPivot('permission_type', 'team_id')->withTimestamps();
     }
 
     public function scopeLeaguePermissions($query)
