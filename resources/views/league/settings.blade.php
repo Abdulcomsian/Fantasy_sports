@@ -202,7 +202,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<select name="commish_user_id">
 					<option value="">Select User</option>
                     @foreach($leaguser as $user)
-                    <option class="text-dark" value="{{$user->user_id}}" data-league_id="{{$league->id}}" @if($user->permission_type==1){{'selected'}}@endif>{{$user->team_name.'|'.$user->name}}</option>
+                    <option class="text-dark" value="{{$user->user_id}}" data-league_id="{{$league->id}}" @if($user->permission_type==1){{'selected'}}@endif>{{$user->team_name . '   | '  . $user->name}}</option>
                     @endforeach
 					{{--@foreach($league->teams as $user)
 					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" @if($leaguser->team_id==$user->id && $permissions==1)selected="{{'selected'}}"@endif>{{$user->team_name}}</option>
@@ -224,7 +224,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				<select name="co_commish_user_id">
 					<option value="">Select User</option>
                     @foreach($leaguser as $user)
-                    <option class="text-dark" value="{{$user->user_id}}" data-league_id="{{$league->id}}" @if($user->permission_type==2){{'selected'}}@endif>{{$user->team_name.'|'.$user->name}}</option>
+                    <option class="text-dark" value="{{$user->user_id}}" data-league_id="{{$league->id}}" @if($user->permission_type==2){{'selected'}}@endif>{{$user->team_name. '   |    '. $user->name}}</option>
                     @endforeach
 					{{--@foreach($league->teams as $user)
 					<option class="text-dark" value="{{$user->id}}" data-league_id="{{$league->id}}" @if($league->permissions[0]->pivot->team_id2==$user->id)selected="{{'selected'}}"@endif>{{$user->team_name}}</option>

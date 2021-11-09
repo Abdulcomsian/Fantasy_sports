@@ -40,21 +40,28 @@ $style="display:show";
         </li>
         @if(Auth::check())
         <li>
-            <a href="{{route('editprofile')}}">Account</a>
+          <a href="{{route('editprofile')}}">Account</a>
         </li>
         @endif
         <li>
           <a href="{{url('contact')}}">Contact & Feedback </a>
         </li>
+        @guest
         <li>
           <a href="/login">Login</a>
         </li>
+        @endguest
         <!-- <li>
                     <a href="/register">Register</a>
                 </li> -->
+        @auth
         <li>
-          <a href="">Logout</a>
+          <a href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+          </form>
         </li>
+        @endauth
       </ul>
     </div>
   </section>
@@ -134,19 +141,19 @@ $style="display:show";
   <script>
     $(document).ready(function() {
       if ($('#draftMode').is(':checked')) {
-        $(".dropDownDiv").css("display","block")
+        $(".dropDownDiv").css("display", "block")
       } else {
-        $(".dropDownDiv").css("display","none")
+        $(".dropDownDiv").css("display", "none")
       }
-  });
-  $(document).ready(function(){
-    $('.draftPlayer').click(function(){
-      $('.draftPlayer').select2('open');
-        });
+    });
+    $(document).ready(function() {
+      $('.draftPlayer').click(function() {
+        $('.draftPlayer').select2('open');
+      });
       // set time out 2 sec
-        setTimeout(function(){
-            $('.draftPlayer').trigger('click');
-        }, 50);
+      setTimeout(function() {
+        $('.draftPlayer').trigger('click');
+      }, 50);
     });
   </script>
 </body>
