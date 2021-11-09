@@ -34,7 +34,12 @@ class LeagueController extends Controller
      */
     public function create()
     {
-        return view('league.create');
+        if (Auth::user()->role == "Admin") {
+            return view('league.create');
+        } else {
+            toastr()->error("Admin can created the league");
+            return back();
+        }
     }
 
     /**
@@ -608,9 +613,14 @@ class LeagueController extends Controller
                 RosterTeamplayer::where('league_id', $id)->delete();
                 LeaguePermission::where('league_id', $id)->delete();
                 KeeperList::where('league_id', $id)->delete();
+                toastr()->success('League Deleted Successfully!');
+                return back();
+            } else {
+                toastr()->success('Something went wrong!');
                 return back();
             }
         } else {
+            toastr()->error('League Not found');
             return back();
         }
     }

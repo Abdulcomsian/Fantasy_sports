@@ -9,6 +9,8 @@
 <script src="{{ asset('plugins/sweet-alert/sweetalert.min.js') }}"></script>
 <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
 <script src="{{ asset('js/colorPick.js') }}"></script>
+@toastr_js
+@toastr_render
 <script type="text/javascript">
 	$(function() {
 		$.ajaxSetup({
