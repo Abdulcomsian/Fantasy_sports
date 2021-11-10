@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('{id}/deleterow', 'LeagueController@deleterow')->name('deleterow');
 		Route::post('{id}/addcolor', 'LeagueController@addcolor')->name('addcolor');
 		Route::get('{id}/delete', 'LeagueController@delete_league');
+        Route::post('{id}/save-league-images}','LeagueController@save_league_image');
 		//my new work obaid
 
 		Route::get('{id}/squads', 'SquadController@index');

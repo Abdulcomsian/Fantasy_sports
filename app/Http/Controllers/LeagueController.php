@@ -619,4 +619,10 @@ class LeagueController extends Controller
             return back();
         }
     }
+
+    //save league image 
+    public function save_league_image($id)
+    {
+        echo $id;
+    }
 }

@@ -14,7 +14,6 @@ use App\Models\Roster;
 use App\Models\RosterTeamplayer;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
-
 class DraftController extends Controller
 {
     /**
@@ -24,7 +23,7 @@ class DraftController extends Controller
      */
     public function index($id)
     {
-
+      
         if (isset($id) && intval($id) > 0) {
             $league = League::leagueData($id);
             $playerIds = [];

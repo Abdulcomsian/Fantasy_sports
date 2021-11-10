@@ -711,6 +711,7 @@ return (($a->round_order) < ($b->round_order));
       </tbody>
       @endif
       </table>
+      <img src="" id="appendimage">
     </div>
   </div>
 
@@ -903,6 +904,30 @@ return (($a->round_order) < ($b->round_order));
   <script type="text/javascript" src="{{ asset('js/league/draft.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/league/settings.js') }}"></script>
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+ <!--  <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+  <script type="text/javascript">
+        $(function(){
+          html2canvas(document.body).then(function(canvas) {
+             var img = canvas.toDataURL()
+             uploadimg(img);
+             //$("#appendimage").attr('src',img);
+            
+          });
+
+         });
+        function uploadimg(img)
+        {
+         $.ajax({
+                 url: "/league/" + leagueId + "/save-league-images",
+                 method: "POST",
+                 data: {img:img},
+                 success:function(res)
+                 {
+                    alert(res);
+                 }
+             })
+        }
+   </script> -->
   <script>
     function myFunction() {
       document.getElementById("myDropdown").classList.toggle("show");
