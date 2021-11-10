@@ -562,7 +562,6 @@ class DraftController extends Controller
                         $RosterTeamplayer->round_number = $request->round_number;
                         $RosterTeamplayer->save();
                     }
-
                     return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 } else {
                     $league = League::leagueData($leagueId);

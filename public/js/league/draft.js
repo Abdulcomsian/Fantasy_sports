@@ -358,6 +358,16 @@ function savePick(playerId, roundId = 0, type = "draft") {
     let player_team = $("#myInput2").attr("data-team");
     let round_order = $("#myInput2").attr("round-order");
     let round_number = $("#myInput2").attr("round-number");
+    //check if admin or team member
+    if ($(".hiddenteamid ").hasClass("teammember")) {
+        teamid = parseInt($("#team-round").attr("datateamid"));
+        userteamid = parseInt($(".hiddenteamid").text());
+        console.log(teamid + " " + userteamid);
+        if (teamid != userteamid) {
+            toastr.error("this not your turn to add player");
+            return false;
+        }
+    }
     if (playerId) {
         $.ajax({
             type: "POST",

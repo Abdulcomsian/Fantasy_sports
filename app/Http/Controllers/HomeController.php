@@ -38,7 +38,7 @@ class HomeController extends Controller
     //new home page temporary here
     public function new_index()
     {
-        $leagues = League::select('leagues.id', 'leagues.name')
+        $leagues = League::select('leagues.*')
             ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
             ->where('league_rounds.player_id', NULL)
             ->groupBy('league_rounds.league_id')
@@ -50,7 +50,7 @@ class HomeController extends Controller
     //completed league
     public function completed_league()
     {
-        $leagues = League::select('leagues.id', 'leagues.name')
+        $leagues = League::select('leagues.*')
             ->join('league_rounds', 'leagues.id', '=', 'league_rounds.league_id')
             ->whereNotNull('league_rounds.player_id')
             ->groupBy('league_rounds.league_id')
