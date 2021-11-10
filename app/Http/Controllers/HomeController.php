@@ -63,7 +63,7 @@ class HomeController extends Controller
     //renew league
     public function renew_league()
     {
-        $leagues = League::paginate(9)->orderBy('leagues.id', 'desc');
+        $leagues = League::paginate(9)->orderBy('id', 'desc');
         $renewclass = "active";
         return view('new-home', compact('leagues', 'renewclass'));
     }
