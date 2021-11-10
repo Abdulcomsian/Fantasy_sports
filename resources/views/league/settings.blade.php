@@ -240,7 +240,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="inviteUrl" style="background:transparent;">
-				<p>Invite URL: <a href="">http://3.129.43.224/league/7/draft</a></p>
+                <h6 style="text-align:left;">Joiner Key</h6>
+				<p class="create_new ft-z" style="background:transparent;border:0px; padding-left:0px;margin-top:0px;padding-top:0px;">{{url('league/join?key='.$league->joiner_key)}}</p>
 				<p>Send the URL to anyone who is a GM in your league. They will be
 					able to claim ownership of their team and will only be able to
 					navigate and make picks during live draft mode and edit their team
@@ -252,14 +253,14 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	
 
 	@endif -->
-	<div class="list_edit">
+	<!-- <div class="list_edit">
 		<div class="row">
 			<div class="col-md-12 no-bdr">
 				<h4 style="text-align:left;">Joiner Key</h4>
 				<p class="create_new ft-z" style="background:transparent;border:0px; padding-left:0px;margin-top:0px;padding-top:0px;">{{url('league/join?key='.$league->joiner_key)}}</p>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- <div class="list_edit">
 		<div class="row">
 			<div class="col-md-12">

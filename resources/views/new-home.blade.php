@@ -56,6 +56,19 @@
         text-align: center;
         margin: 0 auto 20px;
     }
+
+    .swal-modal {
+        width: 700px;
+    }
+
+    .swal-text {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .swal-footer {
+        text-align: center;
+    }
 </style>
 <div class="create_league_table assign_order the_lottery draft_boards draft_room">
     <div class="container">
@@ -108,7 +121,7 @@
                     <div class="viewDiv">
                         <div class="row">
                             @foreach($leagues as $league)
-                            @if(\Auth::user()->role=="Admin")
+                            @if(\Auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
                             <div class="col-md-4">
                                 <div class="leagueDiv">
                                     <h4>
@@ -190,7 +203,8 @@
         $("#lagueid").val(leagueid);
         // $("#renewleaguemodal").modal();
         swal({
-            title: 'Are you sure to renew League?',
+            text: 'Renew league?',
+            title: 'Renew league will duplicate and reset entire  league board but will keep all current setting',
             content: {
                 element: "input",
                 attributes: {
@@ -198,8 +212,9 @@
                     type: "text",
                     required: true,
                 },
+
             },
-            buttons: true,
+            buttons: ["Cancel", "Confirm"],
         }).then((result) => {
             if (result) {
                 $("#leaguename").val(result);

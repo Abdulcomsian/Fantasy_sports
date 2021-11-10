@@ -34,12 +34,7 @@ class LeagueController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->role == "Admin") {
-            return view('league.create');
-        } else {
-            toastr()->error("only Admin can create the league");
-            return back();
-        }
+        return view('league.create');
     }
 
     /**

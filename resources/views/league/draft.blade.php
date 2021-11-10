@@ -92,7 +92,7 @@ return (($a->round_order) < ($b->round_order));
           <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
         </div>
 
-        @if(auth::user()->role=="Admin")
+        @if(auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
         <div class="col-md-3">
           <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
         </div>
@@ -279,7 +279,13 @@ return (($a->round_order) < ($b->round_order));
             <ul class="list-unstyled list-inline">
               <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
                 <div class="select_draft draft_round">
-                    @if(\Auth::user()->role=="Admin")
+                  @php  
+                   if(\Auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
+                   {$class='admin';}
+                   else
+                   {$class="teammember";}
+                  @endphp
+                  <p class="d-none hiddenteamid {{$class}}">{{$league->permissions[0]->pivot->team_id}}</p>
                   <div class="form-group drft-plr">
                     <input id="myInput" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
                     <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
@@ -290,7 +296,6 @@ return (($a->round_order) < ($b->round_order));
                 </select> -->
                     <button class="draftButton">Draft</button>
                   </div>
-                  @endif
                 </div>
               </li>
               <!-- <li class="list-inline-item">
@@ -411,8 +416,8 @@ return (($a->round_order) < ($b->round_order));
                       }
 
                       @endphp
-                      <h3 id="team-round">@if(isset($teamname)){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
-                      <p class="upNext" id="upNext">Up Next: @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team '}}{{$roundorderplus}}@endif </p>
+                      <h3 id="team-round" datateamid="{{$teamid->team_id ??  $roundunber}}">@if(isset($teamname)){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
+                      <p class="upNext" id="upNext">Up Next: @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team '}}{{$roundorderplus ?? ''}}@endif </p>
                     </div>
 
                   </div>
@@ -692,7 +697,7 @@ return (($a->round_order) < ($b->round_order));
               <span class="indraft_team_name" style="display: none">{{$round->team->team_name}}</span>
               <span>{{ $index.'.'.$round->default_order }}</span><br>
               @endif
-              @if(\Auth::user()->role=="Admin" && (!isset($round->player) || !isset($round->player->last_name)) && $league->status == 'keeper')
+              @if((!isset($round->player) || !isset($round->player->last_name)) && $league->status == 'keeper')
               <a href="javascript:void(0)" round-number='{{$index}}' round-order='{{$round->default_order}}' class="addKeeper"><i class="fa fa-plus" aria-hidden="true"></i></a>
               @endif
           </td>
