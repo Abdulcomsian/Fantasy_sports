@@ -416,8 +416,8 @@ return (($a->round_order) < ($b->round_order));
                       }
 
                       @endphp
-                      <h3 id="team-round" datateamid="{{$teamid->team_id ??  $roundunber}}">@if(isset($teamname)){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
-                      <p class="upNext" id="upNext">Up Next: @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team '}}{{$roundorderplus ?? ''}}@endif </p>
+                      <h3 id="team-round">@if(isset($teamname)){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
+                      <p class="upNext" id="upNext">Up Next: @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team '}}{{$roundorderplus}}@endif </p>
                     </div>
 
                   </div>
@@ -686,7 +686,9 @@ return (($a->round_order) < ($b->round_order));
               </select><br> -->
               <span style="font-size:13px;float: left;padding: 5px;">{{$round->player->position }}</span> <span style="float: right;padding: 5px;font-size:13px;">{{ $round->player->team}}</span><br>
               <div class="team_info">
+                @if( $league->status == 'keeper')
                 <a href="javascript:void(0)" data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></a>
+                @endif
                 <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
                 <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
                 <span style="font-weight:bold;font-size:16px;">{{ $round->player->last_name}}</span><br>

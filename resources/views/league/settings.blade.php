@@ -240,8 +240,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="inviteUrl" style="background:transparent;">
-                <h6 style="text-align:left;">Joiner Key</h6>
-				<p class="create_new ft-z" style="background:transparent;border:0px; padding-left:0px;margin-top:0px;padding-top:0px;">{{url('league/join?key='.$league->joiner_key)}}</p>
+				<p class="create_new ft-z" style="background:transparent;border:0px; padding-left:0px;margin-top:0px;padding-top:0px;">Invite URL: {{url('league/join?key='.$league->joiner_key)}}</p>
 				<p>Send the URL to anyone who is a GM in your league. They will be
 					able to claim ownership of their team and will only be able to
 					navigate and make picks during live draft mode and edit their team

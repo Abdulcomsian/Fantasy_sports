@@ -64,6 +64,7 @@
     .swal-text {
         font-size: 40px;
         font-weight: bold;
+        color: black
     }
 
     .swal-footer {
@@ -91,14 +92,13 @@
                             <a href="{{url('/completed-league')}}">
                                 <li class="{{$compclass ?? ''}}">Completed Draft</li>
                             </a>
-                            @if(\Auth::user()->role=="Admin")
+
                             <a href="{{url('/league/create')}}">
                                 <li>Create League</li>
                             </a>
                             <a href="{{url('/renew/league')}}">
                                 <li class="{{$renewclass ?? ''}}">Renew Exsisting League</li>
                             </a>
-                            @endif
                             <li>Join Exsisting League</li>
                             <li>
                                 <form id="checkLeagueExist">
@@ -204,11 +204,11 @@
         // $("#renewleaguemodal").modal();
         swal({
             text: 'Renew league?',
-            title: 'Renew league will duplicate and reset entire  league board but will keep all current setting',
+            title: 'Renew league will duplicate and reset entire  league board but will keep all current settings',
             content: {
                 element: "input",
                 attributes: {
-                    placeholder: "Type League Name",
+                    placeholder: "Enter League Name",
                     type: "text",
                     required: true,
                 },
