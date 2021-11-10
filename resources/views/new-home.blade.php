@@ -27,7 +27,8 @@
     }
 
     .contentDiv .viewDiv .leagueDiv {
-        margin-bottom: 20px
+        margin-bottom: 20px;
+        transition: all 3s;
     }
 
     .contentDiv .viewDiv .leagueDiv h4 {
@@ -69,6 +70,13 @@
 
     .swal-footer {
         text-align: center;
+    }
+    .operationDiv {
+        position: absolute;
+        right: 22px;
+    }
+    .operationDiv a{
+        font-size:18px;
     }
 </style>
 <div class="create_league_table assign_order the_lottery draft_boards draft_room">
@@ -125,8 +133,12 @@
                             <div class="col-md-4">
                                 <div class="leagueDiv">
                                     <h4>
-                                        <sapn style="font-size:10px;padding:20px;"><a href="{{url('league/'.$league->id.'/settings')}}" class="text-white">Setting</a></sapn>{{$league->name}}<span style="font-size:10px;padding:20px;"><a href="{{url('league/'.$league->id.'/delete')}}" class="text-white delete-league">Delete</a></span>
+                                        {{$league->name}}
                                     </h4>
+                                    <div class="operationDiv">
+                                        <a href="{{url('league/'.$league->id.'/settings')}}" class="text-white"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                                        <a href="{{url('league/'.$league->id.'/delete')}}" class="text-white delete-league"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </div>
                                     <a href="{{url('league/'.$league->id.'/draft')}}">
                                         <img src="{{asset('images/City_Chart.png')}}" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
                                     </a>
@@ -140,13 +152,18 @@
                             <div class="col-md-4">
                                 <div class="leagueDiv">
                                     <h4>
-                                        @if($dta->permission_type=="1" || $dta->permission_type=="2")
+                                        <!-- @if($dta->permission_type=="1" || $dta->permission_type=="2")
                                         <sapn style="font-size:10px;padding:20px;">
                                             <a href="{{url('league/'.$league->id.'/settings')}}" class="text-white">Setting</a>
                                         </sapn>
-                                        @endif
+                                        @endif -->
                                         {{$league->name}}
                                     </h4>
+                                    <div class="operationDiv">
+                                        @if($dta->permission_type=="1" || $dta->permission_type=="2")
+                                        <a href="{{url('league/'.$league->id.'/settings')}}" class="text-white"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                                        @endif
+                                    </div>
                                     <a href="{{url('league/'.$league->id.'/draft')}}">
                                         <img src="{{asset('images/City_Chart.png')}}" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
                                     </a>
@@ -223,7 +240,19 @@
         });
 
     })
-
+    $(".leagueDiv").hover(function(){
+        $(this).css("transform","scale(1.2)")
+        $(".leagueDiv").css("opacity",".5")
+        $(this).css("opacity","1")
+        $(".operationDiv").css("right","7px")
+    })
+    $(".leagueDiv").mouseout(function(){
+        $(".operationDiv").css("right","22px")
+        $(this).css("transform","initial")
+        $(".leagueDiv").css("opacity","1")
+        $(this).css("opacity","1")
+        
+    })
     //delete league
     $(".delete-league").on('click', function(e) {
         e.preventDefault();
