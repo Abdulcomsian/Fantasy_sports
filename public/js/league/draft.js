@@ -61,16 +61,6 @@ $(function () {
         // savePick(val);
         val = $("#myInput2").attr("data-id");
         if (val != "") {
-            //check if admin or team member
-            if ($(".hiddenteamid ").hasClass("teammember")) {
-                teamid = parseInt($("#team-round").attr("datateamid"));
-                userteamid = parseInt($(".hiddenteamid").text());
-                console.log(teamid + " " + userteamid);
-                if (teamid != userteamid) {
-                    toastr.error("this not your turn to add player");
-                    return false;
-                }
-            }
             savePick(val);
             timerSettings($("#timerBtn"), "refresh");
             timerSettings($("#timerBtn"), "start");
@@ -82,15 +72,7 @@ $(function () {
     $("#saveKeeper").click(function () {
         // savePick(val);
         val = $("#myInput2").attr("data-id");
-        teamid = $("#myInput2").attr("data-myteamid");
         if (val != "") {
-            if ($(".hiddenteamid ").hasClass("teammember")) {
-                userteamid = parseInt($(".hiddenteamid").text());
-                if (teamid != userteamid) {
-                    toastr.error("this not your turn to add player");
-                    return false;
-                }
-            }
             savePick(val);
             val = "";
             window.location =
@@ -503,7 +485,7 @@ function savePick(playerId, roundId = 0, type = "draft") {
                     }
                     document.getElementById("playerBeep").play();
                 } else {
-                    errorMessage(response.message);
+                    toastr.error(response.message);
                 }
             },
         });

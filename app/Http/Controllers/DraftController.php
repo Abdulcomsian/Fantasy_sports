@@ -142,7 +142,15 @@ class DraftController extends Controller
             if (isset($roundId) && $roundId > 0) {
                 if ($request->round_order) {
                     $league = League::leagueData($leagueId);
-                    $leaguerounddata = LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order])->first();
+                    $leaguerounddata = LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order, 'league_id' => $leagueId])->first();
+                    //if user is admin or league admin or team assign to that user
+                    if (Auth::user()->role != "Admin" && $league->created_by != Auth::user()->id) {
+                        $teamassign = $league->permissions[0]->pivot->team_id;
+                        $teamnumber = $leaguerounddata->team_id;
+                        if ($teamassign != $teamnumber) {
+                            return $this->sendResponse(400, 'Please wait for your clock turn');
+                        }
+                    }
                     LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order, 'league_id' => $leagueId])->update(['player_id' => $request->player_id]);
                     $mydata = LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order])->first();
                     $playerposition = Player::where('id', $request->player_id)->first();
@@ -565,6 +573,15 @@ class DraftController extends Controller
                     return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 } else {
                     $league = League::leagueData($leagueId);
+                    //if user is admin or league admin or team assign to that user
+                    $teamnumber = LeagueRound::where(['id' => $roundId, 'league_id' => $leagueId])->first();
+                    if (Auth::user()->role != "Admin" && $league->created_by != Auth::user()->id) {
+                        $teamassign = $league->permissions[0]->pivot->team_id;
+                        $teamnumber = $teamnumber->team_id;
+                        if ($teamassign != $teamnumber) {
+                            return $this->sendResponse(400, 'Please wait for your clock turn');
+                        }
+                    }
                     LeagueRound::where(['id' => $roundId, 'league_id' => $leagueId])->update(['player_id' => $request->player_id]);
                     $mydata = LeagueRound::where('id', $roundId)->first();
                     //get player postion
