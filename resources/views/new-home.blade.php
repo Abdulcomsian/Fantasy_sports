@@ -45,45 +45,46 @@
     .contentDiv .viewDiv .leagueDiv .imgDiv{
         position: relative;
     }
-    .contentDiv .viewDiv.renewClassView .leagueDiv .imgDiv{
+    .contentDiv .viewDiv .leagueDiv .imgDiv{
         position: relative;
         -webkit-box-reflect: below 1px linear-gradient(transparent,#0003)
     }
-    .contentDiv .viewDiv.renewClassView .leagueDiv .imgDiv:before{
+    .contentDiv .viewDiv .leagueDiv .imgDiv:before{
         content:"";
         position: absolute;
-        top: -10px;
-        left: -10px;
+        top: -1px;
+        left: 0px;
         width: 22px;
         height: 22px;
         border-top: 3px solid #fff;
         border-left: 3px solid #fff;
         transition: 0.3s;
+        
     }
-    .contentDiv .viewDiv.renewClassView .leagueDiv .imgDiv:hover{
+    .contentDiv .viewDiv .leagueDiv .imgDiv:hover{
         box-shadow: 0 0 50px #fecc08; 
         transition-delay:0.3s;
     }
    
-    .contentDiv .viewDiv.renewClassView .leagueDiv .imgDiv:hover:before{
+    .contentDiv .viewDiv .leagueDiv .imgDiv:hover:before{
         width: 100%;
         height: 100%;
         top: 0px;
         left: 0px;
         transition-delay:0.3s;
     }
-    .contentDiv .viewDiv.renewClassView .leagueDiv .imgDiv:after{
+    .contentDiv .viewDiv .leagueDiv .imgDiv:after{
         content:"";
         position: absolute;
-        bottom: -10px;
-        right: -10px;
+        bottom: 0px;
+        right: 0px;
         width: 22px;
         height: 22px;
         border-bottom: 3px solid #fff;
         border-right: 3px solid #fff;
         transition: 0.3s;
     }
-    .contentDiv .viewDiv.renewClassView .leagueDiv .imgDiv:hover:after{
+    .contentDiv .viewDiv .leagueDiv .imgDiv:hover:after{
         width: 100%;
         height: 100%;
         bottom: 0px;
@@ -176,7 +177,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="viewDiv @if(isset($renewclass)){{'renewClassView'}} @endif">
+                    <div class="viewDiv">
                         <div class="row">
                             @foreach($leagues as $league)
                             @if(\Auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
@@ -296,7 +297,7 @@
 
     })
     $(".leagueDiv").mouseenter(function(){
-        $(this).css("transform","scale(1.2)")
+        $(this).css("transform","scale(1.1)")
         $(".leagueDiv").css("opacity",".5")
         $(this).css("opacity","1")
         $(".operationDiv").css("right","8px")
