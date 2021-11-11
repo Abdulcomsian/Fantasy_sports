@@ -279,13 +279,13 @@ return (($a->round_order) < ($b->round_order));
             <ul class="list-unstyled list-inline">
               <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
                 <div class="select_draft draft_round">
-                  @php  
+                  <!-- @php  
                    if(\Auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
                    {$class='admin';}
                    else
                    {$class="teammember";}
-                  @endphp
-                  <p class="d-none hiddenteamid {{$class}}">{{$league->permissions[0]->pivot->team_id}}</p>
+                  @endphp -->
+                  <!-- <p class="d-none hiddenteamid {{$class}}">{{$league->permissions[0]->pivot->team_id}}</p> -->
                   <div class="form-group drft-plr">
                     <input id="myInput" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
                     <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
