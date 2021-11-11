@@ -3870,14 +3870,14 @@ table {
 .dropdown a:hover {
     background-color: #ddd;
 }
-.team_info a {
+.team_info p {
     display: none;
-}
-.team_info:hover a {
-    display: block;
-    position: absolute;
     text-align: center;
-    left: 70px;
+    cursor: pointer;
+}
+.team_info:hover p {
+    display: block;
+    text-align: center;
 }
 .show {
     display: block;
