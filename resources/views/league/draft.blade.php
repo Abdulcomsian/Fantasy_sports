@@ -687,7 +687,7 @@ return (($a->round_order) < ($b->round_order));
               <span style="font-size:13px;float: left;padding: 5px;">{{$round->player->position }}</span> <span style="float: right;padding: 5px;font-size:13px;">{{ $round->player->team}}</span><br>
               <div class="team_info">
                 @if( $league->status == 'keeper')
-                <a href="javascript:void(0)" data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <p data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></p>
                 @endif
                 <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
                 <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
