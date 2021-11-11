@@ -39,6 +39,18 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	.incrementNumber {
 		margin: 5px;
 	}
+	.copyBtn{
+		position: absolute;
+		top: 0;
+		right: 0px;
+		background-image: linear-gradient(to right, #000, #353535);
+		padding: 9px 9px;
+		border: 1px solid #fff;
+		cursor: pointer;
+	}
+	#inviteURL{
+		position: relative;
+	}
 </style>
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
 	<div class="container">
@@ -240,7 +252,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="inviteUrl" style="background:transparent;">
-				<p class="create_new ft-z" style="background:transparent;border:0px; padding-left:0px;margin-top:0px;padding-top:0px;">Invite URL: {{url('league/join?key='.$league->joiner_key)}}</p>
+				<p id="inviteURL" class="create_new ft-z" style="background:transparent;border:0px; padding-left:0px;margin-top:0px;padding-top:0px;">Invite URL: {{url('league/join?key='.$league->joiner_key)}} <a class="copyBtn"><i class="fa fa-clone" aria-hidden="true"></i> <span class="copySpan">Copy</span></a></p>
 				<p>Send the URL to anyone who is a GM in your league. They will be
 					able to claim ownership of their team and will only be able to
 					navigate and make picks during live draft mode and edit their team
@@ -667,6 +679,14 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			}
 		}
 	}
+	$(".copyBtn").click(function(){
+		var copyText = document.getElementById("inviteURL");
+		copyText.value = $(".create_new").text().split(" ")[3];
+		navigator.clipboard.writeText(copyText.value)
+		$(".copySpan").html("copied")
+	})
+	// var arr = $(".create_new").text().split(" ");
+	// console.log(arr)
 	$(".plusBtn").click(function() {
 		let roundValue=$(".draftRound").text();
 		roundValue=parseInt(roundValue)+1;
