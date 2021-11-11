@@ -411,7 +411,7 @@ return (($a->round_order) < ($b->round_order));
 
                       @endphp
                       <h3 id="team-round">@if(isset($teamname)){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
-                      <p class="upNext" id="upNext">Up Next: @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team '}}{{$roundorderplus}}@endif </p>
+                      <p class="upNext" id="upNext">Up Next: @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team '}}{{$roundorderplus ?? ""}}@endif </p>
                     </div>
 
                   </div>
