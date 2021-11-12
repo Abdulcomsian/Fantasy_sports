@@ -47,7 +47,7 @@
     }
     .contentDiv .viewDiv .leagueDiv .imgDiv{
         position: relative;
-        -webkit-box-reflect: below 1px linear-gradient(transparent,#0003)
+        
     }
     .contentDiv .viewDiv .leagueDiv .imgDiv:before{
         content:"";
@@ -59,6 +59,7 @@
         border-top: 3px solid #fff;
         border-left: 3px solid #fff;
         transition: 0.3s;
+        z-index: 9999999;
         
     }
     .contentDiv .viewDiv .leagueDiv .imgDiv:hover{
@@ -83,6 +84,7 @@
         border-bottom: 3px solid #fff;
         border-right: 3px solid #fff;
         transition: 0.3s;
+        z-index: 9999999;
     }
     .contentDiv .viewDiv .leagueDiv .imgDiv:hover:after{
         width: 100%;
@@ -125,9 +127,22 @@
         position: absolute;
         right: 8px;
         top:0px;
+        z-index: 999999999;
     }
     .operationDiv a{
         font-size:18px;
+    }
+    .season_fall{
+        background: none !important;
+        background-color: #000 !important;
+    }
+    .overlayImg{
+        width: 100%;
+        min-height: 30px;
+        position: absolute;
+        bottom: 0;
+        opacity: .9;
+        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(75,73,68,1) 100%);
     }
 </style>
 <div class="create_league_table assign_order the_lottery draft_boards draft_room">
@@ -198,6 +213,7 @@
                                                 <a href="{{url('league/'.$league->id.'/delete')}}" class="text-white delete-league"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                             </div>
                                     </div>
+                                    <div class="overlayImg"></div>
                                 </div>
                             </div>
                             @else
