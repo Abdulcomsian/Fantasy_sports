@@ -680,10 +680,27 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		}
 	}
 	$(".copyBtn").click(function(){
-		var copyText = document.getElementById("inviteURL");
-		copyText.value = $(".create_new").text().split(" ")[3];
-		navigator.clipboard.writeText(copyText.value)
-		$(".copySpan").html("copied")
+		// var copyText = document.getElementById("inviteURL");
+		// copyText.value = $(".create_new").text().split(" ")[3];
+		// navigator.clipboard.writeText(copyText.value)
+		// $(".copySpan").html("copied")
+		var clipboard = navigator.clipboard;
+
+if (clipboard == undefined) {
+
+	console.log('clipboard is undefined');
+
+} else {
+
+	var copyText = document.getElementById("inviteURL");
+
+	copyText.value = $(".create_new").text().split(" ")[3];
+
+	clipboard.writeText(copyText.value)
+
+	$(".copySpan").html("copied")
+
+}
 	})
 	// var arr = $(".create_new").text().split(" ");
 	// console.log(arr)
