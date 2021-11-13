@@ -29,6 +29,7 @@
     .contentDiv .viewDiv .leagueDiv {
         margin-bottom: 20px;
         transition: all 3s;
+        position: relative;
     }
 
     .contentDiv .viewDiv .leagueDiv h4 {
@@ -39,8 +40,59 @@
 
     .contentDiv .viewDiv .leagueDiv img {
         height: 150px;
+        width: 100%;
     }
-
+    .contentDiv .viewDiv .leagueDiv .imgDiv{
+        position: relative;
+    }
+    .contentDiv .viewDiv .leagueDiv .imgDiv{
+        position: relative;
+        
+    }
+    .contentDiv .viewDiv .leagueDiv .imgDiv:before{
+        content:"";
+        position: absolute;
+        top: -1px;
+        left: 0px;
+        width: 22px;
+        height: 22px;
+        border-top: 3px solid #fff;
+        border-left: 3px solid #fff;
+        transition: 0.3s;
+        z-index: 9999999;
+        
+    }
+    .contentDiv .viewDiv .leagueDiv .imgDiv:hover{
+        box-shadow: 0 0 50px #fecc08; 
+        transition-delay:0.3s;
+    }
+   
+    .contentDiv .viewDiv .leagueDiv .imgDiv:hover:before{
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        transition-delay:0.3s;
+    }
+    .contentDiv .viewDiv .leagueDiv .imgDiv:after{
+        content:"";
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        width: 22px;
+        height: 22px;
+        border-bottom: 3px solid #fff;
+        border-right: 3px solid #fff;
+        transition: 0.3s;
+        z-index: 9999999;
+    }
+    .contentDiv .viewDiv .leagueDiv .imgDiv:hover:after{
+        width: 100%;
+        height: 100%;
+        bottom: 0px;
+        right: 0px;
+        transition-delay:0.3s;
+    }
     .contentDiv .sideBar h4 {
         font: 900 20px "Lato", sans-serif;
         color: #fff;
@@ -73,10 +125,24 @@
     }
     .operationDiv {
         position: absolute;
-        right: 22px;
+        right: 8px;
+        top:0px;
+        z-index: 999999999;
     }
     .operationDiv a{
         font-size:18px;
+    }
+    .season_fall{
+        background: none !important;
+        background-color: #000 !important;
+    }
+    .overlayImg{
+        width: 100%;
+        min-height: 30px;
+        position: absolute;
+        bottom: 0;
+        opacity: .9;
+        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(75,73,68,1) 100%);
     }
 </style>
 <div class="create_league_table assign_order the_lottery draft_boards draft_room">
@@ -135,13 +201,19 @@
                                     <h4>
                                         {{$league->name}}
                                     </h4>
-                                    <div class="operationDiv">
-                                        <a href="{{url('league/'.$league->id.'/settings')}}" class="text-white"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                                        <a href="{{url('league/'.$league->id.'/delete')}}" class="text-white delete-league"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                    </div>
+                                    <div class="imgDiv">
                                     <a href="{{url('league/'.$league->id.'/draft')}}">
-                                        <img src="{{asset('images/City_Chart.png')}}" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
+                                       
+                                           
+                                            <img src="{{asset('images/City_Chart.png')}}" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
+                                        
                                     </a>
+                                     <div class="operationDiv">
+                                                <a href="{{url('league/'.$league->id.'/settings')}}" class="text-white"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                                                <a href="{{url('league/'.$league->id.'/delete')}}" class="text-white delete-league"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </div>
+                                    </div>
+                                    <div class="overlayImg"></div>
                                 </div>
                             </div>
                             @else
@@ -240,14 +312,14 @@
         });
 
     })
-    $(".leagueDiv").hover(function(){
-        $(this).css("transform","scale(1.2)")
+    $(".leagueDiv").mouseenter(function(){
+        $(this).css("transform","scale(1.1)")
         $(".leagueDiv").css("opacity",".5")
         $(this).css("opacity","1")
-        $(".operationDiv").css("right","7px")
+        $(".operationDiv").css("right","8px")
     })
-    $(".leagueDiv").mouseout(function(){
-        $(".operationDiv").css("right","22px")
+    $(".leagueDiv").mouseleave(function(){
+        $(".operationDiv").css("right","8px")
         $(this).css("transform","initial")
         $(".leagueDiv").css("opacity","1")
         $(this).css("opacity","1")

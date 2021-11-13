@@ -279,13 +279,7 @@ return (($a->round_order) < ($b->round_order));
             <ul class="list-unstyled list-inline">
               <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
                 <div class="select_draft draft_round">
-                  @php  
-                   if(\Auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
-                   {$class='admin';}
-                   else
-                   {$class="teammember";}
-                  @endphp
-                  <p class="d-none hiddenteamid {{$class}}">{{$league->permissions[0]->pivot->team_id}}</p>
+                
                   <div class="form-group drft-plr">
                     <input id="myInput" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
                     <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
@@ -417,7 +411,7 @@ return (($a->round_order) < ($b->round_order));
 
                       @endphp
                       <h3 id="team-round">@if(isset($teamname)){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
-                      <p class="upNext" id="upNext">Up Next: @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team '}}{{$roundorderplus}}@endif </p>
+                      <p class="upNext" id="upNext">Up Next: @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team '}}{{$roundorderplus ?? ""}}@endif </p>
                     </div>
 
                   </div>
@@ -687,7 +681,7 @@ return (($a->round_order) < ($b->round_order));
               <span style="font-size:13px;float: left;padding: 5px;">{{$round->player->position }}</span> <span style="float: right;padding: 5px;font-size:13px;">{{ $round->player->team}}</span><br>
               <div class="team_info">
                 @if( $league->status == 'keeper')
-                <a href="javascript:void(0)" data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <p data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></p>
                 @endif
                 <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
                 <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
