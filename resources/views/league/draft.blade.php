@@ -705,6 +705,7 @@ return (($a->round_order) < ($b->round_order));
       </tbody>
       @endif
       </table>
+      <img src="" id="appendimage">
     </div>
   </div>
 
@@ -883,6 +884,11 @@ return (($a->round_order) < ($b->round_order));
       </div>
     </div>
   </div>
+  <!-- <form method="POST" id="canvasform" class="d-none" enctype="multipart/form-data" action="{{url('/league/save-league-images')}}" id="myForm">
+    @csrf
+<input type="hidden" name="id" value="{{$league->id}}">
+<input type="hidden" name="img_val" id="img_val" value="" />
+</form> -->
   @endsection
   @section('js')
   <script type="text/javascript">
@@ -897,6 +903,29 @@ return (($a->round_order) < ($b->round_order));
   <script type="text/javascript" src="{{ asset('js/league/draft.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/league/settings.js') }}"></script>
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        setTimeout(function(){ 
+            //html 2 canvas
+                html2canvas(document.body).then(function(canvas) {
+                var img = canvas.toDataURL()
+                //$('#img_val').val(canvas.toDataURL("image/png"));
+                 //document.getElementById("canvasform").submit();
+                //$("#appendimage").attr('src',img);
+                $.ajax({
+                    "type": "POST",
+                    "url": "{{url('/league/save-league-images')}}",
+                    "data":{"imageData": img,id:leagueId } //Send to WebMethod
+                }).done(function(o) {
+                    console.log(["Response:" , o]); 
+                });
+
+            });
+
+             }, 3000);
+    });
+</script>
   <script>
     function myFunction() {
       document.getElementById("myDropdown").classList.toggle("show");

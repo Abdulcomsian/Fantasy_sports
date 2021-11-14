@@ -619,4 +619,19 @@ class LeagueController extends Controller
             return back();
         }
     }
+
+    //save league image 
+    public function save_league_image(Request $request)
+    {
+
+        //echo '<img src="' . $_POST['img_val'] . '" />';
+        //Get the base-64 string from data 
+        //$filteredData = substr($_POST['img_val'], strpos($_POST['img_val'], ",") + 1);
+        $filteredData = substr($_POST['imageData'], strpos($_POST['imageData'], ",") + 1);
+        //Decode the string
+        $unencodedData = base64_decode($filteredData);
+        if (file_put_contents($request->id . 'imgscreen.png', $unencodedData)) {
+            echo "success";
+        }
+    }
 }
