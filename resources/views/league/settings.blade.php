@@ -656,11 +656,13 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 <!-- </form> -->
 </div>
 </div>
+
 @endsection
 
 @section('js')
 <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/league/settings.js') }}"></script>
+
 <script>
 	function myFunction() {
 		document.getElementById("myDropdown").classList.toggle("show");

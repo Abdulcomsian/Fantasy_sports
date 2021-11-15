@@ -25,9 +25,16 @@
     .contentDiv .viewDiv {
         width: 65%;
     }
-
+    .page-item.active .page-link {
+        background-color: #000 !important;
+        border-color: #000 !important;
+        color: #fff !important;
+    }
+    .page-link{
+        color: #000 !important;
+    }
     .contentDiv .viewDiv .leagueDiv {
-        margin-bottom: 20px;
+        margin-bottom: 80px;
         transition: all 3s;
         position: relative;
     }
@@ -42,15 +49,19 @@
         height: 150px;
         width: 100%;
     }
-    .contentDiv .viewDiv .leagueDiv .imgDiv{
+
+    .contentDiv .viewDiv .leagueDiv .imgDiv {
         position: relative;
     }
-    .contentDiv .viewDiv .leagueDiv .imgDiv{
+
+    .contentDiv .viewDiv .leagueDiv .imgDiv {
         position: relative;
-        
+        -webkit-box-reflect: below 1px linear-gradient(transparent,#0003)
+
     }
-    .contentDiv .viewDiv .leagueDiv .imgDiv:before{
-        content:"";
+
+    /* .contentDiv .viewDiv .leagueDiv .imgDiv:before {
+        content: "";
         position: absolute;
         top: -1px;
         left: 0px;
@@ -60,22 +71,24 @@
         border-left: 3px solid #fff;
         transition: 0.3s;
         z-index: 9999999;
-        
+
+    } */
+
+    .contentDiv .viewDiv .leagueDiv .imgDiv:hover {
+        box-shadow: 0 0 50px #fecc08;
+        transition-delay: 0.3s;
     }
-    .contentDiv .viewDiv .leagueDiv .imgDiv:hover{
-        box-shadow: 0 0 50px #fecc08; 
-        transition-delay:0.3s;
-    }
-   
-    .contentDiv .viewDiv .leagueDiv .imgDiv:hover:before{
+
+    /* .contentDiv .viewDiv .leagueDiv .imgDiv:hover:before {
         width: 100%;
         height: 100%;
         top: 0px;
         left: 0px;
-        transition-delay:0.3s;
-    }
-    .contentDiv .viewDiv .leagueDiv .imgDiv:after{
-        content:"";
+        transition-delay: 0.3s;
+    } */
+
+    /* .contentDiv .viewDiv .leagueDiv .imgDiv:after {
+        content: "";
         position: absolute;
         bottom: 0px;
         right: 0px;
@@ -86,13 +99,15 @@
         transition: 0.3s;
         z-index: 9999999;
     }
-    .contentDiv .viewDiv .leagueDiv .imgDiv:hover:after{
+
+    .contentDiv .viewDiv .leagueDiv .imgDiv:hover:after {
         width: 100%;
         height: 100%;
         bottom: 0px;
         right: 0px;
-        transition-delay:0.3s;
-    }
+        transition-delay: 0.3s;
+    } */
+
     .contentDiv .sideBar h4 {
         font: 900 20px "Lato", sans-serif;
         color: #fff;
@@ -123,27 +138,31 @@
     .swal-footer {
         text-align: center;
     }
+
     .operationDiv {
         position: absolute;
         right: 8px;
-        top:0px;
+        top: 0px;
         z-index: 999999999;
     }
-    .operationDiv a{
-        font-size:18px;
+
+    .operationDiv a {
+        font-size: 18px;
     }
-    .season_fall{
+
+    .season_fall {
         background: none !important;
         background-color: #000 !important;
     }
-    .overlayImg{
+
+    /* .overlayImg {
         width: 100%;
         min-height: 30px;
         position: absolute;
         bottom: 0;
         opacity: .9;
-        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(75,73,68,1) 100%);
-    }
+        background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(75, 73, 68, 1) 100%);
+    } */
 </style>
 <div class="create_league_table assign_order the_lottery draft_boards draft_room">
     <div class="container">
@@ -152,28 +171,28 @@
             </div> -->
             <div class="col-md-12">
                 <div class="side_detail">
-                    <h4>Draft Room</h4>
+                <h4>League Draft Boards</h4>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="contentDiv">
                     <div class="sideBar">
-                        <h4>League Draft Board</h4>
+                       
                         <ul>
                             <a href="{{url('/home')}}">
                                 <li class="{{$activeclass ?? ''}}">Active</li>
                             </a>
                             <a href="{{url('/completed-league')}}">
-                                <li class="{{$compclass ?? ''}}">Completed Draft</li>
+                                <li class="{{$compclass ?? ''}}">Completed Drafts</li>
                             </a>
 
                             <a href="{{url('/league/create')}}">
                                 <li>Create League</li>
                             </a>
                             <a href="{{url('/renew/league')}}">
-                                <li class="{{$renewclass ?? ''}}">Renew Exsisting League</li>
+                                <li class="{{$renewclass ?? ''}}">Renew Existing League</li>
                             </a>
-                            <li>Join Exsisting League</li>
+                            <!-- <li>Join Exsisting League</li>
                             <li>
                                 <form id="checkLeagueExist">
                                     <div class="row">
@@ -189,7 +208,7 @@
 
                                     </div>
                                 </form>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="viewDiv">
@@ -201,17 +220,18 @@
                                     <h4>
                                         {{$league->name}}
                                     </h4>
+                                    @php
+                                    $imgname="leagueimages/".$league->id."imgscreen.png";
+                                    @endphp
                                     <div class="imgDiv">
-                                    <a href="{{url('league/'.$league->id.'/draft')}}">
-                                       
-                                           
-                                            <img src="{{asset('images/City_Chart.png')}}" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
-                                        
-                                    </a>
-                                     <div class="operationDiv">
-                                                <a href="{{url('league/'.$league->id.'/settings')}}" class="text-white"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                                                <a href="{{url('league/'.$league->id.'/delete')}}" class="text-white delete-league"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                            </div>
+                                        <a href="{{url('league/'.$league->id.'/draft')}}">
+                                            <img src="@if(file_exists(public_path($imgname))){{asset($imgname)}}@else{{asset('images/City_Chart.png')}}@endif" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
+
+                                        </a>
+                                        <div class="operationDiv">
+                                            <a href="{{url('league/'.$league->id.'/settings')}}" class="text-white"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                                            <a href="{{url('league/'.$league->id.'/delete')}}" class="text-white delete-league"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        </div>
                                     </div>
                                     <div class="overlayImg"></div>
                                 </div>
@@ -237,7 +257,7 @@
                                         @endif
                                     </div>
                                     <a href="{{url('league/'.$league->id.'/draft')}}">
-                                        <img src="{{asset('images/City_Chart.png')}}" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
+                                        <img src="@if(file_exists(public_path($imgname))){{asset($imgname)}}@else{{asset('images/City_Chart.png')}}@endif" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
                                     </a>
                                 </div>
                             </div>
@@ -312,18 +332,18 @@
         });
 
     })
-    $(".leagueDiv").mouseenter(function(){
-        $(this).css("transform","scale(1.1)")
-        $(".leagueDiv").css("opacity",".5")
-        $(this).css("opacity","1")
-        $(".operationDiv").css("right","8px")
+    $(".leagueDiv").mouseenter(function() {
+        $(this).css("transform", "scale(1.1)")
+        $(".leagueDiv").css("opacity", ".5")
+        $(this).css("opacity", "1")
+        $(".operationDiv").css("right", "8px")
     })
-    $(".leagueDiv").mouseleave(function(){
-        $(".operationDiv").css("right","8px")
-        $(this).css("transform","initial")
-        $(".leagueDiv").css("opacity","1")
-        $(this).css("opacity","1")
-        
+    $(".leagueDiv").mouseleave(function() {
+        $(".operationDiv").css("right", "8px")
+        $(this).css("transform", "initial")
+        $(".leagueDiv").css("opacity", "1")
+        $(this).css("opacity", "1")
+
     })
     //delete league
     $(".delete-league").on('click', function(e) {
