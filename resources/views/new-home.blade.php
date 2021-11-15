@@ -213,7 +213,7 @@
                                         {{$league->name}}
                                     </h4>
                                     @php
-                                    $imgname=$league->id."imgscreen.png";
+                                    $imgname="leagueimages/".$league->id."imgscreen.png";
                                     @endphp
                                     <div class="imgDiv">
                                         <a href="{{url('league/'.$league->id.'/draft')}}">
