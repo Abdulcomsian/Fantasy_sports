@@ -630,7 +630,7 @@ class LeagueController extends Controller
         $filteredData = substr($_POST['imageData'], strpos($_POST['imageData'], ",") + 1);
         //Decode the string
         $unencodedData = base64_decode($filteredData);
-        if (file_put_contents($request->id . 'imgscreen.png', $unencodedData)) {
+        if (file_put_contents('leagueimages/' . $request->id . 'imgscreen.png', $unencodedData)) {
             echo "success";
         }
     }
