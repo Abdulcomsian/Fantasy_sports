@@ -225,7 +225,7 @@
                                     @endphp
                                     <div class="imgDiv">
                                         <a href="{{url('league/'.$league->id.'/draft')}}">
-                                            <img src="@if(file_exists(public_path($imgname))){{asset($imgname)}}@else{{asset('images/City_Chart.png')}}@endif" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
+                                            <img src="@if(file_exists(public_path($imgname))){{asset($imgname)}}@else{{'https://via.placeholder.com/250x250'}}@endif" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
 
                                         </a>
                                         <div class="operationDiv">
@@ -257,7 +257,7 @@
                                         @endif
                                     </div>
                                     <a href="{{url('league/'.$league->id.'/draft')}}">
-                                        <img src="@if(file_exists(public_path($imgname))){{asset($imgname)}}@else{{asset('images/City_Chart.png')}}@endif" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
+                                        <img src="@if(file_exists(public_path($imgname))){{asset($imgname)}}@else{{'https://via.placeholder.com/250x250'}}@endif" alt="" data-id="{{$league->id}}" class="img-fluid @if(isset($renewclass)){{'renew'}}@endif">
                                     </a>
                                 </div>
                             </div>
