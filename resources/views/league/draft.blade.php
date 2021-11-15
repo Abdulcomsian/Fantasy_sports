@@ -906,7 +906,7 @@ return (($a->round_order) < ($b->round_order));
   <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        setTimeout(function(){ 
+      //  setTimeout(function(){ 
             //html 2 canvas
                 html2canvas(document.body).then(function(canvas) {
                 var img = canvas.toDataURL()
@@ -923,7 +923,7 @@ return (($a->round_order) < ($b->round_order));
 
             });
 
-             }, 3000);
+          //   }, 3000);
     });
 </script>
   <script>
