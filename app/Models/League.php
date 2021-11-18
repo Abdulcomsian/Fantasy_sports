@@ -86,7 +86,6 @@ class League extends Model
                     $rounds[] = $round;
                 }
             }
-            dd($rounds);
             $league->rounds()->createMany($rounds);
             return true;
         }
