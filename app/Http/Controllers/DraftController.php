@@ -14,6 +14,7 @@ use App\Models\Roster;
 use App\Models\RosterTeamplayer;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
+use DB;
 class DraftController extends Controller
 {
     /**
@@ -139,6 +140,7 @@ class DraftController extends Controller
                 $roundId = $request->round_id;
             }
             if (isset($roundId) && $roundId > 0) {
+                 DB::beginTransaction();
                 if ($request->round_order) {
                     $league = League::leagueData($leagueId);
                     $leaguerounddata = LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order, 'league_id' => $leagueId])->first();
@@ -568,8 +570,15 @@ class DraftController extends Controller
                         $RosterTeamplayer->league_id = $leagueId;
                         $RosterTeamplayer->round_number = $request->round_number;
                         $RosterTeamplayer->save();
+                        DB::commit();
+                        return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                     }
-                    return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
+                    else
+                    {
+                         DB::rollback();
+                          return $this->sendResponse(400, 'No space available on roster.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
+                    }
+                    // return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 } else {
                     $league = League::leagueData($leagueId);
                     //if user is admin or league admin or team assign to that user
@@ -894,6 +903,7 @@ class DraftController extends Controller
             if ($leagueroundplayercheck) {
                 if ($leagueroundplayercheck->player_id == null) {
                     $leagueroundplayercheck->player_id = $request->playerId;
+                     DB::beginTransaction();
                     if ($leagueroundplayercheck->save()) {
                         //save player in keeper list as well
                         $KeeperList = new KeeperList();
@@ -1324,9 +1334,16 @@ class DraftController extends Controller
                             $RosterTeamplayer->league_id = $leagueId;
                             $RosterTeamplayer->round_number = $request->roundId;
                             $RosterTeamplayer->save();
+                            DB::commit();
+                            return response()->json(['status' => 'success', 'message' => '']);
+                        }
+                        else
+                        {
+                             DB::rollback();
+                             return response()->json(['status' => 'error', 'message' => 'No space available on roster']);
                         }
                         //end of roster view work 
-                        return response()->json(['status' => 'success', 'message' => '']);
+                        // return response()->json(['status' => 'success', 'message' => '']);
                     } else {
                         return response()->json(['status' => 'error', 'message' => 'something went wrong']);
                     }
