@@ -39,6 +39,9 @@
     .incrementNumber {
         margin: 5px;
     }
+    .incrementNumber input{
+        pointer-events: none;
+    }
 </style>
 <div class="create_league">
     <div class="container">
