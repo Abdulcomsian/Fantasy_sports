@@ -570,15 +570,14 @@ class DraftController extends Controller
                         $RosterTeamplayer->league_id = $leagueId;
                         $RosterTeamplayer->round_number = $request->round_number;
                         $RosterTeamplayer->save();
-                        DB::commit();
                         return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                     }
                     else
                     {
-                         DB::rollback();
+                           LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order, 'league_id' => $leagueId])->update(['player_id' => null]);
                           return $this->sendResponse(400, 'No space available on roster.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                     }
-                    // return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
+                   // return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 } else {
                     $league = League::leagueData($leagueId);
                     //if user is admin or league admin or team assign to that user
