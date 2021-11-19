@@ -27,6 +27,13 @@
       box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
     }
   }
+  .mybutton{
+    border:1px solid white;
+    background: linear-gradient(to right, rgba(255,0,0,0), rgba(0,255,255,1));
+  }
+ .assign_order h2:hover{
+    background: red;
+  }
 </style>
 @endsection
 @section('content')
@@ -57,8 +64,27 @@ return (($a->round_order) < ($b->round_order));
       <div class="row">
         <div class="col-md-6">
           <form id="updateLeague" class="draftFrom">
-
             <div class="list_edit">
+              <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-7 ">
+                  <div class="custom-control custom-switch">
+                    @php 
+                    if($league->status=="keeper")
+                    {
+                         $mode='started';
+                    }
+                    else{
+                         $mode='keeper';
+                      }
+                    @endphp
+                    <button class="btn btn-success mybutton" data-mode="{{$mode}}">@if($league->status=="keeper"){{'End Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list_edit d-none">
               <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4 no-bdr">
@@ -73,7 +99,7 @@ return (($a->round_order) < ($b->round_order));
                 </div>
               </div>
             </div>
-            <div class="list_edit">
+            <div class="list_edit d-none">
               <div class="row">
                 <div class="col-md-4 no-bdr">
                   <h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
@@ -146,20 +172,20 @@ return (($a->round_order) < ($b->round_order));
         <div class="row">
           <div class="col-lg-6">
             <div class="d-flex">
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a></h2>
-              @if($league->status=="keeper")
+              <h2 class=" " style="width:20%;"><a style="color:#fff;" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a></h2>
+             
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a></h2>
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}">Collapse View</a></h2>
 
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}">Pick View</a></h2>
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">League Notes</a></h2>
-              @endif
-              @if($league->status!="keeper")
+             
+            
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
 
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}">Roster View</a></h2>
               <h2 class=" " style="width:20%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
-              @endif
+            
             </div>
           </div>
         @if(auth::user()->role=="Admin")
@@ -1066,5 +1092,42 @@ return (($a->round_order) < ($b->round_order));
       })
 
     })
+  </script>
+  <script type="text/javascript">
+      $(".mybutton").on('click',function(){
+        var leagueStatus = $(this).attr('data-mode');
+        let modeId = leagueStatus == "started" ? "keeperMode" : "draftMode";
+        if(modeId=="keeperMode")
+        {
+             title='Back to the Lab!';
+        }
+        else{
+            title='Live Draft Mode';
+        }
+        swal({
+                title: ""+title+"",
+                buttons: true,
+            }).then((confirm) => {
+                if (confirm) {
+                    changeLeagueStatus(leagueStatus);
+                } 
+            });
+      })
+      function changeLeagueStatus(status) {
+    $.ajax({
+        type: "POST",
+        url: "/league/" + $("input[name='league_id']").val() + "/changeStatus",
+        data: { status: status },
+        success: function (response) {
+            if (response.status == 200) {
+                successMessage(response.message);
+                    window.location.href =
+                        "/league/" + response.data.id + "/draft";
+            } else {
+                errorMessage(response.message);
+            }
+        },
+    });
+}
   </script>
   @endsection
