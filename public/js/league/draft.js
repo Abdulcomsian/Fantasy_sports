@@ -65,8 +65,8 @@ $(function () {
             timerSettings($("#timerBtn"), "refresh");
             timerSettings($("#timerBtn"), "start");
             val = "";
-            window.location =
-                "/league/" + $("input[name='league_id']").val() + "/draft";
+            // window.location =
+            //     "/league/" + $("input[name='league_id']").val() + "/draft";
         }
     });
     $("#saveKeeper").click(function () {
@@ -75,8 +75,8 @@ $(function () {
         if (val != "") {
             savePick(val);
             val = "";
-            window.location =
-                "/league/" + $("input[name='league_id']").val() + "/draft";
+            // window.location =
+            //     "/league/" + $("input[name='league_id']").val() + "/draft";
         }
     });
 

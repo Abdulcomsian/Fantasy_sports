@@ -140,7 +140,6 @@ class DraftController extends Controller
                 $roundId = $request->round_id;
             }
             if (isset($roundId) && $roundId > 0) {
-                 DB::beginTransaction();
                 if ($request->round_order) {
                     $league = League::leagueData($leagueId);
                     $leaguerounddata = LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order, 'league_id' => $leagueId])->first();
@@ -881,8 +880,13 @@ class DraftController extends Controller
                         $RosterTeamplayer->rosters_id = $position_id;
                         $RosterTeamplayer->league_id = $leagueId;
                         $RosterTeamplayer->save();
+                        return $this->sendResponse(200, 'Pick saved successfully.', ['data' => $mydata, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                     }
-                    return $this->sendResponse(200, 'Pick saved successfully.', ['data' => $mydata, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
+                    else{
+                         LeagueRound::where(['id' => $roundId, 'league_id' => $leagueId])->update(['player_id' => null]);
+                         return $this->sendResponse(400, 'No space available on roster.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
+                    }
+                    // return $this->sendResponse(200, 'Pick saved successfully.', ['data' => $mydata, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 }
             } else {
                 return $this->sendResponse(400, 'Something went wrong. Please try again later.');
