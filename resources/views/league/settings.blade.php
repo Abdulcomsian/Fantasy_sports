@@ -51,6 +51,9 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	#inviteURL{
 		position: relative;
 	}
+    .incrementNumber input{
+           pointer-events: none;
+       }
 </style>
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
 	<div class="container">
@@ -298,9 +301,9 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 								<th class="text_head">Overall Pick</th>
 								<th>Team</th>
 								<th>Email</th>
-								@if($league->status == 'setup')
+								{{--@if($league->status == 'setup')--}}
 								<th>Actions</th>
-								@endif
+								{{--@endif--}}
 							</tr>
 						</thead>
 						<tbody>
@@ -319,13 +322,13 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 								<td class="txt_head teamId" data-id="{{$team->id}}">{{++$index}}</td>
 								<td class="teamName" contenteditable="{{ $editable }}">{{$team->team_name}}</td>
 								<td class="teamEmail" contenteditable="{{ $editable }}">{{$team->team_email}}</td>
-								@if($league->status == 'setup')
+								{{-- @if($league->status == 'setup') --}}
 								<td class="deleteTeam">
 									@if($permissions != 3)
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									@endif
 								</td>
-								@endif
+								{{--@endif --}}
 							</tr>
 							@endforeach
 							@endif
@@ -334,11 +337,11 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 			</div>
 		</div>
-		@if($league->status == 'setup')
+	{{-- 	@if($league->status == 'setup') --}}
 		<div class="save">
 			<button type="button" class="addTeam">Add Team</button>
 		</div>
-		@endif
+		{{-- @endif --}}
 		<!-- <div class="save" style="margin-bottom:21px;">
 			<button type="button" class="addTeam"><a href="{{url('league/'.$league->id.'/rounds')}}" style="color:#fff;">Enter Draft Picks Manually</a></button>
 		</div> -->
