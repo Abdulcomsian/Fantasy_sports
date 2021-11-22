@@ -3,11 +3,11 @@ $(document).ready(function () {
     setTimeout(function () {
         //calls click event after a certain time
         if ($(".dropDownDiv").css("display") == "block") {
-            $(".city_board_table").css("margin-top", "563px");
+            $(".city_board_table").css("margin-top", "453px");
         } else {
             console.log("hello");
             $(".city_board_table").css("margin-top", "0px");
-            $(".city_board_table table").css("margin-top", "325px");
+            $(".city_board_table table").css("margin-top", "215px");
         }
     }, 1000);
 });
@@ -50,10 +50,10 @@ $(function () {
         })
 
         .data("ui-autocomplete")._renderItem = function (ul, item) {
-        return $("<li>")
-            .append("<a>" + item.label + "<br>" + item.desc + "</a>")
-            .appendTo(ul);
-    };
+            return $("<li>")
+                .append("<a>" + item.label + "<br>" + item.desc + "</a>")
+                .appendTo(ul);
+        };
 });
 $(function () {
     var val = "";
@@ -263,13 +263,13 @@ $(function () {
                             successMessage("Pick deleted successfully!");
                             $(
                                 "td[data-round_id='" +
-                                    lastPick.attr("round_id") +
-                                    "']"
+                                lastPick.attr("round_id") +
+                                "']"
                             ).text(
                                 $(
                                     "td[data-round_id='" +
-                                        lastPick.attr("round_id") +
-                                        "']"
+                                    lastPick.attr("round_id") +
+                                    "']"
                                 ).attr("data-default_order")
                             );
                             if (response.data.league_round == null) {
@@ -387,12 +387,12 @@ function savePick(playerId, roundId = 0, type = "draft") {
                     );
                     $("#upNext").html(
                         "Up Next: Team " +
-                            (response.data.league_round.round_id + 2)
+                        (response.data.league_round.round_id + 2)
                     );
                     $("#team-select").html(
                         "TEAM " +
-                            response.data.league_round.round_id +
-                            " Selects"
+                        response.data.league_round.round_id +
+                        " Selects"
                     );
                     $("#team-slect-fname").html(playerFirstName);
                     $("#team-slect-lname").html(playerLastName);
@@ -430,8 +430,8 @@ function savePick(playerId, roundId = 0, type = "draft") {
                     if (round_order) {
                         $(
                             "td[data-round_id='" +
-                                response.data.nround_id +
-                                "']"
+                            response.data.nround_id +
+                            "']"
                         ).children()[0].innerHTML =
                             '<select id="teamselect" class="teamselect" name="teamselect" style="padding:9px 10px 8px 0px !important;">' +
                             team +
@@ -643,23 +643,23 @@ $("#myInput").on("keyup", function (e) {
             for (i = 0; i < res.length; i++) {
                 arr.push(
                     res[i].first_name +
-                        " " +
-                        res[i].last_name +
-                        " " +
-                        res[i].team +
-                        "/" +
-                        res[i].position
+                    " " +
+                    res[i].last_name +
+                    " " +
+                    res[i].team +
+                    "/" +
+                    res[i].position
                 );
                 arr1.push(
                     res[i].first_name +
-                        "/" +
-                        res[i].last_name +
-                        "/" +
-                        res[i].id +
-                        "/" +
-                        res[i].team +
-                        "/" +
-                        res[i].position
+                    "/" +
+                    res[i].last_name +
+                    "/" +
+                    res[i].id +
+                    "/" +
+                    res[i].team +
+                    "/" +
+                    res[i].position
                 );
             }
         },
@@ -796,23 +796,23 @@ $("#myInput2").on("keyup", function (e) {
             for (i = 0; i < res.length; i++) {
                 arr.push(
                     res[i].first_name +
-                        " " +
-                        res[i].last_name +
-                        " " +
-                        res[i].team +
-                        "/" +
-                        res[i].position
+                    " " +
+                    res[i].last_name +
+                    " " +
+                    res[i].team +
+                    "/" +
+                    res[i].position
                 );
                 arr1.push(
                     res[i].first_name +
-                        "/" +
-                        res[i].last_name +
-                        "/" +
-                        res[i].id +
-                        "/" +
-                        res[i].team +
-                        "/" +
-                        res[i].position
+                    "/" +
+                    res[i].last_name +
+                    "/" +
+                    res[i].id +
+                    "/" +
+                    res[i].team +
+                    "/" +
+                    res[i].position
                 );
             }
         },
@@ -947,23 +947,23 @@ $("#myInput3").on("keyup", function (e) {
             for (i = 0; i < res.length; i++) {
                 arr.push(
                     res[i].first_name +
-                        " " +
-                        res[i].last_name +
-                        " " +
-                        res[i].team +
-                        "/" +
-                        res[i].position
+                    " " +
+                    res[i].last_name +
+                    " " +
+                    res[i].team +
+                    "/" +
+                    res[i].position
                 );
                 arr1.push(
                     res[i].first_name +
-                        "/" +
-                        res[i].last_name +
-                        "/" +
-                        res[i].id +
-                        "/" +
-                        res[i].team +
-                        "/" +
-                        res[i].position
+                    "/" +
+                    res[i].last_name +
+                    "/" +
+                    res[i].id +
+                    "/" +
+                    res[i].team +
+                    "/" +
+                    res[i].position
                 );
             }
         },
@@ -1099,23 +1099,23 @@ $("#myInput4").on("keyup", function (e) {
             for (i = 0; i < res.length; i++) {
                 arr.push(
                     res[i].first_name +
-                        " " +
-                        res[i].last_name +
-                        " " +
-                        res[i].team +
-                        "/" +
-                        res[i].position
+                    " " +
+                    res[i].last_name +
+                    " " +
+                    res[i].team +
+                    "/" +
+                    res[i].position
                 );
                 arr1.push(
                     res[i].first_name +
-                        "/" +
-                        res[i].last_name +
-                        "/" +
-                        res[i].id +
-                        "/" +
-                        res[i].team +
-                        "/" +
-                        res[i].position
+                    "/" +
+                    res[i].last_name +
+                    "/" +
+                    res[i].id +
+                    "/" +
+                    res[i].team +
+                    "/" +
+                    res[i].position
                 );
             }
         },

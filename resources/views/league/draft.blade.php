@@ -2,6 +2,10 @@
 @section('title', 'City Chart')
 @section('css')
 <style type="text/css">
+.dropdown a:hover{
+  background:#000 !important;;
+  color:#fff !important;
+}
   .circle {
     /*background-color: rgba(255, 82, 82, 1);
     border-radius: 50%;*/
@@ -50,7 +54,7 @@ return (($a->round_order) < ($b->round_order));
   }
   @endphp
 
-  <div class="fixedBanner">
+  <div class="fixedBanner" style="background:#000 !important;">
     <div class="overlay"></div>
     <audio id="timerBeep">
       <source src="{{ asset('beeps/beep.mp3') }}" />
@@ -62,13 +66,50 @@ return (($a->round_order) < ($b->round_order));
     </audio>
     <div class="container-fluid create_league_table assign_order the_lottery traders city_charts" style="padding-top:35px;">
       <div class="row">
-        <div class="col-md-6">
+      <div class="col-md-1"></div>
+      <div class="col-md-6">
+        <nav class="navbar navbar-expand-lg " style="background-color:#000;">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-item nav-link active" style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:#fff" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Views
+                    </a>
+                    <div class="dropdown-menu" style="background-color:#000 !important;" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}">Rosters</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}">Pick</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}">Collapse</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:#fff" href="#">League Notes </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:#fff" href="#">GM Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" style="color:#fff" href="#">Chat</a>
+                </li>
+                </ul>
+              </div>
+            </nav>
+        </div>
+<div class="col-md-2">
           <form id="updateLeague" class="draftFrom">
-            <div class="list_edit">
+            <div class="list_edit" style="width:100% !important;">
               <div class="row">
-                <div class="col-md-4">
-                </div>
-                <div class="col-md-7 ">
+                <!-- <div class="col-md-4">
+                </div> -->
+                <div class="col-md-12">
                   <div class="custom-control custom-switch">
                     @php 
                     if($league->status=="keeper")
@@ -79,7 +120,8 @@ return (($a->round_order) < ($b->round_order));
                          $mode='keeper';
                       }
                     @endphp
-                    <button class="btn btn-success mybutton" data-mode="{{$mode}}">@if($league->status=="keeper"){{'End Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
+                 
+                    <button class="btn btn-success mybutton" data-mode="{{$mode}}">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'End Draft Mode'}}@endif</button>
                   </div>
                 </div>
               </div>
@@ -114,13 +156,22 @@ return (($a->round_order) < ($b->round_order));
             </div>
           </form>
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
-        </div>
+        </div> -->
+        
+        @if(auth::user()->role=="Admin")
+          <div class="col-lg-2 text-right">
+            <div class="d-flex" style="justify-content:flex-end;">
+              <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-out">-</h2>
+              <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-in">+</h2>
+            </div>
+          </div>
+        @endif
 
         @if(auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
-        <div class="col-md-3">
-          <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+        <div class="col-md-1">
+          <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}"><i class="fa fa-cog" aria-hidden="true"></i></a></h2>
         </div>
         @else
             @php
@@ -168,10 +219,12 @@ return (($a->round_order) < ($b->round_order));
 
     </div>
     <div class="league-div">
-      <div class="container-fluid assign_order">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="d-flex">
+      <!-- <div class="container-fluid assign_order"> -->
+        <!-- <div class="row"> -->
+          <!-- <div class="col-lg-6"> -->
+   
+
+            <!-- <div class="d-flex">
               <h2 class=" " style="width:20%;"><a style="color:#fff;" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a></h2>
              
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a></h2>
@@ -186,18 +239,11 @@ return (($a->round_order) < ($b->round_order));
               <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}">Roster View</a></h2>
               <h2 class=" " style="width:20%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
             
-            </div>
-          </div>
-        @if(auth::user()->role=="Admin")
-          <div class="col-lg-6 text-right">
-            <div class="d-flex" style="justify-content:flex-end;">
-              <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-out">-</h2>
-              <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-in">+</h2>
-            </div>
-          </div>
-        @endif
-        </div>
-      </div>
+            </div> -->
+          <!-- </div> -->
+      
+        <!-- </div> -->
+      <!-- </div> -->
       <div class="container ">
         <!-- {{$league->status}} -->
         @if($league->status == 'started')
@@ -736,7 +782,8 @@ return (($a->round_order) < ($b->round_order));
   </div>
 
   {{--<div class="city_board_table">
-<div class="table-responsive">
+
+    <div class="table-responsive">
   <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -932,7 +979,7 @@ return (($a->round_order) < ($b->round_order));
   <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-      //  setTimeout(function(){ 
+       setTimeout(function(){ 
             //html 2 canvas
                 html2canvas(document.body).then(function(canvas) {
                 var img = canvas.toDataURL()
@@ -949,7 +996,7 @@ return (($a->round_order) < ($b->round_order));
 
             });
 
-          //   }, 3000);
+            }, 3000);
     });
 </script>
   <script>
@@ -1099,10 +1146,10 @@ return (($a->round_order) < ($b->round_order));
         let modeId = leagueStatus == "started" ? "keeperMode" : "draftMode";
         if(modeId=="keeperMode")
         {
-             title='Back to the Lab!';
+            title='Live Draft Mode';
         }
         else{
-            title='Live Draft Mode';
+            title='Back to the Lab!';
         }
         swal({
                 title: ""+title+"",

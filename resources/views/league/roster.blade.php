@@ -2,6 +2,10 @@
 @section('title', 'City Chart')
 @section('css')
 <style type="text/css">
+.dropdown a:hover{
+  background:#000 !important;;
+  color:#fff !important;
+}
   .circle {
     /*background-color: rgba(255, 82, 82, 1);
     border-radius: 50%;*/
@@ -27,6 +31,13 @@
       box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
     }
   }
+  .mybutton{
+    border:1px solid white;
+    background: linear-gradient(to right, rgba(255,0,0,0), rgba(0,255,255,1));
+  }
+ .assign_order h2:hover{
+    background: red;
+  }
 </style>
 @endsection
 @section('content')
@@ -43,7 +54,7 @@ return (($a->round_order) < ($b->round_order));
   }
   @endphp
 
-  <div class="fixedBanner">
+  <div class="fixedBanner"  style="background:#000 !important;">
     <div class="overlay"></div>
     <audio id="timerBeep">
       <source src="{{ asset('beeps/beep.mp3') }}" />
@@ -55,10 +66,67 @@ return (($a->round_order) < ($b->round_order));
     </audio>
     <div class="container-fluid create_league_table assign_order the_lottery traders city_charts" style="padding-top:35px;">
       <div class="row">
+        <div class="col-md-1"></div>
         <div class="col-md-6">
+        <nav class="navbar navbar-expand-lg " style="background-color:#000;">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-item nav-link active" style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:#fff" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Views
+                    </a>
+                    <div class="dropdown-menu" style="background-color:#000 !important;" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}">Rosters</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}">Pick</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}">Collapse</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:#fff" href="#">League Notes </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:#fff" href="#">GM Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" style="color:#fff" href="#">Chat</a>
+                </li>
+                </ul>
+              </div>
+            </nav>
+        </div>
+        <div class="col-md-2">
           <form id="updateLeague" class="draftFrom">
-
-            <div class="list_edit">
+            <div class="list_edit" style="width:100% !important;">
+              <div class="row">
+                <!-- <div class="col-md-4">
+                </div> -->
+                <div class="col-md-12">
+                  <div class="custom-control custom-switch">
+                    @php 
+                    if($league->status=="keeper")
+                    {
+                         $mode='started';
+                    }
+                    else{
+                         $mode='keeper';
+                      }
+                    @endphp
+                 
+                    <button class="btn btn-success mybutton" data-mode="{{$mode}}">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'End Draft Mode'}}@endif</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list_edit d-none">
               <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4 no-bdr">
@@ -73,7 +141,7 @@ return (($a->round_order) < ($b->round_order));
                 </div>
               </div>
             </div>
-            <div class="list_edit">
+            <div class="list_edit d-none">
               <div class="row">
                 <div class="col-md-4 no-bdr">
                   <h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
@@ -88,12 +156,28 @@ return (($a->round_order) < ($b->round_order));
             </div>
           </form>
         </div>
-        <div class="col-md-3">
-          <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
+        @if(auth::user()->role=="Admin")
+          <div class="col-lg-2 text-right">
+            <div class="d-flex" style="justify-content:flex-end;">
+              <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-out">-</h2>
+              <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-in">+</h2>
+            </div>
+          </div>
+        @endif
+        @if(auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
+        <div class="col-md-1">
+          <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}"><i class="fa fa-cog" aria-hidden="true"></i></a></h2>
         </div>
-        <div class="col-md-3">
-          <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
-        </div>
+        @else
+            @php
+            $dta=\DB::table('league_user')->where(['league_id'=>$league->id,'user_id'=>\Auth::user()->id])->first();
+            @endphp
+            @if($dta->permission_type==1 || $dta->permission_type==2)
+            <div class="col-md-3">
+              <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+            </div>
+            @endif
+        @endif
 
 
       </div>
@@ -101,28 +185,7 @@ return (($a->round_order) < ($b->round_order));
 
     </div>
     <div class="league-div">
-      <div class="container-fluid assign_order">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="d-flex">
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a></h2>
-              @if($league->status=="keeper")
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a></h2>
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}">Collapse View</a></h2>
-
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}">Pick View</a></h2>
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">League Notes</a></h2>
-              @endif
-              @if($league->status!="keeper")
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="#">GM Dashboard</a></h2>
-
-              <h2 class=" " style="width:20%;"><a style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}">Roster View</a></h2>
-              <h2 class=" " style="width:20%;padding: 14px 33px;"><a style="color:#fff" href="#">Chat</a></h2>
-              @endif
-            </div>
-          </div>
-        </div>
-      </div>
+     
       <div class="container ">
         <!-- {{$league->status}} -->
         @if($league->status == 'started')
@@ -213,6 +276,47 @@ return (($a->round_order) < ($b->round_order));
 
   @endsection
   @section('js')
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(".mybutton").on('click',function(){
+        var leagueStatus = $(this).attr('data-mode');
+        let modeId = leagueStatus == "started" ? "keeperMode" : "draftMode";
+        if(modeId=="keeperMode")
+        {
+            title='Live Draft Mode';
+        }
+        else{
+            title='Back to the Lab!';
+        }
+        swal({
+                title: ""+title+"",
+                buttons: true,
+            }).then((confirm) => {
+                if (confirm) {
+                    changeLeagueStatus(leagueStatus);
+                } 
+            });
+      })
+       setTimeout(function(){ 
+            //html 2 canvas
+                html2canvas(document.body).then(function(canvas) {
+                var img = canvas.toDataURL()
+                //$('#img_val').val(canvas.toDataURL("image/png"));
+                 //document.getElementById("canvasform").submit();
+                //$("#appendimage").attr('src',img);
+                $.ajax({
+                    "type": "POST",
+                    "url": "{{url('/league/save-league-images')}}",
+                    "data":{"imageData": img,id:leagueId } //Send to WebMethod
+                }).done(function(o) {
+                    console.log(["Response:" , o]); 
+                });
+
+            });
+
+            }, 3000);
+    });
+</script>
   <script type="text/javascript">
     var durationTime = '{{ ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value }}';
     var leagueId = '{{ $league->id }}';
