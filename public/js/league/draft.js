@@ -3,11 +3,11 @@ $(document).ready(function () {
     setTimeout(function () {
         //calls click event after a certain time
         if ($(".dropDownDiv").css("display") == "block") {
-            $(".city_board_table").css("margin-top", "453px");
+            $(".city_board_table").css("margin-top", "410px");
         } else {
             console.log("hello");
             $(".city_board_table").css("margin-top", "0px");
-            $(".city_board_table table").css("margin-top", "215px");
+            $(".city_board_table table").css("margin-top", "170px");
         }
     }, 1000);
 });

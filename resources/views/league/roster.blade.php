@@ -109,21 +109,12 @@ return (($a->round_order) < ($b->round_order));
               <div class="row">
                 <!-- <div class="col-md-4">
                 </div> -->
-                <div class="col-md-12">
-                  <div class="custom-control custom-switch">
-                    @php 
-                    if($league->status=="keeper")
-                    {
-                         $mode='started';
-                    }
-                    else{
-                         $mode='keeper';
-                      }
-                    @endphp
-                 
-                    <button class="btn btn-success mybutton" data-mode="{{$mode}}">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'End Draft Mode'}}@endif</button>
+                
+                <div class="custom-control custom-switch d-flex" >                 
+                    <button style="margin-right: 5px;" class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif" data-mode="keeper">Edit Mode</button>
+                    <button class="btn btn-success mybutton @if($league->status=='started') green @else black @endif "   data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
                   </div>
-                </div>
+                
               </div>
             </div>
             <div class="list_edit d-none">
