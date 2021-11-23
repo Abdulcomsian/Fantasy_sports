@@ -14,7 +14,7 @@ class AddStatusColumnIntoLeaguesTable extends Migration
     public function up()
     {
         Schema::table('leagues', function (Blueprint $table) {
-            $table->enum('status', ['setup', 'keeper', 'started', 'completed'])->after('draft_timer')->default('setup');
+            $table->enum('status', ['setup', 'keeper', 'started', 'completed'])->after('draft_timer')->default('keeper');
         });
     }
 

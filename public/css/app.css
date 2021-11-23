@@ -4115,3 +4115,13 @@ input[type="submit"] {
     width: 60px;
     border: none;
 }
+
+.nav-item{
+    margin-right: 25px;
+}
+.dropdown-item:hover, .nav-link:hover{
+    font-weight:bold;
+}
+.black{
+    background: black !important;
+}

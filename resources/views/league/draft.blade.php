@@ -75,7 +75,7 @@ return (($a->round_order) < ($b->round_order));
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-item nav-link active" style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board <span class="sr-only">(current)</span></a>
+                  <a class="nav-link active" style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a>
@@ -109,21 +109,12 @@ return (($a->round_order) < ($b->round_order));
               <div class="row">
                 <!-- <div class="col-md-4">
                 </div> -->
-                <div class="col-md-12">
-                  <div class="custom-control custom-switch">
-                    @php 
-                    if($league->status=="keeper")
-                    {
-                         $mode='started';
-                    }
-                    else{
-                         $mode='keeper';
-                      }
-                    @endphp
-                 
-                    <button class="btn btn-success mybutton" data-mode="{{$mode}}">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'End Draft Mode'}}@endif</button>
+                <!-- <div class="col-md-12"> -->
+                  <div class="custom-control custom-switch d-flex" >                 
+                    <button style="margin-right: 5px;" class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif" data-mode="keeper">Edit Mode</button>
+                    <button class="btn btn-success mybutton @if($league->status=='started') green @else black @endif "   data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
                   </div>
-                </div>
+                <!-- </div> -->
               </div>
             </div>
             <div class="list_edit d-none">
@@ -163,15 +154,15 @@ return (($a->round_order) < ($b->round_order));
         @if(auth::user()->role=="Admin")
           <div class="col-lg-2 text-right">
             <div class="d-flex" style="justify-content:flex-end;">
-              <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-out">-</h2>
-              <h2 style="width:50px;margin: 0px 20px 20px;" type="button" id="zoom-in">+</h2>
+              <p style="margin: 0px 30px;" type="button" id="zoom-out"><img style="width:40px;" src="{{ asset('images/plus.png') }}" /></p>
+              <p style="" type="button" id="zoom-in"><img style="width:40px;" src="{{ asset('images/minus.png') }}" /></p>
             </div>
           </div>
         @endif
 
         @if(auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
         <div class="col-md-1">
-          <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}"><i class="fa fa-cog" aria-hidden="true"></i></a></h2>
+          <p style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}"><img style="width:40px;" src="{{ asset('images/setting.png') }}" /></a></p>
         </div>
         @else
             @php
