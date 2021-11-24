@@ -1145,10 +1145,11 @@ return (($a->round_order) < ($b->round_order));
         swal({
                 title: ""+title+"",
                 buttons: true,
-            }).then((confirm) => {
-                if (confirm) {
+                 timer: 500,
+            }).then(() => {
+               
                     changeLeagueStatus(leagueStatus);
-                } 
+                
             });
       })
       function changeLeagueStatus(status) {
