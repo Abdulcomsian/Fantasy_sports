@@ -13,6 +13,7 @@ use App\Models\LeaguePermission;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\LeagueRound;
 use App\Models\Roster;
+use App\Models\RosterRound;
 use App\Models\RosterTeamplayer;
 use DB;
 
@@ -45,7 +46,6 @@ class LeagueController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'draft_type' => 'required',
@@ -62,7 +62,7 @@ class LeagueController extends Controller
             $league->created_by = $user->id;
             $league->save();
 
-            //work for roster view
+              //work for roster view
             $draft_round = 0;
             for ($i = 0; $i < count($request->posrow); $i++) {
                 if ($request->posrow[$i] > 1) {
@@ -75,6 +75,8 @@ class LeagueController extends Controller
                         $roster->color = $request->favcolor[$i] ?? '#000';
                         $roster->save();
                     }
+                    //for new table
+
                 } elseif ($request->posrow[$i] == 1) {
                     $draft_round += $request->posrow[$i];
                     $roster = new Roster();
@@ -102,6 +104,8 @@ class LeagueController extends Controller
                 }
                 $league->teams()->createMany($teams);
                 $league->users()->attach($user->id, ['permission_type' => 1]);
+                //
+               
 
                 /*$permissions = [
                     ['league_id' => $league->id, 'permission_type' => 1, 'created_by' => $user->id],
