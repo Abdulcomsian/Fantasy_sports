@@ -150,8 +150,8 @@ return (($a->round_order) < ($b->round_order));
         @if(auth::user()->role=="Admin")
           <div class="col-lg-2 text-right">
             <div class="d-flex" style="justify-content:flex-end;">
-              <p style="margin: 0px 30px;" type="button" id="zoom-out"><img style="width:40px;" src="{{ asset('images/plus.png') }}" /></p>
-              <p style="" type="button" id="zoom-in"><img style="width:40px;" src="{{ asset('images/minus.png') }}" /></p>
+            <p style="margin: 0px 30px;" type="button" id="zoom-out"><img style="width:40px;" src="{{ asset('images/minus.png') }}" /></p>
+              <p style="" type="button" id="zoom-in"><img style="width:40px;" src="{{ asset('images/plus.png') }}" /></p>
             </div>
           </div>
         @endif
