@@ -38,6 +38,9 @@
  .assign_order h2:hover{
     background: red;
   }
+  .swal-modal{
+    height: 210px;
+  }
 </style>
 @endsection
 @section('content')
@@ -281,11 +284,10 @@ return (($a->round_order) < ($b->round_order));
         }
         swal({
                 title: ""+title+"",
-                buttons: true,
-            }).then((confirm) => {
-                if (confirm) {
-                    changeLeagueStatus(leagueStatus);
-                } 
+                buttons: false,
+                timer: 1500,
+            }).then(() => {
+                changeLeagueStatus1(leagueStatus);
             });
       })
        setTimeout(function(){ 
@@ -307,6 +309,22 @@ return (($a->round_order) < ($b->round_order));
 
             }, 3000);
     });
+function changeLeagueStatus1(status) {
+    $.ajax({
+        type: "POST",
+        url: "/league/" + $("input[name='league_id']").val() + "/changeStatus",
+        data: { status: status },
+        success: function (response) {
+            if (response.status == 200) {
+                successMessage(response.message);
+                    window.location.href =
+                        "/league/" + response.data.id + "/draft";
+            } else {
+                errorMessage(response.message);
+            }
+        },
+    });
+}
 </script>
   <script type="text/javascript">
     var durationTime = '{{ ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value }}';
