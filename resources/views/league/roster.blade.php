@@ -205,7 +205,7 @@ return (($a->round_order) < ($b->round_order));
 
       </div>
     </div>
-    <div class="city_board_table">
+    <div class="city_board_table test2">
       <div class="table-responsive">
         <?php if ($league->status != "keeper") { ?>
 
