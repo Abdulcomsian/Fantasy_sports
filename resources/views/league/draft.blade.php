@@ -38,6 +38,9 @@
  .assign_order h2:hover{
     background: red;
   }
+  .swal-modal{
+    height: 210px;
+  }
 </style>
 @endsection
 @section('content')
@@ -1144,12 +1147,10 @@ return (($a->round_order) < ($b->round_order));
         }
         swal({
                 title: ""+title+"",
-                buttons: true,
-                 timer: 500,
+                buttons: false,
+                timer: 1500,
             }).then(() => {
-               
-                    changeLeagueStatus(leagueStatus);
-                
+                changeLeagueStatus(leagueStatus);
             });
       })
       function changeLeagueStatus(status) {
