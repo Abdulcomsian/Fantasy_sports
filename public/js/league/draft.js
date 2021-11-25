@@ -3,7 +3,7 @@ $(document).ready(function () {
     setTimeout(function () {
         //calls click event after a certain time
         if ($(".dropDownDiv").css("display") == "block") {
-            $(".city_board_table").css("margin-top", "410px");
+            $(".city_board_table").css("margin-top", "370px");
         } else {
             console.log("hello");
             $(".city_board_table").css("margin-top", "0px");

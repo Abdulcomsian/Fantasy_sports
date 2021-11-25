@@ -3888,7 +3888,6 @@ table {
     text-align: right;
     display: none;
     width: 100%;
-    max-width: 60%;
     margin: auto;
 }
 .select2-container {

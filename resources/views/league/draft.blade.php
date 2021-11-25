@@ -38,9 +38,6 @@
  .assign_order h2:hover{
     background: red;
   }
-  .swal-modal{
-    height: 210px;
-  }
 </style>
 @endsection
 @section('content')
@@ -239,143 +236,6 @@ return (($a->round_order) < ($b->round_order));
         <!-- </div> -->
       <!-- </div> -->
       <div class="container-fluid ">
-        <!-- {{$league->status}} -->
-        @if($league->status == 'started')
-        <!-- <div class="row">
-      <div class="col-md-6">
-    
-      <div class="timer_box">
-          <ul class="list-unstyled list-inline">
-            <li class="list-inline-item">
-              <div class="time">
-                <div class="btn_view">
-                  <span>
-                    <button id="timerBtn" data-type="{{ $league->draft_timer ? 'stop' : 'start' }}"><i class="{{ $league->draft_timer ? 'fa fa-pause' : 'fa fa-play' }}"></i></button>
-                  </span>
-                  <span>
-                    <button id="refreshTime"><i class="fa fa-repeat"></i></button>
-                  </span>
-                  <span class="no-padd">
-                    <span class="clock"><button><i class="fa fa-clock-o"></i></button>
-                      <div class="time_duration">
-                        <form id="timerForm">
-                          <h4>Change Duration</h4>
-                          <p>Current Duration: <span id="currentDuration">{{ $league->timer_value }}</span></p>
-                          <p id="demo"></p>
-                          @php 
-                            $currentDuration = explode(":", $league->timer_value);
-                          @endphp
-                          <div class="form-group">
-                            <span>Hours:</span> <input name="hours" type="number" class="timer" placeholder="00" min="0" max="99" value="{{ $currentDuration[0] }}">
-                          </div>
-                          <div class="form-group">
-                            <span>Minutes:</span> <input name="minutes" type="number" class="timer" placeholder="00" min="0" max="59" value="{{ $currentDuration[1] }}">
-                          </div>
-                          <div class="form-group">
-                            <span>Seconds:</span> <input name="seconds" type="number" class="timer" placeholder="00" min="0" max="59" value="{{ $currentDuration[2] }}">
-                          </div>
-                          <div class="btn_submit">
-                            <button>Submit</button>
-                          </div>
-                        </form>
-                      </div>
-                    </span>
-                  </span>
-                </div>
-                <div class="clock">
-                  @php 
-                    if($league->draft_timer == null){
-                      $timer = ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value;
-                      $timer = explode(":", $timer);
-                      if($timer[0] > 0){
-                        $timer = $timer[0].':'.$timer[1];
-                      }else{
-                        $timer = $timer[1].':'.$timer[2];
-                      }
-                    }else{
-                      $timer = '';
-                    }
-                  @endphp
-                  <h4 id="countDownTimer">{{ $timer }}</h4>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-  
-      
-  
-      <div class="col-md-6">
-        <div class="onTheClock">
-          <div>
-          <p>On The Clock</p>
-          @php 
-          if($leaguerecord)
-          {
-            $roundunber=$leaguerecord->round_order;
-            $roundorderplus=$leaguerecord->round_order+1;
-          }
-          else
-          {
-            $roundorderplus="1";
-            $roundunber="1";
-          }
-          
-          @endphp
-          <h3>TEAM {{$roundunber}}</h3>
-          <p class="upNext">Up Next: Team {{$roundorderplus}}</p>
-          </div>
-        
-        </div>
-        
-      </div>
-      </div>
-    </div> -->
-        @else
-        <div class="col-md-12 text-center">
-
-          <!-- <div class="city_name">
-        <h3>{{ ($league->status == 'keeper') ? 'Keeper' : 'Draft in Setup' }} Mode</h3>
-      </div> -->
-        </div>
-        @endif
-        <div class="dropDownDiv">
-          <div class="edit_revert">
-            <ul class="list-unstyled list-inline">
-              <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
-                <div class="select_draft draft_round">
-                
-                  <div class="form-group drft-plr">
-                    <input id="myInput" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
-                    <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
-                  <option value="">Draft Player</option>
-                  @foreach($players as $player)
-                    <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}" data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
-                  @endforeach
-                </select> -->
-                    <button class="draftButton">Draft</button>
-                  </div>
-                </div>
-              </li>
-              <!-- <li class="list-inline-item">
-            <button>Edit Draft Board</button>
-          </li>-->
-              <!-- <li class="list-inline-item">
-            <button>Save</button>
-          </li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-      @if($league->status != 'started')
-      <div class="col-lg-12 text-center">
-        <div class="city_name">
-          <h3>{{ $league->name }}</h3>
-
-        </div>
-      </div>
-      @endif
       @if($league->status != 'started')
       <div class="multiDiv" style="display:none;">
         @else
@@ -483,10 +343,39 @@ return (($a->round_order) < ($b->round_order));
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4">
+              <!-- <div class="col-lg-3">
                 <div class="city_name">
                   <h3>{{ $league->name }}</h3>
 
+                </div>
+              </div> -->
+              <div class="col-lg-4">
+                <div class="dropDownDiv">
+                  <div class="edit_revert">
+                    <ul class="list-unstyled list-inline">
+                      <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
+                        <div class="select_draft draft_round">
+                        
+                          <div class="form-group drft-plr">
+                            <input id="myInput" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
+                            <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
+                          <option value="">Draft Player</option>
+                          @foreach($players as $player)
+                            <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}" data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
+                          @endforeach
+                        </select> -->
+                            <button class="draftButton">Draft</button>
+                          </div>
+                        </div>
+                      </li>
+                      <!-- <li class="list-inline-item">
+                    <button>Edit Draft Board</button>
+                  </li>-->
+                      <!-- <li class="list-inline-item">
+                    <button>Save</button>
+                  </li> -->
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div class="col-lg-4">
@@ -539,6 +428,148 @@ return (($a->round_order) < ($b->round_order));
         </div>
 
       </div>
+      <div class="city_name">
+                  <h3>{{ $league->name }}</h3>
+
+                </div>
+        <!-- {{$league->status}} -->
+        @if($league->status == 'started')
+        <!-- <div class="row">
+      <div class="col-md-6">
+    
+      <div class="timer_box">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <div class="time">
+                <div class="btn_view">
+                  <span>
+                    <button id="timerBtn" data-type="{{ $league->draft_timer ? 'stop' : 'start' }}"><i class="{{ $league->draft_timer ? 'fa fa-pause' : 'fa fa-play' }}"></i></button>
+                  </span>
+                  <span>
+                    <button id="refreshTime"><i class="fa fa-repeat"></i></button>
+                  </span>
+                  <span class="no-padd">
+                    <span class="clock"><button><i class="fa fa-clock-o"></i></button>
+                      <div class="time_duration">
+                        <form id="timerForm">
+                          <h4>Change Duration</h4>
+                          <p>Current Duration: <span id="currentDuration">{{ $league->timer_value }}</span></p>
+                          <p id="demo"></p>
+                          @php 
+                            $currentDuration = explode(":", $league->timer_value);
+                          @endphp
+                          <div class="form-group">
+                            <span>Hours:</span> <input name="hours" type="number" class="timer" placeholder="00" min="0" max="99" value="{{ $currentDuration[0] }}">
+                          </div>
+                          <div class="form-group">
+                            <span>Minutes:</span> <input name="minutes" type="number" class="timer" placeholder="00" min="0" max="59" value="{{ $currentDuration[1] }}">
+                          </div>
+                          <div class="form-group">
+                            <span>Seconds:</span> <input name="seconds" type="number" class="timer" placeholder="00" min="0" max="59" value="{{ $currentDuration[2] }}">
+                          </div>
+                          <div class="btn_submit">
+                            <button>Submit</button>
+                          </div>
+                        </form>
+                      </div>
+                    </span>
+                  </span>
+                </div>
+                <div class="clock">
+                  @php 
+                    if($league->draft_timer == null){
+                      $timer = ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value;
+                      $timer = explode(":", $timer);
+                      if($timer[0] > 0){
+                        $timer = $timer[0].':'.$timer[1];
+                      }else{
+                        $timer = $timer[1].':'.$timer[2];
+                      }
+                    }else{
+                      $timer = '';
+                    }
+                  @endphp
+                  <h4 id="countDownTimer">{{ $timer }}</h4>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      
+  
+      <div class="col-md-6">
+        <div class="onTheClock">
+          <div>
+          <p>On The Clock</p>
+          @php 
+          if($leaguerecord)
+          {
+            $roundunber=$leaguerecord->round_order;
+            $roundorderplus=$leaguerecord->round_order+1;
+          }
+          else
+          {
+            $roundorderplus="1";
+            $roundunber="1";
+          }
+          
+          @endphp
+          <h3>TEAM {{$roundunber}}</h3>
+          <p class="upNext">Up Next: Team {{$roundorderplus}}</p>
+          </div>
+        
+        </div>
+        
+      </div>
+      </div>
+    </div> -->
+        @else
+        <div class="col-md-12 text-center">
+
+          <!-- <div class="city_name">
+        <h3>{{ ($league->status == 'keeper') ? 'Keeper' : 'Draft in Setup' }} Mode</h3>
+      </div> -->
+        </div>
+        @endif
+        <!-- <div class="dropDownDiv">
+          <div class="edit_revert">
+            <ul class="list-unstyled list-inline">
+              <li class="list-inline-item draftPlayerLi {{ $league->without_player_count == 0 ? 'hide' : '' }}">
+                <div class="select_draft draft_round">
+                
+                  <div class="form-group drft-plr">
+                    <input id="myInput" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
+                    <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
+                  <option value="">Draft Player</option>
+                  @foreach($players as $player)
+                    <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}" data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
+                  @endforeach
+                </select> 
+                    <button class="draftButton">Draft</button>
+                  </div>
+                </div>
+              </li>
+              <!-- <li class="list-inline-item">
+            <button>Edit Draft Board</button>
+          </li>-->
+              <!-- <li class="list-inline-item">
+            <button>Save</button>
+          </li> 
+            </ul>
+          </div>
+        </div> -->
+      </div>
+      @if($league->status != 'started')
+      <div class="col-lg-12 text-center">
+        <div class="city_name">
+          <h3>{{ $league->name }}</h3>
+
+        </div>
+      </div>
+      @endif
+
 
     </div>
 
@@ -1147,10 +1178,11 @@ return (($a->round_order) < ($b->round_order));
         }
         swal({
                 title: ""+title+"",
-                buttons: false,
-                timer: 1500,
-            }).then(() => {
-                changeLeagueStatus(leagueStatus);
+                buttons: true,
+                 timer: 1500,
+                 buttons: false
+            }).then(() => {               
+                    changeLeagueStatus(leagueStatus);
             });
       })
       function changeLeagueStatus(status) {
