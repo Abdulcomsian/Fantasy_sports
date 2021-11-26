@@ -17,5 +17,8 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/slick/css/slick-theme.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/colorPick.dark.theme.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/colorPick.css') }}">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
 @toastr_css
 @yield('css')

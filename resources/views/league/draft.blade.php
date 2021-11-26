@@ -258,7 +258,7 @@ return (($a->round_order) < ($b->round_order));
                               <button id="refreshTime"><i class="fa fa-repeat"></i></button>
                             </span>
                             <span class="no-padd">
-                              <span class="clock"><button><i class="fa fa-clock-o"></i></button>
+                              <span class="clock"><button><i class="fa fa-cog"></i></button>
                                 <div class="time_duration">
                                   <form id="timerForm">
                                     <h4>Change Duration</h4>
