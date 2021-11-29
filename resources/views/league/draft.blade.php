@@ -1058,7 +1058,7 @@ return (($a->round_order) < ($b->round_order));
 
     var updateZoom = function(zoom) {
       zoomLevel += zoom;
-      $('body').css({
+      $(".table").css({
         zoom: zoomLevel,
         '-moz-transform': 'scale(' + zoomLevel + ')'
       });
