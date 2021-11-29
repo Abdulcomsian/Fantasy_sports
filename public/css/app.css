@@ -45,10 +45,10 @@ th {
 #countDownTimer,
 .onTheClock h3,
 .city_name h3 {
-    font-size: 30px;
+    font-size: 50px !important;
     font-weight: 700;
     color: #fff;
-    font: 700 25px "impact-Font" !important;
+    font: 700 50px "impact-Font" !important;
 }
 .onTheClock p{
     font-family: 'Oswald', sans-serif;

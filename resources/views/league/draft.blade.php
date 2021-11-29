@@ -298,7 +298,7 @@ return (($a->round_order) < ($b->round_order));
                             $timer = '';
                             }
                             @endphp
-                            <h4 id="countDownTimer">{{ $timer }}</h4>
+                            <h4 style="font-size:30px;" id="countDownTimer">{{ $timer }}</h4>
                           </div>
                         </div>
                       </li>
@@ -336,7 +336,7 @@ return (($a->round_order) < ($b->round_order));
                       }
 
                       @endphp
-                      <h3 id="team-round">@if(isset($teamname)){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
+                      <h3 style="font-size:30px;" id="team-round">@if(isset($teamname)){{$teamname->team_name}}@else{{'Team '}} {{$roundunber}}@endif </h3>
                       <p class="upNext" id="upNext">Up Next: @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team '}}{{$roundorderplus ?? ""}}@endif </p>
                     </div>
 
@@ -422,7 +422,7 @@ return (($a->round_order) < ($b->round_order));
                     @endphp
                     <p id="team-select">@if(isset($teamname)){{ $teamname->team_name}}@else{{'Team '}} {{$leaguerecord->round_order ?? ''}}@endif Selects</p>
                     <p class="upNext" id="team-slect-fname" style="text-align: center;margin-bottom: 0px;">{{$playerdata->first_name ?? ''}}</p>
-                    <h3 style="text-align: center;" id="team-slect-lname">{{$playerdata->last_name ?? ''}}</h3>
+                    <h3 style="text-align: center;font-size:30px;" id="team-slect-lname">{{$playerdata->last_name ?? ''}}</h3>
                   </div>
 
                 </div>
@@ -565,7 +565,7 @@ return (($a->round_order) < ($b->round_order));
       @if($league->status != 'started')
       <div class="col-lg-12 text-center">
         <div class="city_name">
-          <h3>{{ $league->name }}</h3>
+          <h3 style="font-size: 50px !important; ">{{ $league->name }}</h3>
 
         </div>
       </div>
@@ -585,7 +585,7 @@ return (($a->round_order) < ($b->round_order));
       <table class="table" style="table-layout:fixed;">
         <thead class="thead-dark">
           <tr style="height:1em; ">
-            <th style="overflow:hidden;white-space:nowrap;  width:85px;font-size: 10px;">
+            <th style="overflow:hidden;white-space:nowrap;  width:35px;font-size: 10px;">
               @if(isset($_GET['type']) && $_GET['type'] =='collapseview')
               Round
               @endif
@@ -597,7 +597,7 @@ return (($a->round_order) < ($b->round_order));
 
             @endforeach
             <!-- <th style="width:80px"><span>Round</span></th> -->
-            <th style="overflow:hidden;white-space:nowrap;width:50px;font-size: 10px;">
+            <th style="overflow:hidden;white-space:nowrap;width:35px;font-size: 10px;">
               @if(isset($_GET['type']) && $_GET['type'] =='collapseview')
               Round
               @endif
@@ -625,7 +625,7 @@ return (($a->round_order) < ($b->round_order));
               <br>
               @endforeach
               @if(\Auth::user()->role=="Admin")
-              <a href="javascript:void(0)" class="addKeeperlist" data-team-id="{{$team->id}}" data-player="{{$player->player_id}}" data-round="{{$player->round_number}}"><i class="fa fa-plus" aria-hidden="true"></i></a>
+              <a href="javascript:void(0)" class="addKeeperlist" data-team-id="{{$team->id}}" data-player="{{$player->player_id}}" data-round="{{$player->round_number}}"> <i class="fa fa-plus" aria-hidden="true"></i></a>
               @endif
             </td>
             @endforeach
@@ -648,7 +648,10 @@ return (($a->round_order) < ($b->round_order));
           @endphp
           <tr>
             <!-- <td>{!! $rightArrow !!}</td> -->
-            <td>{!! $rightArrow !!} {{ $index }}</td>
+            <td>
+            <img src="{{ asset('images/right-angle.png') }}" style="width:45px;" />  
+            <!-- {!! $rightArrow !!}  -->
+            {{ $index }}</td>
             @foreach($rounds as $round)
             @php
             if((int)$round->team_id != (int)$round->old_team_id)
@@ -737,7 +740,10 @@ return (($a->round_order) < ($b->round_order));
         }
         @endphp
         <tr>
-          <td>{!! $rightArrow !!}</td>
+          <td>
+          <img src="{{ asset('images/right-angle.png') }}" style="width:45px;" />  
+          <!-- {!! $rightArrow !!} -->
+        </td>
           <!-- <td>{{ $index }}</td> -->
           @foreach($rounds as $round)
           <td data-round_id="{{ $round->id }}" data-team_order="{{ $round->team->team_order }}" data-default_order="{{ $index.'.'.$round->default_order }}">
@@ -792,7 +798,7 @@ return (($a->round_order) < ($b->round_order));
               <span>{{ $index.'.'.$round->default_order }}</span><br>
               @endif
               @if((!isset($round->player) || !isset($round->player->last_name)) && $league->status == 'keeper')
-              <a href="javascript:void(0)" round-number='{{$index}}' round-order='{{$round->default_order}}' class="addKeeper"><i class="fa fa-plus" aria-hidden="true"></i></a>
+              <a href="javascript:void(0)" round-number='{{$index}}' round-order='{{$round->default_order}}' class="addKeeper"><img style="width:18px;" src="{{ asset('images/cross.png') }}" /></a>
               @endif
           </td>
           @endforeach
