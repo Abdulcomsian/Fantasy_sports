@@ -377,9 +377,13 @@ return (($a->round_order) < ($b->round_order));
                     </ul>
                   </div>
                 </div>
+                <div style="height: 0px !important;" class="city_name">
+                  <h3 style="font-size: 50px !important; ">{{ $league->name }}</h3>
+
+                </div>
               </div>
               <div class="col-lg-4">
-                <div class="onTheClock">
+                <div class="onTheClock" style="right: 10px !important;">
                   <div>
                     @php
                     $playerdata=[];
@@ -428,10 +432,7 @@ return (($a->round_order) < ($b->round_order));
         </div>
 
       </div>
-      <div class="city_name">
-                  <h3>{{ $league->name }}</h3>
-
-                </div>
+  
         <!-- {{$league->status}} -->
         @if($league->status == 'started')
         <!-- <div class="row">
@@ -1171,7 +1172,7 @@ return (($a->round_order) < ($b->round_order));
         let modeId = leagueStatus == "started" ? "keeperMode" : "draftMode";
         if(modeId=="keeperMode")
         {
-            title='Live Draft Mode';
+            title='Lets Get Live!';
         }
         else{
             title='Back to the Lab!';
