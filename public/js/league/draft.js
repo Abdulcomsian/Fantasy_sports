@@ -7,7 +7,7 @@ $(document).ready(function () {
         } else {
             console.log("hello");
             $(".city_board_table").css("margin-top", "0px");
-            $(".city_board_table table").css("margin-top", "170px");
+            $(".city_board_table table").css("margin-top", "145px");
             $(".test2 table").css("margin-top", "86px !important");
 
         }
