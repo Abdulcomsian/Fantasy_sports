@@ -88,9 +88,9 @@ return (($a->round_order) < ($b->round_order));
                     Views
                     </a>
                     <div class="dropdown-menu" style="background-color:#000 !important;" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}">Rosters</a>
-                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}">Pick</a>
-                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}">Collapse</a>
+                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px;" />   Rosters</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px;" />   Picks</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px;" />   Collapse</a>
                     </div>
                 </li>
                 <li class="nav-item">

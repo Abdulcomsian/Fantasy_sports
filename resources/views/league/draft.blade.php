@@ -13,7 +13,9 @@
     animation: pulse-red 2s infinite;
 
   }
-
+  .dropdown-item {
+  padding: 0.25rem 0 !important;
+}
 
   @keyframes pulse-red {
     0% {
@@ -85,9 +87,9 @@ return (($a->round_order) < ($b->round_order));
                     Views
                     </a>
                     <div class="dropdown-menu" style="background-color:#000 !important;" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}">Rosters</a>
-                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}">Pick</a>
-                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}">Collapse</a>
+                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px;" />   Rosters</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px;" />   Picks</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px;" />   Collapse</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -585,7 +587,7 @@ return (($a->round_order) < ($b->round_order));
       <table class="table" style="table-layout:fixed;">
         <thead class="thead-dark">
           <tr style="height:1em; ">
-            <th style="overflow:hidden;white-space:nowrap;  width:35px;font-size: 10px;">
+            <th style="overflow:hidden;white-space:nowrap;  width:2%;font-size: 10px;">
               @if(isset($_GET['type']) && $_GET['type'] =='collapseview')
               Round
               @endif
@@ -597,7 +599,7 @@ return (($a->round_order) < ($b->round_order));
 
             @endforeach
             <!-- <th style="width:80px"><span>Round</span></th> -->
-            <th style="overflow:hidden;white-space:nowrap;width:35px;font-size: 10px;">
+            <th style="overflow:hidden;white-space:nowrap;width:2%;font-size: 10px;">
               @if(isset($_GET['type']) && $_GET['type'] =='collapseview')
               Round
               @endif
@@ -648,8 +650,8 @@ return (($a->round_order) < ($b->round_order));
           @endphp
           <tr>
             <!-- <td>{!! $rightArrow !!}</td> -->
-            <td>
-            <img src="{{ asset('images/right-angle.png') }}" style="width:45px;" />  
+            <td >
+            <img src="{{ asset('images/right-angle.png') }}" style="width:35px;" />  
             <!-- {!! $rightArrow !!}  -->
             {{ $index }}</td>
             @foreach($rounds as $round)
@@ -671,7 +673,10 @@ return (($a->round_order) < ($b->round_order));
                 </select>
             </td>
             @endforeach
-            <td>{{ $index }} {!! $leftArrow !!}</td>
+            <td>{{ $index }} 
+            <img src="{{ asset('images/left-arrow.png') }}" style="width:45px;" />      
+            <!-- {!! $leftArrow !!} -->
+          </td>
             <!-- <td>{!! $leftArrow !!}</td> -->
           </tr>
           @endforeach
@@ -740,8 +745,8 @@ return (($a->round_order) < ($b->round_order));
         }
         @endphp
         <tr>
-          <td>
-          <img src="{{ asset('images/right-angle.png') }}" style="width:45px;" />  
+          <td style="vertical-align: middle; background-color:#000">
+          <img src="{{ asset('images/right-angle.png') }}" style="width:35px;" />  
           <!-- {!! $rightArrow !!} -->
         </td>
           <!-- <td>{{ $index }}</td> -->
@@ -785,7 +790,10 @@ return (($a->round_order) < ($b->round_order));
               <span style="font-size:13px;float: left;padding: 5px;">{{$round->player->position }}</span> <span style="float: right;padding: 5px;font-size:13px;">{{ $round->player->team}}</span><br>
               <div class="team_info">
                 @if( $league->status == 'keeper')
-                <p data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer"><i class="fa fa-times" aria-hidden="true"></i></p>
+                <p data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}" data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}" id="removePlayer">
+                <img style="width:18px;" src="{{ asset('images/cross.png') }}" />
+                <!-- <i class="fa fa-times" aria-hidden="true"></i> -->
+                </p>
                 @endif
                 <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
                 <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
@@ -798,12 +806,18 @@ return (($a->round_order) < ($b->round_order));
               <span>{{ $index.'.'.$round->default_order }}</span><br>
               @endif
               @if((!isset($round->player) || !isset($round->player->last_name)) && $league->status == 'keeper')
-              <a href="javascript:void(0)" round-number='{{$index}}' round-order='{{$round->default_order}}' class="addKeeper"><img style="width:18px;" src="{{ asset('images/cross.png') }}" /></a>
+              <a href="javascript:void(0)" round-number='{{$index}}' round-order='{{$round->default_order}}' class="addKeeper">
+                <!-- fa fa-times<img style="width:18px;" src="{{ asset('images/cross.png') }}" /> -->
+                <i class="fa fa-plus"></i>
+              </a>
               @endif
           </td>
           @endforeach
           <!-- <td>{{ $index }}</td> -->
-          <td>{!! $leftArrow !!}</td>
+          <td style="vertical-align:middle;background-color: #000;">
+          <img src="{{ asset('images/left-arrow.png') }}" style="width:45px;" />    
+          <!-- {!! $leftArrow !!} -->
+        </td>
         </tr>
         @endforeach
       </tbody>
