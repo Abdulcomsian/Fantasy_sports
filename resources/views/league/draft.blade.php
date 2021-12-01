@@ -43,6 +43,7 @@
  .assign_order h2:hover{
     background: red;
   }
+
 </style>
 @endsection
 @section('content')

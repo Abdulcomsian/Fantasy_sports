@@ -2020,7 +2020,35 @@ label#joiner_key-error {
 .hide {
     display: none;
 }
-
+@media (max-width: 1500px) {
+    .season_fall .openBtn {
+        top: 40px !important;
+        font-size: 16px !important;
+    }
+    .custom-switch{
+        padding-left: 0px !important;
+    }
+    .list_edit .btn{
+        font-size: 14px;
+    }
+    .navbar,.navbar-expand-lg .navbar-nav .nav-link{
+        padding: 0px !important;
+    }
+    .navbar,
+    #updateLeague.draftFrom{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .city_charts .d-flex p img,
+    .city_charts p a img{
+        width: 30px !important;
+    }
+    #countDownTimer, .onTheClock h3, .city_name h3{
+        font-size: 30px !important;
+    }
+}
 @media (max-width: 1366px) {
     .city_charts {
         padding: 15px 0px !important;

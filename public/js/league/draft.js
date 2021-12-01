@@ -1,23 +1,23 @@
 var leagueId = $("input[name='league_id']").val();
 $(document).ready(function () {
-    $(window).resize(function() {
+    $(window).resize(function () {
         var height = $(".fixedBanner").css("height");
-        height= parseInt(height)-30;
+        height = parseInt(height) - 38;
         $(".city_board_table").css("margin-top", height);
-       
+
     });
     setTimeout(function () {
         //calls click event after a certain time
         if ($(".dropDownDiv").css("display") == "block") {
             var height = $(".fixedBanner").css("height");
             console.log("Orignal Height :", height)
-             height= parseInt(height)-30;
+            height = parseInt(height) - 38;
             $(".city_board_table").css("margin-top", height);
         } else {
             console.log("hello");
             var height = $(".fixedBanner").css("height");
             console.log("Orignal Height :", height)
-            height= parseInt(height)-30;
+            height = parseInt(height) - 38;
             $(".city_board_table").css("margin-top", height);
         }
     }, 1000);
