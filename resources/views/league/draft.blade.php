@@ -19,7 +19,19 @@
   .dropdown-item {
   padding: 0.25rem 0 !important;
 }
-
+.swal-modal{
+  background-color: rgba(255, 255, 255, 0.3);
+ -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  
+}
+.swal-title{color:#000 !important;}
+#removePlayer img{
+  backdrop-filter: blur(10px);
+    width: 23px;
+    background-color: rgb(0 0 0 / 20%);
+    padding: 0 2px;
+}
   @keyframes pulse-red {
     0% {
       transform: scale(0.9);
@@ -655,7 +667,9 @@ return (($a->round_order) < ($b->round_order));
           <tr>
             <!-- <td>{!! $rightArrow !!}</td> -->
             <td >
+              @php if($rightArrow!=''){ @endphp
             <img src="{{ asset('images/right-angle.png') }}" style="width:35px;" />  
+            @php } @endphp
             <!-- {!! $rightArrow !!}  -->
             {{ $index }}</td>
             @foreach($rounds as $round)
@@ -678,7 +692,9 @@ return (($a->round_order) < ($b->round_order));
             </td>
             @endforeach
             <td>{{ $index }} 
+            @php if($leftArrow!=''){ @endphp
             <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px;" />      
+            @php } @endphp
             <!-- {!! $leftArrow !!} -->
           </td>
             <!-- <td>{!! $leftArrow !!}</td> -->
@@ -750,7 +766,9 @@ return (($a->round_order) < ($b->round_order));
         @endphp
         <tr>
           <td style="vertical-align: middle; background-color:#000">
+          @php if($rightArrow!=''){ @endphp
           <img src="{{ asset('images/right-angle.png') }}" style="width:35px;" />  
+          @php } @endphp
           <!-- {!! $rightArrow !!} -->
         </td>
           <!-- <td>{{ $index }}</td> -->
@@ -819,7 +837,9 @@ return (($a->round_order) < ($b->round_order));
           @endforeach
           <!-- <td>{{ $index }}</td> -->
           <td style="vertical-align:middle;background-color: #000;">
+          @php if($leftArrow!=''){ @endphp
           <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px;" />    
+          @php  } @endphp
           <!-- {!! $leftArrow !!} -->
         </td>
         </tr>

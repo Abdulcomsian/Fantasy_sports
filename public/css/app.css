@@ -1800,6 +1800,7 @@ a:hover {
 }
 .swal-overlay {
     z-index: 99999999999999999999999999999;
+    
 }
 .fixedBanner {
     padding: 20px 0px 0px;
