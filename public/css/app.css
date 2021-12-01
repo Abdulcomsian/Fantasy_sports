@@ -2022,6 +2022,9 @@ label#joiner_key-error {
 }
 
 @media (max-width: 1366px) {
+    .city_charts {
+        padding: 15px 0px !important;
+        }
     /* line 4, ../sass/_screen.scss */
     .season_fall {
         height: auto;
@@ -2528,7 +2531,15 @@ label#joiner_key-error {
         font: 500 30px "Neometric Medium";
     }
 }
+@media (max-width: 1400px) {
+    .navbar-expand-lg{
+        padding: 0px !important;
+    }
+}
 @media (max-width: 992px) {
+    .navbar-expand-lg{
+        padding: 0px !important;
+    }
     .create_league form .select_view:before {
         height: 300px;
     }
@@ -2701,6 +2712,9 @@ label#joiner_key-error {
     }
 }
 @media (max-width: 800px) {
+    .city_charts {
+        padding: 15px 0px !important;
+        }
     /* line 477, ../sass/_screen.scss */
     .season_fall .btn_top a.big_btn {
         padding: 11px 12px;
@@ -2762,6 +2776,12 @@ label#joiner_key-error {
     }
 }
 @media (max-width: 768px) {
+    .city_charts {
+        padding: 15px 0px !important;
+        }
+    .navbar-expand-lg{
+        padding: 0px !important;
+    }
     #side-nav .side-nav-content button {
         display: block !important;
     }
@@ -3929,7 +3949,7 @@ table {
     font: 700 18px "Neometric";
     color: #fff;
     border: 1px solid #fff;
-    padding: 13px 33px;
+    padding: 0px 33px;
     text-align: center;
     margin-left: 20px;
     border-radius: 5px;
