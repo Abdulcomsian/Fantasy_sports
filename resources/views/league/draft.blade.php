@@ -2,6 +2,9 @@
 @section('title', 'City Chart')
 @section('css')
 <style type="text/css">
+  .dropDownDiv .select_draft .form-group{
+    height: 40px;
+  }
 .dropdown a:hover{
   background:#000 !important;;
   color:#fff !important;
@@ -87,9 +90,9 @@ return (($a->round_order) < ($b->round_order));
                     Views
                     </a>
                     <div class="dropdown-menu" style="background-color:#000 !important;" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px;" />   Rosters</a>
-                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px;" />   Picks</a>
-                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px;" />   Collapse</a>
+                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -5px;" />   Rosters</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -5px;" />   Picks</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -5px;" />   Collapse</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -114,7 +117,7 @@ return (($a->round_order) < ($b->round_order));
                 <!-- <div class="col-md-12"> -->
                   <div class="custom-control custom-switch d-flex" >                 
                     <button style="margin-right: 5px;" class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif" data-mode="keeper">Edit Mode</button>
-                    <button class="btn btn-success mybutton @if($league->status=='started') green @else black @endif "   data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
+                    <button class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn"   data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
                   </div>
                 <!-- </div> -->
               </div>
@@ -385,7 +388,7 @@ return (($a->round_order) < ($b->round_order));
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="onTheClock" style="right: 10px !important;">
+                <div class="onTheClock" style="right: 100px !important;">
                   <div>
                     @php
                     $playerdata=[];
@@ -587,7 +590,7 @@ return (($a->round_order) < ($b->round_order));
       <table class="table" style="table-layout:fixed;">
         <thead class="thead-dark">
           <tr style="height:1em; ">
-            <th style="overflow:hidden;white-space:nowrap;  width:2%;font-size: 10px;">
+            <th style="overflow:hidden;white-space:nowrap;  width:2%;font-size: 10px; background-color: #000;">
               @if(isset($_GET['type']) && $_GET['type'] =='collapseview')
               Round
               @endif
@@ -599,7 +602,7 @@ return (($a->round_order) < ($b->round_order));
 
             @endforeach
             <!-- <th style="width:80px"><span>Round</span></th> -->
-            <th style="overflow:hidden;white-space:nowrap;width:2%;font-size: 10px;">
+            <th style="overflow:hidden;white-space:nowrap;width:1.9%;font-size: 10px; background-color: #000;">
               @if(isset($_GET['type']) && $_GET['type'] =='collapseview')
               Round
               @endif
@@ -674,7 +677,7 @@ return (($a->round_order) < ($b->round_order));
             </td>
             @endforeach
             <td>{{ $index }} 
-            <img src="{{ asset('images/left-arrow.png') }}" style="width:45px;" />      
+            <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px;" />      
             <!-- {!! $leftArrow !!} -->
           </td>
             <!-- <td>{!! $leftArrow !!}</td> -->
@@ -815,7 +818,7 @@ return (($a->round_order) < ($b->round_order));
           @endforeach
           <!-- <td>{{ $index }}</td> -->
           <td style="vertical-align:middle;background-color: #000;">
-          <img src="{{ asset('images/left-arrow.png') }}" style="width:45px;" />    
+          <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px;" />    
           <!-- {!! $leftArrow !!} -->
         </td>
         </tr>
