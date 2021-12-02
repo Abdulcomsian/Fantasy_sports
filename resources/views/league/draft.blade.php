@@ -90,15 +90,18 @@ return (($a->round_order) < ($b->round_order));
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
             </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="top: -15px;position: relative;">
                 <ul class="navbar-nav">
-                <li class="nav-item">
+                <li class="nav-item" style="text-align: center;">
+                <img src="{{ asset('images/draft.png') }}" style="width:30px; position: relative; top: -5px;" /> 
                   <a class="nav-link active" style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="text-align: center;">
+                <img src="{{ asset('images/keeper.png') }}" style="width:51px; position: relative; top: -5px;" /> 
                     <a class="nav-link" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="text-align: center;">
+                <img src="{{ asset('images/views.png') }}" style="width:51px; position: relative; top: -5px;" /> 
                     <a class="nav-link dropdown-toggle" style="color:#fff" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Views
                     </a>
@@ -108,13 +111,16 @@ return (($a->round_order) < ($b->round_order));
                       <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -5px;" />   Collapse</a>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item"  style="text-align: center;">
+                  <img src="{{ asset('images/league.png') }}" style="width:31px; position: relative; top: -5px;" /> 
                     <a class="nav-link" style="color:#fff" href="#">League Notes </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item"  style="text-align: center;">
+                    <img src="{{ asset('images/gm.png') }}" style="width:31px; position: relative; top: -5px;" /> 
                     <a class="nav-link" style="color:#fff" href="#">GM Dashboard</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item"  style="text-align: center;">
+                  <img src="{{ asset('images/chat.png') }}" style="width:31px; position: relative; top: -5px;" /> 
                   <a class="nav-link" style="color:#fff" href="#">Chat</a>
                 </li>
                 </ul>
@@ -666,12 +672,13 @@ return (($a->round_order) < ($b->round_order));
           @endphp
           <tr>
             <!-- <td>{!! $rightArrow !!}</td> -->
-            <td >
+            <td style="background:#000;color:#fff;">
               @php if($rightArrow!=''){ @endphp
             <img src="{{ asset('images/right-angle.png') }}" style="width:35px;" />  
             @php } @endphp
             <!-- {!! $rightArrow !!}  -->
-            {{ $index }}</td>
+            <!-- {{ $index }} -->
+          </td>
             @foreach($rounds as $round)
             @php
             if((int)$round->team_id != (int)$round->old_team_id)
@@ -691,7 +698,8 @@ return (($a->round_order) < ($b->round_order));
                 </select>
             </td>
             @endforeach
-            <td>{{ $index }} 
+            <td style="background:#000;">
+              <!-- {{ $index }}  -->
             @php if($leftArrow!=''){ @endphp
             <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px;" />      
             @php } @endphp

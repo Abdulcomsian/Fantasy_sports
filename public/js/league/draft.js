@@ -86,8 +86,8 @@ $(function () {
         if (val != "") {
             savePick(val);
             val = "";
-            // window.location =
-            //     "/league/" + $("input[name='league_id']").val() + "/draft";
+            window.location =
+                "/league/" + $("input[name='league_id']").val() + "/draft";
         }
     });
 
