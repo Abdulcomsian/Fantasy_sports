@@ -27,7 +27,7 @@
 }
 .swal-title{color:#000 !important;}
 #removePlayer img{
-  backdrop-filter: blur(10px);
+  
     width: 23px;
     background-color: rgb(0 0 0 / 20%);
     padding: 0 2px;
@@ -609,7 +609,12 @@ return (($a->round_order) < ($b->round_order));
       <table class="table" style="table-layout:fixed;">
         <thead class="thead-dark">
           <tr style="height:1em; ">
+          
+          @if(isset($_GET['type']) && $_GET['type'] =='pickview')
+          <th style="overflow:hidden;white-space:nowrap;  width:6%;font-size: 10px; background-color: #000;">
+          @else
             <th style="overflow:hidden;white-space:nowrap;  width:2%;font-size: 10px; background-color: #000;">
+          @endif
               @if(isset($_GET['type']) && $_GET['type'] =='collapseview')
               Round
               @endif
@@ -711,9 +716,9 @@ return (($a->round_order) < ($b->round_order));
         </tbody>
         @elseif(isset($_GET['type']) && $_GET['type']=="pickview")
         <tbody class="tbl-bdy-clr customeTable">
-          <tr>
+          <tr style="">
             <td style="background: #000;color: #fff;vertical-align: middle;position:relative;">
-              <p style="transform: rotate(-90deg);font-size: 30px;font-weight: 700;">Draft pick</p>
+              <p style="transform: rotate(-90deg);font-size: 30px;font-weight: 700;">Draft Picks</p>
               <p style="position: absolute;bottom: 25px;left: 8px;">Total Picks</p>
             </td>
             @php
