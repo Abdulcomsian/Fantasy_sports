@@ -6,6 +6,21 @@
   background:#000 !important;;
   color:#fff !important;
 }
+.swal-modal{
+  background-color: rgba(255, 255, 255, 0.3);
+ -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  
+}
+.swal-title{color:#000 !important;}
+.swal-title:first-child{margin-top:0px;}
+#removePlayer img{
+  
+  width: 23px;
+  background-color: rgb(0 0 0 / 20%);
+  padding: 0 2px;
+}
+.swal-overlay--show-modal .swal-modal{height:auto !important;}
   .circle {
     /*background-color: rgba(255, 82, 82, 1);
     border-radius: 50%;*/
@@ -78,7 +93,7 @@ return (($a->round_order) < ($b->round_order));
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="top: -15px;position: relative;">
                 <ul class="navbar-nav">
                 <li class="nav-item" style="text-align: center;">
-                <img src="{{ asset('images/draft.png') }}" style="width:30px; position: relative; top: -5px;" /> 
+                <img src="{{ asset('images/draft.png') }}" style="width:27px; position: relative; top: -5px;" /> 
                   <a class="nav-link active" style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a>
                 </li>
                 <li class="nav-item" style="text-align: center;">
@@ -86,7 +101,7 @@ return (($a->round_order) < ($b->round_order));
                     <a class="nav-link" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a>
                 </li>
                 <li class="nav-item dropdown" style="text-align: center;">
-                <img src="{{ asset('images/views.png') }}" style="width:51px; position: relative; top: -5px;" /> 
+                <img src="{{ asset('images/views.png') }}" style="width:42px; position: relative; top: -5px;" /> 
                     <a class="nav-link dropdown-toggle" style="color:#fff" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Views
                     </a>
@@ -97,15 +112,15 @@ return (($a->round_order) < ($b->round_order));
                     </div>
                 </li>
                 <li class="nav-item"  style="text-align: center;">
-                  <img src="{{ asset('images/league.png') }}" style="width:31px; position: relative; top: -5px;" /> 
+                  <img src="{{ asset('images/league.png') }}" style="width:28px; position: relative; top: -5px;" /> 
                     <a class="nav-link" style="color:#fff" href="#">League Notes </a>
                 </li>
                 <li class="nav-item"  style="text-align: center;">
-                    <img src="{{ asset('images/gm.png') }}" style="width:31px; position: relative; top: -5px;" /> 
+                    <img src="{{ asset('images/gm.png') }}" style="width:40px; position: relative; top: -5px;" /> 
                     <a class="nav-link" style="color:#fff" href="#">GM Dashboard</a>
                 </li>
                 <li class="nav-item"  style="text-align: center;">
-                  <img src="{{ asset('images/chat.png') }}" style="width:31px; position: relative; top: -5px;" /> 
+                  <img src="{{ asset('images/chat.png') }}" style="width:24px; position: relative; top: -5px;" /> 
                   <a class="nav-link" style="color:#fff" href="#">Chat</a>
                 </li>
                 </ul>

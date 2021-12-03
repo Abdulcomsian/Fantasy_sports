@@ -26,10 +26,9 @@
   
 }
 .swal-title{color:#000 !important;}
+.swal-title:first-child{margin-top:0px;}
 #removePlayer img{
-  
     width: 23px;
-    background-color: rgb(0 0 0 / 20%);
     padding: 0 2px;
 }
   @keyframes pulse-red {
@@ -93,15 +92,15 @@ return (($a->round_order) < ($b->round_order));
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="top: -15px;position: relative;">
                 <ul class="navbar-nav">
                 <li class="nav-item" style="text-align: center;">
-                <img src="{{ asset('images/draft.png') }}" style="width:30px; position: relative; top: -5px;" /> 
-                  <a class="nav-link active" style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a>
+                <img src="{{ asset('images/draft.png') }}" style="width:27px; position: relative; top: -5px;" /> 
+                  <a class="nav-link active olympusfont" style="color:#fff;" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a>
                 </li>
                 <li class="nav-item" style="text-align: center;">
                 <img src="{{ asset('images/keeper.png') }}" style="width:51px; position: relative; top: -5px;" /> 
                     <a class="nav-link" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a>
                 </li>
                 <li class="nav-item dropdown" style="text-align: center;">
-                <img src="{{ asset('images/views.png') }}" style="width:51px; position: relative; top: -5px;" /> 
+                <img src="{{ asset('images/views.png') }}" style="width:42px; position: relative; top: -5px;" /> 
                     <a class="nav-link dropdown-toggle" style="color:#fff" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Views
                     </a>
@@ -112,15 +111,15 @@ return (($a->round_order) < ($b->round_order));
                     </div>
                 </li>
                 <li class="nav-item"  style="text-align: center;">
-                  <img src="{{ asset('images/league.png') }}" style="width:31px; position: relative; top: -5px;" /> 
+                  <img src="{{ asset('images/league.png') }}" style="width:28px; position: relative; top: -5px;" /> 
                     <a class="nav-link" style="color:#fff" href="#">League Notes </a>
                 </li>
                 <li class="nav-item"  style="text-align: center;">
-                    <img src="{{ asset('images/gm.png') }}" style="width:31px; position: relative; top: -5px;" /> 
+                    <img src="{{ asset('images/gm.png') }}" style="width:40px; position: relative; top: -5px;" /> 
                     <a class="nav-link" style="color:#fff" href="#">GM Dashboard</a>
                 </li>
                 <li class="nav-item"  style="text-align: center;">
-                  <img src="{{ asset('images/chat.png') }}" style="width:31px; position: relative; top: -5px;" /> 
+                  <img src="{{ asset('images/chat.png') }}" style="width:24px; position: relative; top: -5px;" /> 
                   <a class="nav-link" style="color:#fff" href="#">Chat</a>
                 </li>
                 </ul>
@@ -401,7 +400,7 @@ return (($a->round_order) < ($b->round_order));
                     </ul>
                   </div>
                 </div>
-                <div style="height: 0px !important;" class="city_name">
+                <div style="height: 60px !important;" class="city_name">
                   <h3 style="font-size: 50px !important; ">{{ $league->name }}</h3>
 
                 </div>
@@ -719,7 +718,7 @@ return (($a->round_order) < ($b->round_order));
           <tr style="">
             <td style="background: #000;color: #fff;vertical-align: middle;position:relative;">
               <p style="transform: rotate(-90deg);font-size: 30px;font-weight: 700;">Draft Picks</p>
-              <p style="position: absolute;bottom: 25px;left: 8px;">Total Picks</p>
+              <p style="position: absolute;bottom: 25px;left: 16px;">Total Picks</p>
             </td>
             @php
             $max=0;
