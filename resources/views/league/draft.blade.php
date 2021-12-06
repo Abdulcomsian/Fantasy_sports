@@ -48,7 +48,7 @@
     }
   }
   .mybutton{
-    border:1px solid white;
+    border:3px solid #1c1b1b;
     background: linear-gradient(to right, rgba(255,0,0,0), rgba(0,255,255,1));
   }
  .assign_order h2:hover{
@@ -105,9 +105,9 @@ return (($a->round_order) < ($b->round_order));
                     Views
                     </a>
                     <div class="dropdown-menu" style="background-color:#000 !important;" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -5px;" />   Rosters</a>
-                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -5px;" />   Picks</a>
-                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -5px;" />   Collapse</a>
+                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -7px;" />   Rosters</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -7px;" />   Picks</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -7px;" />   Collapse</a>
                     </div>
                 </li>
                 <li class="nav-item"  style="text-align: center;">
@@ -121,6 +121,10 @@ return (($a->round_order) < ($b->round_order));
                 <li class="nav-item"  style="text-align: center;">
                   <img src="{{ asset('images/chat.png') }}" style="width:24px; position: relative; top: -5px;" /> 
                   <a class="nav-link" style="color:#fff" href="#">Chat</a>
+                </li>
+                <li class="nav-item"  style="text-align: center;">
+                  <img src="{{ asset('images/draft-room.png') }}" style="width:60px; position: relative; top: -5px;" /> 
+                  <a class="nav-link" style="color:#fff" href="#">Draft Room</a>
                 </li>
                 </ul>
               </div>
@@ -605,7 +609,7 @@ return (($a->round_order) < ($b->round_order));
         <?php } ?>
       </div>
 
-      <table class="table" style="table-layout:fixed;">
+      <table class="table" style="table-layout:fixed;margin-bottom:0px;">
         <thead class="thead-dark">
           <tr style="height:1em; ">
           
@@ -737,7 +741,7 @@ return (($a->round_order) < ($b->round_order));
             $data=\App\Models\LeagueRound::where('team_id',$team->id)->get();
             @endphp
             <td>
-              <table class="table">
+              <table class="table" style="margin-bottom:0px;">
                 @php
                 for($i=0;$i<$max;$i++) { @endphp <tr>
                   <td>
@@ -754,8 +758,9 @@ return (($a->round_order) < ($b->round_order));
               </div>
             </td>
           </tr>
-
+          
       </table>
+      <p style="color:#fff;text-align: center;background: #000;padding: 20px 0;">WHERE THE FANTASY SEASON <span style="color:red;">NEVER ENDS</span></p>
       <br>
       </td>
       @endforeach
@@ -859,6 +864,7 @@ return (($a->round_order) < ($b->round_order));
       </tbody>
       @endif
       </table>
+      <p style="color:#fff;text-align: center;background: #000;padding: 20px 0;">WHERE THE FANTASY SEASON <span style="color:red;">NEVER ENDS</span></p>
       <img src="" id="appendimage">
     </div>
   </div>
@@ -866,7 +872,7 @@ return (($a->round_order) < ($b->round_order));
   {{--<div class="city_board_table">
 
     <div class="table-responsive">
-  <table class="table">
+  <table class="table" style="margin-bottom:0px;">
     <thead class="thead-dark">
     <tr>
       <th></th>
@@ -907,6 +913,7 @@ return (($a->round_order) < ($b->round_order));
     @endif
   </tbody>
   </table>
+  <p style="color:#fff;text-align: center;background: #000;padding: 20px 0;">WHERE THE FANTASY SEASON <span style="color:red;">NEVER ENDS</span></p>
   </div>
   </div>--}}
 
@@ -975,14 +982,14 @@ return (($a->round_order) < ($b->round_order));
                       <label>Round</label>
                       <div class="form-group drft-plr">
                         <input id="keeperlistteamid" type="hidden" name="keeperlistteamid" placeholder="Enter Round number" ? />
-                        <input style="background:black;color:white;padding:9px;text-align:center;width: 120%;" id="keeperlistround" type="number" name="keeperlistround" />
+                        <input style="position:relative; top:-7px;background:black;color:white;padding:9px;text-align:center;width: 120%;" id="keeperlistround" type="number" name="keeperlistround" />
                       </div>
                     </div>
 
                   </div>
-                  <button type="button" class="btn btn-primary keeperlistbutton" style="float:left;background:lightseagreen;border:1px solid #fff;width:20%;border-radius:5px;margin:4px">Add</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:20%;border-radius:5px;margin:4px;">Close</button>
-                  <button type="button" class="btn btn-primary draftbutton1" style="background:lightskyblue;border:1px solid #fff;width:40% ;border-radius:5px" id="saveKeeperlist">Add to Draft board</button>
+                  <button type="button" class="btn btn-primary keeperlistbutton" style="font-family:Neometric;float:left;background:lightseagreen;border:1px solid #fff;font-size:14px; width:25%;border-radius:5px;margin:4px">Add to List</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-family:Neometric;font-size:14px; width:20%;border-radius:5px;margin:4px;">Close</button>
+                  <button type="button" class="btn btn-primary draftbutton1" style="font-family:Neometric;background:lightskyblue;border:1px solid #fff;width:50%; font-size:14px; border-radius:5px" id="saveKeeperlist">Add to List and Draft board</button>
                 </div>
               </div>
             </div>

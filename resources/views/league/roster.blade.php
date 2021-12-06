@@ -106,9 +106,9 @@ return (($a->round_order) < ($b->round_order));
                     Views
                     </a>
                     <div class="dropdown-menu" style="background-color:#000 !important;" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -5px;" />   Rosters</a>
-                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -5px;" />   Picks</a>
-                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -5px;" />   Collapse</a>
+                      <a class="dropdown-item"  style="color:#fff" href="{{url('/league/'.$league->id.'/roster-view')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -7px;" />   Rosters</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=pickview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -7px;" />   Picks</a>
+                      <a class="dropdown-item" style="color:#fff" href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}"><img src="{{ asset('images/right-angle.png') }}" style="width:30px; position: relative; top: -7px;" />   Collapse</a>
                     </div>
                 </li>
                 <li class="nav-item"  style="text-align: center;">
@@ -122,6 +122,10 @@ return (($a->round_order) < ($b->round_order));
                 <li class="nav-item"  style="text-align: center;">
                   <img src="{{ asset('images/chat.png') }}" style="width:24px; position: relative; top: -5px;" /> 
                   <a class="nav-link" style="color:#fff" href="#">Chat</a>
+                </li>
+                <li class="nav-item"  style="text-align: center;">
+                  <img src="{{ asset('images/draft-room.png') }}" style="width:60px; position: relative; top: -5px;" /> 
+                  <a class="nav-link" style="color:#fff" href="#">Draft Room</a>
                 </li>
                 </ul>
               </div>
@@ -233,7 +237,7 @@ return (($a->round_order) < ($b->round_order));
         <?php } ?>
       </div>
 
-      <table class="table">
+      <table class="table" style="margin-bottom:0px;"> 
         <thead class="thead-dark">
           <tr style="height:1em; ">
             <th style="overflow:hidden;white-space:nowrap;  width:85px;font-size: 10px;">
@@ -254,7 +258,7 @@ return (($a->round_order) < ($b->round_order));
           @endphp
           @foreach($rosterdata as $data)
           <tr>
-            <td style="padding-top:10px;">
+            <td style="padding-top:10px;background:#000; color:#fff;">
               {{$data->position}}
             </td>
             @foreach($league->teams as $team)
@@ -280,12 +284,13 @@ return (($a->round_order) < ($b->round_order));
               </div>
             </td>
             @endforeach
-            <td style="line-height: 80px">
+            <td style="line-height: 80px;background:#000; color:#fff;">
             </td>
           </tr>
           @endforeach
         </tbody>
       </table>
+      <p style="color:#fff;text-align: center;background: #000;padding: 20px 0;">WHERE THE FANTASY SEASON <span style="color:red;">NEVER ENDS</span></p>
     </div>
   </div>
 
