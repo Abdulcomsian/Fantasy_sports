@@ -61,6 +61,7 @@ th {
     font-family: 'Oswald', sans-serif;
     font-size: 20px;
     text-transform: uppercase;
+    text-align:center;
 }
 .nav-item a{text-transform: uppercase !important;
     font-family:"olympus" !important;

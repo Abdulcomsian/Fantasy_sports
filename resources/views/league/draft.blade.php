@@ -391,7 +391,7 @@ return (($a->round_order) < ($b->round_order));
                             <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}" data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                           @endforeach
                         </select> -->
-                            <button  style="z-index:9999">Draft</button>
+                            <button class="draftButton">Draft</button>
                           </div>
                         </div>
                       </li>
@@ -410,7 +410,7 @@ return (($a->round_order) < ($b->round_order));
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="onTheClock" style="right: 200px !important;">
+                <div class="onTheClock" style="right: 100px !important;">
                   <div>
                     @php
                     $playerdata=[];
