@@ -410,7 +410,7 @@ return (($a->round_order) < ($b->round_order));
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="onTheClock" style="right: 100px !important;">
+                <div class="onTheClock" style="right: 200px !important;">
                   <div>
                     @php
                     $playerdata=[];
