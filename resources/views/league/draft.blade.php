@@ -391,7 +391,7 @@ return (($a->round_order) < ($b->round_order));
                             <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}" data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                           @endforeach
                         </select> -->
-                            <button class="draftButton">Draft</button>
+                            <button  style="z-index:9999">Draft</button>
                           </div>
                         </div>
                       </li>
