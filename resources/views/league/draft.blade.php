@@ -84,7 +84,7 @@ return (($a->round_order) < ($b->round_order));
     <div class="container-fluid create_league_table assign_order the_lottery traders city_charts" style="padding-top:35px;">
       <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-1 text-left" style="font-weight:bold;    font-family: olympus !important;color:#fff">THE<br>OFFSEASON<br>GM</div>
+      <div class="col-md-1 text-left" style="font-weight:bold;    font-family: olympus !important;color:#fff;    position: relative;left: -40px;">THE<br>OFFSEASON<br>GM</div>
       <div class="col-md-6">
         <nav class="navbar navbar-expand-lg " style="background-color:#000;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -179,7 +179,32 @@ return (($a->round_order) < ($b->round_order));
           <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
         </div> -->
         
-       
+        @if(auth::user()->role=="Admin")
+          <div class="col-lg-2 text-right">
+            <div class="d-flex" style="justify-content:flex-end;">
+              <p style="margin: 0px 30px;" type="button" id="zoom-out"><img style="width:40px;" src="{{ asset('images/minus.png') }}" /></p>
+              <p style="" type="button" id="zoom-in"><img style="width:40px;" src="{{ asset('images/plus.png') }}" /></p>
+           
+
+              @if(auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
+        
+          <p style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}"><img style="width:40px;" src="{{ asset('images/setting.png') }}" /></a></p>
+        
+        @else
+            @php
+            $dta=\DB::table('league_user')->where(['league_id'=>$league->id,'user_id'=>\Auth::user()->id])->first();
+            @endphp
+            @if($dta->permission_type==1 || $dta->permission_type==2)
+            
+              <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+            
+            @endif
+        @endif
+
+           
+            </div>
+          </div>
+        @endif
 
         <!-- @if(auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
         <div class="col-md-1">
