@@ -384,7 +384,7 @@ return (($a->round_order) < ($b->round_order));
                         <div class="select_draft draft_round">
                         
                           <div class="form-group drft-plr">
-                            <input id="myInput" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
+                            <input id="myInput" type="text" name="myCountry" style="color:#fff;" autocomplete="off" placeholder="Enter Player Name">
                             <!-- <select name="draftPlayer" class="draftPlayer select2Drp">
                           <option value="">Draft Player</option>
                           @foreach($players as $player)
@@ -941,7 +941,7 @@ return (($a->round_order) < ($b->round_order));
                         <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}"  data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                       @endforeach
                     </select> -->
-                        <input id="myInput2" type="text" name="myCountry" autocomplete="off" placeholder="Enter Player Name">
+                        <input id="myInput2" type="text" name="myCountry" autocomplete="off" style="color:#fff;" placeholder="Enter Player Name">
                       </div>
                     </div>
                   </li>
