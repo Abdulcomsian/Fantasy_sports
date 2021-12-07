@@ -124,7 +124,7 @@ return (($a->round_order) < ($b->round_order));
                   <a class="nav-link" style="color:#fff" href="#">Chat</a>
                 </li>
                 <li class="nav-item"  style="text-align: center;">
-                  <img src="{{ asset('images/draft-room.png') }}" style="width:60px; position: relative; top: -5px;" /> 
+                  <img src="{{ asset('images/draft-room.png') }}" style="width:50px; position: relative; top: -5px;" /> 
                   <a class="nav-link" style="font-size:16px; text-transform: capitalize !important;color:red;font-family:dead !important;" href="{{url('/home/') }}">Draft Room</a>
                 </li>
                 </ul>
