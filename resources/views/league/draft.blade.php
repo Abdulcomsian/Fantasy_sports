@@ -84,7 +84,7 @@ return (($a->round_order) < ($b->round_order));
     <div class="container-fluid create_league_table assign_order the_lottery traders city_charts" style="padding-top:35px;">
       <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-1 text-left" style="font-weight:bold;    font-family: olympus !important;color:#fff;    position: relative;left: -40px;">THE<br>OFFSEASON<br>GM</div>
+      <div class="col-md-1 text-left" style="font-weight:bold;    font-family: olympus !important;color:#fff;    position: relative;left: -40px;top: -5px;">THE<br>OFFSEASON<br>GM</div>
       <div class="col-md-6">
         <nav class="navbar navbar-expand-lg " style="background-color:#000;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
