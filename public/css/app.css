@@ -103,7 +103,7 @@ th {
     display: flex;
     justify-content: flex-end;
     position: relative;
-    right: -172px;
+    right: -80px;
 }
 .tbl-bdy-clr td select {
     background: #b7b7b7;
@@ -1681,6 +1681,7 @@ a:hover {
 .clock {
     position: relative;
     padding: 3px 0;
+    margin-top:18px !important;
 }
 /* line 1405, ../sass/app.scss */
 .clock .fa-clock-o {
