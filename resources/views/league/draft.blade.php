@@ -139,8 +139,8 @@ return (($a->round_order) < ($b->round_order));
                 </div> -->
                 <!-- <div class="col-md-12"> -->
                   <div class="custom-control custom-switch d-flex" >                 
-                    <button style="margin-right: 5px;" class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif" data-mode="keeper">Edit Mode</button>
-                    <button class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn"   data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
+                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid white;" class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif" data-mode="keeper">Edit Mode</button>
+                    <button style="font-size:15px;    border: 1px solid white;" class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn"   data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
                   </div>
                 <!-- </div> -->
               </div>
@@ -704,11 +704,12 @@ return (($a->round_order) < ($b->round_order));
           <tr>
             <!-- <td>{!! $rightArrow !!}</td> -->
             <td style="background:#000;color:#fff;">
+            <div style="text-align: center;position: relative;left: 14px;top:11px;">{{ $index }}</div>
               @php if($rightArrow!=''){ @endphp
             <img src="{{ asset('images/right-angle.png') }}" style="width:35px;" />  
             @php } @endphp
             <!-- {!! $rightArrow !!}  -->
-            <!-- {{ $index }} -->
+          
           </td>
             @foreach($rounds as $round)
             @php
@@ -783,7 +784,7 @@ return (($a->round_order) < ($b->round_order));
           </tr>
           
       </table>
-      <p style="color:#fff;text-align: center;background: #000;padding: 20px 0;">WHERE THE FANTASY SEASON <span style="color:red;">NEVER ENDS</span></p>
+      <!-- <p style="color:#fff;text-align: center;background: #000;padding: 20px 0;">WHERE THE FANTASY SEASON <span style="color:red;">NEVER ENDS</span></p> -->
       <br>
       </td>
       @endforeach

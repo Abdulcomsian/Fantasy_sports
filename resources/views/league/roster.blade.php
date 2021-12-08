@@ -91,11 +91,11 @@ return (($a->round_order) < ($b->round_order));
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="top: -15px;position: relative;">
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="top: -15px;position: relative;">
                 <ul class="navbar-nav">
                 <li class="nav-item" style="text-align: center;">
                 <img src="{{ asset('images/draft.png') }}" style="width:27px; position: relative; top: -5px;" /> 
-                  <a class="nav-link active" style="color:#fff" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a>
+                  <a class="nav-link active olympusfont" style="color:#fff;" href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a>
                 </li>
                 <li class="nav-item" style="text-align: center;">
                 <img src="{{ asset('images/keeper.png') }}" style="width:51px; position: relative; top: -5px;" /> 
@@ -138,10 +138,10 @@ return (($a->round_order) < ($b->round_order));
               <div class="row">
                 <!-- <div class="col-md-4">
                 </div> -->
-                
-                <div class="custom-control custom-switch d-flex" >                 
-                    <button style="margin-right: 5px;" class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif" data-mode="keeper">Edit Mode</button>
-                    <button class="btn btn-success mybutton @if($league->status=='started') green @else black @endif "   data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
+                <!-- <div class="col-md-12"> -->
+                  <div class="custom-control custom-switch d-flex" >                 
+                    <button style="margin-right: 5px;font-size:15px;" class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif" data-mode="keeper">Edit Mode</button>
+                    <button style="font-size:15px;" class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn"   data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
                   </div>
                 
               </div>
