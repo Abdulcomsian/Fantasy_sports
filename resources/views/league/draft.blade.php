@@ -701,10 +701,11 @@ return (($a->round_order) < ($b->round_order));
           usort($rounds, "compare1");
           }
           @endphp
-          <tr>
+          <tr style="    overflow: visible;
+    z-index: -1;">
             <!-- <td>{!! $rightArrow !!}</td> -->
-            <td style="background:#000;color:#fff;">
-            <div style="text-align: center;position: relative;left: 14px;top:11px;">{{ $index }}</div>
+            <td style="background:#000;color:#fff;position: relative; z-index: auto;overflow: visible;">
+            <div style="text-align: center; position: absolute;right: -5px;top: 0;z-index: 999999;font-size: 27px;">{{ $index }}</div>
               @php if($rightArrow!=''){ @endphp
             <img src="{{ asset('images/right-angle.png') }}" style="width:35px;" />  
             @php } @endphp
