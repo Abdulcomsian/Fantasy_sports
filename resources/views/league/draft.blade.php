@@ -1163,23 +1163,33 @@ return (($a->round_order) < ($b->round_order));
         },
         success: function(res) {
           res = JSON.parse(res);
-          if (res.length > 1) {
+          if (res.get_round_order.length > 1) {
             list = '<label>Pick</label><select id="roundorder" class="form-control" style="width:100px;background:black;color:white;padding:9px;height:44px">';
-            for (i = 0; i < res.length; i++) {
-              list += '<option value=' + res[i].round_order + ' selected>' + res[i].round_order + '</option>';
+            for (i = 0; i < res.get_round_order.length; i++) {
+              list += '<option value=' + res.get_round_order[i].round_order + ' selected>' + res.get_round_order[i].round_order + '</option>';
             }
             list += '</select>';
+
             $("#roundappend").html(list);
           }
+          if(res.playerid[0].player_id!=null)
+          {
+           $("#updateKeeperlist").hide();
+          }
+          else{
+             $("#updateKeeperlist").hide();
+          }
+
+          $("#myInput4").val(playername);
+          $("#oldplayerid").val(playerid);
+          $("#editkeeperlistteamid").val(teamid);
+          $("#oldroundunber").val(roundnumber);
+          $("#editkeeperlistround").val(roundnumber);
+          $("#editkeeperlistModal").modal('show');
         }
       })
 
-      //$("#myInput4").val(playername);
-      $("#oldplayerid").val(playerid);
-      $("#editkeeperlistteamid").val(teamid);
-      $("#oldroundunber").val(roundnumber);
-      $("#editkeeperlistround").val(roundnumber);
-      $("#editkeeperlistModal").modal('show');
+     
     }
 
     $(document).ready(function() {
