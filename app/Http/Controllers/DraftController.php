@@ -155,9 +155,9 @@ class DraftController extends Controller
                     $mydata = LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order])->first();
                     $playerposition = Player::where('id', $request->player_id)->first();
                     $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
-
+                    $position_id = '';
                     if (count($roster_row) > 1) {
-                        $position_id = '';
+                       
                         foreach ($roster_row as $row) {
                             $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
                             if ($rosterteamcount == 0) {
@@ -361,7 +361,7 @@ class DraftController extends Controller
                             }
                         }
                     } elseif (count($roster_row) == 1) {
-                        $position_id = '';
+                       
                         $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
                         if ($rosterteamcount == 0) {
                             $position_id = $roster_row[0]->id;
@@ -594,9 +594,10 @@ class DraftController extends Controller
                     $playerposition = Player::where('id', $mydata->player_id)->first();
                     //COUNT ROSTER ROW
                     $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
+                      $position_id = '';
                     if (count($roster_row) > 1) {
                         //new work here
-                        $position_id = '';
+                      
                         foreach ($roster_row as $row) {
                             $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
                             if ($rosterteamcount == 0) {
@@ -736,7 +737,6 @@ class DraftController extends Controller
                         }
                     } elseif (count($roster_row) == 1) {
                         //new work here
-                        $position_id = '';
                         $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' => $mydata->team_id])->count();
                         if ($rosterteamcount == 0) {
                             $position_id = $roster_row[0]->id;
@@ -906,7 +906,6 @@ class DraftController extends Controller
             if ($leagueroundplayercheck) {
                 if ($leagueroundplayercheck->player_id == null) {
                     $leagueroundplayercheck->player_id = $request->playerId;
-                     DB::beginTransaction();
                     if ($leagueroundplayercheck->save()) {
                         //save player in keeper list as well
                         $KeeperList = new KeeperList();
@@ -920,9 +919,10 @@ class DraftController extends Controller
                         $playerposition = Player::where('id', $request->playerId)->first();
                         //COUNT ROSTER ROW
                         $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
+                        $position_id = '';
                         if (count($roster_row) > 1) {
                             //new work here
-                            $position_id = '';
+                         
                             foreach ($roster_row as $row) {
                                 $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
                                 if ($rosterteamcount == 0) {
@@ -1127,7 +1127,6 @@ class DraftController extends Controller
                             }
                         } elseif (count($roster_row) == 1) {
                             //new work here
-                            $position_id = '';
                             $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' => $request->teamid])->count();
                             if ($rosterteamcount == 0) {
                                 $position_id = $roster_row[0]->id;
@@ -1329,6 +1328,7 @@ class DraftController extends Controller
                                 }
                             }
                         }
+
                         if ($position_id) {
                             $RosterTeamplayer = new RosterTeamplayer();
                             $RosterTeamplayer->team_id = $request->teamid;
@@ -1337,13 +1337,12 @@ class DraftController extends Controller
                             $RosterTeamplayer->league_id = $leagueId;
                             $RosterTeamplayer->round_number = $request->roundId;
                             $RosterTeamplayer->save();
-                            DB::commit();
                             return response()->json(['status' => 'success', 'message' => '']);
                         }
-                        else
-                        {
-                             DB::rollback();
-                             return response()->json(['status' => 'error', 'message' => 'No space available on roster']);
+                        else{
+                               $leagueroundplayercheck->player_id=Null;
+                                $leagueroundplayercheck->save();
+                               return response()->json(['status' => 'error', 'message' => 'No space available on roster']);
                         }
                         //end of roster view work 
                         // return response()->json(['status' => 'success', 'message' => '']);
@@ -1386,12 +1385,23 @@ class DraftController extends Controller
                     $record->round_number = $request->roundId;
                     $record->save();
                     //work for roster view here
-                    $this->update_roster_from_keeper($request->playerId, $request->oldplayerid, $request->roundId, $request->oldroundunber, $leagueId, $request->teamid);
-                    return response()->json(['status' => 'success', 'message' => '']);
+                    $returndata=$this->update_roster_from_keeper($request->playerId, $request->oldplayerid, $request->roundId, $request->oldroundunber, $leagueId, $request->teamid, $leagueroundplayercheck);
+                    if($returndata=='false')
+                    {
+                         $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->where('round_order', $request->roundorder)->update([
+                             'player_id' => $request->playerId
+                          ]);
+                         return response()->json(['status' => 'error', 'message' => 'No space available on roster']);
+                    }
+                    else{
+                         return response()->json(['status' => 'success', 'message' => '']);
+                    }
+                   
                 } else {
                     return response()->json(['status' => 'error', 'message' => 'something went wrong']);
                 }
             } else {
+
                 if ($request->roundId == $request->oldroundunber) {
                     $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->update([
                         'player_id' => $request->playerId
@@ -1411,9 +1421,17 @@ class DraftController extends Controller
                     $record->round_number = $request->roundId;
                     $record->save();
                     //work for roster view here
-                    $this->update_roster_from_keeper($request->playerId, $request->oldplayerid, $request->roundId, $request->oldroundunber, $leagueId, $request->teamid);
-                    //end for roster veiw here
-                    return response()->json(['status' => 'success', 'message' => '']);
+                    $returndata=$this->update_roster_from_keeper($request->playerId, $request->oldplayerid, $request->roundId, $request->oldroundunber, $leagueId, $request->teamid, $leagueroundplayercheck);
+                    if($returndata=='false')
+                    {
+                         $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->update([
+                             'player_id' => NULL
+                         ]);
+                         return response()->json(['status' => 'error', 'message' => 'No space available on roster']);
+                    }
+                    else{
+                         return response()->json(['status' => 'success', 'message' => '']);
+                    }
                 } else {
                     return response()->json(['status' => 'error', 'message' => 'something went wrong']);
                 }
@@ -1567,7 +1585,8 @@ class DraftController extends Controller
     public function get_round_order(Request $request, $leagueId)
     {
         $get_round_order = LeagueRound::select('round_order')->where('league_id', $leagueId)->where('team_id', $request->teamid)->where('round_number', $request->roundnumber)->get();
-        echo json_encode($get_round_order);
+        $playerid=LeagueRound::select('player_id')->where('league_id', $leagueId)->where('team_id', $request->teamid)->where('round_number', $request->roundnumber)->get();
+        echo json_encode(['playerid'=>$playerid,'get_round_order'=>$get_round_order]);
     }
 
     //roster view
@@ -1609,7 +1628,7 @@ class DraftController extends Controller
     }
 
     //update roster veiw from keeper list
-    public function update_roster_from_keeper($playerId, $oldplayerid, $round_number, $old_round_number, $leagueId, $teamid)
+    public function update_roster_from_keeper($playerId, $oldplayerid, $round_number, $old_round_number, $leagueId, $teamid, $leagueroundplayercheck)
     {
         if ($round_number == $old_round_number) {
             $rostertemplayerdata = RosterTeamplayer::where(['league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid, 'round_number' => $old_round_number])->first();
@@ -1619,13 +1638,17 @@ class DraftController extends Controller
                 $rostertemplayerdata->save();
                 return response()->json(['status' => 'success', 'message' => '']);
             }
+            else{
+                return 'false';
+            }
         } else {
             $playerposition = Player::where('id', $playerId)->first();
             $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
             RosterTeamplayer::where(['league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid])->delete();
+             $position_id = '';
             if (count($roster_row) > 1) {
                 //new work here
-                $position_id = '';
+               
                 foreach ($roster_row as $row) {
                     $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $row->id, 'league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $playerId])->count();
                     if ($rosterteamcount == 0) {
@@ -1829,7 +1852,6 @@ class DraftController extends Controller
                 }
             } elseif (count($roster_row) == 1) {
                 //new work here
-                $position_id = '';
                 $rosterteamcount = RosterTeamplayer::where(['rosters_id' => $roster_row[0]->id, 'league_id' => $leagueId, 'team_id' =>  $teamid, 'player_id' => $oldplayerid])->count();
                 if ($rosterteamcount == 0) {
                     $position_id = $roster_row[0]->id;
@@ -2040,6 +2062,9 @@ class DraftController extends Controller
                 if ($RosterTeamplayer->save()) {
                     return response()->json(['status' => 'success', 'message' => '']);
                 }
+            }
+            else{
+                  return 'false';
             }
         }
         //end for roster veiw here
