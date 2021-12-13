@@ -4129,7 +4129,6 @@ input[type="submit"] {
     align-items: center;
 }
 .rosterSetting {
-    background: #1c212d;
     padding: 20px;
     width: 100%;
     max-width: 535px;
@@ -4202,4 +4201,61 @@ input[type="submit"] {
 } */
 .black{
     background: black !important;
+}
+.loginView{
+    background-image: url("../images/loginBg.png") !important;
+    height: 100vh !important;
+}
+.loginView .create_league{
+    height: 100vh;
+    align-items: center;
+    display: grid;
+}
+.loginView .create_league .heading{
+    text-align: left;
+}
+.loginView .create_league .heading h1{
+    line-height: 120px;
+    font: 900 85px "Lato", sans-serif;
+}
+.loginView .create_league form .form-group input{
+    height: 40px;
+}
+.loginView .create_league form.loginForm{
+    width: 100%;
+max-width: 70%;
+margin: auto;
+padding: 80px 0px;
+}
+.loginView .create_league .container-fluid{
+    max-width: 100%;
+}
+.fantasySeason{
+    font-size: 25px;
+    font-weight: 700;
+    color: #fff;
+    font-family: "Lato", sans-serif;
+    position: relative;
+    width: 80%;
+}
+.fantasySeason span{
+    color: red;
+}
+.fantasySeason::before{
+    content: "";
+    width: 150px;
+    height: 3px;
+    background-color: red;
+    position: absolute;
+    right: 40px;
+    bottom: 0;
+}
+.fantasySeason::after{
+    content: "";
+    width: 150px;
+    height: 3px;
+    background-color: red;
+    position: absolute;
+    right: 40px;
+    bottom: -10px;
 }

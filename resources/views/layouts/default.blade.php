@@ -12,7 +12,7 @@ $style="display:show";
 }
 @endphp
 
-<body class="season_fall">
+<body class="season_fall loginView">
   <div class="overlay"></div>
   <button class="openBtn"><i class="fa fa-bars" aria-hidden="true"></i></button>
   <section id="side-nav">

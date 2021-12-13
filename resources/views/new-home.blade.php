@@ -350,7 +350,7 @@
         e.preventDefault();
         url = $(this).attr('href');
         swal({
-            title: 'Are you sure to Delete League?',
+            title: 'Delete League?',
             buttons: true,
         }).then((result) => {
             if (result) {
