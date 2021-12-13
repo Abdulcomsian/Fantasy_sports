@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Input;
 Route::get('/', function () {
 	return view('welcome');
 });
+Route::get('leagueView', function () {
+	return view('league/league-view');
+});
 
 Route::get('league/join', 'LeagueController@joinLeague');
 Route::get('league/team', 'LeagueController@getteam');

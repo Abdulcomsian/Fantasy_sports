@@ -54,6 +54,30 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
     .incrementNumber input{
            pointer-events: none;
        }
+	   .create_league_table .container{
+
+		max-width: 100%;
+	   }
+	   .setting .list_edit h4{
+		   text-align: left;
+	   }
+	   .setting .list_edit button {
+			text-transform: capitalize;
+		}
+		select{
+			height: 100%;
+		}
+		.squads_board .table_outer thead{
+			background-color: #000;
+		}
+		.squads_board .table_outer thead th{
+			color: #fff !important;
+			font-family: "Neometric regular"
+		}
+		.squads_board .table_outer tbody tr td{
+			font-size: 17px;
+		}
+		
 </style>
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
 	<div class="container">
@@ -64,13 +88,231 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</button>
 		</div>
 		<div class="successMessage"></div>
+		<div class="container-fluid create_league_table assign_order the_lottery traders city_charts"
+            style="padding-top:35px;">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-1 text-left"
+                    style="font-weight:bold;    font-family: olympus !important;color:#fff;    position: relative;left: -40px;top: -5px;">
+                    THE<br>OFFSEASON<br>GM</div>
+                <div class="col-md-6">
+                    <nav class="navbar navbar-expand-lg " style="background-color:#000;">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup"
+                            style="top: -15px;position: relative;">
+                            <ul class="navbar-nav">
+                                <li class="nav-item" style="text-align: center;">
+                                    <img src="{{ asset('images/draft.png') }}"
+                                        style="width:27px; position: relative; top: -5px;" />
+                                    <a class="nav-link active olympusfont" style="color:#fff;"
+                                        href="{{url('/league/'.$league->id.'/draft')}}">Draft Board</a>
+                                </li>
+                                <li class="nav-item" style="text-align: center;">
+                                    <img src="{{ asset('images/keeper.png') }}"
+                                        style="width:51px; position: relative; top: -5px;" />
+                                    <a class="nav-link" style="color:#fff"
+                                        href="{{url('/league/'.$league->id.'/draft?type=keeperlist')}}">Keeper List</a>
+                                </li>
+                                <li class="nav-item dropdown" style="text-align: center;">
+                                    <img src="{{ asset('images/views.png') }}"
+                                        style="width:42px; position: relative; top: -5px;" />
+                                    <a class="nav-link dropdown-toggle" style="color:#fff" href="#"
+                                        id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Views
+                                    </a>
+                                    <div class="dropdown-menu" style="background-color:#000 !important;"
+                                        aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" style="color:#fff"
+                                            href="{{url('/league/'.$league->id.'/roster-view')}}"><img
+                                                src="{{ asset('images/right-angle.png') }}"
+                                                style="width:30px; position: relative; top: -7px;" /> Rosters</a>
+                                        <a class="dropdown-item" style="color:#fff"
+                                            href="{{url('/league/'.$league->id.'/draft?type=pickview')}}"><img
+                                                src="{{ asset('images/right-angle.png') }}"
+                                                style="width:30px; position: relative; top: -7px;" /> Picks</a>
+                                        <a class="dropdown-item" style="color:#fff"
+                                            href="{{url('/league/'.$league->id.'/draft?type=collapseview')}}"><img
+                                                src="{{ asset('images/right-angle.png') }}"
+                                                style="width:30px; position: relative; top: -7px;" /> Collapse</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item" style="text-align: center;">
+                                    <img src="{{ asset('images/league.png') }}"
+                                        style="width:28px; position: relative; top: -5px;" />
+                                    <a class="nav-link" style="color:#fff" href="#">League Notes </a>
+                                </li>
+                                <li class="nav-item" style="text-align: center;">
+                                    <img src="{{ asset('images/gm.png') }}"
+                                        style="width:40px; position: relative; top: -5px;" />
+                                    <a class="nav-link" style="color:#fff" href="#">GM Dashboard</a>
+                                </li>
+                                <li class="nav-item" style="text-align: center;">
+                                    <img src="{{ asset('images/chat.png') }}"
+                                        style="width:24px; position: relative; top: -5px;" />
+                                    <a class="nav-link" style="color:#fff" href="#">Chat</a>
+                                </li>
+                                <li class="nav-item" style="text-align: center;">
+                                    <img src="{{ asset('images/draft-room.png') }}"
+                                        style="width:50px; position: relative; top: -5px;" />
+                                    <a class="nav-link"
+                                        style="font-size:16px; text-transform: capitalize !important;color:red;font-family:dead !important;"
+                                        href="{{url('/home/') }}">Draft Room</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-md-2">
+                    <form id="updateLeague" class="draftFrom">
+                        <div class="list_edit" style="width:100% !important;">
+                            <div class="row">
+                                <!-- <div class="col-md-4">
+                </div> -->
+                                <!-- <div class="col-md-12"> -->
+                                <div class="custom-control custom-switch d-flex">
+                                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid white;"
+                                        class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif"
+                                        data-mode="keeper">Edit Mode</button>
+                                    <button style="font-size:15px;    border: 1px solid white;"
+                                        class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn"
+                                        data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
+                                </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="list_edit d-none">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4 no-bdr">
+                                    <h4><span><i class="fa fa-star yellow"></i>Edit Mode</span></h4>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input lequeMode2" id="keeperMode"
+                                            {{ $league->status == 'keeper' ? 'checked' : '' }} value="keeper">
+                                        <label class="custom-control-label on-off" for="keeperMode"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list_edit d-none">
+                            <div class="row">
+                                <div class="col-md-4 no-bdr">
+                                    <h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input lequeMode2" id="draftMode"
+                                            {{ $league->status == 'started' ? 'checked' : '' }} value="started">
+                                        <label class="custom-control-label on-off" for="draftMode"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- <div class="col-md-3">
+          <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
+        </div> -->
+
+                @if(auth::user()->role=="Admin")
+                <div class="col-lg-2 text-right">
+                    <div class="d-flex" style="justify-content:flex-end;">
+                        <p style="margin: 0px 30px;" type="button" id="zoom-out"><img style="width:40px;"
+                                src="{{ asset('images/minus.png') }}" /></p>
+                        <p style="" type="button" id="zoom-in"><img style="width:40px;"
+                                src="{{ asset('images/plus.png') }}" /></p>
+
+
+                        @if(auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
+
+                        <p style="width:70%;"><a style="color:#fff"
+                                href="{{ url('/league/'.request()->route('id').'/settings') }}"><img style="width:40px;"
+                                    src="{{ asset('images/setting.png') }}" /></a></p>
+
+                        @else
+                        @php
+                        $dta=\DB::table('league_user')->where(['league_id'=>$league->id,'user_id'=>\Auth::user()->id])->first();
+                        @endphp
+                        @if($dta->permission_type==1 || $dta->permission_type==2)
+
+                        <h2 style="width:70%;"><a style="color:#fff"
+                                href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+
+                        @endif
+                        @endif
+
+
+                    </div>
+                </div>
+                @endif
+
+                <!-- @if(auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
+        <div class="col-md-1">
+          <p style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}"><img style="width:40px;" src="{{ asset('images/setting.png') }}" /></a></p>
+        </div>
+        @else
+            @php
+            $dta=\DB::table('league_user')->where(['league_id'=>$league->id,'user_id'=>\Auth::user()->id])->first();
+            @endphp
+            @if($dta->permission_type==1 || $dta->permission_type==2)
+            <div class="col-md-3">
+              <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
+            </div>
+            @endif
+        @endif
+      comment to create extra space forheader
+      -->
+
+
+                <!-- <div class="col-md-1">
+      <h2 style="width:100%" type="button" id="zoom-in">+</h2>
+      </div>
+      <div class="col-md-1">
+      <h2 style="width:100%" type="button" id="zoom-out">-</h2>
+      </div> -->
+
+
+
+            </div>
+            <input type="hidden" name="league_id" value="{{ $league->id }}">
+            <!-- <div class="top_draft">
+    <div class="container">
+      <ul class="list-unstyled list-inline">
+        <li class="list-inline-item">
+          <a href="{{ url('/league/'.$league->id.'/draft') }}" class="draftStatus" data-type="{{ $league->status }}">
+            <button class="style-btn">
+              <img src="{{ asset('images/min_tab.jpg') }}" title="Switch to {{ $league->status == 'keeper' ? 'Draft Board' : 'Keeper Mode' }}">
+            </button>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="{{ url('/league/'.$league->id.'/settings') }}">
+            <button class="style-btn">
+              <img src="{{ asset('images/user.png') }}">
+            </button>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div> -->
+
+
+
+        </div>
 		<form id="updateLeague">
 			<div class="row">
 				<div class="col-md-6"></div>
 
-				<div class="col-md-3">
+				<!-- <div class="col-md-3">
 					<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft Board</a></h2>
-				</div>
+				</div> -->
 				<!-- <div class="col-md-2">
 					<p onclick="myFunction()" class="dropbtn">Select <i class="fa fa-angle-down" aria-hidden="true"></i></p>
 					<div id="myDropdown" class="dropdown-content">
@@ -79,9 +321,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					</div>
 					<h2  style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/squads') }}">Squad<a/></h2>
 				</div> -->
-				<div class="col-md-3">
+				<!-- <div class="col-md-3">
 					<h2 style="width:100%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
-				</div>
+				</div> -->
+				<div class="row">
 				<div class="col-md-5">
 					<div class="side_detail">
 						<h4>Settings</h4>
@@ -91,7 +334,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<div class="list_edit">
 						<div class="row">
 							<div class="col-md-6 no-bdr">
-								<h4><span><i class="fa fa-star yellow"></i>League Name</span> </h4>
+								<h4><span>League Name</span> </h4>
 							</div>
 							<div class="col-md-6 f-wdth">
 								<input type="text" name="name" value="{{ $league->name ?? '' }}" {{ $permissions == 3 ? "readonly" : "" }}>
@@ -117,6 +360,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					</li>
 					</ul>
 				</div>
+				</div>
 			</div>
 	</div>
 	<div class="list_edit">
@@ -138,7 +382,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
     <div class="list_edit">
         <div class="row">
             <div class="col-md-6 no-bdr">
-                <h4><span><i class="fa fa-star yellow"></i>Draft Round</span></h4>
+                <h4><span>Draft Round</span></h4>
             </div>
             <div class="col-md-6">
                 <div class="form-group f-wdth">
@@ -151,7 +395,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	<!-- <div class="list_edit">
 		<div class="row">
 			<div class="col-md-6 no-bdr">
-				<h4><span><i class="fa fa-star yellow"></i>Draft Round</span></h4>
+				<h4><span>Draft Round</span></h4>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group f-wdth">
@@ -164,10 +408,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 			</div>
 		</div>
 	</div> -->
-	<div class="list_edit">
+	<!-- <div class="list_edit">
 		<div class="row">
 			<div class="col-md-6 no-bdr">
-				<h4><span><i class="fa fa-star yellow"></i>Edit Mode</span></h4>
+				<h4><span>Edit Mode</span></h4>
 			</div>
 			<div class="col-md-6">
 				<div class="custom-control custom-switch">
@@ -180,7 +424,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-6 no-bdr">
-				<h4><span><i class="fa fa-star yellow"></i>Draft Mode</span></h4>
+				<h4><span>Draft Mode</span></h4>
 			</div>
 			<div class="col-md-6">
 				<div class="custom-control custom-switch">
@@ -189,11 +433,11 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-6">
-				<h4><span style="padding-top:10px;"><i class="fa fa-star yellow"></i>Draft Type</span></h4>
+				<h4><span style="padding-top:10px;">Draft Type</span></h4>
 			</div>
 			<div class="col-md-6">
 				<button type="button" style="" class="addCommish">{{$league->draft_type}}</button>
@@ -201,13 +445,13 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		</div>
 	</div>
 	{{--@if($permissions != 3)--}}
-	<div class="list_edit">
+	<!-- <div class="list_edit">
 		<div class="row">
 			<div class="col-md-12 no-bdr">
-				<button type="button" style="background:transparent;" class="create_new">Set Commissioners</button>
+				<button type="button" style="background:transparent;" class="create_new"> Set Commissioners</button>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="list_edit">
 		<div class="row">
 			<div class="col-md-4">
@@ -352,8 +596,8 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	</form>
     <br>
 	<div class="rosterSetting">
-		<h5 class="text-center">Roster Setting</h5>
-		<br>
+		<!-- <h5 class="text-center">Roster Setting</h5>
+		<br> -->
 		<center>
 			<P>Roster Spots & Draft Rounds:<span class="draftRound">{{$league->draft_round ?? ''}}</span></P>
 		</center>
