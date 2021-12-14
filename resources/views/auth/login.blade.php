@@ -1,6 +1,12 @@
 @extends('layouts.default')
 @section('title', 'Login')
 @section('content')
+<style>
+    .loginView{
+    background-image: url("../images/loginBg.png") !important;
+    height: 100vh !important;
+}
+</style>
 <div class="create_league">
     <div class="container-fluid">
         <div class="row">

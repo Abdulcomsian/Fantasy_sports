@@ -31,6 +31,7 @@ font-weight: 700;
             <h3>LEAGUE PREVIEW</h3>
             <p>Welcome to the OFFSEASON GM!</p>
             <p class="redText">A PLACE WHERE THE FANTASY SEASON NEVER ENDS!</p>
+            <p></p>
         </div>
 		
 </div>

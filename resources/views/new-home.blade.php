@@ -116,8 +116,7 @@
         margin-bottom: 30px;
     }
 
-    .contentDiv .sideBar ul li.active {
-        background-image: linear-gradient(to right, #000, #353535);
+    .contentDiv .sideBar ul li:hover {
         font: 700 22px "Neometric";
         color: #fff;
         border: 1px solid #fff;

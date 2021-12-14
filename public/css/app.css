@@ -4202,10 +4202,7 @@ input[type="submit"] {
 .black{
     background: black !important;
 }
-.loginView{
-    background-image: url("../images/loginBg.png") !important;
-    height: 100vh !important;
-}
+
 .loginView .create_league{
     height: 100vh;
     align-items: center;

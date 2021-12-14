@@ -429,7 +429,7 @@ return (($a->round_order) < ($b->round_order));
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="onTheClock">
+                                        <div class="onTheClock" style="padding: 10px 52px 30px 99px !important;">
                                             <div>
                                                 <p>On The Clock</p>
                                                 @php
@@ -479,7 +479,7 @@ return (($a->round_order) < ($b->round_order));
 
                 </div>
               </div> -->
-                                <div class="col-lg-4">
+                                <div class="col-lg-4" style="padding: 10px 0px 60px 80px;">
                                     <div class="dropDownDiv">
                                         <div class="edit_revert">
                                             <ul class="list-unstyled list-inline">
@@ -835,8 +835,10 @@ return (($a->round_order) < ($b->round_order));
                                 </select>
                         </td>
                         @endforeach
-                        <td style="background:#000;">
-                            <!-- {{ $index }}  -->
+                        <td style="background:#000;position: relative; z-index: auto;overflow: visible;">
+                        <div
+                                style="text-align: center; position: absolute;left: -5px;top: 0;z-index: 999999;font-size: 27px;color:#fff;">
+                                {{ $index }}</div>  
                             @php if($leftArrow!=''){ @endphp
                             <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px;" />
                             @php } @endphp
