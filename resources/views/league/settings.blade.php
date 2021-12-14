@@ -6,6 +6,9 @@
 $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]->pivot) && isset($league->permissions[0]->pivot->permission_type)) ? $league->permissions[0]->pivot->permission_type : 0;
 @endphp
 <style>
+	.navbar{
+		background-color: transparent !important;
+	}
 	.colorPickSelector {
 		border-radius: 5px;
 		width: 36px;
