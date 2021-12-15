@@ -20,6 +20,12 @@ Route::get('/', function () {
 Route::get('leagueView', function () {
 	return view('league/league-view');
 });
+Route::get('leagueFeatures', function () {
+	return view('league/league-features');
+});
+Route::get('leagueComming', function () {
+	return view('league/league-comming');
+});
 
 Route::get('league/join', 'LeagueController@joinLeague');
 Route::get('league/team', 'LeagueController@getteam');
