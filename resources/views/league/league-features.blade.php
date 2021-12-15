@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.new-default')
 @section('title', 'Settings')
 @section('content')
 <style>
@@ -45,11 +45,17 @@
         position: absolute;
         width: 100%;
         max-width: 70%;
+        box-shadow: -2px -2px 19px -1px rgba(240,220,220,0.7);
+-webkit-box-shadow: -2px -2px 19px -1px rgba(240,220,220,0.7);
+-moz-box-shadow: -2px -2px 19px -1px rgba(240,220,220,0.7);
     }
     .imgDiv img:nth-child(2){
         z-index:999999;
         position: relative;
         top: 150px;
+        box-shadow: -2px -2px 19px -1px rgba(240,220,220,0.7);
+-webkit-box-shadow: -2px -2px 19px -1px rgba(240,220,220,0.7);
+-moz-box-shadow: -2px -2px 19px -1px rgba(240,220,220,0.7);
     }
     .loginView{
     background-image: url("../images/loginBg.png") !important;

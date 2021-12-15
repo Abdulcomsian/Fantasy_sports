@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.new-default')
 @section('title', 'Settings')
 @section('content')
 <style>
@@ -42,6 +42,11 @@
     }
     .imgDiv{
         position: relative;
+    }
+    .imgDiv img{
+        box-shadow: -2px -2px 19px -1px rgba(240,220,220,0.7);
+-webkit-box-shadow: -2px -2px 19px -1px rgba(240,220,220,0.7);
+-moz-box-shadow: -2px -2px 19px -1px rgba(240,220,220,0.7);
     }
     .loginView{
         background-image: url("../images/loginBg.png") !important;
