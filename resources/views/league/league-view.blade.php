@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.new-default')
 @section('title', 'Settings')
 @section('content')
 <style>
@@ -18,6 +18,10 @@ font-weight: 700;
         color: red !important;
         font-weight: 700;
     }
+    .loginView{
+    background-image: url("../images/loginBg.png") !important;
+    height: 100vh !important;
+}
 </style>
 
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
