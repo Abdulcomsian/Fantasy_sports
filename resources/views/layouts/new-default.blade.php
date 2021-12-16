@@ -21,7 +21,7 @@
     .header .headerRight {
       text-align: end;
       display: flex;
-      justify-content: flex-end;
+      /* justify-content: flex-end; */
       align-items: center;
       height: 100%;
     }
@@ -59,7 +59,7 @@ $style="display:show";
             <!-- <span><a href="/leagueComming">CREATE LEAGUE DRAFT BOARD</a></span>
             <span><a href="/leagueView">LEAGUE PREVIEW</a></span> -->
             @if(!Auth::check())
-            <div class="col-md-3 offset-md-1" style="margin-top: -30px;">
+            <div class="col-md-3 offset-md-1" style="margin-top: 0px;">
               <div class="btn_top">
                 <a href="{{ url('login') }}">Sign in</a>
               </div>

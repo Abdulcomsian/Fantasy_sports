@@ -200,7 +200,7 @@ a:hover {
     font: 700 17px "Lato", sans-serif;
     transition: 0.5s ease-in-out;
     position: relative;
-    top: 12px;
+    /* top: 12px; */
     padding: 14px 35px;
 }
 .ful-width-clm {
