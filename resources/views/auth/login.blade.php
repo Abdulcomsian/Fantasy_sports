@@ -47,9 +47,9 @@
             </div>
             <div class="row">
                 <div class="col-md-6 offset-md-3 forget-pasw">
-                    <a href="/forgot-password" style="color:#000;margin-right:20px;">Forgot Password?</a>
+                    <a href="/forgot-password" style="color:#fff;margin-right:20px;">Forgot Password?</a>
                     @php if(!isset($key)){$key='';} @endphp
-                    <a href="{{url('register?key='.$key.'')}}" style="color:#000;">Sign Up</a>
+                    <a href="{{url('register?key='.$key.'')}}" style="color:#fff;">Sign Up</a>
                 </div>
             </div>
             <!-- <div class="row">
