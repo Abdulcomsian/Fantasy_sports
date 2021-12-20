@@ -1,9 +1,11 @@
 var remianingTimer = '';
 var timerInterval = '';
-
+if(typeof laterDateTime !== 'undefined')
+{
 if (laterDateTime != '') {
 	laterDateTime = moment(laterDateTime).format('DD/MM/YYYY HH:mm:ss');
 	countDownTimer();
+}
 }
 
 $(function () {
