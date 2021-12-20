@@ -45,7 +45,13 @@ class DraftController extends Controller
                 $subround++;
             }
             $leaguerecord = leagueRound::where(['league_id' => $id])->where('player_id', '!=', Null)->orderBy('id', 'DESC')->first();
-            //dd($leaguerecord);
+            $postioncolor=Roster::where('league_id',$id)->groupBy('position')->get();
+            $colors=[];
+            foreach($postioncolor as $color)
+            {
+              $colors[$color->position]=$color->color;
+            }
+           
             return view('league.draft', [
                 'league' => $league,
                 'players' => Player::whereNotIn('id', $playerIds)->get(),
@@ -53,6 +59,7 @@ class DraftController extends Controller
                 'league_rounds' => $roundsArr,
                 'leaugeid' => $id,
                 'leaguerecord' => $leaguerecord,
+                'colors'=>$colors
             ]);
         }
         abort(404);
