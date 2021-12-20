@@ -934,9 +934,13 @@ return (($a->round_order) < ($b->round_order));
                         $class='circle';
                         }
                         }
+                        $style="";
+                       if (isset($round->player->position) && array_key_exists($round->player->position, $colors)) {
+                            $style=$colors[$round->player->position];
+                        }
 
                         @endphp
-                        <div style="height:105px;" class="{{$class}}">
+                        <div style="height:105px; background: {{$style}};" class="{{$class}}" >
                             @php
                             if((int)$round->team_id != (int)$round->old_team_id)
                             {
@@ -965,7 +969,7 @@ return (($a->round_order) < ($b->round_order));
                             <span style="font-size:13px;float: left;padding: 5px;">{{$round->player->position }}</span>
                             <span style="float: right;padding: 5px;font-size:13px;">{{ $round->player->team}}</span><br>
                             <div class="team_info">
-                                @if( $league->status == 'keeper')
+                                @if( $league->status == 'keeper' || $league->status=='started')
                                 <p data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}"
                                     data-round_id="{{$round->round_number}}" data-player_id="{{ $round->player->id }}"
                                     id="removePlayer">
