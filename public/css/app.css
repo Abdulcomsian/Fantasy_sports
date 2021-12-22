@@ -177,8 +177,7 @@ a:hover {
 /* line 27, ../sass/app.scss */
 .season_fall {
     position: relative;
-    background: url(../images/bg.jpg) no-repeat;
-    height: 100% !important;
+    height: 100vh !important;
     padding: 20px 0px 40px;
     background-size: cover;
     background-position: center;
@@ -197,7 +196,7 @@ a:hover {
     letter-spacing: 1px;
     text-align: center;
     border: 2px solid #fff;
-    font: 700 17px "Lato", sans-serif;
+    font: 700 14px "Lato", sans-serif;
     transition: 0.5s ease-in-out;
     position: relative;
     /* top: 12px; */
@@ -523,11 +522,16 @@ a:hover {
 }
 /* line 301, ../sass/app.scss */
 .create_league_table .save button {
-    background-image: linear-gradient(to right, #000, #353535);
-    font: 700 20px "Neometric";
+    background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 255, 255, 1));
+    font: 700 18px "Neometric";
     color: #fff;
     border: 1px solid #fff;
-    padding: 13px 33px;
+    padding: 18px 33px;
+    border-radius: 5px;
+}
+.create_league_table .save button:hover{
+    background-color: #218838;
+border-color: #1e7e34;
 }
 .rg-pd button {
     padding: 20px 60px !important;
@@ -3678,7 +3682,7 @@ select.lg-size {
     position: fixed;
     left: 30px;
     top: 30px;
-    border: 2px solid #fff;
+    border: none;
     background: transparent;
     color: #fff;
     padding: 7px 20px;
@@ -3859,7 +3863,7 @@ select.lg-size {
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0.5;
+    opacity: 0.8;
     z-index: -1;
 }
 .openBtn {
@@ -4207,6 +4211,11 @@ input[type="submit"] {
     height: 100vh;
     align-items: center;
     display: grid;
+    background-image: url("../images/loginBg.png") !important;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 99999;
 }
 .loginView .create_league .heading{
     text-align: left;
@@ -4238,23 +4247,8 @@ padding: 80px 0px;
 .fantasySeason span{
     color: red;
 }
-.fantasySeason::before{
-    content: "";
-    width: 150px;
-    height: 3px;
-    background-color: red;
-    position: absolute;
-    right: 40px;
-    bottom: 0;
-}
-.fantasySeason::after{
-    content: "";
-    width: 150px;
-    height: 3px;
-    background-color: red;
-    position: absolute;
-    right: 40px;
-    bottom: -10px;
+.header .headerRight{
+    height: 100px !important;
 }
 
 

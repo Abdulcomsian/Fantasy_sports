@@ -5,7 +5,9 @@
     .dropDownDiv .select_draft .form-group {
         height: 40px;
     }
-
+    .city_board_table,table{
+        height: 100%;
+    }
     .dropdown a:hover {
         background: #000 !important;
         ;
@@ -70,9 +72,27 @@
         background: red;
     }
 
+    .modal{
+        z-index: 999999999;
+    }
+    .modal-content{
+        background-color: #000 !important;
+        border-color: #fff !important;
+    }
+    .modal-content input{
+        background-color: #fff !important;
+    }
+    .modal-content label{
+        color: #fff;
+    }
+    #myInputautocomplete-list{
+        height: 300px;
+        overflow: scroll;
+    }
 </style>
 @endsection
 @section('content')
+<div style="height: 100%;">
 @php
 function compare1($a, $b)
 {
@@ -804,10 +824,10 @@ return (($a->round_order) < ($b->round_order));
                         <!-- <td>{!! $rightArrow !!}</td> -->
                         <td style="background:#000;color:#fff;position: relative; z-index: auto;overflow: visible;">
                             <div
-                                style="text-align: center; position: absolute;right: -5px;top: 0;z-index: 999999;font-size: 27px;">
+                                style="text-align: center; position: absolute;right: -5px;top: 0;z-index: 999999;font-size: 27px;text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
                                 {{ $index }}</div>
                             @php if($rightArrow!=''){ @endphp
-                            <img src="{{ asset('images/right-angle.png') }}" style="width:35px;" />
+                            <img src="{{ asset('images/right-angle.png') }}" style="width:35px; position: relative;left: 16px;top: 6px;" />
                             @php } @endphp
                             <!-- {!! $rightArrow !!}  -->
 
@@ -837,10 +857,12 @@ return (($a->round_order) < ($b->round_order));
                         @endforeach
                         <td style="background:#000;position: relative; z-index: auto;overflow: visible;">
                         <div
-                                style="text-align: center; position: absolute;left: -5px;top: 0;z-index: 999999;font-size: 27px;color:#fff;">
+                                style="text-align: center; position: absolute;left: -5px;top: 0;z-index: 999999;font-size: 27px;color:#fff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
                                 {{ $index }}</div>  
                             @php if($leftArrow!=''){ @endphp
-                            <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px;" />
+                            <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px; position: relative;
+right: 16px;
+top: 6px;" />
                             @php } @endphp
                             <!-- {!! $leftArrow !!} -->
                         </td>
@@ -916,7 +938,7 @@ return (($a->round_order) < ($b->round_order));
                 <tr>
                     <td style="vertical-align: middle; background-color:#000">
                         @php if($rightArrow!=''){ @endphp
-                        <img src="{{ asset('images/right-angle.png') }}" style="width:35px;" />
+                        <img src="{{ asset('images/right-angle.png') }}" style="width:35px; position: relative;left: 16px;top: 6px;" />
                         @php } @endphp
                         <!-- {!! $rightArrow !!} -->
                     </td>
@@ -1000,7 +1022,9 @@ return (($a->round_order) < ($b->round_order));
                     <!-- <td>{{ $index }}</td> -->
                     <td style="vertical-align:middle;background-color: #000;">
                         @php if($leftArrow!=''){ @endphp
-                        <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px;" />
+                        <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px; position: relative;
+left: 16px;
+top: 6px;" />
                         @php } @endphp
                         <!-- {!! $leftArrow !!} -->
                     </td>
@@ -1090,6 +1114,7 @@ return (($a->round_order) < ($b->round_order));
                         <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}"  data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
                       @endforeach
                     </select> -->
+                    
                                                 <input id="myInput2" type="text" name="myCountry" autocomplete="off"
                                                     style="color:#fff;" placeholder="Enter Player Name">
                                             </div>
@@ -1123,7 +1148,7 @@ return (($a->round_order) < ($b->round_order));
                                 <div class="select_draft draft_round">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <label> </label>
+                                        <label for="" style="padding: 10px;"></label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span style="background:black;color:white;padding:12px;"
@@ -1231,6 +1256,7 @@ return (($a->round_order) < ($b->round_order));
 <input type="hidden" name="img_val" id="img_val" value="" />
 </form> -->
     @endsection
+    </div>
     @section('js')
     <script type="text/javascript">
         var durationTime = '{{ ($league->remaining_timer) ? $league->remaining_timer : $league->timer_value }}';

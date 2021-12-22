@@ -11,6 +11,8 @@
     .header {
       background-color: #000;
       padding: 10px;
+      border-top: 2px solid;
+      border-bottom: 2px solid;
     }
 
     .header h3 {
@@ -21,7 +23,7 @@
     .header .headerRight {
       text-align: end;
       display: flex;
-      /* justify-content: flex-end; */
+      justify-content: flex-end;
       align-items: center;
       height: 100%;
     }
@@ -65,12 +67,19 @@ $style="display:show";
               </div>
             </div>
             @endif
-
+            @if(!Auth::check())
             <div class="col-md-6 {{ (Auth::check()) ? 'offset-md-1' : '' }}" style="margin-top: -7px;">
               <div class="btn_top">
-                <a style="padding:16px 43px; height:auto;font-size:17px;" class="big_btn" href="{{ url('league/create')}}">Create league draftboard</a>
+                <a style="padding:14px 25px; height:auto;font-size:14px;" class="big_btn" href="{{url('register')}}">Create league draftboard</a>
               </div>
             </div>
+            @else
+            <div class="col-md-6 {{ (Auth::check()) ? 'offset-md-1' : '' }}" style="margin-top: -7px;">
+              <div class="btn_top">
+                <a style="padding:14px 25px; height:auto;font-size:14px;" class="big_btn" href="{{url('league/create')}}">Create league draftboard</a>
+              </div>
+            </div>
+            @endif
             @if(Auth::check())
             <div class="col-md-2">
               <div class="btn_top">

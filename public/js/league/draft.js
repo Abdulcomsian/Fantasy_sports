@@ -24,7 +24,7 @@ $(document).ready(function () {
 });
 $(".modal").css(
     "top",
-    $(window).outerHeight() / 2 - $(".modal-dialog").outerHeight() / 2 + "px"
+    $(window).outerHeight() / 3 - $(".modal-dialog").outerHeight() / 3 + "px"
 );
 $(function () {
     var projects = [
