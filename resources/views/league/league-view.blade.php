@@ -10,11 +10,14 @@
         color: #fff !important;
         font-size: 50px;
         font-weight: 700;
+        font-family: "impact-Font" !important;
     }
 
     .mainContent p {
         color: #fff;
         font-size: 18px;
+        /* font-family: "impact-Font" !important;
+        font-weight: 300 !important; */
     }
 
     .redText {
@@ -133,9 +136,18 @@
         -webkit-box-shadow: -2px -2px 19px -1px rgba(240, 220, 220, 0.7);
         -moz-box-shadow: -2px -2px 19px -1px rgba(240, 220, 220, 0.7);
     }
+    .create_league{
+        position: relative;
+        z-index: 999999;
+		height: 100% !important;
+    }
+    .loginView .create_league .heading h1{
+        text-align: center;
+    }
 </style>
 
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
+<div class="overlay"></div>
     <div class="container-fluid">
         <div class="alert alert-warning alert-dismissible hide" role="alert">
             <span class="message"></span>

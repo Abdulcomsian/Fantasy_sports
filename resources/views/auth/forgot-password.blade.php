@@ -1,14 +1,27 @@
-@extends('layouts.default')
+@extends('layouts.new-default')
 @section('title', 'Forgot Password')
+<style>
+    .create_league{
+        position: relative;
+        z-index: 999999;
+    }
+    .loginView .create_league .heading h1{
+        text-align: center;
+    }
+    .loginView .create_league{
+        display: block !important;
+        padding: 150px 0px;
+    }
+</style>
 @section('content')
 <div class="season_fall create_league">
+<div class="overlay"></div>
     <div class="container">
             <div class="heading font-style-st">
             <h1>Forgot Password</h1>
         </div>
     </div>
   
-    <div class="container-fluid">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -39,7 +52,6 @@
                 </div>
             </div>
         </form>
-    </div>
 </div>
 @endsection
 @section('js')

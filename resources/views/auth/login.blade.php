@@ -1,13 +1,19 @@
-@extends('layouts.default')
+@extends('layouts.new-default')
 @section('title', 'Login')
-@section('content')
 <style>
-    .loginView{
-    background-image: url("../images/loginBg.png") !important;
-    height: 100vh !important;
-}
+    .heading h1{
+        font-family: "olympus" !important;
+        font-size: 85px;
+        font-weight: 900;
+        line-height: 104px !important;     
+    }
+    .fantasySeason{
+        font-family: "olympus" !important;
+    }
 </style>
+@section('content')
 <div class="create_league">
+     <div class="overlay"></div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
@@ -40,7 +46,7 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="create_league_table">
                         <div class="save lg-btn">
-                            <button>Login</button>
+                            <button>Sign In</button>
                         </div>
                     </div>
                 </div>

@@ -42,8 +42,25 @@
     .incrementNumber input{
         pointer-events: none;
     }
+    .create_league{
+        position: relative;
+        z-index: 999999;
+    }
+    .loginView .create_league .heading h1{
+        text-align: center;
+    }
+    .create_league form .select_view .select_draft ul li label, .create_league form .select_view .select_draft ul li select{
+        border-radius: 8px;
+    }
+    select.lg-size{
+        width: 150px;
+    }
+    .loginView .create_league{
+        height: 100% !important;
+    }
 </style>
 <div class="create_league">
+<div class="overlay"></div>
     <div class="container">
         <div class="heading">
             <h1>create League</h1>
@@ -218,7 +235,7 @@
                                     </div>
                                     <input type="hidden" name="order[]" value="5" id="order5" />
                                     <input type="hidden" name="pos[]" value="WRT" id="posid5" />
-                                    <p>(FLEX (WR/RB/TE))</p>
+                                    <p>FLEX (WR/RB/TE)</p>
                                 </div>
                                 <div class="colorPickerDiv">
                                     <div class="incrementNumber">

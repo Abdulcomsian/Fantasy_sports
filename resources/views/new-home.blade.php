@@ -119,8 +119,6 @@
     .contentDiv .sideBar ul li:hover {
         font: 700 22px "Neometric";
         color: #fff;
-        border: 1px solid #fff;
-        text-align: center;
         margin: 0 auto 20px;
     }
 

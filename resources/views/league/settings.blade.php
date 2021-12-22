@@ -80,9 +80,42 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		.squads_board .table_outer tbody tr td{
 			font-size: 17px;
 		}
-		
+		.squads_board .table_outer thead tr th,
+		.create_league_table .table_outer tbody tr td{
+			font-size: 14px !important;
+		}
+		.squads_board .table_outer thead tr .text_head{
+			padding-left: 23px !important;
+			text-align: center !important
+		}
+		.create_league_table .table_outer tbody tr td:nth-child(2){
+			padding-left: 0px !important;
+		}
+		.create_league{
+        position: relative;
+        z-index: 999999;
+		height: 100% !important;
+    }
+    .loginView .create_league .heading h1{
+        text-align: center;
+    }
+	.season_fall{
+		background-color: #000;
+	}
+	.create_league_table{
+		padding: 0px;
+	}
+	.mybutton {
+		background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 255, 255, 1)) !important;
+	}
+	.mybutton:hover{
+		background-color: #28a745;
+border-color: #28a745;
+	}
+	
 </style>
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
+<div class="overlay"></div>
 	<div class="container">
 		<div class="alert alert-warning alert-dismissible hide" role="alert">
 			<span class="message"></span>
@@ -92,7 +125,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		</div>
 		<div class="successMessage"></div>
 		<div class="container-fluid create_league_table assign_order the_lottery traders city_charts"
-            style="padding-top:35px;">
+            style="padding:0px !important;">
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-1 text-left"
@@ -179,7 +212,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
                                 <!-- <div class="col-md-12"> -->
                                 <div class="custom-control custom-switch d-flex">
                                     <button style="margin-right: 5px;font-size:15px;    border: 1px solid white;"
-                                        class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif"
+                                        class="btn btn-success @if($league->status=='keeper') green @else black @endif"
                                         data-mode="keeper">Edit Mode</button>
                                     <button style="font-size:15px;    border: 1px solid white;"
                                         class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn"
@@ -309,7 +342,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 
 
         </div>
-		<form id="updateLeague">
+		<form id="updateLeague" style="padding: 20px;">
 			<div class="row">
 				<div class="col-md-6"></div>
 
@@ -336,10 +369,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					</div>
 					<div class="list_edit">
 						<div class="row">
-							<div class="col-md-6 no-bdr">
+							<div class="col-md-4 no-bdr">
 								<h4><span>League Name</span> </h4>
 							</div>
-							<div class="col-md-6 f-wdth">
+							<div class="col-md-4 f-wdth">
 								<input type="text" name="name" value="{{ $league->name ?? '' }}" {{ $permissions == 3 ? "readonly" : "" }}>
 								<!-- <h4>League Name</h4> -->
 							</div>
@@ -347,11 +380,11 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					</div>
 					{{--<div class="list_edit select_view">
 	            		<div class="row">
-	              			<div class="col-md-6">
+	              			<div class="col-md-4">
 								  
 	                			<h4>Draft Type</h4>
 	              			</div>
-	              			<div class="col-md-6 select_draft">
+	              			<div class="col-md-4 select_draft">
 	                			<ul class="list-unstyled list-inline">
 	                                <li class="list-inline-item">
 	                                    <input type="radio" class="form-control" value="snake" name="draft_type" {{ $league->draft_type == 'snake' ? 'checked' : '' }}>
@@ -384,10 +417,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	</div>--}}
     <div class="list_edit">
         <div class="row">
-            <div class="col-md-6 no-bdr">
+            <div class="col-md-4 no-bdr">
                 <h4><span>Draft Round</span></h4>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group f-wdth">
                     <input type="text" name="draft_round" value="{{$league->draft_round}}" disabled="disabled">
                 </div>
@@ -439,10 +472,10 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 	</div> -->
 	<div class="list_edit">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<h4><span style="padding-top:10px;">Draft Type</span></h4>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<button type="button" style="" class="addCommish">{{$league->draft_type}}</button>
 			</div>
 		</div>
@@ -545,11 +578,11 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 					<table class="table table-striped table-editable teams">
 						<thead>
 							<tr>
-								<th class="text_head">Overall Pick</th>
-								<th>Team</th>
+								<th class="text_head" style="width: 100px;">Overall Pick</th>
+								<th style="width: 100px;">Team</th>
 								<th>Email</th>
 								{{--@if($league->status == 'setup')--}}
-								<th>Actions</th>
+								<th style="width: 100px;">Actions</th>
 								{{--@endif--}}
 							</tr>
 						</thead>
@@ -753,7 +786,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 				</div>
 				<input type="hidden" name="order[]" value="5" id="order5" />
 				<input type="hidden" name="pos[]" value="WRT" id="posid5" />
-				<p>(FLEX (WR/RB/TE))</p>
+				<p>FLEX (WR/RB/TE)</p>
 			</div>
 			<div class="colorPickerDiv">
 				<div class="incrementNumber">

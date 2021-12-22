@@ -1,7 +1,18 @@
-@extends('layouts.default')
+@extends('layouts.new-default')
 @section('title', 'Signup')
+<style>
+    .create_league{
+        position: relative;
+        z-index: 999999;
+    }
+    .loginView .create_league .heading h1{
+        text-align: center;
+    }
+</style>
 @section('content')
 <div class="season_fall create_league">
+<div class="overlay"></div>
+
     <div class="container">
         <div class="heading">
             <h1>Sign up</h1>
