@@ -58,8 +58,7 @@ $(function () {
     $(".teams").on("click", ".deleteTeam", function (e) {
         e.preventDefault();
         swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this league!",
+            title: "Delete Team?",
             buttons: true,
         }).then((willDelete) => {
             if (willDelete) {

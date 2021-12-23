@@ -6,6 +6,12 @@
 $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]->pivot) && isset($league->permissions[0]->pivot->permission_type)) ? $league->permissions[0]->pivot->permission_type : 0;
 @endphp
 <style>
+	.draft_boards .list_edit input, 
+	.draft_boards .list_edit select,
+	.draft_boards .list_edit button{
+		background: #000;
+		background-color: #000 !important;
+	}
 	.navbar{
 		background-color: transparent !important;
 	}
@@ -112,6 +118,20 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		background-color: #28a745;
 border-color: #28a745;
 	}
+	.draft_boards .list_edit .col-md-4{
+		display: grid;
+		align-items: center;
+	}
+	.draft_boards .list_edit .col-md-4 h4{
+		padding: 0px !important;
+	}
+	h4{
+		font-weight: 700;
+color: #fff;
+font-family: "olympus" !important;
+text-transform: uppercase;
+font-size: 50px;
+	}
 	
 </style>
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
@@ -124,8 +144,7 @@ border-color: #28a745;
 			</button>
 		</div>
 		<div class="successMessage"></div>
-		<div class="container-fluid create_league_table assign_order the_lottery traders city_charts"
-            style="padding:0px !important;">
+		<div class="container-fluid create_league_table assign_order the_lottery traders city_charts">
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-1 text-left"
@@ -211,10 +230,10 @@ border-color: #28a745;
                 </div> -->
                                 <!-- <div class="col-md-12"> -->
                                 <div class="custom-control custom-switch d-flex">
-                                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid white;"
+                                    <button style="display: grid; align-item:center;height: 58px;max-width: 98px;margin-right: 5px;font-size:15px;    border: 1px solid white;"
                                         class="btn btn-success @if($league->status=='keeper') green @else black @endif"
                                         data-mode="keeper">Edit Mode</button>
-                                    <button style="font-size:15px;    border: 1px solid white;"
+                                    <button style="height: 58px;font-size:15px;border: 1px solid white; display: grid; align-item:center; padding: .65rem .75rem !important"
                                         class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn"
                                         data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
                                 </div>
@@ -343,6 +362,11 @@ border-color: #28a745;
 
         </div>
 		<form id="updateLeague" style="padding: 20px;">
+		<div class="row">
+			<div class="col-12 text-center">
+			<h4>Settings</h4>
+			</div>
+		</div>
 			<div class="row">
 				<div class="col-md-6"></div>
 
@@ -363,7 +387,7 @@ border-color: #28a745;
 				<div class="row">
 				<div class="col-md-5">
 					<div class="side_detail">
-						<h4>Settings</h4>
+						
 						<input type="hidden" name="league_id" value="{{ $league->id }}">
 						<input type="hidden" name="user_email" value="{{Auth::user()->email}}">
 					</div>
@@ -571,7 +595,7 @@ border-color: #28a745;
 	</div> -->
 	<div class="draft_lottery_board">
 		<!-- <h2><a href="{{ url('/league/'.$league->id.'/draft') }}" style="color:#fff" class="">Back to Draft Board</a></h2> -->
-		<h2 style="background:transparent;">Owners Info & Draft Order</h2>
+		
 		<div class="table_cover">
 			<div class="table_outer">
 				<div class="table-responsive">
@@ -725,7 +749,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="1">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$qbcolor ?? '#000'}};color:white;border:1px solid;" data-button-id="1" class="PickSelector"></button>
+					<button type="button" style="background:{{$qbcolor ?? '#fff'}};color:#000;border:1px solid;" data-button-id="1" class="PickSelector"></button>
 					<input type="color" disabled class="favcolor" id="colorInput" data-id="1" name="favcolor[]" value="{{$qbcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="1" id="order1" />
@@ -739,7 +763,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="2">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$rbcolor ?? '#000'}};color:white;border:1px solid;" data-button-id="2" class="PickSelector"></button>
+					<button type="button" style="background:{{$rbcolor ?? '#fff'}};color:#000;border:1px solid;" data-button-id="2" class="PickSelector"></button>
 					<input class="favcolor" disabled data-id="2" id="colorInput" name="favcolor[]" type="color" value="{{$rbcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="2" id="order2" />
@@ -753,7 +777,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="3">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$wrcolor ?? '#000'}};color:white;border:1px solid;" data-button-id="3" class="PickSelector"></button>
+					<button type="button" style="background:{{$wrcolor ?? '#fff'}};color:#000;border:1px solid;" data-button-id="3" class="PickSelector"></button>
 					<input class="favcolor" disabled data-id="3" id="colorInput" name="favcolor[]" type="color" value="{{$wrcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="3" id="order3" />
@@ -767,7 +791,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="4">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$tecolor ?? '#000'}};color:white;border:1px solid;" data-button-id="4" class="PickSelector"></button>
+					<button type="button" style="background:{{$tecolor ?? '#fff'}};color:#000;border:1px solid;" data-button-id="4" class="PickSelector"></button>
 					<input class="favcolor" disabled data-id="4" id="colorInput" name="favcolor[]" type="color" value="{{$tecolor ?? ''}}">
 				</div>
 				<input type="hidden" name="order[]" value="4" id="order4" />
@@ -781,7 +805,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="5">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$wrtcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrtcount )){{'cursor: no-drop;'}}@endif" data-button-id="5" class="PickSelector d-none"></button>
+					<button type="button" style="background:{{$wrtcolor ?? '#fff'}};color:#000;border:1px solid;;@if(!isset($wrtcount )){{'cursor: no-drop;'}}@endif" data-button-id="5" class="PickSelector d-none"></button>
 					<input class="favcolor d-none" disabled data-id="5" id="colorInput" name="favcolor[]" type="color" value="{{$wrtcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="5" id="order5" />
@@ -795,7 +819,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="13">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$wrtecolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrtecount)){{'cursor: no-drop;'}}@endif" data-button-id="13" class="PickSelector d-none"></button>
+					<button type="button" style="background:{{$wrtecolor ?? '#fff'}};color:#000;border:1px solid;;@if(!isset($wrtecount)){{'cursor: no-drop;'}}@endif" data-button-id="13" class="PickSelector d-none"></button>
 					<input class="favcolor d-none" disabled data-id="13" id="colorInput" name="favcolor[]" type="color" value="{{$wrtecolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="6" id="order13" />
@@ -809,7 +833,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="14">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$wrrbcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($wrrbcount)){{'cursor: no-drop;'}}@endif" data-button-id="14" class="PickSelector d-none"></button>
+					<button type="button" style="background:{{$wrrbcolor ?? '#fff'}};color:#000;border:1px solid;;@if(!isset($wrrbcount)){{'cursor: no-drop;'}}@endif" data-button-id="14" class="PickSelector d-none"></button>
 					<input class="favcolor d-none" disabled data-id="14" id="colorInput" name="favcolor[]" type="color" value="{{$wrrbcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="7" id="order14" />
@@ -823,7 +847,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="15">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$qbwrrbtecolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($qbwrrbtecount)){{'cursor: no-drop;'}}@endif" data-button-id="15" class="PickSelector d-none"></button>
+					<button type="button" style="background:{{$qbwrrbtecolor ?? '#fff'}};color:#000;border:1px solid;;@if(!isset($qbwrrbtecount)){{'cursor: no-drop;'}}@endif" data-button-id="15" class="PickSelector d-none"></button>
 					<input class="favcolor d-none" disabled data-id="15" id="colorInput" name="favcolor[]" type="color" value="{{$qbwrrbtecolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="8" id="order15" />
@@ -837,7 +861,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="6">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$kcolor ?? '#000'}};color:white;border:1px solid;;@if(!isset($kcount)){{'cursor: no-drop;'}}@endif" data-button-id="6" class="PickSelector"></button>
+					<button type="button" style="background:{{$kcolor ?? '#fff'}};color:#000;border:1px solid;;@if(!isset($kcount)){{'cursor: no-drop;'}}@endif" data-button-id="6" class="PickSelector"></button>
 					<input class="favcolor" disabled data-id="6" id="colorInput" name="favcolor[]" type="color" value="{{$kcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="9" id="order6" />
@@ -851,7 +875,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="7">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="background:{{$defcolor  ?? '#000'}};color:white;border:1px solid;;@if(!isset($defcount)){{'cursor: no-drop;'}}@endif" data-button-id="7" class="PickSelector"></button>
+					<button type="button" style="background:{{$defcolor  ?? '#fff'}};color:#000;border:1px solid;;@if(!isset($defcount)){{'cursor: no-drop;'}}@endif" data-button-id="7" class="PickSelector"></button>
 					<input class="favcolor" disabled data-id="7" id="colorInput" name="favcolor[]" type="color" value="{{$defcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="10" id="order7" />
@@ -865,8 +889,8 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="12">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="@if(!isset($bencount)){{'cursor: no-drop;'}}@endif background:{{$bencolor  ?? '#000'}};color:white;border:1px solid;" data-button-id="12" class="PickSelector"></button>
-					<input class="favcolor" disabled data-id="12" id="colorInput" name="favcolor[]" type="color" value="{{$bencolor ?? '#000'}}">
+					<button class="d-none" type="button" style="@if(!isset($bencount)){{'cursor: no-drop;'}}@endif background:{{$bencolor  ?? '#fff'}};color:#000;border:1px solid;" data-button-id="12" class="PickSelector"></button>
+					<input class="favcolor d-none" disabled data-id="12" id="colorInput" name="favcolor[]" type="color" value="{{$bencolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="11" id="order12" />
 				<input type="hidden" name="pos[]" value="BENCH" id="posid12" />
@@ -879,7 +903,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="8">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="@if(!isset($dlcount)){{'cursor: no-drop;'}}@endif background:{{$dlcolor  ?? '#000'}};color:white;border:1px solid;" data-button-id="8" class="PickSelector"></button>
+					<button type="button" style="@if(!isset($dlcount)){{'cursor: no-drop;'}}@endif background:{{$dlcolor  ?? '#fff'}};color:#000;border:1px solid;" data-button-id="8" class="PickSelector"></button>
 					<input class="favcolor" disabled data-id="8" id="colorInput" name="favcolor[]" type="color" value="{{$dlcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="12" id="order8" />
@@ -893,7 +917,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="9">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="@if(!isset($lbcount)){{'cursor: no-drop;'}}@endif background:{{$lbcolor  ?? '#000'}};color:white;border:1px solid;" data-button-id="9" class="PickSelector"></button>
+					<button type="button" style="@if(!isset($lbcount)){{'cursor: no-drop;'}}@endif background:{{$lbcolor  ?? '#fff'}};color:#000;border:1px solid;" data-button-id="9" class="PickSelector"></button>
 					<input class="favcolor" disabled data-id="9" id="colorInput" name="favcolor[]" type="color" value="{{$lbcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="13" id="order9" />
@@ -907,7 +931,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="11">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="@if(!isset($dbcount)){{'cursor: no-drop;'}}@endif background:{{$dbcolor ?? '#000'}};color:white;border:1px solid;" data-button-id="11" class="PickSelector"></button>
+					<button type="button" style="@if(!isset($dbcount)){{'cursor: no-drop;'}}@endif background:{{$dbcolor ?? '#fff'}};color:#000;border:1px solid;" data-button-id="11" class="PickSelector"></button>
 					<input class="favcolor" disabled data-id="11" id="colorInput" name="favcolor[]" type="color" value="{{$dbcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="14" id="order11" />
@@ -921,7 +945,7 @@ border-color: #28a745;
 					<button type="button" class="plusBtn" data-id="10">+</button>
 				</div>
 				<div class="colorPicker">
-					<button type="button" style="@if(!isset($idpcount)){{'cursor: no-drop;'}}@endif background:{{$idpcolor ?? '#000'}};color:white;border:1px solid;" data-button-id="10" class="PickSelector d-none"></button>
+					<button type="button" style="@if(!isset($idpcount)){{'cursor: no-drop;'}}@endif background:{{$idpcolor ?? '#fff'}};color:#000;border:1px solid;" data-button-id="10" class="PickSelector d-none"></button>
 					<input class="favcolor d-none" disabled data-id="10" id="colorInput" name="favcolor[]" type="color" value="{{$idpcolor ?? '#000'}}">
 				</div>
 				<input type="hidden" name="order[]" value="15" id="order10" />

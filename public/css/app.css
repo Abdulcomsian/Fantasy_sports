@@ -1832,7 +1832,7 @@ border-color: #1e7e34;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 99999;
+    z-index: 99999999999999;
     background: url(../images/bg.jpg) no-repeat;
     background-size: cover;
     background-position: center;
@@ -3863,7 +3863,7 @@ select.lg-size {
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0.8;
+    opacity: 0.9;
     z-index: -1;
 }
 .openBtn {
@@ -4213,9 +4213,9 @@ input[type="submit"] {
     display: grid;
     background-image: url("../images/loginBg.png") !important;
     position: relative;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: 100%;
     z-index: 99999;
+    background-position: fixed;
 }
 .loginView .create_league .heading{
     text-align: left;

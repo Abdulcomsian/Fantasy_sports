@@ -58,6 +58,27 @@
     .loginView .create_league{
         height: 100% !important;
     }
+    .multiBtn{
+        text-align: center;
+        display: flex;
+justify-content: center;
+    }
+    .multiBtn button{
+        font: 700 18px "Neometric";
+        color: #fff;
+        border: 1px solid #fff;
+        padding: 10px 50px;
+        background-image: linear-gradient(to right, #000, #353535);
+        border-radius: 8px;
+        height: 66px;
+        display: grid;
+        align-items: center;
+        margin: 0px 10px !important;
+    }
+    .multiBtn button span{
+        color: red;
+        font-size: 10px !important;
+    }
 </style>
 <div class="create_league">
 <div class="overlay"></div>
@@ -95,7 +116,21 @@
                     </div>
                 </div>
             </div>
-
+            <div class="multiBtn">
+                <button>
+                    NFL
+                </button>
+                <button>
+                    NBA
+                    <br>
+                    <span>Comming soon !</span>
+                </button>
+                <button>
+                    MLB
+                    <br>
+                    <span>Comming soon !</span>
+                </button>
+            </div>
             <div class="select_view">
                 <div class="row">
                     <div class="col-md-2"></div>
@@ -169,7 +204,7 @@
                                         <button type="button" class="plusBtn" data-id="1">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="1" class="PickSelector"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;" data-button-id="1" class="PickSelector"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="1" value="#000" />
                                         <input type="color" disabled class="favcolor" id="colorInput" data-id="1" value="0">
                                     </div>
@@ -184,7 +219,7 @@
                                         <button type="button" class="plusBtn" data-id="2">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="2" class="PickSelector"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;" data-button-id="2" class="PickSelector"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="2" value="#000" />
                                         <input class="favcolor" disabled data-id="2" id="colorInput" type="color" value="">
                                     </div>
@@ -199,7 +234,7 @@
                                         <button type="button" class="plusBtn" data-id="3">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="3" class="PickSelector"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;" data-button-id="3" class="PickSelector"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="3" value="#000" />
                                         <input class="favcolor" disabled data-id="3" id="colorInput" type="color" value="">
                                     </div>
@@ -214,7 +249,7 @@
                                         <button type="button" class="plusBtn" data-id="4">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="4" class="PickSelector"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;" data-button-id="4" class="PickSelector"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="4" value="#000" />
                                         <input class="favcolor" disabled data-id="4" id="colorInput" type="color" value="">
                                     </div>
@@ -229,7 +264,7 @@
                                         <button type="button" class="plusBtn" data-id="5">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;;" data-button-id="5" class="PickSelector d-none"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;;" data-button-id="5" class="PickSelector d-none"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="5" value="#000" />
                                         <input class="favcolor d-none" disabled data-id="5" id="colorInput" type="color" value="">
                                     </div>
@@ -244,7 +279,7 @@
                                         <button type="button" class="plusBtn" data-id="13">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;;" data-button-id="13" class="PickSelector d-none"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;;" data-button-id="13" class="PickSelector d-none"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="13" value="#000" />
                                         <input class="favcolor d-none" disabled data-id="13" id="colorInput" type="color" value="">
                                     </div>
@@ -259,7 +294,7 @@
                                         <button type="button" class="plusBtn" data-id="14">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;;" data-button-id="14" class="PickSelector d-none"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;;" data-button-id="14" class="PickSelector d-none"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="14" value="#000" />
                                         <input class="favcolor d-none" disabled data-id="14" id="colorInput" type="color" value="">
                                     </div>
@@ -274,7 +309,7 @@
                                         <button type="button" class="plusBtn" data-id="15">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;;" data-button-id="15" class="PickSelector d-none"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;;" data-button-id="15" class="PickSelector d-none"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="15" value="#000" />
                                         <input class="favcolor d-none" disabled data-id="15" id="colorInput" type="color" value="0">
                                     </div>
@@ -289,7 +324,7 @@
                                         <button type="button" class="plusBtn" data-id="6">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;;" data-button-id="6" class="PickSelector"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;;" data-button-id="6" class="PickSelector"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="6" value="#000" />
                                         <input class="favcolor" disabled data-id="6" id="colorInput" type="color" value="">
                                     </div>
@@ -304,7 +339,7 @@
                                         <button type="button" class="plusBtn" data-id="7">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;;" data-button-id="7" class="PickSelector"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;;" data-button-id="7" class="PickSelector"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="7" value="#000" />
                                         <input class="favcolor" disabled data-id="7" id="colorInput" type="color" value="">
                                     </div>
@@ -319,9 +354,9 @@
                                         <button type="button" class="plusBtn" data-id="12">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="12" class="PickSelector"></button>
-                                        <input type="hidden" name="favcolor[]" data-color-id="12" value="#000" />
-                                        <input class="favcolor" disabled data-id="12" id="colorInput" type="color" value="">
+                                        <button class="d-none" type="button" style="background:#fff;color:#000;border:1px solid;" data-button-id="12" class="PickSelector"></button>
+                                        <input class="d-none" type="hidden" name="favcolor[]" data-color-id="12" value="#000" />
+                                        <input class="favcolor d-none" disabled data-id="12" id="colorInput" type="color" value="">
                                     </div>
                                     <input type="hidden" name="order[]" value="11" id="order12" />
                                     <input type="hidden" name="pos[]" value="BENCH" id="posid12" />
@@ -334,7 +369,7 @@
                                         <button type="button" class="plusBtn" data-id="8">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="8" class="PickSelector"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;" data-button-id="8" class="PickSelector"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="8" value="#000" />
                                         <input class="favcolor" disabled data-id="8" id="colorInput" type="color" value="">
                                     </div>
@@ -349,7 +384,7 @@
                                         <button type="button" class="plusBtn" data-id="9">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="9" class="PickSelector"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;" data-button-id="9" class="PickSelector"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="9" value="#000" />
                                         <input class="favcolor" disabled data-id="9" id="colorInput" type="color" value="">
                                     </div>
@@ -364,7 +399,7 @@
                                         <button type="button" class="plusBtn">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="11" class="PickSelector"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;" data-button-id="11" class="PickSelector"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="11" value="#000" />
                                         <input class="favcolor" disabled data-id="11" id="colorInput" type="color" value="">
                                     </div>
@@ -379,7 +414,7 @@
                                         <button type="button" class="plusBtn">+</button>
                                     </div>
                                     <div class="colorPicker">
-                                        <button type="button" style="background:black;color:white;border:1px solid;" data-button-id="10" class="PickSelector d-none"></button>
+                                        <button type="button" style="background:#fff;color:#000;border:1px solid;" data-button-id="10" class="PickSelector d-none"></button>
                                         <input type="hidden" name="favcolor[]" data-color-id="10" value="#000" />
                                         <input class="favcolor d-none" disabled data-id="10" id="colorInput" type="color" value="">
                                     </div>
