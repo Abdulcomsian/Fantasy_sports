@@ -5,9 +5,6 @@
     .dropDownDiv .select_draft .form-group {
         height: 40px;
     }
-    .city_board_table,table{
-        height: 100%;
-    }
     .dropdown a:hover {
         background: #000 !important;
         ;
@@ -170,18 +167,21 @@ return (($a->round_order) < ($b->round_order));
                                     </div>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
-                                    <img src="{{ asset('images/league.png') }}"
-                                        style="width:28px; position: relative; top: -5px;" />
+                                    <!-- <img src="{{ asset('images/league.png') }}"
+                                        style="width:28px; position: relative; top: -5px;" /> -->
+                                        <span style="font-size: 12px;color: red; font-family: impact-Font;">Coming soon!</span>
                                     <a class="nav-link" style="color:#fff" href="#">League Notes </a>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
-                                    <img src="{{ asset('images/gm.png') }}"
-                                        style="width:40px; position: relative; top: -5px;" />
+                                    <!-- <img src="{{ asset('images/gm.png') }}"
+                                        style="width:40px; position: relative; top: -5px;" /> -->
+                                        <span style="font-size: 12px;color: red; font-family: impact-Font;">Coming soon!</span>
                                     <a class="nav-link" style="color:#fff" href="#">GM Dashboard</a>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
-                                    <img src="{{ asset('images/chat.png') }}"
-                                        style="width:24px; position: relative; top: -5px;" />
+                                    <!-- <img src="{{ asset('images/chat.png') }}"
+                                        style="width:24px; position: relative; top: -5px;" /> -->
+                                        <span style="font-size: 12px;color: red; font-family: impact-Font;">Coming soon!</span>
                                     <a class="nav-link" style="color:#fff" href="#">Chat</a>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
@@ -499,8 +499,8 @@ return (($a->round_order) < ($b->round_order));
 
                 </div>
               </div> -->
-                                <div class="col-lg-4" style="padding: 10px 0px 60px 80px;">
-                                    <div class="dropDownDiv">
+                                <div class="col-lg-4" style="padding: 10px 0px 0px 80px;">
+                                    <div class="dropDownDiv" style="padding-top: 0px !important;">
                                         <div class="edit_revert">
                                             <ul class="list-unstyled list-inline">
                                                 <li

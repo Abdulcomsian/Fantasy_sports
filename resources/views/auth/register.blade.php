@@ -8,6 +8,16 @@
     .loginView .create_league .heading h1{
         text-align: center;
     }
+    .loginView .create_league{
+        display: block !important;
+        padding: 150px 0px;
+    }
+    .form-group{
+        width: 100%;
+        max-width: 70%;
+        margin: auto;
+        margin-bottom: 15px;
+    }
 </style>
 @section('content')
 <div class="season_fall create_league">
@@ -73,7 +83,7 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="create_league_table">
                         <div class="save rg-pd">
-                            <button>Register</button>
+                            <button>Let's Go!</button>
                         </div>
                     </div>
                 </div>

@@ -18,6 +18,7 @@
     .header h3 {
       color: #fff;
       font-weight: 700;
+      font-family: "impact-Font";
     }
 
     .header .headerRight {
