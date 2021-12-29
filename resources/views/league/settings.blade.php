@@ -232,7 +232,7 @@ font-size: 50px;
                     </nav>
                 </div>
                 <div class="col-md-2">
-                    <form id="updateLeague" class="draftFrom">
+                   <!--  <form id="" class="draftFrom"> -->
                         <div class="list_edit" style="width:100% !important;">
                             <div class="row">
                                 <!-- <div class="col-md-4">
@@ -279,7 +279,7 @@ font-size: 50px;
                                 </div>
                             </div>
                         </div>
-                    </form>
+                  <!--   </form> -->
                 </div>
                 <!-- <div class="col-md-3">
           <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
@@ -345,7 +345,7 @@ font-size: 50px;
 
 
             </div>
-            <input type="hidden" name="league_id" value="{{ $league->id }}">
+          <!--   <input type="hidden" name="league_id" value="{{ $league->id }}"> -->
             <!-- <div class="top_draft">
     <div class="container">
       <ul class="list-unstyled list-inline">
