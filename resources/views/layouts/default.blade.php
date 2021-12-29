@@ -35,9 +35,9 @@ $style="display:show";
         <!-- <li style="{{$style}}">
           <a href="#">Draft Room</a>
         </li> -->
-        <li style="{{$style}}">
+        <!-- <li style="{{$style}}">
           <a href="{{ url('/league/'.request()->route('id').'/settings') }}">Account</a>
-        </li>
+        </li> -->
         @if(Auth::check())
         <li>
           <a href="{{route('editprofile')}}">Account</a>

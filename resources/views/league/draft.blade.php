@@ -86,6 +86,9 @@
         height: 300px;
         overflow: scroll;
     }
+    table td span{
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
 </style>
 @endsection
 @section('content')

@@ -132,11 +132,19 @@ font-family: "olympus" !important;
 text-transform: uppercase;
 font-size: 50px;
 	}
-	
+	.headerView{
+		background: #000;
+	}
+	.custom-control{
+		width: 87%;
+	}
+	.custom-control .list_edit button{
+		width: auto !important;
+	}
 </style>
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
 <div class="overlay"></div>
-	<div class="container">
+	<div class="container" style="padding: 0px;">
 		<div class="alert alert-warning alert-dismissible hide" role="alert">
 			<span class="message"></span>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -144,6 +152,7 @@ font-size: 50px;
 			</button>
 		</div>
 		<div class="successMessage"></div>
+		<div class="headerView">
 		<div class="container-fluid create_league_table assign_order the_lottery traders city_charts">
             <div class="row">
                 <div class="col-md-1"></div>
@@ -230,10 +239,10 @@ font-size: 50px;
                 </div> -->
                                 <!-- <div class="col-md-12"> -->
                                 <div class="custom-control custom-switch d-flex">
-                                    <button style="display: grid; align-item:center;height: 58px;max-width: 98px;margin-right: 5px;font-size:15px;    border: 1px solid white;"
+                                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid white; padding: 0.52rem .75rem !important;"
                                         class="btn btn-success @if($league->status=='keeper') green @else black @endif"
                                         data-mode="keeper">Edit Mode</button>
-                                    <button style="height: 58px;font-size:15px;border: 1px solid white; display: grid; align-item:center; padding: .65rem .75rem !important"
+                                    <button style="font-size:15px;border: 1px solid white; padding: 0.52rem .75rem !important;"
                                         class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn"
                                         data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
                                 </div>
@@ -361,7 +370,8 @@ font-size: 50px;
 
 
         </div>
-		<form id="updateLeague" style="padding: 20px;">
+		</div>
+		<form id="updateLeague" style="padding: 40px;">
 		<div class="row">
 			<div class="col-12 text-center">
 			<h4>Settings</h4>
