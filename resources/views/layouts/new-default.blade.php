@@ -28,7 +28,15 @@
       align-items: center;
       height: 100%;
     }
-
+    .btn_top{
+      margin: 0px 10px;
+    }
+    .header .headerRight a{
+      border: none !important;
+      font-family: "impact-Font" !important;
+      font-size: 22px !important;
+      font: none !important;
+    }
     .header .headerRight span {
       margin: 0px 20px;
     }
@@ -38,6 +46,7 @@
       font-size: 20px;
       font-weight: 700;
       cursor: pointer;
+      
     }
   </style>
 </head>
@@ -61,19 +70,14 @@ $style="display:show";
           <div class="headerRight">
             <!-- <span><a href="/leagueComming">CREATE LEAGUE DRAFT BOARD</a></span>
             <span><a href="/leagueView">LEAGUE PREVIEW</a></span> -->
+           
             @if(!Auth::check())
-            <div class="col-md-3 offset-md-1" style="margin-top: 0px;">
-              <div class="btn_top">
-                <a href="{{ url('login') }}">Sign in</a>
-              </div>
-            </div>
-            @endif
-            @if(!Auth::check())
-            <div class="col-md-6 {{ (Auth::check()) ? 'offset-md-1' : '' }}" style="margin-top: -7px;">
               <div class="btn_top">
                 <a style="padding:14px 25px; height:auto;font-size:14px;" class="big_btn" href="{{url('register')}}">Create league draftboard</a>
               </div>
-            </div>
+              <div class="btn_top">
+                <a href="{{ url('leagueView') }}">League Preview</a>
+              </div>
             @else
             <div class="col-md-6 {{ (Auth::check()) ? 'offset-md-1' : '' }}" style="margin-top: -7px;">
               <div class="btn_top">
@@ -81,6 +85,7 @@ $style="display:show";
               </div>
             </div>
             @endif
+           
             @if(Auth::check())
             <div class="col-md-2">
               <div class="btn_top">

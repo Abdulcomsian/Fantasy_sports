@@ -48,6 +48,7 @@
     }
     .loginView .create_league .heading h1{
         text-align: center;
+        font-size: 55px;
     }
     .create_league form .select_view .select_draft ul li label, .create_league form .select_view .select_draft ul li select{
         border-radius: 8px;
@@ -78,6 +79,13 @@ justify-content: center;
     .multiBtn button span{
         color: red;
         font-size: 10px !important;
+    }
+    .btnSpan{
+        display: grid;
+        align-items: center;
+    }
+    .btnSpan span{
+        color: red;
     }
 </style>
 <div class="create_league">
@@ -120,16 +128,19 @@ justify-content: center;
                 <button>
                     NFL
                 </button>
-                <button>
-                    NBA
-                    <br>
+                <div class="btnSpan">
+                    <button>
+                        NBA
+                    </button>
                     <span>Comming soon !</span>
-                </button>
-                <button>
-                    MLB
-                    <br>
+                </div>
+                <div class="btnSpan">
+                    <button>
+                        MLB
+                        
+                    </button>
                     <span>Comming soon !</span>
-                </button>
+                </div>
             </div>
             <div class="select_view">
                 <div class="row">

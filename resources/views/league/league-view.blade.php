@@ -157,18 +157,22 @@
         right: 15%;
         top: -18px;
     }
-    /* .topDiv .redText:after{
+    .topDiv .redText:after{
         content: "";
         background-image: url("../images/right-angle.png");
-        width: 100px;
+        width: 228px;
         position: absolute;
-        top: 0;
+        bottom: 0px;
         background-repeat: no-repeat;
         background-position: center;
         z-index: 99999999999;
         display: inline-block;
-        height: 100px;
-    } */
+        height: 120px;
+        background-size: cover;
+    }
+    .topDiv .redText{
+        position: relative;
+    }
 </style>
 
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
@@ -199,8 +203,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="imgDiv">
-                        <img src="{{asset('images/editMode.png')}}" alt="" class="img-fluid">
-                        <img src="{{asset('images/draftMode.png')}}" alt="" class="img-fluid">
+                        <img src="{{asset('images/1.png')}}" alt="" class="img-fluid">
+                        <img src="{{asset('images/2.png')}}" alt="" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -258,7 +262,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="imgDiv3">
-                        <img src="{{asset('images/leagueDraft.png')}}" alt="" class="img-fluid">
+                        <img src="{{asset('images/3.png')}}" alt="" class="img-fluid">
                     </div>
                 </div>
 
@@ -277,7 +281,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="imgDiv3">
-                        <img src="{{asset('images/commingEdit.png')}}" alt="" class="img-fluid">
+                        <img src="{{asset('images/4.png')}}" alt="" class="img-fluid">
                     </div>
                 </div>
 
