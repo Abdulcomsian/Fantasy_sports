@@ -76,7 +76,7 @@ $(function () {
             timerSettings($("#timerBtn"), "refresh");
             timerSettings($("#timerBtn"), "start");
             val = "";
-             window.location =
+             window.location.href=
                "/league/" + $("input[name='league_id']").val() + "/draft";
         }
     });
