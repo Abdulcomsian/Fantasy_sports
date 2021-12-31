@@ -278,7 +278,12 @@ return (($a->round_order) < ($b->round_order));
             </td>
             @foreach($league->teams as $team)
             @php
-            $playerdata=\App\Models\RosterTeamplayer::where(['team_id'=>$team->id,'rosters_id'=>$data->id,'league_id'=>$league->id])->first();
+            $teamid=$team->id;
+            if($team->dup_team_id!=null)
+            {
+                $teamid=$team->dup_team_id;
+            }
+            $playerdata=\App\Models\RosterTeamplayer::where(['team_id'=>$teamid,'rosters_id'=>$data->id,'league_id'=>$league->id])->first();
             if($playerdata)
             {
             $playername=\App\Models\Player::where('id',$playerdata->player_id)->first();
