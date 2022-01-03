@@ -16,8 +16,8 @@ class CreateLeagueTeamsTable extends Migration
         Schema::create('league_teams', function (Blueprint $table) {
             $table->id();
             $table->foreignId('league_id');
-            $table->integer('dup_team_id')->nullable();
             $table->string('team_name');
+            $table->string('old_team_name')->nullable();
             $table->string('team_email');
             $table->foreignId('created_by');
             $table->foreignId('updated_by')->nullable();

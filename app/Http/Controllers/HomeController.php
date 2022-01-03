@@ -71,7 +71,6 @@ class HomeController extends Controller
     //save renew league
     public function renew_league_save(Request $request)
     {
-
         $league_id = $request->leagueid;
         $laguename = $request->leaguename;
         $leagrecord = League::find($league_id);
@@ -81,14 +80,14 @@ class HomeController extends Controller
             $leagroundrecord = LeagueRound::where('league_id', $league_id)->get(); //league round duplicate
             foreach ($leagroundrecord as $record) {
                 $newrow = $record->replicate();
-                $newrow->player_id = $record->player_id;
+                $newrow->player_id = NULL;
                 $newrow->league_id = $newLeague->id;
                 $newrow->save();
             }
             $leagueteamrecord = LeagueTeam::where('league_id', $league_id)->get(); //leagueteam duplicate
             foreach ($leagueteamrecord as $record) {
                 $newrow = $record->replicate();
-                $newrow->dup_team_id = $record->id;
+                $newrow->team_name=$record->old_team_name;
                 $newrow->league_id = $newLeague->id;
                 $newrow->save();
             }
@@ -103,27 +102,8 @@ class HomeController extends Controller
             foreach ($rosterrecord as $record) {
                 $newrow = $record->replicate();
                 $newrow->league_id = $newLeague->id;
-                if($newrow->save())
-                {
-                  $rosterid=$newrow->id;
-                }
-
-                //Work for roster TEM PLAYER
-                $rosterrecord = RosterTeamplayer::where('league_id', $league_id)->get();
-                foreach ($rosterrecord as $record1) {
-                $check=RosterTeamplayer::where(['league_id'=>$league_id,'team_id'=>$record1->team_id,'player_id'=>$record1->player_id,'rosters_id'=>$record->id])->first();
-                if($check)
-                {
-                    $newrow = $record1->replicate();
-                    $newrow->league_id = $newLeague->id;
-                    $newrow->rosters_id=$rosterid;
-                    $newrow->save();
-                }
-               
-               }
+                $newrow->save();
             }
-            
-
             toastr()->success('League Duplicated Successfully!');
             return redirect()->back();
         }

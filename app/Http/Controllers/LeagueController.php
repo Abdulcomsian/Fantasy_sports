@@ -95,6 +95,7 @@ class LeagueController extends Controller
                     $teams[] = [
                         'league_id' => $league->id,
                         'team_name' => 'Team ' . $teamNumber,
+                        'old_team_name' => 'Team ' . $teamNumber,
                         'team_email' => $user->email,
                         'team_order' => $teamNumber,
                         'created_by' => $user->id,
