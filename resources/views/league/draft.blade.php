@@ -826,8 +826,7 @@ return (($a->round_order) < ($b->round_order));
                     usort($rounds, "compare1");
                     }
                     @endphp
-                    <tr style="    overflow: visible;
-    z-index: -1;">
+                    <tr style="overflow: visible;z-index: -1;">
                         <!-- <td>{!! $rightArrow !!}</td> -->
                         <td style="background:#000;color:#fff;position: relative; z-index: auto;overflow: visible;">
                             <div
@@ -992,10 +991,10 @@ top: 6px;" />
                             <!-- <span class="indraft_team_name">{{$round->team->team_name}}</span> -->
 
                             <!-- <select style="    background: #b7b7b7;padding: 8px 10px 7px 0px; width:80%;" id="teamselect" name="teamselect">
-                  @foreach($league->teams as $team)
-                    <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
-                  @endforeach 
-              </select><br> -->
+                              @foreach($league->teams as $team)
+                                <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
+                              @endforeach 
+                          </select><br> -->
                             <span style="font-size:13px;float: left;padding: 5px;">{{$round->player->position }}</span>
                             <span style="float: right;padding: 5px;font-size:13px;">{{ $round->player->team}}</span><br>
                             <div class="team_info">
@@ -1096,6 +1095,8 @@ top: 6px;" />
             style="color:red;">NEVER ENDS</span></p>
     </div>
     </div>--}}
+
+
 
     <!-- Modal -->
     <div class="modal fade" id="keeperModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
