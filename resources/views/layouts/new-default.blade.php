@@ -4,6 +4,9 @@
 <head>
   @include('includes.head')
   <style>
+     @if(Auth::check())
+    .season_fall .btn_top a.big_btn, .header .headerRight a{top:15px;}
+    @endif
     .season_fall {
       padding: 0px;
     }
@@ -87,7 +90,7 @@ $style="display:show";
             @endif
            
             @if(Auth::check())
-            <div class="col-md-2">
+            <div class="col-md-4">
               <div class="btn_top">
                 <a href="{{ url('/home') }}">Dashboard</a>
               </div>

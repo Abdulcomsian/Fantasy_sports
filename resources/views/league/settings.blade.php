@@ -6,6 +6,7 @@
 $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]->pivot) && isset($league->permissions[0]->pivot->permission_type)) ? $league->permissions[0]->pivot->permission_type : 0;
 @endphp
 <style>
+	.setting .list_edit button{padding:10px  6px !important;}
 	.draft_boards .list_edit input, 
 	.draft_boards .list_edit select,
 	.draft_boards .list_edit button{
@@ -209,18 +210,21 @@ font-size: 50px;
                                     </div>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
-                                    <img src="{{ asset('images/league.png') }}"
-                                        style="width:28px; position: relative; top: -5px;" />
+                                    <!-- <img src="{{ asset('images/league.png') }}"
+                                        style="width:28px; position: relative; top: -5px;" /> -->
+										<span style="font-size: 12px;color: red; font-family: impact-Font;">Coming soon!</span>
                                     <a class="nav-link" style="color:#fff" href="#">League Notes </a>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
-                                    <img src="{{ asset('images/gm.png') }}"
-                                        style="width:40px; position: relative; top: -5px;" />
+                                    <!-- <img src="{{ asset('images/gm.png') }}"
+                                        style="width:40px; position: relative; top: -5px;" /> -->
+										<span style="font-size: 12px;color: red; font-family: impact-Font;">Coming soon!</span>
                                     <a class="nav-link" style="color:#fff" href="#">GM Dashboard</a>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
-                                    <img src="{{ asset('images/chat.png') }}"
-                                        style="width:24px; position: relative; top: -5px;" />
+                                    <!-- <img src="{{ asset('images/chat.png') }}"
+                                        style="width:24px; position: relative; top: -5px;" /> -->
+										<span style="font-size: 12px;color: red; font-family: impact-Font;">Coming soon!</span>
                                     <a class="nav-link" style="color:#fff" href="#">Chat</a>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
@@ -243,10 +247,10 @@ font-size: 50px;
                                 <!-- <div class="col-md-12"> -->
 
                                 <div class="custom-control custom-switch d-flex">
-                                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid white; padding: 0.52rem .75rem !important;"
+                                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid white;"
                                         class="btn btn-success @if($league->status=='keeper') green @else black @endif"
                                         data-mode="keeper">Edit Mode</button>
-                                    <button style="font-size:15px;border: 1px solid white; padding: 0.52rem .75rem !important;"
+                                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid white;"
                                         class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn"
                                         data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
                                 </div>
