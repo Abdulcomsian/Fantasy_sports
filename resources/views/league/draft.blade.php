@@ -1099,8 +1099,8 @@ top: 6px;" />
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Keeper</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:white">Add Keeper</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -1120,7 +1120,7 @@ top: 6px;" />
                                                 </select> -->
                     
                                                 <input id="myInput2" type="text" name="myCountry" autocomplete="off"
-                                                    style="color:#fff;" placeholder="Enter Player Name">
+                                                    style="color:#fff;background: black !important;border:1px solid" placeholder="Enter Player Name">
                                             </div>
                                         </div>
                                     </li>
