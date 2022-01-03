@@ -81,6 +81,7 @@ class HomeController extends Controller
             foreach ($leagroundrecord as $record) {
                 $newrow = $record->replicate();
                 $newrow->player_id = NULL;
+                $newrow->team_id=$record->old_team_id;
                 $newrow->league_id = $newLeague->id;
                 $newrow->save();
             }
