@@ -781,19 +781,23 @@ return (($a->round_order) < ($b->round_order));
                         @foreach($league->teams as $team)
                         <td style="overflow:hidden;white-space:nowrap;  width: 150px;">
                             @php
-                            $playersdata=\App\Models\KeeperList::where('team_id',$team->id)->get();
+                            $playersdata=\App\Models\KeeperList::where(['team_id'=>$team->id,'league_id'=>$league->id])->get();
                             @endphp
                             @foreach($playersdata as $player)
                             @php
-                            $playername=\App\Models\Player::where('id',$player->player_id)->first();
+                            $playerrecord=\App\Models\Player::where('id',$player->player_id)->first();
+                             $style="";
+                               if (isset($playerrecord->position) && array_key_exists( $playerrecord->position, $colors)) {
+                                    $style=$colors[ $playerrecord->position];
+                                }
                             @endphp
                             <br>
-                            <span class="event" id="{{$team->id.''.$player->player_id}}"
+                            <span  class="event" id="{{$team->id.''.$player->player_id}}"
                                 data-round="{{$player->round_number}}" data-team="{{$team->id}}"
                                 data-player="{{$player->player_id}}" draggable="true">
                                 <button class="btn btn-secondary"
-                                    onclick="editkeeperlist('{{$team->id}}','{{$player->round_number}}','{{$playername->first_name.' '.$playername->last_name}}','{{$player->player_id}}')"
-                                    style="font-size:12px">{{$playername->first_name}} {{ $playername->last_name}}
+                                    onclick="editkeeperlist('{{$team->id}}','{{$player->round_number}}','{{$playerrecord->first_name.' '.$playerrecord->last_name}}','{{$player->player_id}}')"
+                                    style="font-size:12px;background:{{$style}}">{{$playerrecord->first_name ?? ''}} {{$playerrecord->last_name ?? ''}}
                                     {{ $player->round_number}}</button>
                             </span>
                             <br>
@@ -1206,14 +1210,14 @@ top: 6px;" />
                                 <div class="select_draft draft_round">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label> </label>
+                                            <label style="padding:12px"> </label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span style="background:black;color:white;padding:12px;"
                                                         class="input-group-text" id="basic-addon1"><i
                                                             class="fa fa-search"></i></span>
                                                 </div>
-                                                <input style="background:black;color:white;padding:21px;" type="text"
+                                                <input style="background:black !important;color:white;padding:21px;" type="text"
                                                     id="myInput4" name="myCountry" autocomplete="off"
                                                     class="form-control" placeholder="Enter Player Name"
                                                     aria-describedby="basic-addon1">
@@ -1226,7 +1230,7 @@ top: 6px;" />
                                                     name="editkeeperlistteamid" placeholder="Enter Round number" />
                                                 <input type="hidden" id="oldroundunber">
                                                 <input type="hidden" id="oldplayerid">
-                                                <input style="background:black;color:white;padding:9px;width: 120%"
+                                                <input style="background:black !important;border:1px solid;color:white;padding:9px;width: 120%"
                                                     id="editkeeperlistround" type="number" name="editkeeperlistround"
                                                     placeholder="Enter Round number" />
 
@@ -1363,8 +1367,8 @@ top: 6px;" />
 
                         $("#roundappend").html(list);
                     }
-                    if (res.playerid[0].player_id != null) {
-                        $("#updateKeeperlist").hide();
+                    if (res.playerid[0].player_id == null) {
+                        $("#updateKeeperlist").show();
                     } else {
                         $("#updateKeeperlist").hide();
                     }

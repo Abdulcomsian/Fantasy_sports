@@ -1371,6 +1371,7 @@ class DraftController extends Controller
         if ($request->roundId > $leagueround->draft_round) {
             return response()->json(['status' => 'error', 'message' => 'Round number dose not exist']);
         } else {
+
             if (isset($request->roundorder) && $request->roundorder != "") {
                 if ($request->roundId == $request->oldroundunber) {
                     $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->where('round_order', $request->roundorder)->update([
@@ -1408,7 +1409,6 @@ class DraftController extends Controller
                     return response()->json(['status' => 'error', 'message' => 'something went wrong']);
                 }
             } else {
-
                 if ($request->roundId == $request->oldroundunber) {
                     $leagueroundplayercheck = LeagueRound::where('league_id', $leagueId)->where('round_number', $request->roundId)->where('team_id', $request->teamid)->update([
                         'player_id' => $request->playerId
@@ -1422,6 +1422,7 @@ class DraftController extends Controller
                     ]);
                 }
                 if ($leagueroundplayercheck) {
+
                     //work for keeper list update
                     $record = KeeperList::where('team_id', $request->teamid)->where('player_id', $request->oldplayerid)->where('league_id', $leagueId)->where('round_number', $request->oldroundunber)->first();
                     $record->player_id = $request->playerId;
@@ -1486,7 +1487,7 @@ class DraftController extends Controller
             $record->player_id = $request->id;
             $record->round_number = $request->round_number;
             if ($record->save()) {
-                return response()->json(['status' => 'sucess', 'message' => '']);
+                return response()->json(['status' => 'success', 'message' => '']);
             } else {
                 return response()->json(['status' => 'error', 'message' => 'something went wrong']);
             }
@@ -1637,17 +1638,15 @@ class DraftController extends Controller
     //update roster veiw from keeper list
     public function update_roster_from_keeper($playerId, $oldplayerid, $round_number, $old_round_number, $leagueId, $teamid, $leagueroundplayercheck)
     {
-        if ($round_number == $old_round_number) {
-            $rostertemplayerdata = RosterTeamplayer::where(['league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid, 'round_number' => $old_round_number])->first();
+        $rostertemplayerdata = RosterTeamplayer::where(['league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid, 'round_number' => $old_round_number])->first();
+        // if ($round_number == $old_round_number) {
+        //     $rostertemplayerdata = RosterTeamplayer::where(['league_id' => $leagueId, 'team_id' => $teamid, 'player_id' => $oldplayerid, 'round_number' => $old_round_number])->first();
             if ($rostertemplayerdata) {
                 $rostertemplayerdata->player_id = $playerId;
                 $rostertemplayerdata->round_number = $round_number;
                 $rostertemplayerdata->save();
                 return response()->json(['status' => 'success', 'message' => '']);
-            }
-            else{
-                return 'false';
-            }
+            
         } else {
             $playerposition = Player::where('id', $playerId)->first();
             $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
