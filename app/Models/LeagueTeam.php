@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LeagueTeam extends Model
 {
     use HasFactory;
-    protected $fillable = ['league_id', 'team_name', 'team_email', 'team_order', 'created_by', 'updated_by'];
+    protected $fillable = ['league_id', 'team_name','old_team_name','team_email', 'team_order', 'created_by', 'updated_by'];
 
     /**
      * Get the teams for the league.
