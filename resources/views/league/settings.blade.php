@@ -136,7 +136,7 @@ font-size: 50px;
 		background: #000;
 	}
 	.custom-control{
-		width: 87%;
+		width: 100%;
 	}
 	.custom-control .list_edit button{
 		width: auto !important;
@@ -238,6 +238,7 @@ font-size: 50px;
                                 <!-- <div class="col-md-4">
                 </div> -->
                                 <!-- <div class="col-md-12"> -->
+
                                 <div class="custom-control custom-switch d-flex">
                                     <button style="margin-right: 5px;font-size:15px;    border: 1px solid white; padding: 0.52rem .75rem !important;"
                                         class="btn btn-success @if($league->status=='keeper') green @else black @endif"
@@ -979,8 +980,47 @@ font-size: 50px;
 @section('js')
 <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/league/settings.js') }}"></script>
+ <script type="text/javascript">
+        $(".mybutton").on('click', function () {
+            var leagueStatus = $(this).attr('data-mode');
+            let modeId = leagueStatus == "started" ? "keeperMode" : "draftMode";
+            if (modeId == "keeperMode") {
+                title = 'Lets Get Live!';
+            } else {
+                title = 'Back to the Lab!';
+            }
+            swal({
+                title: "" + title + "",
+                buttons: true,
+                timer: 1500,
+                buttons: false
+            }).then(() => {
+                changeLeagueStatus(leagueStatus);
+            });
+        })
 
+        function changeLeagueStatus(status) {
+            $.ajax({
+                type: "POST",
+                url: "/league/" + $("input[name='league_id']").val() + "/changeStatus",
+                data: {
+                    status: status
+                },
+                success: function (response) {
+                    if (response.status == 200) {
+                        successMessage(response.message);
+                        window.location.href =
+                            "/league/" + response.data.id + "/draft";
+                    } else {
+                        errorMessage(response.message);
+                    }
+                },
+            });
+        }
+
+    </script>
 <script>
+
 	function myFunction() {
 		document.getElementById("myDropdown").classList.toggle("show");
 	}

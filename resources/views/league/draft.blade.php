@@ -974,13 +974,14 @@ top: 6px;" />
                             {
                             $background="background:#b7b7b7";
                             }
+
                             @endphp
 
                             <select style="{{$background}};padding: 8px 10px 7px 0px; " data-view="draft"
                                 id="teamselect" class="teamselect" name="teamselect">
                                 @foreach($league->teams as $team)
                                 <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->default_order}}"
-                                    {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
+                                    {{$team->team_name == $round->team->team_name  ? 'selected' : ''}}>{{ $team->team_name }}</option>
                                     @endforeach
                             </select><br>
                             @if(isset($round->player) && isset($round->player->first_name))
@@ -1112,11 +1113,11 @@ top: 6px;" />
                                         <div class="select_draft draft_round">
                                             <div class="form-group drft-plr">
                                                 <!-- <select name="" class="keeperPlayer select2Drp">
-                      <option value="">Draft Player</option>
-                      @foreach($players as $player)
-                        <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}"  data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
-                      @endforeach
-                    </select> -->
+                                                  <option value="">Draft Player</option>
+                                                  @foreach($players as $player)
+                                                    <option value="{{$player->id}}" data-last_name="{{$player->last_name}}" data-first_name="{{$player->first_name}}"  data-team="{{$player->team}}" data-position="{{$player->position}}">{{$player->first_name.' '.$player->last_name.' ('.$player->position.') '}}</option>
+                                                  @endforeach
+                                                </select> -->
                     
                                                 <input id="myInput2" type="text" name="myCountry" autocomplete="off"
                                                     style="color:#fff;" placeholder="Enter Player Name">
@@ -1151,14 +1152,14 @@ top: 6px;" />
                                 <div class="select_draft draft_round">
                                     <div class="row">
                                         <div class="col-md-8">
-                                        <label for="" style="padding: 10px;"></label>
+                                        <label for="" style="padding: 9px;"></label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span style="background:black;color:white;padding:12px;"
                                                         class="input-group-text" id="basic-addon1"><i
                                                             class="fa fa-search"></i></span>
                                                 </div>
-                                                <input style="background:black;color:white;padding:21px;" type="text"
+                                                <input style="background:black !important;color:white;padding:21px;" type="text"
                                                     id="myInput3" name="myCountry" autocomplete="off"
                                                     class="form-control" placeholder="Enter Player Name"
                                                     aria-describedby="basic-addon1">
@@ -1170,7 +1171,7 @@ top: 6px;" />
                                                 <input id="keeperlistteamid" type="hidden" name="keeperlistteamid"
                                                     placeholder="Enter Round number" ? />
                                                 <input
-                                                    style="position:relative; top:-7px;background:black;color:white;padding:9px;text-align:center;width: 120%;"
+                                                    style="position:relative; top:-7px;background:black !important;color:white;border:1px solid !important;padding:9px;text-align:center;width: 120%;border-radius: 4px !important"
                                                     id="keeperlistround" type="number" name="keeperlistround" />
                                             </div>
                                         </div>
@@ -1253,11 +1254,11 @@ top: 6px;" />
             </div>
         </div>
     </div>
-    <!-- <form method="POST" id="canvasform" class="d-none" enctype="multipart/form-data" action="{{url('/league/save-league-images')}}" id="myForm">
-    @csrf
-<input type="hidden" name="id" value="{{$league->id}}">
-<input type="hidden" name="img_val" id="img_val" value="" />
-</form> -->
+            <!-- <form method="POST" id="canvasform" class="d-none" enctype="multipart/form-data" action="{{url('/league/save-league-images')}}" id="myForm">
+                @csrf
+            <input type="hidden" name="id" value="{{$league->id}}">
+            <input type="hidden" name="img_val" id="img_val" value="" />
+            </form> -->
     @endsection
     </div>
     @section('js')
