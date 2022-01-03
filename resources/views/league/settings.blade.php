@@ -141,6 +141,9 @@ font-size: 50px;
 	.custom-control .list_edit button{
 		width: auto !important;
 	}
+	.setting .list_edit button{
+		width: auto !important;
+	}
 </style>
 <div class="create_league_table assign_order the_lottery squads_board draft_boards setting create_league">
 <div class="overlay"></div>

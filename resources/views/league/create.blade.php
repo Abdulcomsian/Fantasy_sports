@@ -63,6 +63,7 @@
         text-align: center;
         display: flex;
 justify-content: center;
+margin-top: 30px;
     }
     .multiBtn button{
         font: 700 18px "Neometric";
@@ -87,6 +88,7 @@ justify-content: center;
     .btnSpan span{
         color: red;
     }
+
 </style>
 <div class="create_league">
 <div class="overlay"></div>

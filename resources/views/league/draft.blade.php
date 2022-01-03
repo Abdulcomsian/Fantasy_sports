@@ -86,9 +86,6 @@
         height: 300px;
         overflow: scroll;
     }
-    table td span{
-        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    }
 </style>
 @endsection
 @section('content')
@@ -849,7 +846,7 @@ return (($a->round_order) < ($b->round_order));
                         $background="background:#b7b7b7";
                         }
                         @endphp
-                        <td data-round_id="{{ $round->id }}" data-team_order="{{ $round->team->team_order }}"
+                        <td data-round_id="{{ $round->id }}" data-team_order="{{ $round->team->team_order }} "
                             data-default_order="{{ $index.'.'.$round->default_order }}">
                             <div>
                                 <select style="{{$background}};padding: 8px 10px 7px 0px; " data-view="collapse"
@@ -996,8 +993,8 @@ top: 6px;" />
                     <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->player_id }}" {{$team->id == $round->team->id  ? 'selected' : ''}}>{{ $team->team_name }}</optio>
                   @endforeach 
               </select><br> -->
-                            <span style="font-size:13px;float: left;padding: 5px;">{{$round->player->position }}</span>
-                            <span style="float: right;padding: 5px;font-size:13px;">{{ $round->player->team}}</span><br>
+                            <span style="font-size:13px;float: left;padding: 5px;color: #fff; text-shadow: 2px 1px 1px #000;">{{$round->player->position }}</span>
+                            <span style="float: right;padding: 5px;font-size:13px;color: #fff; text-shadow: 2px 1px 1px #000;">{{ $round->player->team}}</span><br>
                             <div class="team_info">
                                 @if( $league->status == 'keeper' || $league->status=='started')
                                 <p data-league_id="{{$round->league_id}}" data-team_id="{{$round->team->id}}"
@@ -1008,9 +1005,9 @@ top: 6px;" />
                                 </p>
                                 @endif
                                 <!-- <span style="font-size:13px;">{{$round->player->position }}</span> <span style="font-size:13px;">{{ $round->player->first_name}}</span> <span style="font-size:14px;">{{ $round->player->team}}</span><br> -->
-                                <span style="font-size:13px;">{{ $round->player->first_name}}</span><br>
-                                <span style="font-weight:bold;font-size:16px;">{{ $round->player->last_name}}</span><br>
-                                <span>{{ $index.'.'.$round->default_order }}</span>
+                                <span style="font-size:13px;color: #fff; text-shadow: 2px 1px 1px #000">{{ $round->player->first_name}}</span><br>
+                                <span style="font-weight:bold;font-size:16px;color: #fff; text-shadow: 2px 1px 1px #000">{{ $round->player->last_name}}</span><br>
+                                <span style="color: #fff;  text-shadow: 2px 1px 1px #000">{{ $index.'.'.$round->default_order }}</span>
                             </div>
 
                             @else
