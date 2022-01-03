@@ -387,7 +387,7 @@ function savePick(playerId, roundId = 0, type = "draft") {
             success: function (response) {
                 console.log(response);
                 if (response.status == 200) {
-                    successMessage(response.message);
+                    toastr.success(response.message);
                     $(".select2Drp").select2("val", "");
                     $(".select2Drp option[value='" + playerId + "']").remove();
                     // var team_name = $("td[data-round_id='"+response.data.round_id+"']").children()[0].textContent;
