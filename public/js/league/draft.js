@@ -72,7 +72,7 @@ $(function () {
         // savePick(val);
         val = $("#myInput2").attr("data-id");
         if (val != "") {
-            savePick(val);
+            savePick(val,0,'draft');
             val="";
             timerSettings($("#timerBtn"), "refresh");
              // window.location =
@@ -83,8 +83,9 @@ $(function () {
         // savePick(val);
         val = $("#myInput2").attr("data-id");
         if (val != "") {
-            savePick(val);
+            savePick(val,0,'keeper');
             val = "";
+             timerSettings($("#timerBtn"), "refresh");
             // window.location =
             //     "/league/" + $("input[name='league_id']").val() + "/draft";
         }
@@ -363,7 +364,7 @@ function changeLeagueStatus(status) {
     });
 }
 
-function savePick(playerId, roundId = 0, type = "draft") {
+function savePick(playerId, roundId = 0, type) {
     // let selectClass = type == 'draft' ? 'draftPlayer' : 'keeperPlayer';
     // let playerLastName = $("." + selectClass + " option:selected").data('last_name');
     // let playerFirstName = $("." + selectClass + " option:selected").data('first_name');
@@ -496,10 +497,9 @@ function savePick(playerId, roundId = 0, type = "draft") {
                         $("#keeperModal").modal("toggle");
                         $('input[name="round_id"]').val(0);
                     }
-                    
+                     document.getElementById("playerBeep").play();
                      if(type=="draft")
                      {
-                         document.getElementById("playerBeep").play();
                          timerSettings($("#timerBtn"), "start");
                      }
                      window.location.href="/league/" + $("input[name='league_id']").val() + "/draft";
