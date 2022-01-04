@@ -113,6 +113,7 @@ $permissions = (isset($league->permissions[0]) && isset($league->permissions[0]-
 		padding: 0px;
 	}
 	.mybutton {
+		border: 1px solid #404040;
 		background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 255, 255, 1)) !important;
 	}
 	.mybutton:hover{
@@ -621,7 +622,7 @@ font-size: 50px;
 						<thead>
 							<tr>
 								<th class="text_head" style="width: 100px;">Overall Pick</th>
-								<th style="width: 100px;">Team</th>
+								<th style="width: 200px;">Team</th>
 								<th>Email</th>
 								{{--@if($league->status == 'setup')--}}
 								<th style="width: 100px;">Actions</th>

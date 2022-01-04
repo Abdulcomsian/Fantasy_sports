@@ -762,7 +762,7 @@ border-color: #1e7e34;
 /* line 512, ../sass/app.scss */
 .draft_boards .list_edit button {
     background-image: linear-gradient(to right, #000, #353535);
-    font: 500 13px "Neometric Medium";
+  
     color: #fff;
     border: 1px solid #fff;
     text-align: center;
@@ -3675,8 +3675,8 @@ select.lg-size {
 #side-nav .side-nav-content {
     padding: 150px 0px 0px;
     position: relative;
-    background: #313131ee;
-    opacity: 0.8;
+    background: #000;
+    opacity: 1;
 }
 .season_fall .openBtn {
     position: fixed;
@@ -3991,7 +3991,6 @@ table {
 }
 .city_board_table .table tbody tr td {
     padding: 0px;
-    overflow: hidden;
 }
 .city_board_table .table tbody tr td .team_info {
     padding: 0px 10px;

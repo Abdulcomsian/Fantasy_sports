@@ -6,6 +6,9 @@
   background:#000 !important;;
   color:#fff !important;
 }
+.table td:nth-child(1), .table td:last-child{
+        border: none !important;
+    }
 .swal-modal{
   background-color: rgba(255, 255, 255, 0.3);
  -webkit-backdrop-filter: blur(10px);
@@ -47,7 +50,7 @@
     }
   }
   .mybutton{
-    border:1px solid white;
+    border:1px solid #404040;
     background: linear-gradient(to right, rgba(255,0,0,0), rgba(0,255,255,1));
   }
  .assign_order h2:hover{
