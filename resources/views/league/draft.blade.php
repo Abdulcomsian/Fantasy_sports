@@ -201,7 +201,6 @@
                         </nav>
                     </div>
                     <div class="col-md-2">
-                        <form id="updateLeague" class="draftFrom">
                             <div class="list_edit" style="width:100% !important;">
                                 <div class="row">
                                     <!-- <div class="col-md-4">
@@ -242,7 +241,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                     <!-- <div class="col-md-3">
           <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
