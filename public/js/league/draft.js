@@ -73,11 +73,7 @@ $(function () {
         val = $("#myInput2").attr("data-id");
         if (val != "") {
             savePick(val);
-            timerSettings($("#timerBtn"), "refresh");
-            timerSettings($("#timerBtn"), "start");
-            val = "";
-             window.location.href=
-               "/league/" + $("input[name='league_id']").val() + "/draft";
+            val="";
         }
     });
     $("#saveKeeper").click(function () {
@@ -499,6 +495,9 @@ function savePick(playerId, roundId = 0, type = "draft") {
                         $('input[name="round_id"]').val(0);
                     }
                     document.getElementById("playerBeep").play();
+                     timerSettings($("#timerBtn"), "refresh");
+                     timerSettings($("#timerBtn"), "start");
+                     window.location.href="/league/" + $("input[name='league_id']").val() + "/draft";
                 } else {
                     toastr.error(response.message);
                 }
