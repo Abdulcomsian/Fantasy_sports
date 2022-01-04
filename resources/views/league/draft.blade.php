@@ -2,6 +2,9 @@
 @section('title', 'City Chart')
 @section('css')
 <style type="text/css">
+.fixedBanner{
+    z-index:9999999 !important;
+}
     .dropDownDiv .select_draft .form-group {
         height: 40px;
     }
