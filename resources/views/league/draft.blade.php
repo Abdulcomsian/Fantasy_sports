@@ -10,7 +10,9 @@
         ;
         color: #fff !important;
     }
-
+    .table td, .table th{
+        border: none !important;
+    }
     .circle {
         /*background-color: rgba(255, 82, 82, 1);
     border-radius: 50%;*/
@@ -61,7 +63,7 @@
     }
 
     .mybutton {
-        border: 3px solid #1c1b1b;
+        border: 1px solid #404040;
         background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 255, 255, 1));
     }
 
@@ -83,9 +85,23 @@
         color: #fff;
     }
     #myInputautocomplete-list{
-        height: 300px;
+        max-height: 300px;
         overflow: scroll;
     }
+    body {
+            animation: fadeInAnimation ease 7s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
 </style>
 @endsection
 @section('content')
@@ -169,19 +185,19 @@ return (($a->round_order) < ($b->round_order));
                                 <li class="nav-item" style="text-align: center;">
                                     <!-- <img src="{{ asset('images/league.png') }}"
                                         style="width:28px; position: relative; top: -5px;" /> -->
-                                        <span style="font-size: 12px;color: red; font-family: impact-Font;">Coming soon!</span>
+                                        <p style="font-size: 12px;color: red; font-family: impact-Font; margin-bottom:8px;">Coming soon!</p>
                                     <a class="nav-link" style="color:#fff" href="#">League Notes </a>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
                                     <!-- <img src="{{ asset('images/gm.png') }}"
                                         style="width:40px; position: relative; top: -5px;" /> -->
-                                        <span style="font-size: 12px;color: red; font-family: impact-Font;">Coming soon!</span>
+                                        <p style="font-size: 12px;color: red; font-family: impact-Font; margin-bottom:8px;">Coming soon!</p>
                                     <a class="nav-link" style="color:#fff" href="#">GM Dashboard</a>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
                                     <!-- <img src="{{ asset('images/chat.png') }}"
                                         style="width:24px; position: relative; top: -5px;" /> -->
-                                        <span style="font-size: 12px;color: red; font-family: impact-Font;">Coming soon!</span>
+                                        <p style="font-size: 12px;color: red; font-family: impact-Font; margin-bottom:8px;">Coming soon!</p>
                                     <a class="nav-link" style="color:#fff" href="#">Chat</a>
                                 </li>
                                 <li class="nav-item" style="text-align: center;">
@@ -1028,7 +1044,7 @@ top: 6px;" />
                     <td style="vertical-align:middle;background-color: #000;">
                         @php if($leftArrow!=''){ @endphp
                         <img src="{{ asset('images/left-arrow.png') }}" style="width:35px; height: 19px; position: relative;
-left: 16px;
+left: -16px;
 top: 6px;" />
                         @php } @endphp
                         <!-- {!! $leftArrow !!} -->
