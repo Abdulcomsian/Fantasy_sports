@@ -891,7 +891,7 @@ class DraftController extends Controller
                     }
                     else{
                          LeagueRound::where(['id' => $roundId, 'league_id' => $leagueId])->update(['player_id' => null]);
-                         return $this->sendResponse(400, 'No space available on roster.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
+                         return $this->sendResponse(400, 'No space available on roster.');
                     }
                     // return $this->sendResponse(200, 'Pick saved successfully.', ['data' => $mydata, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                 }
