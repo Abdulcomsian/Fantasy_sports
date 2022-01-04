@@ -137,7 +137,61 @@ $style="display:show";
     <p style="color: #fff;">Copyright @ 2021 Website Name. All rights reserved</p>
   </div>
   @include('includes.scripts')
+  @toastr_js
+  @toastr_render
   @yield('js')
+  <script type="text/javascript">
+    $(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ajaxSend(function(e, xhr, opt) {
+            let url = opt.url.split('/');
+            if (!(url[4] && url[4] == 'timer')) {
+                $('.ajax-loader').css("visibility", "visible");
+            }
+        });
+        $(document).ajaxComplete(function() {
+            $('.ajax-loader').css("visibility", "hidden");
+        });
+    });
+
+    function successMessage(message) {
+        $.toast({
+            heading: 'Success',
+            text: message,
+            showHideTransition: 'slide',
+            icon: 'success',
+            position: 'top-bottom-right'
+        })
+    }
+
+    function errorMessage(message) {
+        $.toast({
+            heading: 'Error',
+            text: message,
+            showHideTransition: 'fade',
+            icon: 'error',
+            position: 'top-bottom-right',
+        })
+    }
+    jQuery(".openBtn").click(function() {
+        if (jQuery("#side-nav").css("display") == "none") {
+            jQuery("#side-nav").css("display", "block")
+            jQuery(".openBtn").css("display", "none")
+            jQuery("#side-nav .side-nav-content button").css("display", "block")
+        } else {
+            jQuery("#side-nav").css("display", "none")
+        }
+    })
+    jQuery(".side-nav-content button").click(function() {
+        jQuery("#side-nav").css("display", "none")
+        jQuery(".openBtn").css("display", "block")
+    })
+</script>
   <script>
     $(document).ready(function() {
       if ($('#draftMode').is(':checked')) {
