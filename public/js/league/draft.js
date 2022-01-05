@@ -476,6 +476,7 @@ function savePick(playerId, roundId = 0, type) {
                             playerLastName +
                             "</span></div> ";
                     }
+                    document.getElementById("playerBeep").play();
                     if (type == "draft") {
                         //$("td[data-round_id='"+response.data.round_id+"']").text(playerLastName);
                         if ($(".undoPick").hasClass("hide")) {
@@ -492,17 +493,14 @@ function savePick(playerId, roundId = 0, type) {
                         ) {
                             $(".draftPlayerLi").addClass("hide");
                         }
-                    } else if (type == "keeper") {
+                        timerSettings($("#timerBtn"), "start");
+                        window.location.href="/league/" + $("input[name='league_id']").val() + "/draft";
+                    } else if (type == "keeperrr") {
                         //$("td[data-round_id='"+response.data.round_id+"']").text(playerLastName);
                         $("#keeperModal").modal("toggle");
                         $('input[name="round_id"]').val(0);
                     }
-                     document.getElementById("playerBeep").play();
-                     if(type=="draft")
-                     {
-                         timerSettings($("#timerBtn"), "start");
-                     }
-                     window.location.href="/league/" + $("input[name='league_id']").val() + "/draft";
+                     
                 } else {
                     errorMessage(response.message);
                 }
