@@ -204,7 +204,7 @@
                 <div class="col-lg-6">
                     <div class="imgDiv">
                         <img src="{{asset('images/1.png')}}" alt="" class="img-fluid">
-                        <img src="{{asset('images/2.png')}}" alt="" class="img-fluid">
+                        <img src="{{asset('images/noCarring.png')}}" alt="" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-lg-6">
