@@ -429,41 +429,16 @@
                                                 <div>
                                                     <p>On The Clock</p>
                                                     @php
-                                                    if($leaguerecord)
-                                                    {
-                                                    $roundunber=$leaguerecord->round_order+1;
-                                                    $teamid=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
-                                                    if($teamid)
-                                                    {
-                                                    $teamname=\App\Models\LeagueTeam::where('id',$teamid->team_id)->where('league_id',$leaguerecord->league_id)->first();
-                                                    }
-                                                    $nextteamid=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(2)->get();
-                                                    if(isset($nextteamid) && count($nextteamid)>0)
-                                                    {
-                                                    if(isset($nextteamid[1]->team_id))
-                                                    {
-                                                    $nextteamid=$nextteamid[1]->team_id;
-                                                    }
-                                                    else{
-                                                    $nextteamid=$nextteamid[0]->team_id;
-                                                    }
-                                                    $nextteamname=\App\Models\LeagueTeam::where('id',
-                                                    $nextteamid)->where('league_id',$leaguerecord->league_id)->first();
-                                                    }
-                                                    }
-                                                    else
-                                                    {
                                                     $roundorderplus="1";
                                                     $roundunber="1";
-                                                    }
-
                                                     @endphp
                                                     <h3 style="font-size:30px;" id="team-round">
-                                                        @if(isset($teamname)){{$teamname->team_name}}@else{{'Team '}}
-                                                        {{$roundunber}}@endif
+                                                         {{$ontheclockteam->team->team_name ?? ''}}
                                                     </h3>
                                                     <p class="upNext" id="upNext">Up Next:
-                                                        @if(isset($nextteamname)){{$nextteamname->team_name}}@else{{'Team '}}{{$roundorderplus ?? ""}}@endif
+                                                        @if(isset($nextteam[1]))
+                                                       {{$nextteam[1]->team->team_name ?? ''}}
+                                                       @endif
                                                     </p>
                                                 </div>
 
@@ -512,50 +487,14 @@
                                     <div class="col-lg-4">
                                         <div class="onTheClock" style="right: 100px !important;">
                                             <div>
-                                                @php
-                                                $playerdata=[];
-                                                if($leaguerecord)
-                                                {
-                                                $roundunber=$leaguerecord->round_order;
-                                                $roundorderplus=$leaguerecord->round_order+1;
-
-                                                $roundata=App\Models\LeagueRound::where('league_id',$leaguerecord->league_id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
-                                                if(isset($rounddata) && count($roundata)>0)
-                                                {
-                                                $teamidd=\App\Models\LeagueRound::where('round_order',$roundata->round_order-1)->where('round_number',$roundata->round_number)->where('league_id',$leaguerecord->league_id)->first();
-                                                //dd($teamidd);
-                                                }
-
-                                                if(isset($teamidd->player_id))
-                                                {
-                                                $playerdata=\App\Models\Player::where('id',$teamidd->player_id)->first();
-                                                }
-                                                else
-                                                {
-                                                $playerdata='';
-                                                }
-
-                                                if(isset($teamidd->team_id))
-                                                {
-                                                $teamname=\App\Models\LeagueTeam::where('id',$teamidd->team_id)->where('league_id',$leaguerecord->league_id)->first();
-                                                }
-                                                }
-                                                else
-                                                {
-                                                $roundorderplus="1";
-                                                $roundunber="1";
-                                                }
-
-                                                @endphp
                                                 <p id="team-select">
-                                                    @if(isset($teamname)){{ $teamname->team_name}}@else{{'Team '}}
-                                                    {{$leaguerecord->round_order ?? ''}}@endif Selects
+                                                     {{ $leaguerecord->team->team_name ?? ''}} SELECTS
                                                 </p>
                                                 <p class="upNext" id="team-slect-fname" style="text-align: center;margin-bottom: 0px;">
-                                                    {{$playerdata->first_name ?? ''}}
+                                                    {{ $leaguerecord->player->first_name ?? ''}}
                                                 </p>
                                                 <h3 style="text-align: center;font-size:30px;" id="team-slect-lname">
-                                                    {{$playerdata->last_name ?? ''}}
+                                                    {{ $leaguerecord->player->last_name ?? ''}}
                                                 </h3>
                                             </div>
 
