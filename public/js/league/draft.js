@@ -494,12 +494,12 @@ function savePick(playerId, roundId = 0, type) {
                             $(".draftPlayerLi").addClass("hide");
                         }
                         timerSettings($("#timerBtn"), "start");
-                        window.location.href="/league/" + $("input[name='league_id']").val() + "/draft";
                     } else if (type == "keeperrr") {
                         //$("td[data-round_id='"+response.data.round_id+"']").text(playerLastName);
                         $("#keeperModal").modal("toggle");
                         $('input[name="round_id"]').val(0);
                     }
+                     window.location ="/league/" + $("input[name='league_id']").val() + "/draft";
                      
                 } else {
                     errorMessage(response.message);
