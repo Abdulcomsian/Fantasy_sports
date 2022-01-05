@@ -15,9 +15,12 @@
         ;
         color: #fff !important;
     }
+    .table thead th{
+        border: none !important;
+    }
 
-    .table td,
-    .table th {
+    .table tbody td:nth-child(1),
+    .table tbody td:last-child {
         border: none !important;
     }
 
@@ -102,7 +105,7 @@
     }
 
     body {
-        animation: fadeInAnimation ease 7s;
+        animation: fadeInAnimation ease 4s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
     }
@@ -207,8 +210,8 @@
                 </div> -->
                                     <!-- <div class="col-md-12"> -->
                                     <div class="custom-control custom-switch d-flex">
-                                        <button style="margin-right: 5px;font-size:15px;    border: 1px solid white;" class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif" data-mode="keeper">Edit Mode</button>
-                                        <button style="font-size:15px;    border: 1px solid white;" class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn" data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
+                                        <button style="margin-right: 5px;font-size:15px;    border: 1px solid #404040;" class="btn btn-success mybutton @if($league->status=='keeper') green @else black @endif" data-mode="keeper">Edit Mode</button>
+                                        <button style="font-size:15px;    border: 1px solid #404040;" class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn" data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
                                     </div>
                                     <!-- </div> -->
                                 </div>
@@ -1359,4 +1362,8 @@ top: 6px;" />
         });
     }
 </script>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> 59151a94fa8f8de2d8cc81fd723ef11d5d6a8cb9
