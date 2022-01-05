@@ -1362,8 +1362,4 @@ top: 6px;" />
         });
     }
 </script>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> 59151a94fa8f8de2d8cc81fd723ef11d5d6a8cb9
