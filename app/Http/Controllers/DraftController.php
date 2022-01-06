@@ -44,9 +44,8 @@ class DraftController extends Controller
                 $roundsArr[$roundNumber][$subround] = $round;
                 $subround++;
             }
-            $leaguerecord = leagueRound::with('team')->with('player')->where(['league_id' => $id])->where('player_id', '=', Null)->orderBy('id', 'asc')->first();
+            $leaguerecord = leagueRound::with('team')->with('player')->where(['league_id' => $id,'roundtype'=> 1])->where('player_id', '!=', Null)->orderBy('id', 'desc')->first();
 
-            $leaguerecord = leagueRound::with('team')->with('player')->where(['league_id' => $id,])->where('player_id', '!=', Null)->where('id','<',$leaguerecord->id)->orderBy('id', 'desc')->first();
             //ON THE CLOCK TEAM AND NEXT TEAM WORK HERE
             $ontheclockteam=LeagueRound::with('team')->where('league_id',$id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
 
@@ -168,7 +167,7 @@ class DraftController extends Controller
                             return $this->sendResponse(400, 'Please wait for your clock turn');
                         }
                     }
-                    LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order, 'league_id' => $leagueId])->update(['player_id' => $request->player_id]);
+                    LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order, 'league_id' => $leagueId])->update(['player_id' => $request->player_id,'roundtype'=>2]);
                     $mydata = LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order,'league_id'=>$leagueId])->first();
                     $playerposition = Player::where('id', $request->player_id)->first();
                     $roster_row = Roster::where(['position' => $playerposition->position, 'league_id' => $leagueId])->get();
@@ -590,7 +589,7 @@ class DraftController extends Controller
                     }
                     else
                     {
-                           LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order, 'league_id' => $leagueId])->update(['player_id' => null]);
+                           LeagueRound::where(['round_number' => $request->round_number, 'round_order' => $request->round_order, 'league_id' => $leagueId])->update(['player_id' => null,'roundtype'=> null]);
                           return $this->sendResponse(400, 'No space available on roster.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                     }
                    // return $this->sendResponse(200, 'Pick saved successfully.', ['nround_id' => $leaguerounddata->id, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
@@ -605,7 +604,7 @@ class DraftController extends Controller
                             return $this->sendResponse(400, 'Please wait for your clock turn');
                         }
                     }
-                    LeagueRound::where(['id' => $roundId, 'league_id' => $leagueId])->update(['player_id' => $request->player_id]);
+                    LeagueRound::where(['id' => $roundId, 'league_id' => $leagueId])->update(['player_id' => $request->player_id,'roundtype'=> 1]);
                     $mydata = LeagueRound::where('id', $roundId)->first();
                     //get player postion
                     $playerposition = Player::where('id', $mydata->player_id)->first();
@@ -900,7 +899,7 @@ class DraftController extends Controller
                         return $this->sendResponse(200, 'Pick saved successfully.', ['data' => $mydata, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
                     }
                     else{
-                         LeagueRound::where(['id' => $roundId, 'league_id' => $leagueId])->update(['player_id' => null]);
+                         LeagueRound::where(['id' => $roundId, 'league_id' => $leagueId])->update(['player_id' => null,'roundtype'=> null]);
                          return $this->sendResponse(400, 'No space available on roster.');
                     }
                     // return $this->sendResponse(200, 'Pick saved successfully.', ['data' => $mydata, 'round_id' => $roundId, 'league_round' => $leagueRound, 'leagueid' => $leagueId, 'leagueteam' => $league, 'counts' => League::getLeagueRoundsCount($leagueId)]);
