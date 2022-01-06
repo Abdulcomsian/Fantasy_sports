@@ -734,7 +734,7 @@
                         @endphp
                         <tr style="overflow: visible;z-index: -1;">
                             <!-- <td>{!! $rightArrow !!}</td> -->
-                            <td style="background:#000;color:#fff;position: relative; z-index: auto;overflow: visible;">
+                            <td style="background:#000;color:#fff;position: relative; z-index: 999999;overflow: visible;">
                                 <div style="text-align: center; position: absolute;right: -5px;top: 0;z-index: 999999;font-size: 27px;text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
                                     {{ $index }}
                                 </div>
