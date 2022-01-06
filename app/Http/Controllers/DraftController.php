@@ -44,9 +44,14 @@ class DraftController extends Controller
                 $roundsArr[$roundNumber][$subround] = $round;
                 $subround++;
             }
-            $leaguerecord = leagueRound::with('team')->with('player')->where(['league_id' => $id])->where('player_id', '!=', Null)->orderBy('id', 'DESC')->first();
+            $leaguerecord = leagueRound::with('team')->with('player')->where(['league_id' => $id])->where('player_id', '=', Null)->orderBy('id', 'asc')->first();
+
+            $leaguerecord = leagueRound::with('team')->with('player')->where(['league_id' => $id,])->where('player_id', '!=', Null)->where('id','<',$leaguerecord->id)->orderBy('id', 'desc')->first();
             //ON THE CLOCK TEAM AND NEXT TEAM WORK HERE
-           $ontheclockteam=LeagueRound::with('team')->where('league_id',$id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
+            $ontheclockteam=LeagueRound::with('team')->where('league_id',$id)->whereNull('player_id')->orderby('id','asc')->limit(1)->first();
+
+
+
            $nextteam=LeagueRound::with('team')->where('league_id',$id)->whereNull('player_id')->orderby('id','asc')->limit(2)->get();
             $postioncolor=Roster::where('league_id',$id)->groupBy('position')->get();
             $colors=[];
