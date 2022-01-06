@@ -25,7 +25,7 @@
     }
 
     .circle {
-        /*background-color: rgba(255, 82, 82, 1);
+       /* background-color: rgba(255, 82, 82, 1);
     border-radius: 50%;*/
 
         animation: pulse-red 2s infinite;
@@ -857,13 +857,13 @@ top: 6px;" />
                         <td data-round_id="{{ $round->id }}" data-team_order="{{ $round->team->team_order }}" data-default_order="{{ $index.'.'.$round->default_order }}">
                             @php
                             $class='';
-                            if(isset($teamid))
+                            if(isset($ontheclockteam))
                             {
-                            if($teamid->round_number ==$round->round_number && $teamid->round_order==$round->round_order &&
-                            $league->status != 'keeper')
-                            {
-                            $class='circle';
-                            }
+                                if($ontheclockteam->round_number ==$round->round_number && $ontheclockteam->round_order==$round->round_order &&
+                                $league->status != 'keeper')
+                                {
+                                $class='circle';
+                                }
                             }
                             $style="";
                             if (isset($round->player->position) && array_key_exists($round->player->position, $colors)) {
