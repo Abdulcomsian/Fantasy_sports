@@ -92,26 +92,39 @@ class League extends Model
         return false;
     }
 
-    protected static function addNewTeamLeagueRounds($league, $teamSize, $teamId)
-    {
-        if (isset($league->teams) && isset($league->draft_round)) {
+    protected static function addNewTeamLeagueRounds($league)
+    { 
+           $league->rounds()->delete();
+         if (isset($league->teams) && isset($league->draft_round)) {
+            $teams = $league->teams()->get()->toArray();
             $authUser = Auth::user();
             $rounds = [];
-            for ($key = 1; $key <= $league->draft_round; $key++) {
-                $rounds[] = [
-                    'league_id' => $league->id,
-                    'team_id' => $teamId,
-                    'old_team_id' => $teamId,
-                    'round_number' => $key,
-                    'default_order' => $teamSize,
-                    'round_order' => $teamSize,
-                    'created_by' => $authUser->id,
-                ];
+            $key=1;
+            for ($key; $key <= $league->draft_round; $key++) {
+                if ($key % 2 == 0 && $league->draft_type == 'snake') {
+                    $finalRounds = array_reverse($teams);
+                } else {
+                    $finalRounds = $teams;
+                }
+
+                foreach ($finalRounds as $key1 => $team) {
+                    $round = [
+                        'league_id' => $league->id,
+                        'team_id' => $team['id'],
+                        'old_team_id' => $team['id'],
+                        'round_number' => $key,
+                        'default_order' => $key1 + 1,
+                        'round_order' => $key1 + 1,
+                        'created_by' => $authUser->id,
+                    ];
+                    $rounds[] = $round;
+                }
             }
             $league->rounds()->createMany($rounds);
             return true;
         }
         return false;
+
     }
 
     protected static function deleteLeagueRounds($league, $draftRound, $pos = NULL)
