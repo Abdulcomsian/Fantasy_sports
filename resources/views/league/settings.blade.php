@@ -248,10 +248,10 @@ font-size: 50px;
                                 <!-- <div class="col-md-12"> -->
 
                                 <div class="custom-control custom-switch d-flex">
-                                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid white;"
+                                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid #404040;"
                                         class="btn btn-success @if($league->status=='keeper') green @else black @endif"
                                         data-mode="keeper">Edit Mode</button>
-                                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid white;"
+                                    <button style="margin-right: 5px;font-size:15px;    border: 1px solid #404040;"
                                         class="btn btn-success mybutton @if($league->status=='started') green @else black @endif draftBtn"
                                         data-mode="started">@if($league->status=="keeper"){{'Live Draft Mode'}}@else{{'Live Draft Mode'}}@endif</button>
                                 </div>
