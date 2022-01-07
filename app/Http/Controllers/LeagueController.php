@@ -59,6 +59,7 @@ class LeagueController extends Controller
             $league->draft_type = $request->draft_type;
             $league->draft_round = $request->draft_round ?? '0';
             $league->joiner_key = strtoupper(md5(uniqid()));
+            $league->status="setup";
             $league->created_by = $user->id;
             $league->save();
 
@@ -323,7 +324,7 @@ class LeagueController extends Controller
                 $dbTeam->updated_by = $user->id;
                 $dbTeam->save();
                 if ($isNewTeam) {
-                    League::addNewTeamLeagueRounds($league, $teamSize, $dbTeam->id);
+                    League::addNewTeamLeagueRounds($league);
                 }
             }
             return $this->sendResponse(200, 'League updated successfully.', ['id' => $league->id]);
