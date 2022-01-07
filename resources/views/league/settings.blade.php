@@ -660,11 +660,11 @@ font-size: 50px;
 				</div>
 			</div>
 		</div>
-	{{-- 	@if($league->status == 'setup') --}}
+		@if($league->status == 'setup') 
 		<div class="save">
 			<button type="button" class="addTeam">Add Team</button>
 		</div>
-		{{-- @endif --}}
+		 @endif 
 		<!-- <div class="save" style="margin-bottom:21px;">
 			<button type="button" class="addTeam"><a href="{{url('league/'.$league->id.'/rounds')}}" style="color:#fff;">Enter Draft Picks Manually</a></button>
 		</div> -->
