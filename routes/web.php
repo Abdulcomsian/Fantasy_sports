@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('join/key', 'HomeController@fetchLeagueInfo');
 		Route::get('{id}/teams', 'LeagueController@teams');
 		Route::post('{id}/teams', 'LeagueController@updateTeams');
-		Route::get('{id}/settings', 'LeagueController@settings');
+		Route::get('{id}/settings', 'LeagueController@settings')->name('league.settings');
 		Route::post('{id}/changeStatus', 'LeagueController@changeStatus');
 		Route::get('{id}/rounds', 'LeagueController@rounds');
 		Route::post('{id}/rounds', 'LeagueController@updateRoundOrder');

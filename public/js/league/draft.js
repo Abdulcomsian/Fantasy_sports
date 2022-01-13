@@ -390,7 +390,7 @@ function savePick(playerId, roundId = 0, type) {
             },
             success: function (response) {
                 if (response.status == 200) {
-                    toastr.success(response.message);
+                     successMessage(response.message);
                     $(".select2Drp").select2("val", "");
                     $(".select2Drp option[value='" + playerId + "']").remove();
                     // var team_name = $("td[data-round_id='"+response.data.round_id+"']").children()[0].textContent;

@@ -103,6 +103,7 @@ class LeagueController extends Controller
                     ];
                 }
                 $league->teams()->createMany($teams);
+                 League::leagueData($league->id);
                 $league->users()->attach($user->id, ['permission_type' => 1]);
 
                 /*$permissions = [
