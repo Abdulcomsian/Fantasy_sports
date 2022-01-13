@@ -78,14 +78,6 @@ class HomeController extends Controller
         $newLeague->name = $laguename;
         $newLeague->status='setup';
         if ($newLeague->save()) {
-            $leagroundrecord = LeagueRound::where('league_id', $league_id)->get(); //league round duplicate
-            foreach ($leagroundrecord as $record) {
-                $newrow = $record->replicate();
-                $newrow->player_id = NULL;
-                $newrow->team_id=$record->old_team_id;
-                $newrow->league_id = $newLeague->id;
-                $newrow->save();
-            }
             $leagueteamrecord = LeagueTeam::where('league_id', $league_id)->get(); //leagueteam duplicate
             foreach ($leagueteamrecord as $record) {
                 $newrow = $record->replicate();

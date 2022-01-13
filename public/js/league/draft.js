@@ -499,7 +499,10 @@ function savePick(playerId, roundId = 0, type) {
                         $("#keeperModal").modal("toggle");
                         $('input[name="round_id"]').val(0);
                     }
-                     window.location ="/league/" + $("input[name='league_id']").val() + "/draft";
+                      setTimeout(function() { 
+                            window.location ="/league/" + $("input[name='league_id']").val() + "/draft";
+                        }, 2000);
+                    
                      
                 } else {
                     errorMessage(response.message);
