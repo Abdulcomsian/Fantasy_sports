@@ -107,7 +107,7 @@ class HomeController extends Controller
                 $newrow->save();
             }
             toastr()->success('League Duplicated Successfully!');
-            return redirect()->route('league.settings');
+            return redirect()->route('league.settings',['id' => $newLeague->id]);
         }
     }
 
