@@ -76,6 +76,7 @@ class HomeController extends Controller
         $leagrecord = League::find($league_id);
         $newLeague =  $leagrecord->replicate();
         $newLeague->name = $laguename;
+        $newLeague->status='setup';
         if ($newLeague->save()) {
             $leagroundrecord = LeagueRound::where('league_id', $league_id)->get(); //league round duplicate
             foreach ($leagroundrecord as $record) {
@@ -106,7 +107,7 @@ class HomeController extends Controller
                 $newrow->save();
             }
             toastr()->success('League Duplicated Successfully!');
-            return redirect()->back();
+            return redirect()->route('league.settings');
         }
     }
 

@@ -1249,7 +1249,7 @@ top: 6px;" />
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-primary updatekeeperlistbutton"
-                                    style="background:lightseagreen;width:20%;border-radius:5px;margin:4px;border:1px solid #fff;">Add</button>
+                                    style="background:lightseagreen;width:20%;border-radius:5px;margin:4px;border:1px solid #fff;">Update</button>
                                 <button type="button" class="btn btn-danger" id="removekeeperlist"
                                     style="width:20%;border-radius:5px;margin:4px;">Remove</button>
                                 <button type="button" class="btn btn-primary"

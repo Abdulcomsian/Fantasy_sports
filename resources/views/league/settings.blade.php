@@ -578,7 +578,15 @@ font-size: 50px;
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="inviteUrl" style="background:transparent;">
-				<p id="inviteURL" class="create_new ft-z" style="background:transparent;border:0px; padding-left:0px;margin-top:0px;padding-top:0px;">Invite URL: {{url('league/join?key='.$league->joiner_key)}} <a class="copyBtn"><i class="fa fa-clone" aria-hidden="true"></i> <span class="copySpan">Copy</span></a></p>
+                <span id="copyurl" style="display: none">{{url('league/join?key='.$league->joiner_key)}}</span>
+				<p id="inviteURL" class="create_new ft-z" style="background:transparent;border:0px; padding-left:0px;margin-top:0px;padding-top:0px;font-size:9px !important;">Invite URL: {{url('league/join?key='.$league->joiner_key)}} 
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                    <a class="copyBtn ml-10">
+                        <i class="fa fa-clone" aria-hidden="true"></i> 
+                        <span class="copySpan">Copy</span>
+                    </a>
+                </p>
+                <br>
 				<p>Send the URL to anyone who is a GM in your league. They will be
 					able to claim ownership of their team and will only be able to
 					navigate and make picks during live draft mode and edit their team
@@ -645,13 +653,13 @@ font-size: 50px;
 								<td class="txt_head teamId" data-id="{{$team->id}}">{{++$index}}</td>
 								<td class="teamName" contenteditable="{{ $editable }}">{{$team->team_name}}</td>
 								<td class="teamEmail" contenteditable="{{ $editable }}">{{$team->team_email}}</td>
-								{{-- @if($league->status == 'setup') --}}
+								 @if($league->status == 'setup') 
 								<td class="deleteTeam">
 									@if($permissions != 3)
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									@endif
 								</td>
-								{{--@endif --}}
+								@endif 
 							</tr>
 							@endforeach
 							@endif
@@ -674,9 +682,8 @@ font-size: 50px;
 	</div>
 	</form>
     <br>
+     @if($league->status == 'setup') 
 	<div class="rosterSetting">
-		<!-- <h5 class="text-center">Roster Setting</h5>
-		<br> -->
 		<center>
 			<P>Roster Spots & Draft Rounds:<span class="draftRound">{{$league->draft_round ?? ''}}</span></P>
 		</center>
@@ -977,6 +984,7 @@ font-size: 50px;
 			</div>
 		</form>
 	</div>
+     @endif
 </div>
 </div>
 <!-- </form> -->
@@ -1047,18 +1055,12 @@ font-size: 50px;
 		}
 	}
 	$(".copyBtn").click(function(){
-		var clipboard = navigator.clipboard;
-		if (clipboard == undefined) {
-			console.log('clipboard is undefined');
-		} else {
-			var copyText = document.getElementById("inviteURL");
-			copyText.value = $(".create_new").text().split(" ")[3];
-			clipboard.writeText(copyText.value)
-			$(".copySpan").html("copied")
-		}
+        var $temp = $("<input>");
+          $("body").append($temp);
+          $temp.val($("#copyurl").text()).select();
+          document.execCommand("copy");
+          $temp.remove();
 	})
-	// var arr = $(".create_new").text().split(" ");
-	// console.log(arr)
 	$(".plusBtn").click(function() {
 		let roundValue=$(".draftRound").text();
 		roundValue=parseInt(roundValue)+1;

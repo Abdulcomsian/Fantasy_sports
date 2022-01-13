@@ -210,7 +210,7 @@
                     </div>
                     <div class="viewDiv">
                         <div class="row">
-                            @foreach($leagues as $league)
+                        @foreach($leagues as $league)
                             @if(\Auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
                             <div class="col-md-4">
                                 <div class="leagueDiv">
@@ -236,8 +236,10 @@
                             @else
                             @php
                             $dta=\DB::table('league_user')->where(['league_id'=>$league->id,'user_id'=>\Auth::user()->id])->first();
+                              $imgname="leagueimages/".$league->id."imgscreen.png";
                             @endphp
                             @if($dta)
+                             
                             <div class="col-md-4">
                                 <div class="leagueDiv">
                                     <h4>
