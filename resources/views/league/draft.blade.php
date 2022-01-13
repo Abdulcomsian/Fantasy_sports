@@ -289,13 +289,15 @@
           <h2 style="width:70%;"><a style="color:#fff" href="{{ url('/league/'.request()->route('id').'/draft') }}">Draft</a></h2>
         </div> -->
 
-                    @if(auth::user()->role=="Admin")
+                 
                     <div class="col-lg-2 text-right">
                         <div class="d-flex" style="justify-content:flex-end;">
+                               @if(auth::user()->role=="Admin")
                             <p style="margin: 0px 30px;" type="button" id="zoom-out"><img style="width:40px;"
                                     src="{{ asset('images/minus.png') }}" /></p>
                             <p style="" type="button" id="zoom-in"><img style="width:40px;"
                                     src="{{ asset('images/plus.png') }}" /></p>
+                                    @endif
 
 
                             @if(auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
@@ -309,17 +311,16 @@
                             $dta=\DB::table('league_user')->where(['league_id'=>$league->id,'user_id'=>\Auth::user()->id])->first();
                             @endphp
                             @if($dta->permission_type==1 || $dta->permission_type==2)
-
-                            <h2 style="width:70%;"><a style="color:#fff"
-                                    href="{{ url('/league/'.request()->route('id').'/settings') }}">Settings</a></h2>
-
+                             <p style="width:70%;"><a style="color:#fff"
+                                    href="{{ url('/league/'.request()->route('id').'/settings') }}"><img
+                                        style="width:40px;" src="{{ asset('images/setting.png') }}" /></a></p>
                             @endif
                             @endif
 
 
                         </div>
                     </div>
-                    @endif
+                  
 
                     <!-- @if(auth::user()->role=="Admin" || $league->created_by==\Auth::user()->id)
         <div class="col-md-1">
@@ -978,8 +979,8 @@ top: 6px;" />
                                 <select style="{{$background}};padding: 8px 10px 7px 0px; " data-view="draft"
                                     id="teamselect" class="teamselect" name="teamselect">
                                     @foreach($league->teams as $team)
-                                    <option value="{{ $team->id.'|'.$index.'|'.$leaugeid.'|'.$round->default_order}}"
-                                        {{$team->team_name == $round->team->team_name  ? 'selected' : ''}}>
+                                <option value="{{$team->id.'|'.$index.'|'.$leaugeid.'|'.$round->default_order}}"
+                                        {{$team->old_team_name == $round->team->old_team_name  ? 'selected' : ''}}>
                                         {{ $team->team_name }}</option>
                                     @endforeach
                                 </select><br>

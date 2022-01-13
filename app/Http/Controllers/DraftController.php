@@ -1613,8 +1613,6 @@ class DraftController extends Controller
         $playerid=LeagueRound::select('player_id')->where('league_id', $leagueId)->where('team_id', $request->teamid)->where('round_number', $request->roundnumber)->get();
         echo json_encode(['playerid'=>$playerid,'get_round_order'=>$get_round_order]);
     }
-
-    //roster view
     //roster view
     public function roster_view($id)
     {
